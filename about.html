@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Operation Ready</title>
+  <meta name="description" content="Operation Ready is a pre-deployment training platform for humanitarian search and rescue crew. Built by practitioners from operational experience.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .about-intro{max-width:720px;margin:0 auto;padding:56px 36px 40px;}
+    .about-intro h2{font-family:'DM Serif Display',serif;font-size:36px;line-height:1.15;color:var(--navy);margin-bottom:20px;}
+    .about-intro h2 em{font-style:italic;color:var(--teal);}
+    .about-intro p{font-size:15px;line-height:1.85;color:var(--text2);margin-bottom:18px;font-weight:300;}
+    .about-intro p:last-child{margin-bottom:0;}
+
+    /* Problem/Solution contrast block */
+    .contrast-wrap{background:var(--navy);padding:64px 36px;position:relative;overflow:hidden;}
+    .contrast-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.08;}
+    .contrast-inner{position:relative;z-index:2;max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+    .contrast-col h3{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;margin-bottom:14px;}
+    .contrast-col .tag{display:inline-block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:14px;font-weight:500;}
+    .contrast-col.problem .tag{background:rgba(212,130,26,.2);color:#F0BF7A;}
+    .contrast-col.solution .tag{background:rgba(61,139,122,.25);color:var(--mint);}
+    .contrast-col p{font-size:14px;line-height:1.85;color:rgba(255,255,255,.7);font-weight:300;margin-bottom:14px;}
+    .contrast-col p:last-child{margin-bottom:0;}
+    .contrast-col strong{color:#fff;font-weight:500;}
+
+    /* What it is — module preview */
+    .what-section{max-width:960px;margin:0 auto;padding:64px 36px;}
+    .what-header{margin-bottom:32px;text-align:center;}
+    .what-header .sec-eyebrow{justify-content:center;}
+    .what-header .sec-eyebrow::before{display:none;}
+    .path-overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px;}
+    .path-overview{border:1px solid var(--border);border-radius:4px;padding:18px;background:var(--white);transition:all .2s;}
+    .path-overview:hover{border-color:var(--teal);transform:translateY(-2px);}
+    .path-overview-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;}
+    .path-overview-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:6px;line-height:1.25;}
+    .path-overview-count{font-size:11px;color:var(--text3);}
+
+    /* Principles */
+    .principles-section{background:var(--cream2);padding:64px 36px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+    .principles-inner{max-width:960px;margin:0 auto;}
+    .principles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+    .principle{background:var(--white);border:1px solid var(--border);border-radius:5px;padding:22px;position:relative;overflow:hidden;transition:all .2s;}
+    .principle::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);transform:scaleY(0);transform-origin:top;transition:transform .3s;}
+    .principle:hover::before{transform:scaleY(1);}
+    .principle:hover{border-color:rgba(61,139,122,.3);}
+    .principle-icon{width:28px;height:28px;border-radius:5px;background:var(--mint-pale);display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+    .principle-icon svg{width:16px;height:16px;}
+    .principle-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:6px;}
+    .principle-text{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;}
+
+    /* Built by section */
+    .built-by{max-width:820px;margin:0 auto;padding:64px 36px;}
+    .built-by-header{margin-bottom:24px;}
+    .built-by-text{font-size:15px;line-height:1.85;color:var(--text2);font-weight:300;margin-bottom:18px;}
+    .expertise-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+    .expertise-tag{font-size:11px;letter-spacing:.08em;padding:6px 12px;border-radius:14px;background:var(--mint-pale);color:var(--teal);border:1px solid rgba(61,139,122,.2);font-weight:500;}
+
+    /* What this isn't */
+    .boundaries{background:var(--cream2);padding:56px 36px;border-top:1px solid var(--border);}
+    .boundaries-inner{max-width:720px;margin:0 auto;}
+    .boundaries-header{margin-bottom:20px;}
+    .boundaries-list{list-style:none;margin:20px 0;}
+    .boundaries-list li{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.65;font-weight:300;align-items:flex-start;}
+    .boundaries-list li:last-child{border-bottom:none;}
+    .boundaries-list .label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;flex-shrink:0;padding:3px 9px;border-radius:2px;margin-top:2px;}
+    .boundaries-list .label.is{background:rgba(61,139,122,.12);color:var(--teal);}
+    .boundaries-list .label.isnt{background:rgba(212,130,26,.12);color:#C2741A;}
+
+    /* CTA strip */
+    .about-cta{padding:48px 36px;background:var(--navy);text-align:center;}
+    .about-cta h3{font-family:'DM Serif Display',serif;font-size:28px;color:#fff;margin-bottom:10px;}
+    .about-cta h3 em{font-style:italic;color:var(--yellow);}
+    .about-cta p{font-size:14px;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto 22px;font-weight:300;line-height:1.7;}
+    .about-cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+    @media(max-width:640px){
+      .about-intro{padding:40px 20px 28px;}
+      .about-intro h2{font-size:28px;}
+      .contrast-wrap{padding:40px 20px;}
+      .contrast-inner{grid-template-columns:1fr;gap:28px;}
+      .what-section,.principles-section,.built-by{padding:40px 20px;}
+      .path-overview-grid{grid-template-columns:1fr;}
+      .principles{grid-template-columns:1fr;}
+      .boundaries{padding:40px 20px;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <img src="/images/calm-water.png" alt="" class="page-hero-img" aria-hidden="true">
+  <div class="page-hero-content">
+    <div class="sec-eyebrow light" data-key="nav_about">About</div>
+    <h1>Built by <em>practitioners</em></h1>
+    <p>Operation Ready was created to close a gap that costs time, effort, and sometimes more — the gap between arriving on a humanitarian SAR vessel and actually being useful.</p>
+  </div>
+</div>
+
+<svg viewBox="0 0 1440 40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;background:var(--cream);">
+  <path d="M0,0 L1440,0 L1440,20 C1100,40 720,5 360,28 C180,38 80,12 0,18 Z" fill="#1E3A5F"/>
+</svg>
+
+<div class="about-intro">
+  <h2>A closed <em>system</em> with its own language.</h2>
+  <p>Humanitarian search and rescue vessels recruit crew from all over the world — doctors, medics, communicators, logisticians, deck crew, and more. Many arrive with no maritime background at all. The expectation is often that they'll pick things up onboard.</p>
+  <p>The reality is harder. Experienced crew are standing watches, running operations, preparing for rescues that could happen any hour. When a new person joins without context, everyone around them pays the price — slower operations, safety risks, and the kind of quiet frustration that builds up on small vessels over long deployments.</p>
+  <p>I've been there too — joining as new crew on a ship, on conservation vessels, SAR vessels, and remote stations. This is exactly what I would have wanted before stepping aboard.</p>
+  <p>Operation Ready removes that friction — by giving crew the knowledge they need <em>before</em> they board.</p>
+</div>
+
+<div class="contrast-wrap">
+  <img src="/images/calm-water.png" alt="" class="contrast-bg-img" aria-hidden="true">
+  <div class="contrast-inner">
+    <div class="contrast-col problem">
+      <div class="tag">The gap</div>
+      <h3>What usually happens</h3>
+      <p>A new crew member arrives the day before departure. They get a rushed induction, a PPE kit, and a bunk. Within hours the vessel is at sea.</p>
+      <p>They don't know what <strong>port</strong> and <strong>starboard</strong> mean. They've never heard of a <strong>Beaufort scale</strong> or an <strong>MRCC</strong>. When the alarm sounds they don't know where to go. When survivors come aboard they don't know what to say, or what not to.</p>
+      <p>Experienced crew notice. They adapt. But every moment spent bringing someone up to speed is a moment not spent on the work that actually matters.</p>
+    </div>
+    <div class="contrast-col solution">
+      <div class="tag">The fix</div>
+      <h3>What Operation Ready does</h3>
+      <p>Self-paced modules covering every dimension of pre-deployment knowledge — the vessel, the operations, medical response, survivor interaction, mental health, and the legal framework.</p>
+      <p>A new crew member arrives having already covered the basics. They understand the <strong>terminology</strong>, the <strong>hierarchy</strong>, the <strong>rhythm</strong> of vessel life, and the <strong>reality</strong> of what they're about to encounter.</p>
+      <p>When the onboard briefing starts, they're not starting from zero. They're asking better questions. And they contribute faster.</p>
+    </div>
+  </div>
+</div>
+
+<div class="what-section">
+  <div class="what-header">
+    <div class="sec-eyebrow">The curriculum</div>
+    <div class="sec-title">Six <em>paths</em></div>
+    <p class="sec-sub" style="margin:0 auto;">31 modules covering the full pre-deployment knowledge base. Every module is short, practical, and written for people with no maritime background.</p>
+  </div>
+  <div class="path-overview-grid">
+    <a href="/modules.html#track-1" class="path-overview">
+      <div class="path-overview-num">Path 1</div>
+      <div class="path-overview-title">Maritime fundamentals</div>
+      <div class="path-overview-count">6 modules · 45 minutes</div>
+    </a>
+    <a href="/modules.html#track-2" class="path-overview">
+      <div class="path-overview-num">Path 2</div>
+      <div class="path-overview-title">SAR operations</div>
+      <div class="path-overview-count">7 modules · 70 minutes</div>
+    </a>
+    <a href="/modules.html#track-3" class="path-overview">
+      <div class="path-overview-num">Path 3</div>
+      <div class="path-overview-title">Medical &amp; first response</div>
+      <div class="path-overview-count">5 modules · 50 minutes</div>
+    </a>
+    <a href="/modules.html#track-4" class="path-overview">
+      <div class="path-overview-num">Path 4</div>
+      <div class="path-overview-title">Survivor interaction</div>
+      <div class="path-overview-count">5 modules · 50 minutes</div>
+    </a>
+    <a href="/modules.html#track-5" class="path-overview">
+      <div class="path-overview-num">Path 5</div>
+      <div class="path-overview-title">Mental health &amp; resilience</div>
+      <div class="path-overview-count">4 modules · 38 minutes</div>
+    </a>
+    <a href="/modules.html#track-6" class="path-overview">
+      <div class="path-overview-num">Path 6</div>
+      <div class="path-overview-title">Legal &amp; humanitarian framework</div>
+      <div class="path-overview-count">4 modules · 40 minutes</div>
+    </a>
+  </div>
+</div>
+
+<div class="principles-section">
+  <div class="principles-inner">
+    <div class="sec-eyebrow">What we commit to</div>
+    <div class="sec-title" style="font-size:32px;">Four <em>principles</em></div>
+    <p class="sec-sub" style="margin-bottom:0;">These are not marketing claims. They are the commitments that define how this platform operates — now and in the future.</p>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-1.5L12 2z" fill="#3D8B7A"/></svg>
+        </div>
+        <div class="principle-title">Practitioner-built</div>
+        <div class="principle-text">Every module is written from direct operational experience — Mediterranean SAR, polar operations, and offshore work. Not adapted from generic maritime curricula or compiled from textbooks.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#3D8B7A" stroke-width="2.5" stroke-linecap="round"/><circle cx="12" cy="12" r="8" stroke="#3D8B7A" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="principle-title">Written from the deck</div>
+        <div class="principle-text">Modules are written by someone doing the work, not someone reading about it. Operational language, real situations, the things that actually matter on day one — and the things that don't.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#3D8B7A" stroke-width="2" fill="none"/><path d="M8 12l3 3 5-6" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="principle-title">No account, no tracking</div>
+        <div class="principle-text">No registration. No email address required. No user tracking beyond what you see. Progress is stored in your browser only. Share the link with your crew and they can start immediately.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h3l3-9 6 18 3-9h3" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="principle-title">Honest about limits</div>
+        <div class="principle-text">Pre-deployment preparation — not certified training. Complements STCW, first aid certification, and vessel-specific inductions. We say so clearly rather than overselling what this is.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="built-by">
+  <div class="sec-eyebrow">Who built this</div>
+  <div class="sec-title" style="font-size:32px;">A <em>practitioner's</em> project</div>
+  <p class="built-by-text" style="margin-top:24px;">Operation Ready was built by a maritime search and rescue professional with direct operational experience in the Central Mediterranean, the sub-Antarctic, and offshore conservation operations. The content reflects years of seeing new crew arrive under-prepared, watching experienced crew absorb the cost, and recognising that the gap could be closed with resources people could access from anywhere, at any time.</p>
+  <p class="built-by-text">The platform exists to serve humanitarian SAR crews. Contributions from other practitioners are welcomed and credited where their expertise improves the material. If your organisation has operational knowledge worth adding to a module, we want to hear from you.</p>
+  <div class="expertise-tags">
+    <span class="expertise-tag">Central Mediterranean SAR</span>
+    <span class="expertise-tag">Sub-Antarctic boating operations</span>
+    <span class="expertise-tag">RHIB operations</span>
+    <span class="expertise-tag">Mass rescue</span>
+    <span class="expertise-tag">METHANE / incident command</span>
+    <span class="expertise-tag">Emergency &amp; disaster management</span>
+  </div>
+</div>
+
+<div class="boundaries">
+  <div class="boundaries-inner">
+    <div class="sec-eyebrow">Scope</div>
+    <div class="sec-title" style="font-size:28px;">What this <em>is</em> — and isn't</div>
+    <ul class="boundaries-list">
+      <li><span class="label is">Is</span><div>Awareness-level pre-deployment training for humanitarian SAR crew. Short, practical modules covering the foundational knowledge needed to arrive oriented and effective.</div></li>
+      <li><span class="label is">Is</span><div>A resource to complement your organisation's induction — not replace it. Your vessel's specific SOPs, equipment, and procedures are taught onboard.</div></li>
+      <li><span class="label isnt">Is not</span><div>STCW-certified maritime training. For that you need a certified provider.</div></li>
+      <li><span class="label isnt">Is not</span><div>Medical or first-aid certification. Attend formal training for certifications.</div></li>
+      <li><span class="label isnt">Is not</span><div>A substitute for operational experience or vessel-specific induction. It's the floor, not the ceiling.</div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="about-cta">
+  <h3>Start <em>here</em></h3>
+  <p>All modules are available immediately. Start with Path 1 if you're new to maritime operations, or jump into the area most relevant to your deployment.</p>
+  <div class="about-cta-actions">
+    <a href="/modules.html" class="btn-primary" data-key="hero_cta2">View all modules</a>
+    <a href="/modules/1-1.html" class="btn-ghost">Begin module 1.1</a>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>initPage('about');</script>
+</body>
+</html>

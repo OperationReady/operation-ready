@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3.5 — Psychological first aid for survivors | Operation Ready</title>
+  <meta name="description" content="Understanding trauma responses and providing effective psychological first aid in the immediate aftermath of rescue.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .pfa-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+    .pfa-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .pfa-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--teal);line-height:1;margin-bottom:4px;}
+    .pfa-title{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase;}
+    .pfa-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .response-row{display:flex;gap:0;margin-bottom:8px;border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+    .response-label{width:80px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:10px 6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-align:center;line-height:1.3;}
+    .response-label.do{background:rgba(42,157,92,.1);color:#2a9d5c;}
+    .response-label.avoid{background:rgba(204,68,0,.1);color:#cc4400;}
+    .response-body{padding:12px 14px;flex:1;background:var(--white);font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .track-complete{background:var(--navy);border-radius:6px;padding:24px;text-align:center;margin-top:24px;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.pfa-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-3">Path 3</a> &rsaquo; <span>3.5</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 3 — Medical & first response</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Psychological first aid for survivors</div>
+    <div class="module-meta"><span>Module 3.5</span><span>10 min</span><span>Trauma-informed approach</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Responses</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">PFA</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">In practice</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 3.5</div>
+    <div class="mod-sec-title">Helping without causing harm</div>
+    <p class="prose">Psychological first aid is not therapy. It is not counselling. It is not asking survivors to tell you what happened to them. It is a set of practical, evidence-informed actions that support the natural recovery process and avoid inadvertently causing harm in the hours immediately after a traumatic event.</p>
+    <p class="prose">The first contact a survivor has with crew aboard a SAR vessel is often with non-medical, non-specialist personnel. What happens in those minutes — how they are spoken to, whether they feel safe, whether their immediate needs are met — has a genuine impact on their psychological trajectory. This is not abstract. The things crew say and do in the first moments matter.</p>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">PFA is not psychotherapy</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.6;color:var(--text2);">Psychological First Aid does not require you to assess, diagnose, or treat psychological conditions. It does not require you to speak the same language as the survivor. It does not require you to ask about their experiences or encourage them to talk. It is about safety, calm, connection, and practical support — and knowing what not to do.</div>
+    </div>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Common trauma responses — what they look like and why they happen</li>
+        <li>The five WHO/IASC principles of Psychological First Aid</li>
+        <li>Practical do and don't guidance for immediate survivor contact</li>
+        <li>Specific considerations for children and SGBV survivors</li>
+        <li>When to escalate to specialist support</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">10 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Understanding trauma responses</div>
+    <p class="prose">Survivors arrive on board having experienced extreme events — fear of drowning, loss of people from their vessel, violence before departure, prolonged uncertainty, and the intense experience of the rescue itself. The responses you will observe are not signs of weakness or mental illness. They are normal human responses to abnormal situations.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Acute stress reaction</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Immediately after a traumatic event: shaking, crying uncontrollably, appearing dazed or "absent," hyperventilating, or being unable to speak. This typically resolves within hours. Do not interpret this as permanent psychiatric distress.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Dissociation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">A survivor who appears disconnected, not responding normally, staring blankly, or not reacting to what is happening around them. Dissociation is a protective response — the mind creating distance from an unbearable experience. Do not try to "snap them out of it."</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Agitation and aggression</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Some people in extreme stress become agitated, raise their voices, or act in ways that appear aggressive. This is usually fear, not hostility. De-escalation is the appropriate response, not confrontation. Give space, speak calmly, avoid threatening posture.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Grief reactions</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Many survivors have watched people die during the crossing. Grief in this context can be raw and intense. Your role is not to comfort the grief away — it is to be present, calm, and non-intrusive. Do not say "it will be okay" or "you're safe now." Be present without adding pressure.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Children experience trauma differently</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Children may appear calm and composed when adults are distressed — this is not reassurance. Children often suppress their distress to match the emotional state of adults around them, or may not have the conceptual framework to process what is happening. They may also become suddenly distressed when appearing calm earlier. Never separate a child from their primary caregiver unless there is a specific safety reason. Familiar adults are the most powerful source of safety for a traumatised child.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Psychological First Aid — five principles</div>
+    <p class="prose">The WHO Inter-Agency Standing Committee framework for Psychological First Aid identifies five core actions that support survivors in the immediate aftermath of a crisis. These are practical, not therapeutic — they require no special qualifications and can be applied by any crew member.</p>
+
+    <div class="pfa-grid">
+      <div class="pfa-card">
+        <div class="pfa-num">1</div>
+        <div class="pfa-title">Safety</div>
+        <div class="pfa-text">Ensure the person feels safe. This includes physical safety (warm, dry, away from danger) but also perceived safety — being around calm, non-threatening people who are not demanding things of them. Safety is the foundation. Without it, nothing else works.</div>
+      </div>
+      <div class="pfa-card">
+        <div class="pfa-num">2</div>
+        <div class="pfa-title">Calm</div>
+        <div class="pfa-text">Your affect — how you appear — is contagious. Calm crew create calm survivors. Rushed, stressed, loud crew create more distress. If you are managing your own stress, you are automatically providing one of the most important interventions available. Breathe, slow your speech, lower your voice.</div>
+      </div>
+      <div class="pfa-card">
+        <div class="pfa-num">3</div>
+        <div class="pfa-title">Connection</div>
+        <div class="pfa-text">Connect people with their own support networks — family members on board, people who speak their language. This is not about you becoming their support. Reconnecting people with their own people is the most powerful thing you can facilitate. If people are separated, work with cultural mediators to help families locate each other.</div>
+      </div>
+      <div class="pfa-card">
+        <div class="pfa-num">4</div>
+        <div class="pfa-title">Self-efficacy</div>
+        <div class="pfa-text">After a crossing, survivors have had no control over anything. Small moments of agency matter enormously — being asked what they need, being given a choice of blanket colour, deciding where to sit. Offer choices where possible. Explain what is happening. This restores a sense that the world is not completely out of their control.</div>
+      </div>
+    </div>
+    <div class="pfa-card" style="margin-bottom:16px;">
+      <div class="pfa-num">5</div>
+      <div class="pfa-title">Hope</div>
+      <div class="pfa-text">In the immediate aftermath, the goal is not to fix trauma — it is to support the natural recovery process that occurs in the vast majority of people over time. Most people who experience traumatic events do not develop long-term psychological disorders. The things that protect against lasting harm are safety, social support, practical assistance, and being treated with dignity. All of these are within a crew member's influence.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">In practice — do and avoid</div>
+    <p class="prose">The most common errors in survivor interaction are well-intentioned. People want to help. The challenge is that some instinctive responses — asking about what happened, giving reassurance that isn't true, making physical contact without consent — are counterproductive or harmful in a trauma context.</p>
+
+    <div class="response-row"><div class="response-label do">Do</div><div class="response-body">Introduce yourself calmly, even if they cannot understand you. "Hello. I am crew. You are safe." A calm tone communicates before language does.</div></div>
+    <div class="response-row"><div class="response-label avoid">Avoid</div><div class="response-body">Asking "what happened?" or "where are you from?" or "how long were you in the water?" These questions may seem caring but put survivors in the position of narrating their trauma before they are ready or safe to do so.</div></div>
+    <div class="response-row"><div class="response-label do">Do</div><div class="response-body">Offer practical assistance: blanket, water, a place to sit. Practical help meets immediate needs and communicates care without requiring conversation.</div></div>
+    <div class="response-row"><div class="response-label avoid">Avoid</div><div class="response-body">Saying "you're safe now" or "everything will be okay." These may not be true, and survivors know it. Hollow reassurance damages trust. Offer presence, not promises.</div></div>
+    <div class="response-row"><div class="response-label do">Do</div><div class="response-body">Follow the person's lead on physical contact. Some survivors want to be held. Others need space. Read the situation, ask via gesture or interpreter if in doubt, and never assume.</div></div>
+    <div class="response-row"><div class="response-label avoid">Avoid</div><div class="response-body">Photographing or filming survivors. At any time, without explicit consent. Your organisation has strict protocols on this — follow them. Photo documentation by non-authorised crew creates serious protection and trust risks.</div></div>
+    <div class="response-row"><div class="response-label do">Do</div><div class="response-body">Keep family groups together wherever possible. The priority is physical proximity to people they trust. Separation — even brief — can cause significant distress, especially for children.</div></div>
+    <div class="response-row"><div class="response-label avoid">Avoid</div><div class="response-body">Pushing people to talk, express gratitude, engage, or respond. Some survivors will be quiet. Some will be withdrawn. Allow this. Recovery is not a performance.</div></div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">SGBV survivors — specific considerations</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Sexual and gender-based violence is prevalent along migration routes and may have occurred very recently. Signs may include visible distress when physically examined or touched, withdrawn behaviour, visible injuries, or direct disclosure. Your organisation has specific SGBV protocols. Do not attempt to assess SGBV without specialist training. Ensure privacy, maintain dignity, escalate to a specialist or the medical team immediately if disclosure occurs or is suspected.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">When to escalate</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Escalate to your organisation's mental health specialist, the medical team, or a cultural mediator when: a survivor appears to be in acute psychiatric crisis; there is disclosure of SGBV; a survivor is expressing suicidal intent; a child appears to be without a guardian; or a survivor is not responding to basic PFA. Not every difficult moment requires escalation — but knowing when it does is important. If in doubt, escalate. It is not your job to manage what a specialist should be handling.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five questions on psychological first aid application.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const questions=[
+  {q:"A survivor arrives aboard in a dissociative state — staring blankly, not responding to questions, appearing disconnected. What is the appropriate response?",opts:["Try to make direct eye contact and speak firmly to re-engage them","Give them space, remain calm and nearby, do not demand responses — escalate to medical/mental health team if it persists","Try to find out what happened to them — understanding the cause will help you help them","Give them water, leave them alone, and check back in 10 minutes"],correct:1,fb:"Dissociation is a protective response — the mind creating distance from an overwhelming experience. Trying to 'break through' it by demanding engagement or asking about experiences is counterproductive and potentially harmful. Remain calm, nearby, offer practical support (warmth, water), and escalate to the medical or mental health team if the state persists. Do not try to narrate their experience back to them."},
+  {q:"You want to offer reassurance to a survivor who has just boarded and appears very distressed. Which response is most appropriate?",opts:["'You're safe now — everything will be okay.'","'I know this must have been very difficult. You're going to be alright.'","Sit calmly nearby, offer a blanket, maintain a quiet and non-threatening presence without making statements you cannot guarantee","'We're going to look after you. Tell me what you need.'"],correct:2,fb:"Hollow reassurance — 'you're safe now, everything will be fine' — is often false and survivors know it. They have uncertain futures and have just experienced extreme trauma. Practical, calm presence communicates care more effectively than promises you cannot keep. Offering a blanket, water, warmth — these are PFA actions that meet needs without making statements that may not be true."},
+  {q:"During recovery, a crew member asks survivors 'how long were you in the water?' and 'where did you depart from?' to pass information to the medical team. Is this appropriate?",opts:["Yes — this information is clinically useful and should be collected immediately from everyone","Only the medical duration question is appropriate — the departure location is not clinically relevant","Questions should be focused on immediate medical needs only, directed through interpreters where possible, and avoid asking survivors to recount their journey","No — no questions should be asked of survivors at any point during recovery"],correct:2,fb:"Immediate questions should serve immediate needs — medical condition, where it hurts, how long in the water (clinically useful) — not general information gathering about the crossing. Questions about departure locations, journey details, and other non-medical context can cause significant distress and should not be part of immediate reception. Medical information gathering that requires survivor narration should be managed by the medical team, via interpreters if possible."},
+  {q:"A child is aboard and appears calm and composed while their mother is very distressed. What does this tell you?",opts:["The child is coping well — they have not been affected by the experience","Children are naturally more resilient than adults to traumatic events","Children may suppress distress or lack the framework to process what has happened — calm appearance does not mean the child is unaffected","The child probably did not witness the worst of the crossing and is therefore not at risk"],correct:2,fb:"Children often appear calm when adults around them are distressed — this is a protective and observational response, not evidence of resilience or absence of impact. Children may not have the conceptual framework to understand or process what has happened. Apparent calm is not reassuring. The most important thing for a traumatised child is proximity to their primary caregiver. Never separate a child from their caregiver without a specific safety reason."},
+  {q:"A survivor makes a brief disclosure that suggests they may have experienced sexual violence during their journey. You speak no common language with them. What do you do?",opts:["Try to clarify and gather more information so you can write an accurate incident report","Stay calm, maintain dignified presence, find a cultural mediator or specialist as quickly as possible, and follow your organisation's SGBV protocol","Continue with standard reception — the medical team will identify SGBV during their assessment","Acknowledge the disclosure with a nod and tell them you will get help — then continue with other reception tasks"],correct:1,fb:"SGBV disclosure requires immediate escalation to a specialist or the medical team, and should follow your organisation's specific SGBV protocol. Do not attempt to gather information, document, or assess — this requires specialist training and can cause additional harm if done incorrectly. Find a cultural mediator if possible. Maintain calm and dignity in the meantime. This situation must be escalated — do not manage it alone."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();
+  if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of PFA principles. You've completed Path 3 — Medical & first response.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review the questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the sections and try again. These principles apply in every recovery operation.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="background:var(--navy);border-radius:6px;padding:24px;text-align:center;margin-top:24px;">
+        <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Path 3 complete</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--yellow);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="background:rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;margin:0 0 16px;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">Path 3 — Medical & first response</div><div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:12px;font-weight:300;">You have completed all 5 modules in Path 3.</div><a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:3px;">Generate your Path 3 certificate &rarr;</a></div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/4-1.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:var(--teal);color:#fff;display:inline-block;">Path 4 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);display:inline-block;">All modules</a>
+        </div>
+        <div id="path-survey-mount"></div>
+      </div>`;
+  },300);
+  renderPathSurvey(3,'Medical & first response','path-survey-mount');
+}
+</script>
+</body>
+</html>

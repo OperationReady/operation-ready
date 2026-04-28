@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificates — Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .cert-page-header{max-width:820px;margin:0 auto;padding:56px 36px 24px;text-align:center;}
+    .cert-intro{max-width:720px;margin:0 auto 8px;font-size:15px;color:var(--text2);line-height:1.75;font-weight:300;}
+    .cert-list{max-width:820px;margin:0 auto;padding:24px 36px 80px;display:grid;gap:16px;}
+
+    .cert-row{background:#fff;border:1px solid var(--border);border-radius:6px;padding:22px 26px;transition:all .2s;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+    .cert-row.available{border-color:rgba(61,139,122,.4);background:linear-gradient(180deg,rgba(61,139,122,.02) 0%,#fff 100%);}
+    .cert-row.locked{opacity:.65;}
+
+    .cert-row-head{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap;}
+    .cert-row-num{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:600;}
+    .cert-row-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);line-height:1.2;}
+    .cert-row-status{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:10px;font-weight:500;}
+    .cert-row-status.available{background:rgba(61,139,122,.12);color:var(--teal);border:1px solid rgba(61,139,122,.3);}
+    .cert-row-status.locked{background:rgba(30,58,95,.05);color:var(--text3);border:1px solid var(--border);}
+    .cert-row-prog{font-size:13px;color:var(--text2);font-weight:300;line-height:1.6;}
+    .cert-row-prog strong{color:var(--teal);font-weight:500;}
+    .cert-row-bar{margin-top:10px;height:4px;background:var(--mint-pale);border-radius:2px;overflow:hidden;max-width:320px;}
+    .cert-row-bar-fill{height:100%;background:var(--teal);transition:width .4s;}
+    .cert-row-actions{display:flex;gap:10px;flex-shrink:0;align-items:center;}
+
+    /* Form for generating cert */
+    .cert-form{max-width:480px;margin:40px auto;background:#fff;border:1px solid var(--border);border-radius:6px;padding:28px;display:none;}
+    .cert-form.visible{display:block;}
+    .cert-form h2{font-family:'DM Serif Display',serif;font-size:24px;color:var(--navy);margin-bottom:8px;}
+    .cert-form p{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:16px;font-weight:300;}
+    .cert-form label{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:6px;}
+    .cert-form input{width:100%;padding:10px 14px;border:1px solid var(--border2);border-radius:3px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);background:#fff;}
+    .cert-form input:focus{outline:none;border-color:var(--teal);}
+    .cert-form .form-row{margin-bottom:16px;}
+    .cert-form-actions{display:flex;gap:10px;margin-top:18px;}
+
+    /* The certificate itself (printable) */
+    .cert-canvas{max-width:820px;margin:0 auto;padding:24px;}
+    .cert-document{background:#fff;border:1px solid var(--border);position:relative;padding:64px 72px;aspect-ratio:1.414/1;display:none;}
+    .cert-document.visible{display:block;}
+    .cert-document::before{content:'';position:absolute;inset:14px;border:1px solid rgba(61,139,122,.2);pointer-events:none;}
+    .cert-header{text-align:center;padding-bottom:18px;border-bottom:1px solid rgba(30,58,95,.1);}
+    .cert-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);}
+    .cert-logo em{color:var(--teal);font-style:italic;}
+    .cert-label{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--text3);margin-top:4px;font-weight:500;}
+    .cert-body{text-align:center;padding:40px 0 32px;}
+    .cert-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:14px;}
+    .cert-recipient{font-family:'DM Serif Display',serif;font-size:44px;color:var(--navy);line-height:1.1;margin-bottom:20px;}
+    .cert-award{font-size:14px;color:var(--text2);max-width:520px;margin:0 auto 8px;line-height:1.8;font-weight:300;}
+    .cert-path{font-family:'DM Serif Display',serif;font-size:24px;color:var(--teal);font-style:italic;margin:4px 0 12px;}
+    .cert-modules{font-size:12px;color:var(--text3);font-style:italic;}
+    .cert-footer{position:absolute;bottom:56px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:flex-end;}
+    .cert-sig-block{text-align:left;}
+    .cert-sig-line{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);border-bottom:1px solid rgba(30,58,95,.25);padding-bottom:4px;min-width:160px;margin-bottom:6px;}
+    .cert-sig-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);}
+    .cert-seal{text-align:center;}
+    .cert-seal-circle{width:74px;height:74px;border:2px solid var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;margin:0 auto 6px;}
+    .cert-seal-circle::before{content:'';position:absolute;inset:3px;border:1px solid rgba(61,139,122,.35);border-radius:50%;}
+    .cert-seal-inner{font-family:'DM Serif Display',serif;font-size:14px;color:var(--teal);text-align:center;line-height:1;}
+    .cert-seal-inner em{display:block;font-size:9px;font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:rgba(61,139,122,.7);margin-top:3px;}
+    .cert-seal-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);}
+    .cert-id{position:absolute;bottom:20px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:9px;color:var(--text3);letter-spacing:.1em;font-family:ui-monospace,monospace;}
+
+    .cert-actions-bar{max-width:820px;margin:16px auto;padding:0 24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+
+    @media print {
+      body > *:not(.cert-canvas){display:none !important;}
+      .cert-canvas{padding:0;}
+      .cert-document{border:none;box-shadow:none;aspect-ratio:auto;}
+      .cert-actions-bar{display:none;}
+    }
+
+    @media(max-width:760px){
+      .cert-page-header{padding:40px 20px 16px;}
+      .cert-list{padding:16px 20px 40px;}
+      .cert-row{grid-template-columns:1fr;gap:14px;padding:18px 20px;}
+      .cert-document{padding:36px 28px;aspect-ratio:auto;}
+      .cert-recipient{font-size:30px;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="cert-page-header">
+  <div class="sec-eyebrow" style="justify-content:center;">Certificates</div>
+  <h1 style="font-family:'DM Serif Display',serif;font-size:42px;color:var(--navy);line-height:1.1;margin:8px 0 16px;">Path <em style="font-style:italic;color:var(--teal);">completion</em></h1>
+  <p class="cert-intro">Certificates are awarded when you complete all modules in a Path. They are issued as a record of your pre-deployment preparation — not as formal maritime or medical certification. Generated locally in your browser from your tracked progress.</p>
+</div>
+
+<div class="cert-list" id="cert-list"></div>
+
+<div class="cert-form" id="cert-form">
+  <h2>Generate your certificate</h2>
+  <p>Enter your name as you'd like it to appear. The date is today's date by default; you can adjust it. Nothing is sent anywhere — the certificate is generated in your browser and can be printed or saved as PDF.</p>
+  <div class="form-row">
+    <label for="cert-name">Your full name</label>
+    <input type="text" id="cert-name" placeholder="Given name Family name" autocomplete="name">
+  </div>
+  <div class="form-row">
+    <label for="cert-date">Date of issue</label>
+    <input type="date" id="cert-date">
+  </div>
+  <div class="cert-form-actions">
+    <button class="btn-teal" onclick="renderCert()">Generate certificate</button>
+    <button class="btn-ghost" style="color:var(--text2);border-color:var(--border2);" onclick="closeCertForm()">Cancel</button>
+  </div>
+</div>
+
+<div class="cert-actions-bar" id="cert-actions-bar" style="display:none;">
+  <button class="btn-teal" onclick="window.print()">Print / Save as PDF</button>
+  <button class="btn-ghost" style="color:var(--text2);border-color:var(--border2);" onclick="backToList()">Back to list</button>
+</div>
+
+<div class="cert-canvas">
+  <div class="cert-document" id="cert-document">
+    <div class="cert-header">
+      <div class="cert-logo">Operation<em>Ready</em></div>
+      <div class="cert-label">Pre-deployment training for humanitarian SAR</div>
+    </div>
+    <div class="cert-body">
+      <div class="cert-eyebrow">Certificate of completion</div>
+      <div class="cert-recipient" id="cert-recipient-name">Full Name</div>
+      <p class="cert-award">has completed all modules of</p>
+      <div class="cert-path" id="cert-path-title">Path 1 — Maritime fundamentals</div>
+      <p class="cert-modules" id="cert-modules-detail">6 modules · Awareness-level pre-deployment preparation</p>
+    </div>
+    <div class="cert-footer">
+      <div class="cert-sig-block">
+        <div class="cert-sig-line" id="cert-date-display">18 April 2026</div>
+        <div class="cert-sig-label">Date of completion</div>
+      </div>
+      <div class="cert-seal">
+        <div class="cert-seal-circle">
+          <div class="cert-seal-inner">OR<em>v1.0</em></div>
+        </div>
+        <div class="cert-seal-label">Operation Ready</div>
+      </div>
+    </div>
+    <div class="cert-id">
+      <span id="cert-id-display">CERT-OR-01-2026</span>
+      <span>operationready.org</span>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('certificates');
+
+const PATHS = [
+  {num:1, title:"Maritime fundamentals", modules:['1-1','1-2','1-3','1-4','1-5','1-6']},
+  {num:2, title:"SAR operations", modules:['2-1','2-2','2-3','2-4','2-5','2-6','2-7']},
+  {num:3, title:"Medical & first response", modules:['3-1','3-2','3-3','3-4','3-5']},
+  {num:4, title:"Survivor interaction", modules:['4-1','4-2','4-3','4-4','4-5']},
+  {num:5, title:"Mental health & resilience", modules:['5-1','5-2','5-3','5-4']},
+  {num:6, title:"Legal & humanitarian framework", modules:['6-1','6-2','6-3','6-4']}
+];
+
+let currentPath = null;
+
+function renderList() {
+  const progress = getProgress();
+  const mount = document.getElementById('cert-list');
+  mount.innerHTML = PATHS.map(p => {
+    const completed = p.modules.filter(m => progress[m] && progress[m].completed).length;
+    const pct = Math.round((completed / p.modules.length) * 100);
+    const available = completed === p.modules.length;
+    return `<div class="cert-row ${available ? 'available' : 'locked'}">
+      <div>
+        <div class="cert-row-head">
+          <span class="cert-row-num">Path ${p.num}</span>
+          <span class="cert-row-title">${p.title}</span>
+          <span class="cert-row-status ${available ? 'available' : 'locked'}">${available ? 'Available' : 'In progress'}</span>
+        </div>
+        <div class="cert-row-prog">
+          ${available
+            ? `<strong>All ${p.modules.length} modules complete.</strong> Your certificate is ready to generate.`
+            : `${completed} of ${p.modules.length} modules complete. Finish the remaining ${p.modules.length - completed} to unlock your certificate.`}
+        </div>
+        <div class="cert-row-bar"><div class="cert-row-bar-fill" style="width:${pct}%;"></div></div>
+      </div>
+      <div class="cert-row-actions">
+        ${available
+          ? `<button class="btn-teal" onclick="startCertForm(${p.num})">Generate certificate</button>`
+          : `<a href="/modules.html#track-${p.num}" class="btn-ghost" style="color:var(--text2);border-color:var(--border2);">Continue</a>`}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function startCertForm(pathNum) {
+  currentPath = PATHS.find(p => p.num === pathNum);
+  document.getElementById('cert-list').style.display = 'none';
+  document.querySelector('.cert-page-header').style.display = 'none';
+  document.getElementById('cert-form').classList.add('visible');
+  // default date = today
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  document.getElementById('cert-date').value = `${yyyy}-${mm}-${dd}`;
+  const savedName = localStorage.getItem('or_cert_name') || '';
+  document.getElementById('cert-name').value = savedName;
+  document.getElementById('cert-name').focus();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function closeCertForm() {
+  document.getElementById('cert-form').classList.remove('visible');
+  document.getElementById('cert-list').style.display = '';
+  document.querySelector('.cert-page-header').style.display = '';
+  currentPath = null;
+}
+
+function backToList() {
+  document.getElementById('cert-document').classList.remove('visible');
+  document.getElementById('cert-actions-bar').style.display = 'none';
+  document.getElementById('cert-list').style.display = '';
+  document.querySelector('.cert-page-header').style.display = '';
+  currentPath = null;
+}
+
+function formatDate(iso) {
+  const d = new Date(iso);
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function renderCert() {
+  const nameInput = document.getElementById('cert-name');
+  const dateInput = document.getElementById('cert-date');
+  const name = nameInput.value.trim();
+  if (!name) {
+    nameInput.focus();
+    nameInput.style.borderColor = '#cc4400';
+    return;
+  }
+  localStorage.setItem('or_cert_name', name);
+
+  document.getElementById('cert-form').classList.remove('visible');
+  document.getElementById('cert-recipient-name').textContent = name;
+  document.getElementById('cert-path-title').textContent = `Path ${currentPath.num} — ${currentPath.title}`;
+  document.getElementById('cert-modules-detail').textContent = `${currentPath.modules.length} modules · Awareness-level pre-deployment preparation`;
+  document.getElementById('cert-date-display').textContent = formatDate(dateInput.value);
+  // Generate a simple ID from path + date
+  const dateCompact = dateInput.value.replace(/-/g,'');
+  const hash = [...name].reduce((a,c) => a + c.charCodeAt(0), 0).toString(16).toUpperCase().slice(-4);
+  document.getElementById('cert-id-display').textContent = `CERT-OR-${String(currentPath.num).padStart(2,'0')}-${dateCompact}-${hash}`;
+  document.getElementById('cert-document').classList.add('visible');
+  document.getElementById('cert-actions-bar').style.display = 'flex';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+renderList();
+</script>
+</body>
+</html>

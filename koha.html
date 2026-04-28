@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koha — Operation Ready</title>
+  <meta name="description" content="Operation Ready is offered without charge. If it has been useful to you, koha is welcome — entirely at your discretion.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .koha-hero{max-width:680px;margin:0 auto;padding:64px 36px 48px;text-align:center;}
+    .koha-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:14px;}
+    .koha-hero h1{font-family:'DM Serif Display',serif;font-size:48px;color:var(--navy);line-height:1.1;margin-bottom:20px;}
+    .koha-hero h1 em{color:var(--teal);font-style:italic;}
+    .koha-lede{font-size:16px;color:var(--text2);line-height:1.8;font-weight:300;max-width:520px;margin:0 auto 14px;}
+    .koha-divider{width:40px;height:2px;background:var(--teal);margin:32px auto;opacity:.4;}
+
+    .koha-what{max-width:680px;margin:0 auto;padding:0 36px 48px;text-align:center;}
+    .koha-what p{font-size:14px;color:var(--text2);line-height:1.85;margin-bottom:14px;font-weight:300;}
+    .koha-what strong{color:var(--navy);font-weight:500;}
+
+    .koha-action{max-width:480px;margin:0 auto;padding:0 36px 64px;text-align:center;}
+    .koha-amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0;}
+    .koha-amt{background:#fff;border:1.5px solid var(--border2);border-radius:4px;padding:14px 10px;cursor:pointer;transition:all .2s;text-align:center;}
+    .koha-amt:hover,.koha-amt.selected{border-color:var(--teal);background:rgba(61,139,122,.04);}
+    .koha-amt .amount{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);line-height:1;}
+    .koha-amt .label{font-size:11px;color:var(--text3);margin-top:4px;font-weight:300;}
+    .koha-custom{margin:0 0 24px;}
+    .koha-custom label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:8px;}
+    .koha-custom input{width:100%;padding:12px 14px;border:1.5px solid var(--border2);border-radius:4px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--navy);background:#fff;box-sizing:border-box;transition:border-color .15s;}
+    .koha-custom input:focus{outline:none;border-color:var(--teal);}
+    .koha-btn{display:block;width:100%;background:var(--teal);color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px;border-radius:4px;cursor:pointer;transition:background .15s;margin-bottom:14px;}
+    .koha-btn:hover{background:#2f6f60;}
+    .koha-btn:disabled{background:var(--border2);cursor:not-allowed;}
+    .koha-notice{font-size:12px;color:var(--text3);line-height:1.6;}
+    .koha-notice a{color:var(--teal);}
+
+    .koha-quote{max-width:560px;margin:0 auto;padding:0 36px 64px;text-align:center;}
+    .koha-quote blockquote{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);line-height:1.5;font-style:italic;margin:0 0 12px;}
+    .koha-quote cite{font-size:12px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;font-style:normal;}
+
+    @media(max-width:640px){
+      .koha-hero{padding:48px 20px 36px;}
+      .koha-hero h1{font-size:36px;}
+      .koha-what,.koha-action,.koha-quote{padding-left:20px;padding-right:20px;}
+      .koha-amount-grid{grid-template-columns:repeat(2,1fr);}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="koha-hero">
+  <div class="koha-eyebrow">Koha</div>
+  <h1>Offered without<br><em>expectation</em></h1>
+  <p class="koha-lede">Operation Ready is offered without charge. If it has been useful to you — before a deployment, during training, or in understanding the work — koha is welcome. Entirely at your discretion.</p>
+</div>
+
+<div class="koha-divider"></div>
+
+<div class="koha-what">
+  <p><strong>Koha</strong> is a Māori concept of giving — a gift offered freely, not as a transaction. There is no right amount, no minimum, and no expectation. This page exists for people who want to contribute to the platform's continued development and have the means to do so.</p>
+  <p>Contributions support ongoing module development, operational review, and keeping the platform accessible to humanitarian SAR crew worldwide.</p>
+</div>
+
+<div class="koha-action">
+  <div style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);font-weight:500;margin-bottom:4px;">Choose an amount</div>
+  <div style="font-size:13px;color:var(--text2);font-weight:300;margin-bottom:20px;">Or enter your own below</div>
+
+  <div class="koha-amount-grid">
+    <div class="koha-amt" onclick="selectAmount(this, 10)">
+      <div class="amount">$10</div>
+      <div class="label">NZD</div>
+    </div>
+    <div class="koha-amt" onclick="selectAmount(this, 25)">
+      <div class="amount">$25</div>
+      <div class="label">NZD</div>
+    </div>
+    <div class="koha-amt" onclick="selectAmount(this, 50)">
+      <div class="amount">$50</div>
+      <div class="label">NZD</div>
+    </div>
+    <div class="koha-amt" onclick="selectAmount(this, 100)">
+      <div class="amount">$100</div>
+      <div class="label">NZD</div>
+    </div>
+  </div>
+
+  <div class="koha-custom">
+    <label for="custom-amount">Your own amount (NZD)</label>
+    <input type="number" id="custom-amount" min="1" placeholder="e.g. 20" oninput="customAmount(this)">
+  </div>
+
+  <button class="koha-btn" id="koha-btn" onclick="goToStripe()" disabled>
+    Continue to payment
+  </button>
+
+  <p class="koha-notice">
+    Payments are processed securely by <a href="https://stripe.com" target="_blank" rel="noopener">Stripe</a>. 
+    You will be taken to a Stripe-hosted page — no card details are handled by this site.<br><br>
+    This is a voluntary contribution. It does not affect your access to any part of Operation Ready.
+  </p>
+</div>
+
+<div class="koha-divider"></div>
+
+<div class="koha-quote">
+  <blockquote>"The crew will assume you know things you don't. That assumption costs time in the best case — and something worse in the worst."</blockquote>
+  <cite>Built from operational experience — Mediterranean SAR</cite>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('koha');
+
+let selectedAmount = null;
+
+// Replace this with your actual Stripe Payment Link URL once set up
+const STRIPE_PAYMENT_LINK = '#stripe-not-configured-yet';
+
+function selectAmount(el, amount) {
+  document.querySelectorAll('.koha-amt').forEach(a => a.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('custom-amount').value = '';
+  selectedAmount = amount;
+  updateBtn();
+}
+
+function customAmount(input) {
+  document.querySelectorAll('.koha-amt').forEach(a => a.classList.remove('selected'));
+  selectedAmount = parseFloat(input.value) || null;
+  updateBtn();
+}
+
+function updateBtn() {
+  const btn = document.getElementById('koha-btn');
+  if (selectedAmount && selectedAmount >= 1) {
+    btn.disabled = false;
+    btn.textContent = `Continue — $${selectedAmount} NZD`;
+  } else {
+    btn.disabled = true;
+    btn.textContent = 'Continue to payment';
+  }
+}
+
+function goToStripe() {
+  if (!selectedAmount || selectedAmount < 1) return;
+  if (STRIPE_PAYMENT_LINK === '#stripe-not-configured-yet') {
+    alert('Payment link not yet configured — coming soon.');
+    return;
+  }
+  // Stripe payment links support pre-filled amounts via URL params
+  window.location.href = STRIPE_PAYMENT_LINK;
+}
+</script>
+</body>
+</html>

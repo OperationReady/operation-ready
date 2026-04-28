@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.4 — Navigation fundamentals | Operation Ready</title>
+  <meta name="description" content="Navigation basics for non-bridge crew — position, charts, situational awareness, and the clock system.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+
+    /* POSITION */
+    .pos-format{border:1px solid var(--border);border-radius:4px;padding:14px 16px;background:var(--white);margin-bottom:8px;}
+    .pos-format-name{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;}
+    .pos-format-example{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:6px;}
+    .pos-format-desc{font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;}
+
+    /* INTERACTIVE COORDINATE */
+    .coord-demo{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:16px 0;}
+    .coord-demo-header{background:var(--navy);padding:14px 20px;display:flex;align-items:center;gap:16px;}
+    .coord-display{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;}
+    .coord-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px;}
+    .coord-body{padding:16px 20px;}
+    .coord-sliders{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+    .slider-group label{font-size:12px;color:var(--text2);font-weight:500;display:block;margin-bottom:6px;}
+    .slider-group .range-ends{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:4px;}
+    .coord-map{background:#b8d4e8;border:1px solid var(--border);border-radius:4px;height:300px;position:relative;overflow:hidden;}
+    .grid-h{position:absolute;left:0;right:0;height:1px;background:rgba(30,58,95,.15);}
+    .grid-v{position:absolute;top:0;bottom:0;width:1px;background:rgba(30,58,95,.15);}
+    .map-lbl{position:absolute;font-size:10px;color:rgba(30,58,95,.7);letter-spacing:.04em;background:rgba(255,255,255,.7);padding:1px 4px;border-radius:2px;}
+    .c-dot{position:absolute;width:14px;height:14px;border-radius:50%;background:#D4821A;border:2.5px solid #fff;transform:translate(-50%,-50%);transition:left .15s,top .15s;box-shadow:0 1px 6px rgba(0,0,0,.35);}
+    .c-h{position:absolute;left:0;right:0;height:1px;background:rgba(212,130,26,.6);transform:translateY(-50%);pointer-events:none;}
+    .c-v{position:absolute;top:0;bottom:0;width:1px;background:rgba(212,130,26,.6);transform:translateX(-50%);pointer-events:none;}
+
+    /* CLOCK SYSTEM */
+    .clock-demo{display:flex;gap:20px;align-items:flex-start;margin:16px 0;flex-wrap:wrap;}
+    .clock-svg-wrap{flex-shrink:0;}
+    .clock-positions{flex:1;min-width:200px;}
+    .clock-pos-item{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);}
+    .clock-pos-item:last-child{border-bottom:none;}
+    .clock-pos-time{font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);min-width:52px;}
+    .clock-pos-desc{font-weight:300;line-height:1.4;}
+    .clock-active{color:var(--navy);font-weight:500;}
+
+    /* CHART FEATURES */
+    .chart-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
+    .chart-feat{border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);display:flex;gap:10px;align-items:flex-start;}
+    .chart-feat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+    .chart-feat-title{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+    .chart-feat-text{font-size:12px;color:var(--text2);line-height:1.5;font-weight:300;}
+
+    /* AIS */
+    .ais-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
+    .ais-card{border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);}
+    .ais-card-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;}
+
+    /* QUIZ */
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .chart-features{grid-template-columns:1fr;}
+      .ais-grid{grid-template-columns:1fr;}
+      .coord-sliders{grid-template-columns:1fr;}
+      .clock-demo{flex-direction:column;align-items:center;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.4</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Navigation fundamentals</div>
+    <div class="module-meta"><span>Module 1.4</span><span>8 min</span><span>Interactive tools</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Position</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Clock system</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Charts & AIS</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.4</div>
+    <div class="mod-sec-title">Navigation for non-bridge crew</div>
+    <p class="prose">Navigation is the bridge's responsibility. The Master, Officers of the Watch, and navigator manage the vessel's movement, course, and position. You are not expected to navigate.</p>
+    <p class="prose">What you are expected to understand is enough to function as an effective crew member: how positions are described and communicated, how to identify and report the location of targets relative to your vessel, and how to maintain basic awareness of where you are and what is around you. This knowledge also helps you understand operational briefings and contributes to your own safety.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Latitude and longitude — how position is described and communicated at sea</li>
+        <li>The clock system — how to identify and report the position of targets relative to the vessel</li>
+        <li>Nautical charts — what they show and why they matter</li>
+        <li>AIS — the vessel tracking system you'll see used aboard</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <!-- POSITION -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3 — Interactive</div>
+    <div class="mod-sec-title">Position at sea</div>
+    <p class="prose">At sea, position is described using latitude and longitude — a grid system covering the entire surface of the earth. You will hear positions constantly during operations: where a distress call originated, where a vessel was last spotted, where to search. Understanding what these numbers mean is essential.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--teal);margin-bottom:6px;">Latitude</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">How far north or south of the equator. Runs from 0° (equator) to 90° (poles). The Central Mediterranean SAR zone sits between roughly 30°N and 38°N. Higher number = further north.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--teal);margin-bottom:6px;">Longitude</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">How far east or west of the Prime Meridian (through Greenwich, London). Runs 0° to 180° East or West. The Central Mediterranean sits between roughly 10°E and 20°E.</p>
+      </div>
+    </div>
+
+    <div class="coord-demo">
+      <div class="coord-demo-header">
+        <div>
+          <div class="coord-label">Position</div>
+          <div class="coord-display" id="coord-display">35°12.0'N, 013°18.0'E</div>
+        </div>
+        <div style="margin-left:auto;text-align:right;">
+          <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);">Location</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);" id="coord-place">Central Mediterranean</div>
+        </div>
+      </div>
+      <div class="coord-body">
+        <div class="coord-sliders">
+          <div class="slider-group">
+            <label>Latitude <span id="lat-val" style="float:right;font-weight:300;color:var(--text3);">35.2°N</span></label>
+            <input type="range" min="25" max="45" value="35.2" step="0.1" id="lat-slider" style="width:100%;" oninput="updateCoord()">
+            <div class="range-ends"><span>25°N — N. Africa coast</span><span>45°N — N. Italy</span></div>
+          </div>
+          <div class="slider-group">
+            <label>Longitude <span id="lon-val" style="float:right;font-weight:300;color:var(--text3);">13.3°E</span></label>
+            <input type="range" min="5" max="25" value="13.3" step="0.1" id="lon-slider" style="width:100%;" oninput="updateCoord()">
+            <div class="range-ends"><span>5°E — Sardinia</span><span>25°E — Greece</span></div>
+          </div>
+        </div>
+        <div class="coord-map" id="coord-map">
+          <!-- Map: © OpenStreetMap contributors, ODbL — openseamap.org -->
+          <img src="/images/central-med-osm.png"
+               alt="Central Mediterranean — Italy, Sicily, Malta, Tunisia, Libya"
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;pointer-events:none;">
+          <!-- Subtle overlay to improve crosshair contrast -->
+          <div style="position:absolute;inset:0;background:rgba(255,255,255,.08);pointer-events:none;"></div>
+
+
+
+          <div class="grid-h" style="top:25%;"></div>
+          <div class="grid-h" style="top:50%;"></div>
+          <div class="grid-h" style="top:75%;"></div>
+          <div class="grid-v" style="left:25%;"></div>
+          <div class="grid-v" style="left:50%;"></div>
+          <div class="grid-v" style="left:75%;"></div>
+
+          <div class="map-lbl" style="top:4px;left:6px;">45°N / 5°E</div>
+          <div class="map-lbl" style="top:4px;right:6px;">45°N / 25°E</div>
+          <div class="map-lbl" style="bottom:4px;left:6px;">25°N / 5°E</div>
+          <div class="map-lbl" style="bottom:4px;right:6px;">25°N / 25°E</div>
+          <div class="c-h" id="c-h" style="top:50%;"></div>
+          <div class="c-v" id="c-v" style="left:42%;"></div>
+          <div class="c-dot" id="c-dot" style="left:42%;top:50%;"></div>
+        </div>
+        <p style="font-size:11px;color:var(--text3);margin-top:6px;text-align:center;font-style:italic;">Drag the sliders to move the position marker across the Central Mediterranean &nbsp;·&nbsp; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" style="color:var(--text3);">© OpenStreetMap contributors</a>, ODbL</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">How positions are written and spoken</div>
+    <div class="pos-format">
+      <div class="pos-format-name">Degrees and decimal minutes — standard in maritime VHF communications</div>
+      <div class="pos-format-example">35°12.0'N, 013°18.0'E</div>
+      <div class="pos-format-desc">The format you will most commonly hear spoken on radio and in briefings. Each degree is divided into 60 minutes. Spoken as "thirty-five degrees, twelve decimal zero minutes North." Longitude always uses three digits — 013, not 13.</div>
+    </div>
+    <div class="pos-format">
+      <div class="pos-format-name">Decimal degrees — used by GPS and most digital tools</div>
+      <div class="pos-format-example">35.2000°N, 013.3000°E</div>
+      <div class="pos-format-desc">Common in apps, phones, and digital navigation systems. Easy to copy and paste. The same position as above — just written differently.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Always read back a position — and note it down</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">When a position is passed by radio it should always be read back to confirm it was received correctly — and written down at the same time. A single transposed digit can place a vessel miles from its actual location. Read it back, wait for confirmation, and have the written record to refer to. Memory alone is not enough in an operation.</div>
+    </div>
+  </div>
+
+  <!-- CLOCK SYSTEM -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3 — Interactive</div>
+    <div class="mod-sec-title">The clock system</div>
+    <p class="prose">When identifying the position of a target — a vessel in distress, a person in the water, another ship — relative to your vessel, SAR crews often use the clock system. The vessel's bow is always 12 o'clock. Everything else is described relative to that, as if the vessel is the centre of a clock face.</p>
+    <p class="prose">This is faster and less ambiguous than compass bearings for deck crew, and it works regardless of which direction the vessel is heading. Tap the clock positions below to see what each one means.</p>
+
+    <div class="clock-demo">
+      <div class="clock-svg-wrap">
+        <svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg" id="clock-svg">
+          <!-- Vessel shape -->
+          <ellipse cx="110" cy="110" r="100" fill="rgba(30,58,95,.04)" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <!-- Vessel silhouette -->
+          <path d="M110,50 C118,50 124,56 126,68 L126,155 C126,162 118,168 110,168 C102,168 94,162 94,155 L94,68 C96,56 102,50 110,50 Z" fill="var(--navy)" opacity=".15"/>
+          <path d="M110,42 L120,70 L120,155 C120,160 115,164 110,164 C105,164 100,160 100,155 L100,70 Z" fill="var(--navy)" opacity=".25"/>
+          <!-- Bow arrow -->
+          <path d="M110,36 L105,50 L110,46 L115,50 Z" fill="var(--teal)" opacity=".8"/>
+          <!-- Clock positions clickable -->
+          <g id="cp-12" onclick="selectClock(12)" style="cursor:pointer;">
+            <circle cx="110" cy="20" r="16" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-12-bg"/>
+            <text x="110" y="25" text-anchor="middle" font-family="DM Serif Display,serif" font-size="14" fill="var(--teal)">12</text>
+          </g>
+          <g id="cp-3" onclick="selectClock(3)" style="cursor:pointer;">
+            <circle cx="200" cy="110" r="16" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-3-bg"/>
+            <text x="200" y="115" text-anchor="middle" font-family="DM Serif Display,serif" font-size="14" fill="var(--teal)">3</text>
+          </g>
+          <g id="cp-6" onclick="selectClock(6)" style="cursor:pointer;">
+            <circle cx="110" cy="200" r="16" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-6-bg"/>
+            <text x="110" y="205" text-anchor="middle" font-family="DM Serif Display,serif" font-size="14" fill="var(--teal)">6</text>
+          </g>
+          <g id="cp-9" onclick="selectClock(9)" style="cursor:pointer;">
+            <circle cx="20" cy="110" r="16" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-9-bg"/>
+            <text x="20" y="115" text-anchor="middle" font-family="DM Serif Display,serif" font-size="14" fill="var(--teal)">9</text>
+          </g>
+          <g id="cp-1" onclick="selectClock(1)" style="cursor:pointer;">
+            <circle cx="162" cy="38" r="14" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-1-bg"/>
+            <text x="162" y="43" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="var(--teal)">1-2</text>
+          </g>
+          <g id="cp-4" onclick="selectClock(4)" style="cursor:pointer;">
+            <circle cx="186" cy="162" r="14" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-4-bg"/>
+            <text x="186" y="167" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="var(--teal)">4-5</text>
+          </g>
+          <g id="cp-7" onclick="selectClock(7)" style="cursor:pointer;">
+            <circle cx="58" cy="182" r="14" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-7-bg"/>
+            <text x="58" y="187" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="var(--teal)">7-8</text>
+          </g>
+          <g id="cp-10" onclick="selectClock(10)" style="cursor:pointer;">
+            <circle cx="34" cy="58" r="14" fill="white" stroke="var(--border)" stroke-width="1.5" id="cp-10-bg"/>
+            <text x="34" y="63" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="var(--teal)">10-11</text>
+          </g>
+          <!-- Target indicator (hidden initially) -->
+          <circle cx="110" cy="110" r="8" fill="#D4821A" opacity="0" id="clock-target"/>
+          <!-- Direction indicator line -->
+          <line x1="110" y1="110" x2="110" y2="110" stroke="#D4821A" stroke-width="1.5" stroke-dasharray="4,3" id="clock-line"/>
+          <!-- Labels -->
+          <text x="110" y="118" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="var(--text3)">BOW</text>
+          <text x="110" y="14" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="var(--text3)">AHEAD</text>
+          <text x="210" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="var(--text3)">STBD</text>
+          <text x="10" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="var(--text3)">PORT</text>
+          <text x="110" y="216" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="var(--text3)">ASTERN</text>
+        </svg>
+      </div>
+      <div class="clock-positions">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:10px;">Tap a position</div>
+        <div class="clock-pos-item" id="cpi-12" onclick="selectClock(12)" style="cursor:pointer;">
+          <div class="clock-pos-time">12</div>
+          <div class="clock-pos-desc">Directly ahead — on the bow. Dead ahead of the vessel.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-1" onclick="selectClock(1)" style="cursor:pointer;">
+          <div class="clock-pos-time">1–2</div>
+          <div class="clock-pos-desc">Forward starboard — ahead and to the right.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-3" onclick="selectClock(3)" style="cursor:pointer;">
+          <div class="clock-pos-time">3</div>
+          <div class="clock-pos-desc">Starboard beam — directly to the right, at 90° from the bow.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-4" onclick="selectClock(4)" style="cursor:pointer;">
+          <div class="clock-pos-time">4–5</div>
+          <div class="clock-pos-desc">After starboard quarter — behind and to the right.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-6" onclick="selectClock(6)" style="cursor:pointer;">
+          <div class="clock-pos-time">6</div>
+          <div class="clock-pos-desc">Directly astern — directly behind the vessel.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-7" onclick="selectClock(7)" style="cursor:pointer;">
+          <div class="clock-pos-time">7–8</div>
+          <div class="clock-pos-desc">After port quarter — behind and to the left.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-9" onclick="selectClock(9)" style="cursor:pointer;">
+          <div class="clock-pos-time">9</div>
+          <div class="clock-pos-desc">Port beam — directly to the left, at 90° from the bow.</div>
+        </div>
+        <div class="clock-pos-item" id="cpi-10" onclick="selectClock(10)" style="cursor:pointer;">
+          <div class="clock-pos-time">10–11</div>
+          <div class="clock-pos-desc">Forward port quarter — ahead and to the left.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Using the clock system in practice</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">When you spot a target — an overcrowded boat, a person in the water, another vessel — report it immediately using the clock position and an estimated distance. For example: <em style="color:var(--navy);font-style:normal;font-weight:500;">"Target at 2 o'clock, approximately 500 metres."</em> Always face forward (toward the bow) when using the clock system so your reference point is consistent with the bridge.</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Distance estimation</div>
+      <div class="callout-text">With practice, you develop a feel for distances at sea. Some useful references: a person in the water is visible from roughly 500m in good conditions. An overcrowded boat can be visible from 1–2nm in good visibility but much less in poor conditions or high swell. When estimating, it's better to give a range — "between 300 and 500 metres" — than false precision.</div>
+    </div>
+  </div>
+
+  <!-- CHARTS & AIS -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Charts and situational awareness</div>
+    <p class="prose">Nautical charts are the maps of the sea. Unlike road maps, they primarily show what is under the water — depth, hazards, shipping lanes, and coastal features — rather than what is above it. The bridge uses electronic chart systems (ECDIS) continuously, and paper charts are kept as backup.</p>
+    <p class="prose">You don't need to read a chart in detail, but understanding what you're looking at when you see one — during a briefing or on the bridge — helps you follow what's being discussed.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">What charts show</div>
+    <div class="chart-features">
+      <div class="chart-feat">
+        <div class="chart-feat-dot" style="background:#185FA5;"></div>
+        <div><div class="chart-feat-title">Depth contours</div><div class="chart-feat-text">Lines showing water depth in metres. Critical for vessel safety — the bridge is continuously monitoring depth. Numbers shown in blue areas indicate depth at that point.</div></div>
+      </div>
+      <div class="chart-feat">
+        <div class="chart-feat-dot" style="background:#cc4400;"></div>
+        <div><div class="chart-feat-title">Hazards</div><div class="chart-feat-text">Rocks, wrecks, shoals, and other hazards are marked with specific symbols. Red or magenta colouring often indicates danger areas or restricted zones.</div></div>
+      </div>
+      <div class="chart-feat">
+        <div class="chart-feat-dot" style="background:#D4821A;"></div>
+        <div><div class="chart-feat-title">Shipping lanes</div><div class="chart-feat-text">Traffic Separation Schemes (TSS) divide shipping into lanes — like motorways at sea. SAR vessels operating in or near these need to be aware of commercial traffic.</div></div>
+      </div>
+      <div class="chart-feat">
+        <div class="chart-feat-dot" style="background:#3D8B7A;"></div>
+        <div><div class="chart-feat-title">Search areas</div><div class="chart-feat-text">During operations, the bridge and MRCC define search areas on charts. Understanding that a designated area has boundaries helps you understand why the vessel is moving the way it is.</div></div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">AIS — Automatic Identification System</div>
+    <p class="prose">AIS is a tracking system that all vessels above a certain size are required to broadcast. It transmits the vessel's identity, position, course, speed, and destination. Aboard your vessel you will see AIS data displayed on chart plotters — showing all other AIS-equipped vessels in the area as symbols with their details.</p>
+    <div class="ais-grid">
+      <div class="ais-card">
+        <div class="ais-card-title">What it shows you</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Other vessels' names, positions, course, speed, and destination. Extremely useful for coordinating with nearby vessels during an operation — you can identify a passing merchant by name before calling them on VHF.</p>
+      </div>
+      <div class="ais-card">
+        <div class="ais-card-title">What it doesn't show</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Small vessels, fishing boats, and overcrowded boats carrying migrants are typically not AIS-equipped. Persons in the water have no AIS signal. AIS is useful context — it is not a substitute for visual lookout.</p>
+      </div>
+      <div class="ais-card">
+        <div class="ais-card-title">MarineTraffic</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;"><a href="https://www.marinetraffic.com" target="_blank" style="color:var(--teal);">MarineTraffic.com</a> and its app show AIS data publicly. Useful for understanding what vessels are in your area before a deployment. Your own vessel will appear on it — SAR NGO vessels are often tracked by support teams onshore.</p>
+      </div>
+      <div class="ais-card">
+        <div class="ais-card-title">Radar</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Radar detects objects regardless of whether they are transmitting AIS. The bridge uses radar continuously and it is particularly valuable at night and in poor visibility. Radar returns can reveal vessels and larger objects that have no AIS.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Your most important navigation tool</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Your eyes. No technology replaces a sharp lookout. The bridge has radar, AIS, and ECDIS — but a crew member on deck looking out is still the most reliable way to spot a low-lying boat, a person in the water, or an object in the vessel's path. When you are on deck, look outward. When you spot something, report it immediately using the clock system.</div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on position, the clock system, and situational awareness.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+function updateCoord(){
+  const lat = parseFloat(document.getElementById('lat-slider').value);
+  const lon = parseFloat(document.getElementById('lon-slider').value);
+  document.getElementById('lat-val').textContent = lat.toFixed(1)+'°N';
+  document.getElementById('lon-val').textContent = lon.toFixed(1)+'°E';
+  const latD = Math.floor(lat);
+  const latM = ((lat - latD)*60).toFixed(1);
+  const lonD = Math.floor(lon);
+  const lonM = ((lon - lonD)*60).toFixed(1);
+  const lonStr = lonD.toString().padStart(3,'0');
+  document.getElementById('coord-display').textContent = `${latD}°${latM}'N, ${lonStr}°${lonM}'E`;
+  const xPct = (lon - 5) / (25 - 5) * 100;
+  const yPct = (45 - lat) / (45 - 25) * 100;
+  document.getElementById('c-dot').style.left = xPct+'%';
+  document.getElementById('c-dot').style.top = yPct+'%';
+  document.getElementById('c-h').style.top = yPct+'%';
+  document.getElementById('c-v').style.left = xPct+'%';
+  let place = 'Central Mediterranean';
+  if(lat < 28) place = 'North African coast';
+  else if(lat > 42) place = 'Northern Italy / France';
+  else if(lon < 8) place = 'Sardinia / W. Mediterranean';
+  else if(lon > 22) place = 'Eastern Mediterranean';
+  else if(lat < 32) place = 'Libya / Malta SRR';
+  else if(lat < 36) place = 'Central Mediterranean SAR zone';
+  else place = 'Central Mediterranean';
+  document.getElementById('coord-place').textContent = place;
+}
+updateCoord();
+
+const clockData = {
+  12:{x:110,y:20,desc:"Directly ahead — dead on the bow. The vessel is heading straight toward this position.",label:"12 o'clock — ahead"},
+  1:{x:162,y:38,desc:"Forward starboard — ahead and to the right of the bow.",label:"1–2 o'clock — forward starboard"},
+  3:{x:200,y:110,desc:"Starboard beam — directly to the right at 90° to the bow. Abeam to starboard.",label:"3 o'clock — starboard beam"},
+  4:{x:186,y:162,desc:"After starboard quarter — behind and to the right of the vessel.",label:"4–5 o'clock — after starboard"},
+  6:{x:110,y:200,desc:"Directly astern — directly behind the vessel. The stern is pointing toward this.",label:"6 o'clock — astern"},
+  7:{x:58,y:182,desc:"After port quarter — behind and to the left of the vessel.",label:"7–8 o'clock — after port"},
+  9:{x:20,y:110,desc:"Port beam — directly to the left at 90° to the bow. Abeam to port.",label:"9 o'clock — port beam"},
+  10:{x:34,y:58,desc:"Forward port quarter — ahead and to the left of the bow.",label:"10–11 o'clock — forward port"}
+};
+
+let activeClockPos = null;
+function selectClock(pos){
+  if(activeClockPos) unhighlightClock(activeClockPos);
+  activeClockPos = pos;
+  const d = clockData[pos];
+  const bgEl = document.getElementById('cp-'+pos+'-bg');
+  if(bgEl){bgEl.setAttribute('fill','#1E3A5F');bgEl.setAttribute('stroke','#1E3A5F');}
+  const tEl = bgEl ? bgEl.nextElementSibling : null;
+  if(tEl){tEl.setAttribute('fill','#F5D06A');}
+  const target = document.getElementById('clock-target');
+  target.setAttribute('cx', d.x);
+  target.setAttribute('cy', d.y);
+  target.setAttribute('opacity','1');
+  const line = document.getElementById('clock-line');
+  line.setAttribute('x1','110');line.setAttribute('y1','110');
+  line.setAttribute('x2',d.x);line.setAttribute('y2',d.y);
+  document.querySelectorAll('.clock-pos-item').forEach(el=>el.classList.remove('clock-active'));
+  const listMap = {12:'cpi-12',1:'cpi-1',3:'cpi-3',4:'cpi-4',6:'cpi-6',7:'cpi-7',9:'cpi-9',10:'cpi-10'};
+  const listEl = document.getElementById(listMap[pos]);
+  if(listEl) listEl.classList.add('clock-active');
+}
+function unhighlightClock(pos){
+  const bgEl = document.getElementById('cp-'+pos+'-bg');
+  if(bgEl){bgEl.setAttribute('fill','white');bgEl.setAttribute('stroke','rgba(30,58,95,.15)');}
+  const tEl = bgEl ? bgEl.nextElementSibling : null;
+  if(tEl){tEl.setAttribute('fill','#3D8B7A');}
+}
+
+const questions=[
+  {q:"You spot a small overcrowded boat to the right of your vessel, at roughly 90° to the bow. How do you report it?",opts:["Target on the starboard side, bearing 090","Target at 3 o'clock, approximately [distance]","Target to starboard, bearing green 90","Object sighted, right side of vessel"],correct:1,fb:"The clock system is the standard way for deck crew to report target positions. 3 o'clock means directly to starboard — the right side at 90° from the bow. Always include an estimated distance. 'Target at 3 o'clock, approximately 400 metres' gives the bridge everything they need to act immediately."},
+  {q:"You see a vessel on the horizon ahead and to the left of the bow. Which clock position best describes this?",opts:["9 o'clock","6 o'clock","10–11 o'clock","1–2 o'clock"],correct:2,fb:"Ahead and to the left is the forward port quarter — 10 to 11 o'clock. The bow is always 12, port (left) is 9, starboard (right) is 3, and astern is 6. Forward port sits between 9 and 12."},
+  {q:"A position is passed by radio as '35 degrees, 12 decimal zero minutes North, zero one three degrees, 18 decimal zero minutes East.' What should you do with this information?",opts:["Note it down — no further action needed unless the bridge asks","Read it back to confirm correctness, and note it down at the same time","Convert it to decimal degrees before passing it on","Wait until the full briefing to confirm all details"],correct:1,fb:"Any position received by radio should be read back to confirm accuracy, and written down at the same time. A single transposed digit places a position hundreds of miles from the correct location. Read back, wait for confirmation, keep the written record. Memory alone is not enough in an operation."},
+  {q:"Why is visual lookout by deck crew still important when the bridge has AIS and radar?",opts:["It isn't — modern technology makes visual lookout redundant","AIS and radar only work in certain conditions","Overcrowded boats and persons in the water typically have no AIS signal and may not return a clear radar echo — eyes are still the most reliable detection method","Regulations require it, but technology is more effective"],correct:2,fb:"AIS requires equipment that vessels in distress — particularly overcrowded boats — do not carry. Radar can miss very low targets, especially in rough sea returns. A person in the water may be invisible to both systems. Visual lookout by alert deck crew remains the most reliable way to spot survivors, floating objects, and low-lying vessels."},
+  {q:"You are on deck facing forward (toward the bow). A colleague says they can see something at '8 o'clock.' Which direction do you look?",opts:["Directly ahead","To the right, slightly behind the beam","To the left, slightly behind the beam","Directly behind the vessel"],correct:2,fb:"8 o'clock is in the after port quarter — to the left and behind you. Imagine a clock face with 12 directly ahead: 3 is to your right, 6 is behind, 9 is to your left. 8 o'clock falls between 6 (astern) and 9 (port beam) — so to the left and slightly aft."}
+];
+
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();
+  if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong grasp of position, the clock system, and situational awareness. Ready for module 1.5.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review the questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the position and clock system sections. These come up constantly during operations.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/1-5.html" class="btn-teal">Module 1.5 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+</script>
+</body>
+</html>

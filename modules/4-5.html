@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4.5 — Humanitarian principles at sea | Operation Ready</title>
+  <meta name="description" content="The principles that guide humanitarian SAR work — humanity, neutrality, impartiality, and independence — and what they mean in practice aboard a rescue vessel.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .principle-card{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:12px;background:var(--white);}
+    .principle-hdr{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;}
+    .principle-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--teal);line-height:1;flex-shrink:0;width:40px;}
+    .principle-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);}
+    .principle-body{padding:14px 18px;}
+    .principle-def{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:12px;}
+    .principle-practice{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;padding:10px 14px;background:var(--cream);border-radius:3px;border-left:3px solid var(--teal);}
+    .principle-practice-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:5px;}
+    .tension-row{display:flex;gap:0;margin-bottom:8px;border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+    .tension-label{width:80px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:10px 6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-align:center;line-height:1.3;}
+    .tension-label.scenario{background:rgba(30,58,95,.08);color:var(--navy);}
+    .tension-label.apply{background:rgba(61,139,122,.1);color:var(--teal);}
+    .tension-body{padding:12px 14px;flex:1;font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-4">Path 4</a> &rsaquo; <span>4.5</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 4 — Survivor interaction</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Humanitarian principles at sea</div>
+    <div class="module-meta">
+      <span>Module 4.5</span><span>10 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">The principles</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">In practice</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 4.5</div>
+    <div class="mod-sec-title">Why principles matter in operational contexts</div>
+    <p class="prose">Humanitarian SAR is not just technically proficient rescue work. It operates within an ethical framework — a set of principles that define what it means to do this work with integrity. These principles are not abstract. They have direct implications for how crew behave on deck, what they say, how they handle media and communications, and how they respond when operational pressures push against ethical lines.</p>
+    <p class="prose">The four humanitarian principles — humanity, neutrality, impartiality, and independence — were codified in the context of wartime humanitarian action but apply fully to SAR operations. Understanding them helps crew understand the why behind many of the decisions their organisation makes, and how to act when no one has told them specifically what to do.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>The four humanitarian principles and their practical meaning at sea</li>
+        <li>How these principles translate into specific crew behaviour and decision-making</li>
+        <li>Real tensions that arise in operational contexts — and how to navigate them</li>
+        <li>Why upholding these principles protects both survivors and the organisation's ability to operate</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">10 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <!-- THE PRINCIPLES -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">The four principles</div>
+    <p class="prose">These principles underpin the international humanitarian system. For organisations operating rescue vessels, they are not optional values — they are operational commitments that determine access, safety, and legitimacy.</p>
+
+    <div class="principle-card">
+      <div class="principle-hdr">
+        <div class="principle-num">1</div>
+        <div class="principle-name">Humanity</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-def">Human suffering must be addressed wherever it is found. The purpose of humanitarian action is to protect life and health and ensure respect for human beings. Humanity means that saving life takes precedence over all other considerations.</div>
+        <div class="principle-practice">
+          <div class="principle-practice-lbl">In practice</div>
+          Every person in distress at sea is rescued regardless of nationality, background, legal status, or the circumstances that brought them to the sea. There is no threshold of worthiness. A person in danger of drowning receives the same response as any other. This is not contingent on any external judgement about who they are or why they are there.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-hdr">
+        <div class="principle-num">2</div>
+        <div class="principle-name">Neutrality</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-def">Humanitarian actors must not take sides in hostilities or engage in controversies of a political, racial, religious, or ideological nature. Neutrality preserves the ability to operate and be trusted by all parties.</div>
+        <div class="principle-practice">
+          <div class="principle-practice-lbl">In practice</div>
+          Crew do not make political statements, express political opinions, or take positions on migration policy, border enforcement, or government actions — in public, on social media, or in communications with media. The vessel's mission is humanitarian and operational, not political advocacy. Individual crew members may hold strong views, but expressing them in a professional capacity compromises the organisation's neutrality and can create legal and operational consequences.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-hdr">
+        <div class="principle-num">3</div>
+        <div class="principle-name">Impartiality</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-def">Humanitarian action must be carried out on the basis of need alone — giving priority to the most urgent cases of distress, with no adverse distinction based on nationality, race, gender, religious belief, class, or political opinions.</div>
+        <div class="principle-practice">
+          <div class="principle-practice-lbl">In practice</div>
+          Triage and resource allocation are based on medical and humanitarian need, not on any personal characteristics of the survivor. Crew members who find themselves responding differently to survivors based on perceived nationality, religion, gender, or other characteristics must recognise and correct that bias. Equal treatment is not about treating everyone identically — it is about ensuring the basis for differential treatment is need, not prejudice.
+        </div>
+      </div>
+    </div>
+
+    <div class="principle-card">
+      <div class="principle-hdr">
+        <div class="principle-num">4</div>
+        <div class="principle-name">Independence</div>
+      </div>
+      <div class="principle-body">
+        <div class="principle-def">Humanitarian action must be autonomous from the political, economic, military, or other objectives that any actor may hold with respect to the areas where humanitarian action is being implemented.</div>
+        <div class="principle-practice">
+          <div class="principle-practice-lbl">In practice</div>
+          Crew members do not share information about survivors, vessel positions, or rescue details with law enforcement, government agencies, or military bodies unless this is authorised by organisational leadership and consistent with the protection of those aboard. Requests for information — however authoritative they appear — are directed to the Head of Mission. The organisation's independence from state agendas protects both survivors and crew.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IN PRACTICE -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">Principles under pressure — real tensions</div>
+    <p class="prose">The principles are clear in theory. In practice, they come under pressure from multiple directions — media, political controversy, individual crew opinions, external actors making demands. The following scenarios illustrate how principles apply when things get complicated.</p>
+
+    <div class="tension-row"><div class="tension-label scenario">Scenario</div><div class="tension-body">A journalist who has been embedded aboard your vessel asks you directly: "Do you think these people should be allowed to enter Europe?" What should you do?</div></div>
+    <div class="tension-row"><div class="tension-label apply">Apply</div><div class="tension-body">Decline to comment on political questions. You can explain that your role is operational and that political questions are directed to organisational leadership. This is not evasion — it is how neutrality works in practice. Your personal opinion, however well-considered, is not yours to express in this context.</div></div>
+
+    <div style="height:14px;"></div>
+
+    <div class="tension-row"><div class="tension-label scenario">Scenario</div><div class="tension-body">A coastguard vessel approaches and requests the personal details of a survivor you have been interacting with. What do you do?</div></div>
+    <div class="tension-row"><div class="tension-label apply">Apply</div><div class="tension-body">Direct the request to the Head of Mission or SARCO immediately. Do not provide personal information about survivors to any third party without authorisation. Independence and neutrality mean that survivor information is not automatically available to state actors. Your organisation has legal and ethical frameworks governing this.</div></div>
+
+    <div style="height:14px;"></div>
+
+    <div class="tension-row"><div class="tension-label scenario">Scenario</div><div class="tension-body">After a long and difficult rescue, a crew member posts on social media with a photo of survivors being helped aboard, expressing strong political views about the operation and tagging the vessel. What are the implications?</div></div>
+    <div class="tension-row"><div class="tension-label apply">Apply</div><div class="tension-body">This creates multiple problems: it may violate survivor consent and confidentiality (photographing people in distress without consent), it compromises organisational neutrality, and it may create safety or legal risks for the vessel. Social media policies exist for these reasons. The individual crew member's good intentions do not mitigate the harm.</div></div>
+
+    <div style="height:14px;"></div>
+
+    <div class="tension-row"><div class="tension-label scenario">Scenario</div><div class="tension-body">During a rescue, a crew member notices they feel more concern for survivors from one country than others, and less urgency for another group. What should they do?</div></div>
+    <div class="tension-row"><div class="tension-label apply">Apply</div><div class="tension-body">Recognise the bias honestly and correct behaviour accordingly. Impartiality does not require the absence of feelings — it requires that behaviour is governed by need, not by those feelings. This is why self-awareness is an operational skill, not just a personal virtue. In debrief, this is worth raising with a team leader.</div></div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Why principles protect access</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Humanitarian organisations operate in politically contested environments. Governments, coastguard agencies, and military bodies make decisions about whether and how NGO vessels can operate. Organisations that are perceived as politically neutral — that respond to all persons in distress on the basis of need alone — maintain credibility and access that organisations perceived as advocates do not. Upholding principles is not just ethical — it is operationally necessary for the mission to continue.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">When you are unsure</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Humanitarian principles give you a framework, not a rulebook for every situation. When you are unsure whether an action is consistent with the principles, ask your team leader or SARCO before acting. When in doubt about media or communications, refer upward. When an external actor is making demands, refer to the Head of Mission. The principles are clearest when applied collectively — they work best when everyone on the team understands and upholds them.</div>
+    </div>
+  </div>
+
+  <!-- CHECK -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on humanitarian principles and their application.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A survivor from a country currently in conflict with a crew member's home country boards the vessel. The crew member finds themselves responding less promptly. Which humanitarian principle is at risk, and what should they do?",o:["Humanity — they should remind themselves of the duty to rescue","Impartiality — they should recognise the bias and ensure their behaviour is governed by need, not personal feelings","Neutrality — they should not express political views about the conflict","Independence — they should not let outside political events influence the operation"],c:1,f:"Impartiality requires that humanitarian action is carried out on the basis of need alone, without adverse distinction based on nationality. When personal feelings about a person's nationality affect operational behaviour, that is a direct violation of impartiality. Recognising the bias and correcting behaviour is the correct response. Raising it in debrief with a team leader is also appropriate."},
+  {q:"A media outlet contacts you directly via satellite phone asking for comment on your organisation's stance on EU migration policy. How do you respond?",o:["Give your personal view — you have direct experience and the public deserves to hear from crew","Decline and direct the inquiry to organisational leadership or the designated communications contact","Explain that your organisation supports people in distress without getting into policy","Tell them no comment and end the call"],c:1,f:"Media inquiries, particularly on political topics, should be directed to the designated organisational communications contact or leadership. Individual crew members speaking on behalf of the organisation — even carefully and well-intentionally — can compromise neutrality. Option C is better than B but still risks the crew member being quoted in ways that create problems. Option D is too abrupt. Directing to the right person is both professional and protective."},
+  {q:"What does the principle of independence mean in practice during an operation?",o:["NGO vessels operate without any communication with government authorities","Survivor information and vessel movements are not provided to third parties without organisational authorisation","Crew members may not have contact with military vessels under any circumstances","The vessel ignores MRCC coordination instructions as a matter of principle"],c:1,f:"Independence means humanitarian action is autonomous from political, military, or economic agendas — not that organisations operate in isolation from the coordination system. NGO vessels communicate with MRCCs (a legal requirement), but do not automatically provide survivor information to state actors without authorisation from organisational leadership. Independence and MRCC coordination are compatible."},
+  {q:"After a difficult operation involving significant loss of life, a crew member posts a photo on their personal social media showing survivors being brought aboard. They did not ask for consent. What is the problem with this?",o:["Social media posts during operations are a security risk to the vessel","This may violate survivor dignity and confidentiality, compromise organisational neutrality, and breach crew conduct policies — even if well-intentioned","There is no problem if the crew member's account is private","The problem is only the security risk, not the content of the image"],c:1,f:"Photographing survivors in distress without consent and posting publicly creates multiple harms: it treats people in one of the worst moments of their lives as content; it may violate confidentiality; it can compromise the organisation's neutrality if the post includes commentary; and it almost certainly breaches crew conduct and media policies. The crew member's intentions are irrelevant to the harm caused. A private account does not prevent redistribution."},
+  {q:"A naval vessel requests your passenger manifest and a list of survivors by nationality. No one from your organisation's leadership is reachable immediately. What do you do?",o:["Provide the information — a naval vessel has legal authority in these waters","Decline to provide the information and continue attempting to reach organisational leadership before responding","Provide nationality data only, not names, as a compromise","Ask the naval vessel to submit the request in writing"]
+  ,c:1,f:"Survivor information is not provided to third parties — including state or military actors — without organisational authorisation. When leadership is not immediately reachable, the correct action is to decline and continue attempting to reach them before responding. The naval vessel's apparent authority in the area does not override the organisation's data protection and independence obligations. Partial disclosure is still disclosure — option C is not a safe compromise."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';updateNav();if(n===3&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===3?'none':'inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?"Strong understanding of humanitarian principles. You've completed Path 4 — Survivor interaction.":p>=.6?'Mostly solid — review the questions you missed.':'Go back through the principles and tensions sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="background:var(--navy);border-radius:6px;padding:24px;text-align:center;margin-top:24px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Path 4 complete</div><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--yellow);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/5-1.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:var(--teal);color:#fff;display:inline-block;">Path 5 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);display:inline-block;">All modules</a></div><div style="background:rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;margin:16px 0 0;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">Path 4 — Survivor interaction</div><div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:12px;font-weight:300;">You have completed all 5 modules in Path 4.</div><a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:3px;">Generate your Path 4 certificate &rarr;</a></div><div id="path-survey-mount"></div></div>`;},300);renderPathSurvey(4,'Survivor interaction','path-survey-mount');}
+</script>
+</body>
+</html>

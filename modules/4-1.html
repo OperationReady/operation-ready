@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4.1 — Who the survivors are | Operation Ready</title>
+  <meta name="description" content="Understanding the people you will be rescuing — their backgrounds, the journeys they have made, and the context that shapes every interaction.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+    .stat-card{border:1px solid var(--border);border-radius:4px;padding:16px;background:var(--white);text-align:center;}
+    .stat-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--teal);line-height:1;}
+    .stat-lbl{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.4;font-weight:300;}
+    .journey-row{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .journey-row:last-child{border-bottom:none;}
+    .journey-icon{width:32px;height:32px;border-radius:50%;background:var(--cream);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;}
+    .journey-body{flex:1;}
+    .journey-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+    .journey-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.stat-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-4">Path 4</a> &rsaquo; <span>4.1</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 4 — Survivor interaction</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Who the survivors are</div>
+    <div class="module-meta"><span>Module 4.1</span><span>12 min</span><span>Context & background</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Background</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">The journey</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Arrival</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 4.1</div>
+    <div class="mod-sec-title">People before cases</div>
+    <p class="prose">The most important thing you can bring to survivor interaction is an accurate understanding of who you are dealing with — not as "migrants" or "cases" but as people with complete histories, families, professions, and reasons for being in the Mediterranean. The quality of every interaction you have aboard is shaped by what you understand about the people you are there to help.</p>
+    <p class="prose">This module does not attempt a political analysis of Mediterranean migration. It provides the contextual grounding that helps crew approach survivors as individuals, respond appropriately to their situation, and avoid the assumptions and misunderstandings that can compromise both dignity and safety.</p>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">This module has no political position</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.6;color:var(--text2);">Migration is a complex and contested political topic. This module does not advocate for any policy position. It provides factual context that is directly relevant to understanding the people you will be rescuing and interacting with on board. Humanitarian SAR operates on the principle that every person in distress at sea has a right to be rescued, regardless of any other consideration.</div>
+    </div>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Who is typically making Mediterranean crossings and where they come from</li>
+        <li>What drives people to take the risk — push and pull factors</li>
+        <li>The journey before the sea — what survivors have typically experienced</li>
+        <li>What arrival on a rescue vessel means from a survivor's perspective</li>
+        <li>Common assumptions that don't reflect the reality</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">12 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Who makes this crossing</div>
+    <p class="prose">People crossing the Central Mediterranean come from a wide range of countries — primarily Sub-Saharan Africa and the Middle East, though this varies by year and geopolitical situation. Common countries of origin include Libya, Sudan, Eritrea, Mali, Nigeria, Somalia, Syria, Bangladesh, and Pakistan, among others.</p>
+    <p class="prose">They are not a homogeneous group. On a single vessel, you may have farmers, students, engineers, teachers, doctors, parents, and children. They may be fleeing armed conflict, political persecution, forced recruitment, famine, or situations of severe poverty with no legal migration pathway. Many are highly educated. Many speak multiple languages.</p>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">~40%</div><div class="stat-lbl">Typically eligible for refugee status or subsidiary protection on arrival in Europe</div></div>
+      <div class="stat-card"><div class="stat-num">30+</div><div class="stat-lbl">Countries of origin commonly represented in a single Central Mediterranean crossing season</div></div>
+      <div class="stat-card"><div class="stat-num">&gt;30%</div><div class="stat-lbl">Women and children in most Mediterranean SAR operations — proportions vary significantly by season and route</div></div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">They chose this deliberately</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">No one gets on a overcrowded boat in the Mediterranean without understanding the risk. The decision to cross is typically made because all other options have been exhausted or are unavailable — legal pathways, waiting in transit countries, return home. The risk of the crossing is weighed against what they are escaping or what they cannot access by any other means. Understanding this context reframes every interaction.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">What came before the sea</div>
+    <p class="prose">The Mediterranean crossing is rarely the first danger a survivor has faced. For most people rescued in the Central Mediterranean, the sea crossing is the last stage of a journey that may have taken months or years and crossed multiple countries under dangerous conditions.</p>
+
+    <div style="margin:16px 0;">
+      <div class="journey-row">
+        <div class="journey-icon">🏠</div>
+        <div class="journey-body"><div class="journey-title">Departure — often under threat</div><div class="journey-text">Most people leaving for Europe are departing from situations of conflict, persecution, or severe deprivation. Many have left family behind. Some have witnessed violence or lost family members before they ever reached the coast.</div></div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-icon">🚶</div>
+        <div class="journey-body"><div class="journey-title">Transit — often months or years</div><div class="journey-text">The journey through transit countries — often through the Sahara and then Libya — involves multiple smuggler networks, detention, extortion, and violence. Libya in particular is documented as an extremely dangerous transit environment. Many survivors carry injuries, infections, or psychological trauma from this phase.</div></div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-icon">🌊</div>
+        <div class="journey-body"><div class="journey-title">The crossing — final risk</div><div class="journey-text">Departures are typically at night or in poor conditions to avoid interception. People are loaded onto overcrowded boats or wooden boats well beyond safe capacity, often without adequate fuel, with no navigation equipment, and with no way to turn back once they lose sight of land.</div></div>
+      </div>
+      <div class="journey-row">
+        <div class="journey-icon">🚢</div>
+        <div class="journey-body"><div class="journey-title">Rescue — not the end of uncertainty</div><div class="journey-text">Arrival on a rescue vessel is relief — but not resolution. Survivors still face an unknown asylum process, uncertain status, possible detention, and separation from people they know. The rescue is a reprieve, not a destination.</div></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">What this means for crew</div>
+      <div class="callout-text">You are meeting people at the end of a journey that may have involved violence, detention, loss, and profound physical and psychological stress — accumulated over months or years, not just the hours at sea. The physical and emotional condition of survivors on arrival reflects everything that came before the crossing, not just the crossing itself. This context informs every aspect of how you interact with them.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">The arrival experience — from their perspective</div>
+    <p class="prose">Understanding what arrival on a rescue vessel feels like from the survivor's perspective is essential preparation for crew. It challenges some common assumptions and explains behaviour that might otherwise be misread.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Relief — but also fear</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Arrival on a rescue vessel brings immediate physical relief — but many survivors have had previous experiences with authorities, coast guards, or uniformed personnel that were violent or resulted in detention and return. Crew in work gear can trigger fear rather than reassurance. This is not a reflection on your organisation — it is a history they carry.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Disorientation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">After a crossing in which they have had no control, no information, and no certainty, survivors may not know what is happening or what will happen to them next. Simple, clear communication — via interpreters — about where they are, that they are safe, and what will happen next makes an enormous difference.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Concern for others</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Even when physically exhausted, survivors are often acutely concerned about specific individuals — family members, friends, people who were in the water. This can lead to agitation or distress during reception. Acknowledging this is important: if someone is asking about a specific person, escalate to cultural mediators rather than dismissing it.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Concealment</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Survivors may conceal injuries, pregnancies, or vulnerabilities out of fear of being separated from their group or treated differently. They may give inaccurate ages or information for similar reasons. This is not deception in the ordinary sense — it is a protective response based on prior experience with systems that have not served their interests.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The person in front of you</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">None of this context replaces the individual. Every person you encounter has their own specific history, personality, and situation. The goal of this module is not to create a fixed expectation — it is to give you a framework that allows you to meet each person with understanding rather than assumption. The most important skill in survivor interaction is genuine attention to the person in front of you.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five questions on survivor background and arrival context.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const questions=[
+  {q:"A survivor appears very distressed and agitated when crew in high-visibility jackets approach them at the side of the vessel. What is the most likely explanation?",opts:["They are experiencing the normal panic of rescue — this always passes quickly","They may associate uniformed or marked personnel with previous negative experiences with authorities — this is a known response in this context","They are probably in a medical emergency — alert the medical team immediately","They are distressed about someone else on board — ask them who they are looking for"],correct:1,fb:"Survivors who have experienced detention, coast guard interceptions, or violence from uniformed personnel in transit countries may respond with fear rather than relief to crew in work gear. This is not a medical emergency and not a reflection on your organisation — it is a protective response based on experience. Calm, non-threatening approach, backed by cultural mediator support where possible, is the appropriate response."},
+  {q:"A male survivor tells you he is 21 years old during registration but his physical presentation suggests he may be younger. What is the appropriate crew response?",opts:["Challenge him directly — if he is lying about his age he needs to be corrected","Accept what he has said and ensure the information is passed accurately to the team managing registration and welfare","Estimate his age yourself and record your estimate instead","Report your suspicion to the bridge — age discrepancies may indicate a security concern"],correct:1,fb:"Age concealment — particularly by young men who may fear being processed differently as minors — is a known and understandable protective behaviour. Your role is not to investigate or challenge. Record what the person has said accurately and ensure the welfare and reception team are aware of any significant concern. Age assessment is a specialist process that follows specific protocols — it is not for general crew to conduct."},
+  {q:"What is typically the most important thing to communicate to a survivor immediately after they come aboard?",opts:["Who is responsible for their welfare and what their rights are under international law","Where they are, that they are safe, and what will happen in the next few minutes — clearly and via interpreter if possible","That they must cooperate with registration and medical assessment","How long the vessel will take to reach port"],correct:1,fb:"Disorientation and uncertainty are among the most distressing aspects of arrival. Survivors who have had no information or control for many hours are significantly helped by a simple, clear message about where they are, that they are safe, and what happens next. This requires no special skill — just the use of an interpreter where possible and a calm, clear delivery. What, where, and what happens next."},
+  {q:"A survivor conceals a significant injury during initial reception and it is only discovered later by the medical team. How should crew interpret this?",opts:["This is deliberately obstructive behaviour and should be recorded as such","Concealment of injuries or vulnerabilities is a known protective behaviour — survivors may fear being separated from their group or treated differently","The medical team failed to complete a thorough initial triage","This may indicate the person has something to hide about how they were injured"],correct:1,fb:"Concealment of injuries, pregnancies, medical conditions, or other vulnerabilities is well-documented in SAR reception and reflects prior experiences with systems that have treated vulnerability as a liability rather than a need. It is not deception in the conventional sense. The appropriate response is to continue creating an environment where people feel safe enough to disclose, and to ensure the medical team conducts thorough assessment regardless of what survivors report."},
+  {q:"Why is it inaccurate to assume that all survivors in the Central Mediterranean are 'economic migrants' with no protection needs?",opts:["It is accurate — the majority of people crossing do not qualify for protection in Europe","It is inaccurate because nationality and eligibility for protection are assessed through formal processes, and a significant proportion do qualify for refugee status or subsidiary protection","It is inaccurate because all people in distress at sea have a legal right to protection regardless of their status","Both B and C are accurate"],correct:3,fb:"Both B and C are correct. A significant proportion of people crossing the Central Mediterranean do qualify for refugee status or subsidiary protection under formal assessment. But more fundamentally, the right to rescue at sea is not conditional on status or migration motivation — it is a principle of maritime law and humanitarian practice. 'Economic migrant' as a catch-all category is both factually inaccurate for many survivors and legally irrelevant to the duty to rescue."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();
+  if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong contextual understanding. Ready for module 4.2.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review any questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the sections and try again. This context shapes every interaction you will have on board.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/4-2.html" class="btn-teal">Module 4.2 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+</script>
+</body>
+</html>

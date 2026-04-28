@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.1 — How ships work | Operation Ready</title>
+  <meta name="description" content="How ships work — for complete newcomers. Maritime terminology, vessel layout, and the essentials before you board.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .ship-diagram{background:rgba(30,58,95,.03);border:1px solid var(--border);border-radius:4px;padding:16px;margin:16px 0;}
+    .term-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0;}
+    .term{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:12px;}
+    .term-word{font-family:'DM Serif Display',serif;font-size:16px;margin-bottom:3px;}
+    .term-word.port{color:#8B1A1A;}
+    .term-word.starboard{color:#1a5c2e;}
+    .term-word.general{color:var(--teal);}
+    .term-def{font-size:12px;line-height:1.5;color:var(--text2);}
+    .rules-list{list-style:none;margin:12px 0;}
+    .rules-list li{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);font-size:14px;line-height:1.65;color:var(--text2);font-weight:300;}
+    .rules-list li:last-child{border-bottom:none;}
+    .rule-num{font-family:'DM Serif Display',serif;font-size:22px;color:var(--teal);flex-shrink:0;width:24px;}
+
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .term-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.1</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">How ships work</div>
+    <div class="module-meta"><span>Module 1.1</span><span>5 min read</span><span>4-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Introduction</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">The vessel</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Key terms</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Rules</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Knowledge check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.1</div>
+    <div class="mod-sec-title">Your first deployment starts here</div>
+    <p class="prose">You don't need a maritime background to join a humanitarian SAR operation — but you do need to understand the environment you're entering. A vessel at sea is a closed system. Space is limited, roles matter, and the practices that feel unfamiliar on day one exist for good reason.</p>
+    <p class="prose">This module covers what you need to know before you board: how a SAR vessel is broadly structured, the language the crew uses, and the key practices that will help you settle in quickly and contribute effectively from the start.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div><ul class="cover-list" style="margin:8px 0 0;list-style:none;"><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>How SAR vessels are generally laid out</li><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>Essential maritime terminology</li><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>Key terms for spaces aboard</li><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>Five practices for your first days</li></ul></div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">5 minutes — followed by a short knowledge check. A completion certificate is awarded at the end of the full Path (after Module 1.6).</div></div>
+  </div>
+
+  <!-- THE VESSEL -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">How a SAR vessel is laid out</div>
+    <p class="prose">Humanitarian SAR vessels come in many shapes and sizes — converted offshore supply ships, fishing vessels, sailing vessels, and purpose-built platforms. No two are identical. What follows is a general orientation to the kinds of spaces you'll find aboard, not a definitive layout for any specific vessel.</p>
+    <p class="prose">What most SAR vessels share is a broad logic: rescue operations happen at the stern (the rear), the bridge (command centre) is elevated toward the bow (front), crew live in the middle, and technical spaces are below. Your vessel's specific induction will show you the exact layout.</p>
+    <div class="ship-diagram">
+      <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- Water -->
+        <rect x="0" y="155" width="480" height="45" fill="rgba(61,139,122,.06)"/>
+        <path d="M0,160 Q60,157 120,160 T240,160 T360,160 T480,160" stroke="rgba(61,139,122,.25)" stroke-width="1" fill="none"/>
+        <path d="M0,168 Q80,166 160,168 T320,168 T480,168" stroke="rgba(61,139,122,.15)" stroke-width="0.8" fill="none"/>
+
+        <!-- Hull -->
+        <path d="M40,100 L420,100 L450,128 L430,155 L50,155 L20,128 Z" fill="rgba(30,58,95,0.08)" stroke="rgba(30,58,95,0.35)" stroke-width="1.5"/>
+        <!-- Rub rail -->
+        <line x1="25" y1="118" x2="445" y2="118" stroke="rgba(30,58,95,.35)" stroke-width="1"/>
+        <!-- Portholes -->
+        <circle cx="80" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="110" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="140" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="170" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="200" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="230" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="260" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+        <circle cx="290" cy="128" r="2.5" fill="#fff" stroke="rgba(30,58,95,.35)" stroke-width="0.8"/>
+
+        <!-- Bow rail -->
+        <line x1="420" y1="100" x2="435" y2="95" stroke="rgba(30,58,95,.45)" stroke-width="1"/>
+        <line x1="435" y1="95" x2="445" y2="100" stroke="rgba(30,58,95,.45)" stroke-width="1"/>
+
+        <!-- Main deckhouse / accommodation -->
+        <rect x="180" y="70" width="130" height="30" rx="2" fill="rgba(30,58,95,.05)" stroke="rgba(30,58,95,.3)" stroke-width="1.2"/>
+        <!-- Accommodation windows -->
+        <rect x="188" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="200" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="212" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="224" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="236" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="248" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="260" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="272" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="284" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <rect x="296" y="78" width="8" height="7" fill="rgba(200,220,255,.5)" stroke="rgba(30,58,95,.3)" stroke-width="0.6"/>
+        <text x="245" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(30,58,95,.55)" letter-spacing=".04em">CREW / ACCOMMODATION</text>
+
+        <!-- Bridge (highest) -->
+        <rect x="315" y="45" width="70" height="25" rx="2" fill="rgba(61,139,122,.18)" stroke="#3D8B7A" stroke-width="1.5"/>
+        <rect x="320" y="50" width="10" height="8" fill="rgba(200,220,255,.6)" stroke="#3D8B7A" stroke-width="0.5"/>
+        <rect x="332" y="50" width="10" height="8" fill="rgba(200,220,255,.6)" stroke="#3D8B7A" stroke-width="0.5"/>
+        <rect x="344" y="50" width="10" height="8" fill="rgba(200,220,255,.6)" stroke="#3D8B7A" stroke-width="0.5"/>
+        <rect x="356" y="50" width="10" height="8" fill="rgba(200,220,255,.6)" stroke="#3D8B7A" stroke-width="0.5"/>
+        <rect x="368" y="50" width="12" height="8" fill="rgba(200,220,255,.6)" stroke="#3D8B7A" stroke-width="0.5"/>
+        <text x="350" y="66" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#3D8B7A" font-weight="500" letter-spacing=".08em">BRIDGE</text>
+
+        <!-- Bridge wings -->
+        <line x1="310" y1="55" x2="315" y2="55" stroke="#3D8B7A" stroke-width="1.2"/>
+        <line x1="385" y1="55" x2="390" y2="55" stroke="#3D8B7A" stroke-width="1.2"/>
+
+        <!-- Radar mast -->
+        <line x1="345" y1="45" x2="345" y2="18" stroke="rgba(30,58,95,.5)" stroke-width="1.2"/>
+        <line x1="338" y1="22" x2="352" y2="22" stroke="rgba(30,58,95,.5)" stroke-width="1.5"/>
+        <line x1="335" y1="30" x2="355" y2="30" stroke="rgba(30,58,95,.5)" stroke-width="1"/>
+        <circle cx="345" cy="15" r="2" fill="rgba(245,208,106,.7)" stroke="rgba(245,208,106,1)" stroke-width="0.5"/>
+
+        <!-- Funnel -->
+        <rect x="270" y="50" width="14" height="20" rx="1" fill="rgba(30,58,95,.15)" stroke="rgba(30,58,95,.4)" stroke-width="1"/>
+        <rect x="272" y="52" width="10" height="4" fill="rgba(204,68,0,.5)"/>
+
+        <!-- Stern rescue zone (highlighted) -->
+        <rect x="50" y="65" width="120" height="35" rx="2" fill="rgba(212,130,26,.14)" stroke="rgba(212,130,26,.55)" stroke-width="1.5"/>
+        <text x="110" y="82" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#D4821A" font-weight="500" letter-spacing=".08em">STERN / RESCUE</text>
+        <text x="110" y="93" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(212,130,26,.85)">RHIB deployment</text>
+        <!-- Small RHIB icon on deck -->
+        <ellipse cx="90" cy="72" rx="12" ry="3" fill="rgba(61,139,122,.3)" stroke="rgba(61,139,122,.6)" stroke-width="0.8"/>
+        <ellipse cx="130" cy="72" rx="12" ry="3" fill="rgba(61,139,122,.3)" stroke="rgba(61,139,122,.6)" stroke-width="0.8"/>
+
+        <!-- Small crane -->
+        <line x1="60" y1="65" x2="60" y2="38" stroke="rgba(30,58,95,.5)" stroke-width="1.5"/>
+        <line x1="60" y1="38" x2="85" y2="42" stroke="rgba(30,58,95,.5)" stroke-width="1.2"/>
+        <line x1="85" y1="42" x2="85" y2="50" stroke="rgba(30,58,95,.35)" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+        <!-- Direction arrow at bottom -->
+        <text x="18" y="185" font-family="DM Sans,sans-serif" font-size="9" fill="#7A9AA8" letter-spacing=".08em">STERN</text>
+        <text x="438" y="185" font-family="DM Sans,sans-serif" font-size="9" fill="#7A9AA8" letter-spacing=".08em">BOW</text>
+        <line x1="50" y1="180" x2="432" y2="180" stroke="rgba(30,58,95,.12)" stroke-width="1"/>
+        <polygon points="50,177 40,180 50,183" fill="rgba(30,58,95,.25)"/>
+        <polygon points="432,177 442,180 432,183" fill="rgba(30,58,95,.25)"/>
+      </svg>
+      <p style="font-size:11px;color:var(--text3);text-align:center;margin-top:8px;font-style:italic;">A general layout — your vessel will differ. Learn its specific layout during induction.</p>
+    </div>
+    <div class="callout"><div class="callout-title">Your induction will cover this</div><div class="callout-text">All vessels conduct a safety induction before departure. This will include a guided tour of key spaces, muster stations, and emergency equipment. This is the right time to learn your specific vessel's layout — not before. What this module gives you is the language and general framework so the induction makes sense when you arrive.</div></div>
+  </div>
+
+  <!-- KEY TERMS -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">The language of the ship</div>
+    <p class="prose">Maritime terminology exists for precision and speed. When someone gives an order on deck, there's no room for "sorry, which way do you mean?" Learn these before you board — you'll hear them constantly.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 8px;font-weight:500;">Direction & position</div>
+    <div class="term-grid">
+      <div class="term">
+        <div class="term-word port">Port</div>
+        <div class="term-def">Left side of the vessel when facing forward. Remembered by: port is red — like port wine. Navigation light is red. "Port and left both have four letters" also works.</div>
+      </div>
+      <div class="term">
+        <div class="term-word starboard">Starboard</div>
+        <div class="term-def">Right side of the vessel when facing forward. Navigation light is green.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Bow</div>
+        <div class="term-def">The front of the vessel. "Forward" or "fore" means toward the bow.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Stern</div>
+        <div class="term-def">The rear of the vessel. "Aft" means toward the stern. Where rescue operations happen.</div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 8px;font-weight:500;">Spaces aboard</div>
+    <div class="term-grid">
+      <div class="term">
+        <div class="term-word general">Bridge</div>
+        <div class="term-def">The command and navigation centre, usually elevated at the forward section of the superstructure.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Mess</div>
+        <div class="term-def">The communal eating and social area. Also where informal briefings often happen.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Heads</div>
+        <div class="term-def">The toilets aboard a vessel. The name comes from the historical position of the toilet at the bow ("head") of a ship.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Scullery</div>
+        <div class="term-def">The washing-up area or galley sink space. Found on some vessels adjacent to the mess.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Muster station</div>
+        <div class="term-def">Your assigned emergency assembly point. Shown during your vessel induction. Know it before the vessel departs.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Galley</div>
+        <div class="term-def">The ship's kitchen. Usually adjacent to the mess.</div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 8px;font-weight:500;">Operations</div>
+    <div class="term-grid">
+      <div class="term">
+        <div class="term-word general">RHIB</div>
+        <div class="term-def">Rigid Hull Inflatable Boat — the fast rescue craft deployed from the stern for survivor recovery.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Watch</div>
+        <div class="term-def">A scheduled period of duty. Vessels operate 24/7 — watches rotate crew through shifts around the clock.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">Standing orders</div>
+        <div class="term-def">Permanent instructions that apply at all times. The Master issues standing orders for the vessel; managers may also issue standing orders for their team or area of responsibility.</div>
+      </div>
+      <div class="term">
+        <div class="term-word general">MOB</div>
+        <div class="term-def">Man Overboard — an emergency when a person falls into the water. MOB alarms trigger immediate emergency response.</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--text2);margin-top:16px;font-weight:300;">For a full reference of SAR and maritime acronyms, visit the <a href="/modules/glossary.html" style="color:var(--teal);">Glossary</a>.</p>
+  </div>
+
+  <!-- RULES / PRACTICES -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Five things to keep in mind from day one</div>
+    <p class="prose">These aren't rules imposed on you — they're practices that experienced seafarers follow because they make life aboard safer and more effective for everyone. New crew who adopt them quickly earn trust and integrate well. Those who don't create extra work for people who are already busy.</p>
+    <ul class="rules-list">
+      <li>
+        <div class="rule-num">1</div>
+        <div>One hand for you, one hand for the ship. Always maintain a grip point when moving around the vessel, especially on deck. Seas change without warning — a fall overboard is a SAR incident your crew doesn't need.</div>
+      </li>
+      <li>
+        <div class="rule-num">2</div>
+        <div>Be mindful on the bridge. Some vessels require you to request permission before entering the bridge. Even when entry is open, be aware that the Officer of the Watch carries full responsibility for the vessel. Avoid unnecessary noise or distraction, particularly during manoeuvres or radio communications.</div>
+      </li>
+      <li>
+        <div class="rule-num">3</div>
+        <div>Know your muster station and emergency signals from your induction. Your vessel induction will cover general alarm, fire alarm, and abandon ship signals. These vary between vessels — pay close attention when they are briefed.</div>
+      </li>
+      <li>
+        <div class="rule-num">4</div>
+        <div>Ask before you move or touch anything operational. Equipment on a working vessel has a state — stowed, rigged, charged, live. Moving something without understanding its status can compromise a system or put someone at risk. When in doubt, ask.</div>
+      </li>
+      <li>
+        <div class="rule-num">5</div>
+        <div>Rest and eat when you can. Operational tempo on a SAR vessel is unpredictable. A rescue can begin at 0300 after 16 hours of calm. Looking after yourself — sleeping and eating during quiet periods — is part of being an effective crew member.</div>
+      </li>
+    </ul>
+    <div class="callout"><div class="callout-title">The Master's authority</div><div class="callout-text">At sea, the Master has absolute authority over the vessel and everyone aboard — regardless of NGO role, seniority, or nationality. This is a legal and operational necessity. If you have a disagreement, raise it through your line manager on land. At sea, the Master's decisions are followed.</div></div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Four questions covering the essentials from this module.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+const questions=[
+  {q:"You're on deck and someone shouts 'RHIB to port!' — which side do you look?",opts:["Right side of the vessel","Left side of the vessel","The front of the vessel","Toward the bridge"],correct:1,fb:"Port is the left side of the vessel when facing forward. A useful reminder: port wine is red, and the port navigation light is red. Starboard is right, with a green navigation light."},
+  {q:"You need to speak to the Officer of the Watch about something non-urgent. The bridge door is open. What do you do?",opts:["Walk in and wait quietly until they're free","Check your vessel's practice — some require permission, all require awareness of what the OOW is doing","Call out from the doorway","Wait until the watch changes"],correct:1,fb:"Practice varies between vessels — some require you to request permission before entering the bridge, others don't. What's consistent is that the OOW has full responsibility for the vessel and should not be distracted during manoeuvres or communications. For non-urgent messages, it's always better to wait for a calm moment or pass via your team leader."},
+  {q:"You arrive aboard and your induction isn't until tomorrow morning. What's the most important thing to do before then?",opts:["Introduce yourself to as many crew as possible","Ask someone to show you the mess and your cabin, and confirm where your muster station is","Review the vessel's SAR procedures manual","Explore the vessel so you know where everything is"],correct:1,fb:"Your induction will cover the full vessel layout — that's what it's for. Before then, the priority is knowing your muster station in case of an overnight emergency, and finding the basics (mess, cabin, heads). Exploring the vessel independently before your induction isn't the right approach — wait to be shown around properly."},
+  {q:"It's 0200 and a rescue alert comes in. What's the most important thing you did in the previous six hours?",opts:["Reviewed the SAR procedures manual","Rested and eaten during the quiet period","Introduced yourself to the RHIB crew","Checked the weather forecast"],correct:1,fb:"Operational tempo on a SAR vessel is unpredictable. Resting and eating during quiet periods is a professional discipline — not personal comfort. You cannot contribute effectively to a rescue at 0200 if you've spent your off-watch time in the mess instead of resting."}
+];
+
+let cur=0,answered=[],scores=0;
+
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();
+  if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Module complete";t="Strong start. The fundamentals are in place. On to vessel orientation.";}
+  else if(pct>=0.75){v="Nearly there";t="Solid foundation — review the question you missed before moving on.";}
+  else{v="Worth reviewing";t="A couple of gaps to address — go back through the sections and try again when ready.";}
+
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+          <a href="/modules/1-2.html" class="btn-teal">Module 1.2 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+
+
+</script>
+</body>
+</html>

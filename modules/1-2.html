@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.2 — Vessel orientation | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .diagram-instruction{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;font-weight:500;}
+    .ship-container{background:rgba(30,58,95,.03);border:1px solid var(--border);border-radius:6px;padding:14px;margin:12px 0;}
+    .hotspot{cursor:pointer;}
+    .detail-panel{margin-top:14px;min-height:100px;}
+    .detail-hint{font-size:13px;color:var(--text3);text-align:center;padding:20px 0;font-style:italic;}
+    .detail-card{border-left:3px solid var(--teal);background:rgba(61,139,122,.05);border-radius:0 4px 4px 0;padding:16px 20px;display:none;}
+    .detail-card.active{display:block;}
+    .detail-zone{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;font-weight:500;}
+    .detail-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
+    .detail-text{font-size:13px;line-height:1.7;color:var(--text2);font-weight:300;}
+    .detail-roles{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+    .role-pill{font-size:11px;padding:3px 10px;border:1px solid var(--border2);border-radius:2px;color:var(--text2);}
+    .zones-progress{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+    .zp-dot{font-size:11px;letter-spacing:.06em;padding:3px 9px;border-radius:2px;border:1px solid var(--border);color:var(--text3);transition:all .25s;}
+    .zp-dot.seen{border-color:var(--teal);color:var(--teal);background:rgba(61,139,122,.07);}
+    .levels-grid{display:grid;gap:8px;margin:14px 0;}
+    .level-row{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--white);}
+    .level-hdr{display:flex;align-items:center;gap:14px;padding:12px 16px;cursor:pointer;transition:background .15s;}
+    .level-hdr:hover{background:var(--mint-pale);}
+    .level-icon{width:36px;height:36px;border:1px solid rgba(61,139,122,.25);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(61,139,122,.06);}
+    .level-name{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);}
+    .level-tag{margin-left:auto;font-size:11px;color:var(--text3);letter-spacing:.06em;}
+    .level-body{display:none;padding:12px 16px 16px;border-top:1px solid var(--border);font-size:13px;line-height:1.7;color:var(--text2);font-weight:300;}
+    .level-body.open{display:block;}
+    .level-spaces{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+    .space-tag{font-size:11px;padding:3px 9px;border:1px solid var(--border);border-radius:2px;color:var(--text2);}
+    .spaces-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+    .space-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .space-card-title{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+    .space-card-text{font-size:12px;line-height:1.65;color:var(--text2);font-weight:300;}
+
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .spaces-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.2</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Vessel orientation</div>
+    <div class="module-meta"><span>Module 1.2</span><span>8 min</span><span>Interactive vessel map</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Vessel map</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Deck names</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Key spaces</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.2</div>
+    <div class="mod-sec-title">Knowing where to go</div>
+    <p class="prose">When a rescue begins, you will be expected to move immediately and independently to your assigned station. Your vessel induction will show you the specific layout of your ship — this module gives you the framework so that induction makes sense and you can orient yourself quickly when you arrive.</p>
+    <p class="prose">Every vessel is different. The zones and deck names here represent common arrangements across humanitarian SAR vessels — treat them as a starting point, not a definitive guide. What stays consistent is the broad logic of how SAR vessels are organised.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div><ul style="margin:8px 0 0;padding:0;list-style:none;"><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>The key functional zones found on most SAR vessels</li><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>How decks are typically named</li><li style="display:flex;align-items:flex-start;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;"><span style="display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.7;"></span>What's expected of you in different spaces</li></ul></div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check. A completion certificate is awarded at the end of the full Path (after Module 1.6).</div></div>
+  </div>
+
+  <!-- VESSEL MAP -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3 — Interactive</div>
+    <div class="mod-sec-title">Common zones aboard a SAR vessel</div>
+    <p class="prose">The zones below represent spaces you will typically find on a humanitarian SAR vessel. Tap each to learn what happens there. Remember — your vessel's exact layout will differ, and your induction will show you where things actually are aboard your ship.</p>
+    <div class="diagram-instruction">Tap a zone to explore — 8 zones total</div>
+    <div class="ship-container">
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+        <defs>
+          <linearGradient id="seaG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#B8E8DE" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#7ECFBF" stop-opacity=".3"/>
+          </linearGradient>
+          <linearGradient id="hullG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#243659"/>
+            <stop offset="100%" stop-color="#1E3A5F"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="188" width="640" height="72" fill="url(#seaG)"/>
+        <path d="M0,188 Q80,184 160,188 Q240,192 320,188 Q400,184 480,188 Q560,192 640,188" stroke="rgba(61,139,122,0.4)" stroke-width="1.5" fill="none"/>
+        <path d="M55,148 L592,148 L610,170 L602,188 L42,188 L34,170 Z" fill="url(#hullG)" stroke="rgba(30,58,95,0.3)" stroke-width="1.5"/>
+        <path d="M55,148 L592,148 L600,158 L42,158 Z" fill="rgba(212,130,26,.3)"/>
+        <circle cx="120" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="160" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="200" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="280" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="320" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="360" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <circle cx="440" cy="172" r="5" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"/>
+        <line x1="55" y1="148" x2="592" y2="148" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+
+        <!-- ZONE: STERN / RESCUE DECK (includes reception) -->
+        <g class="hotspot" onclick="selectZone('stern')">
+          <rect x="40" y="110" width="145" height="38" fill="#D4821A" fill-opacity="0.6" stroke="#D4821A" stroke-width="1.5" rx="2" id="fill-stern"/>
+          <text x="112" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">STERN / RESCUE DECK</text>
+          <text x="112" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.75)">RHIB + SURVIVOR RECOVERY</text>
+        </g>
+        <line x1="80" y1="110" x2="80" y2="86" stroke="rgba(30,58,95,.4)" stroke-width="2"/>
+        <line x1="80" y1="86" x2="112" y2="86" stroke="rgba(30,58,95,.4)" stroke-width="2"/>
+        <line x1="112" y1="86" x2="112" y2="110" stroke="rgba(30,58,95,.2)" stroke-width="1" stroke-dasharray="3,2"/>
+        <circle cx="112" cy="93" r="4" fill="none" stroke="rgba(30,58,95,.3)" stroke-width="1.5"/>
+
+        <!-- ZONE: WOMEN'S SHELTER -->
+        <g class="hotspot" onclick="selectZone('wshelter')">
+          <rect x="190" y="72" width="90" height="38" fill="#3D8B7A" fill-opacity="0.6" stroke="#3D8B7A" stroke-width="1.5" rx="2" id="fill-wshelter"/>
+          <text x="235" y="88" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">WOMEN'S</text>
+          <text x="235" y="101" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">SHELTER</text>
+        </g>
+
+        <!-- ZONE: MEN'S SHELTER -->
+        <g class="hotspot" onclick="selectZone('mshelter')">
+          <rect x="190" y="110" width="90" height="38" fill="#1E7B6E" fill-opacity="0.65" stroke="#3D8B7A" stroke-width="1" rx="2" id="fill-mshelter"/>
+          <text x="235" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">MEN'S</text>
+          <text x="235" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">SHELTER</text>
+        </g>
+
+        <!-- ZONE: MEDICAL -->
+        <g class="hotspot" onclick="selectZone('medical')">
+          <rect x="286" y="110" width="96" height="38" fill="#1E3A5F" fill-opacity="0.65" stroke="#378ADD" stroke-width="1.5" rx="2" id="fill-medical"/>
+          <text x="334" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">MEDICAL</text>
+          <text x="334" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">BAY</text>
+          <rect x="326" y="114" width="3" height="8" fill="rgba(255,255,255,.4)" rx="1"/>
+          <rect x="323" y="117" width="9" height="3" fill="rgba(255,255,255,.4)" rx="1"/>
+        </g>
+
+        <!-- ZONE: ACCOMMODATION -->
+        <g class="hotspot" onclick="selectZone('accommodation')">
+          <rect x="286" y="60" width="216" height="50" fill="#5BA898" fill-opacity="0.45" stroke="#7ECFBF" stroke-width="1" rx="2" id="fill-accommodation"/>
+          <text x="394" y="89" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="white" font-weight="500">ACCOMMODATION &amp; MESS</text>
+          <rect x="300" y="68" width="11" height="7" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" rx="1"/>
+          <rect x="318" y="68" width="11" height="7" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" rx="1"/>
+          <rect x="400" y="68" width="11" height="7" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" rx="1"/>
+          <rect x="418" y="68" width="11" height="7" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" rx="1"/>
+          <rect x="472" y="68" width="11" height="7" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1" rx="1"/>
+        </g>
+
+        <!-- ZONE: BRIDGE -->
+        <g class="hotspot" onclick="selectZone('bridge')">
+          <rect x="506" y="28" width="102" height="82" fill="#D4821A" fill-opacity="0.5" stroke="#F5D06A" stroke-width="1.5" rx="2" id="fill-bridge"/>
+          <rect x="516" y="40" width="15" height="9" fill="rgba(200,230,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1" rx="1"/>
+          <rect x="537" y="40" width="15" height="9" fill="rgba(200,230,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1" rx="1"/>
+          <rect x="558" y="40" width="15" height="9" fill="rgba(200,230,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1" rx="1"/>
+          <rect x="579" y="40" width="15" height="9" fill="rgba(200,230,255,.2)" stroke="rgba(255,255,255,.4)" stroke-width="1" rx="1"/>
+          <text x="557" y="72" text-anchor="middle" font-family="DM Serif Display,serif" font-size="13" fill="white">BRIDGE</text>
+          <circle cx="606" cy="24" r="4" fill="#F5D06A" fill-opacity=".8"/>
+        </g>
+
+        <!-- ZONE: ENGINE -->
+        <g class="hotspot" onclick="selectZone('engine')">
+          <rect x="386" y="110" width="112" height="38" fill="rgba(30,58,95,.5)" stroke="rgba(30,58,95,.4)" stroke-width="1" rx="2" id="fill-engine"/>
+          <text x="442" y="126" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,.7)" font-weight="500">ENGINE / STORES</text>
+          <text x="442" y="139" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="rgba(255,255,255,.4)">RESTRICTED</text>
+        </g>
+
+        <line x1="555" y1="28" x2="555" y2="8" stroke="rgba(30,58,95,.4)" stroke-width="2"/>
+        <line x1="542" y1="14" x2="568" y2="14" stroke="rgba(30,58,95,.35)" stroke-width="1.5"/>
+        <path d="M547,9 Q555,4 563,9" stroke="#D4821A" stroke-width="1.5" fill="none" stroke-opacity=".7"/>
+        <rect x="458" y="52" width="22" height="30" fill="rgba(30,58,95,.6)" stroke="rgba(255,255,255,.15)" stroke-width="1" rx="1"/>
+        <rect x="456" y="50" width="26" height="6" fill="rgba(30,58,95,.7)" stroke="rgba(255,255,255,.1)" stroke-width="1" rx="1"/>
+
+        <text x="18" y="205" font-family="DM Sans,sans-serif" font-size="10" fill="#7A9AA8">STERN</text>
+        <text x="602" y="205" font-family="DM Sans,sans-serif" font-size="10" fill="#7A9AA8">BOW</text>
+        <line x1="40" y1="220" x2="604" y2="220" stroke="rgba(30,58,95,.08)" stroke-width="1"/>
+        <polygon points="40,217 28,220 40,223" fill="rgba(30,58,95,.2)"/>
+        <polygon points="604,217 616,220 604,223" fill="rgba(30,58,95,.2)"/>
+      </svg>
+    </div>
+
+    <div class="detail-panel">
+      <div class="detail-hint" id="detail-hint">Tap any zone to learn what happens there</div>
+      <div class="detail-card" id="detail-stern">
+        <div class="detail-zone">Stern / rescue deck</div>
+        <div class="detail-title">Where rescues happen</div>
+        <div class="detail-text">The stern deck is typically where RHIBs are launched and recovered, and where survivors first come aboard. Initial survivor reception — the first moments of triage and care — often happens here or immediately adjacent. During an active rescue this space is fast-moving and hazardous. You go here when assigned, not to observe. When not in rescue mode it requires constant maintenance and readiness checks. On some vessels reception happens on a separate adjacent space — your induction will clarify your vessel's layout.</div>
+        <div class="detail-roles"><span class="role-pill">SAR Team</span><span class="role-pill">Bosun</span><span class="role-pill">Deck crew</span></div>
+      </div>
+      <div class="detail-card" id="detail-wshelter">
+        <div class="detail-zone">Women's shelter</div>
+        <div class="detail-title">Safety and dignity</div>
+        <div class="detail-text">Most humanitarian SAR vessels maintain separate shelter spaces for women and men. The women's shelter typically also accommodates children and families. Many of the women aboard will have experienced gender-based violence during their journey. This space must be managed with the highest standards of dignity and privacy. Access is restricted to assigned staff — protection officers, female cultural mediators, and medical personnel as needed.</div>
+        <div class="detail-roles"><span class="role-pill">Protection officers</span><span class="role-pill">Female mediators</span><span class="role-pill">Medical team</span></div>
+      </div>
+      <div class="detail-card" id="detail-mshelter">
+        <div class="detail-zone">Men's shelter</div>
+        <div class="detail-title">Recovery and rest</div>
+        <div class="detail-text">The men's shelter provides covered space for male survivors — typically a deck area or adapted hold with blankets, dry clothing, water, food, and basic sanitation. Survivors here are recovering from their journey — for many, this may be the first time they have felt safe. Behaviour in and around the shelter must be calm and non-intrusive. Access for non-assigned crew is restricted. Cultural mediators play a key role in communication and de-escalation in this space.</div>
+        <div class="detail-roles"><span class="role-pill">Cultural mediators</span><span class="role-pill">Protection officers</span><span class="role-pill">Logisticians</span></div>
+      </div>
+      <div class="detail-card" id="detail-medical">
+        <div class="detail-zone">Medical bay</div>
+        <div class="detail-title">Every second counts</div>
+        <div class="detail-text">The medical bay is where critical cases are treated — hypothermia, drowning, obstetric emergencies, trauma. Every second can be important to save a life, and the medical team needs this space to be unobstructed and quiet. If you are not medical personnel, you do not enter unless directly asked. Its proximity to the rescue deck is deliberate — the distance between rescue and treatment should be as short as possible.</div>
+        <div class="detail-roles"><span class="role-pill">Medical coordinator</span><span class="role-pill">Nurses</span><span class="role-pill">Medical staff</span></div>
+      </div>
+      <div class="detail-card" id="detail-accommodation">
+        <div class="detail-zone">Accommodation & mess</div>
+        <div class="detail-title">Where the crew lives</div>
+        <div class="detail-text">Cabins, bathrooms (heads), the scullery, and the mess (communal dining area) are in the accommodation block. Space is tight — cabins are often shared by more than two people, storage is minimal, and noise discipline matters because crew sleep at all hours. The mess is where informal briefings happen and where the crew decompress. Treat shared spaces with care and read the atmosphere before contributing to it.</div>
+        <div class="detail-roles"><span class="role-pill">All crew</span><span class="role-pill">All NGO staff</span></div>
+      </div>
+      <div class="detail-card" id="detail-bridge">
+        <div class="detail-zone">Bridge</div>
+        <div class="detail-title">Command and navigation</div>
+        <div class="detail-text">The bridge is the nerve centre of the vessel — navigation, communications, watch-keeping, and command decisions all happen here. Some vessels require you to request permission before entering; others don't — your induction will clarify this. During operations the Master, SARCO, STL, and Post-rescue leader coordinate from the bridge simultaneously. Always be aware of what the OOW is doing before entering, and never speak during a manoeuvre.</div>
+        <div class="detail-roles"><span class="role-pill">Master</span><span class="role-pill">SARCO</span><span class="role-pill">STL</span><span class="role-pill">Post-rescue leader</span><span class="role-pill">OOW</span></div>
+      </div>
+      <div class="detail-card" id="detail-engine">
+        <div class="detail-zone">Engine room & stores</div>
+        <div class="detail-title">Engineering and logistics</div>
+        <div class="detail-text">The engine room houses the vessel's propulsion and power systems — engineering crew only unless directed. Stores hold rescue equipment, medical supplies, food, and fuel. Inventory management and equipment readiness checks are daily responsibilities. You will not routinely need to access these spaces.</div>
+        <div class="detail-roles"><span class="role-pill">Chief Engineer</span><span class="role-pill">Engineering crew</span><span class="role-pill">Logistics coordinator</span></div>
+      </div>
+    </div>
+
+    <div class="zones-progress" id="zones-progress">
+      <div class="zp-dot" id="zp-stern">Stern deck</div>
+      <div class="zp-dot" id="zp-wshelter">Women's shelter</div>
+      <div class="zp-dot" id="zp-mshelter">Men's shelter</div>
+      <div class="zp-dot" id="zp-medical">Medical</div>
+      <div class="zp-dot" id="zp-accommodation">Accommodation</div>
+      <div class="zp-dot" id="zp-bridge">Bridge</div>
+      <div class="zp-dot" id="zp-engine">Engine</div>
+    </div>
+  </div>
+
+  <!-- DECK NAMES -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">How decks are named</div>
+    <p class="prose">Deck names vary between vessels — there is no universal system. One vessel's "Main Deck" may be another's "Rescue Deck." Some use numbers, others names, many use both. The names below are common reference points across the humanitarian SAR fleet — your vessel's induction will confirm the specific names used aboard your ship.</p>
+    <div class="callout"><div class="callout-title">During your induction</div><div class="callout-text">Your vessel will have deck plans posted at stairwells and muster stations. Your induction is the right time to learn your vessel's specific names and confirm where your rescue station is. This module gives you the framework — your induction gives you the detail.</div></div>
+
+    <div class="levels-grid">
+      <div class="level-row">
+        <div class="level-hdr" onclick="toggleLevel('bridge-deck')">
+          <div class="level-icon"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="5" width="14" height="11" rx="1" fill="none" stroke="#3D8B7A" stroke-width="1.5"/><rect x="4" y="7" width="3" height="3" fill="rgba(200,220,255,.3)" stroke="rgba(30,58,95,.3)" stroke-width="1"/><rect x="9" y="7" width="3" height="3" fill="rgba(200,220,255,.3)" stroke="rgba(30,58,95,.3)" stroke-width="1"/><line x1="9" y1="2" x2="9" y2="5" stroke="rgba(30,58,95,.4)" stroke-width="1.5"/></svg></div>
+          <div class="level-name">Bridge deck</div>
+          <div class="level-tag">Highest working deck ↑</div>
+        </div>
+        <div class="level-body" id="bridge-deck">The uppermost operational deck, housing the bridge and navigation spaces. May also be called the "wheelhouse deck." Restricted access — check your vessel's rules during induction.
+          <div class="level-spaces"><span class="space-tag">Bridge</span><span class="space-tag">Chart room</span><span class="space-tag">Radio room</span><span class="space-tag">Master's cabin</span></div>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="level-hdr" onclick="toggleLevel('upper-deck')">
+          <div class="level-icon"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="1" fill="none" stroke="#3D8B7A" stroke-width="1.5"/><rect x="4" y="7" width="4" height="3" fill="none" stroke="rgba(30,58,95,.3)" stroke-width="1"/><rect x="10" y="7" width="4" height="3" fill="none" stroke="rgba(30,58,95,.3)" stroke-width="1"/></svg></div>
+          <div class="level-name">Accommodation deck</div>
+          <div class="level-tag">Crew living spaces</div>
+        </div>
+        <div class="level-body" id="upper-deck">Where crew and NGO staff live. Cabins, heads, sometimes the mess. Noise discipline applies at all times. May be called "accommodation deck," "A-deck," or a vessel-specific name.
+          <div class="level-spaces"><span class="space-tag">Crew cabins</span><span class="space-tag">Heads</span><span class="space-tag">Scullery</span><span class="space-tag">Laundry</span></div>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="level-hdr" onclick="toggleLevel('main-deck')">
+          <div class="level-icon"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="1" y="5" width="16" height="11" rx="1" fill="none" stroke="#3D8B7A" stroke-width="1.5"/><rect x="3" y="8" width="5" height="4" fill="none" stroke="rgba(30,58,95,.3)" stroke-width="1" rx=".5"/><line x1="11" y1="9" x2="14" y2="9" stroke="rgba(30,58,95,.3)" stroke-width="1.5"/></svg></div>
+          <div class="level-name">Main deck</div>
+          <div class="level-tag">Primary working deck</div>
+        </div>
+        <div class="level-body" id="main-deck">Where the operational activity of the vessel is concentrated — mess, medical bay, briefing rooms, offices, and survivor care areas. Highest-traffic deck during and after rescues.
+          <div class="level-spaces"><span class="space-tag">Mess</span><span class="space-tag">Medical bay</span><span class="space-tag">Briefing room</span><span class="space-tag">Offices</span><span class="space-tag">Survivor areas</span></div>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="level-hdr" onclick="toggleLevel('rescue-deck')">
+          <div class="level-icon"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="1" y="8" width="16" height="8" rx="1" fill="none" stroke="#D4821A" stroke-width="1.5"/><path d="M4,8 L4,4 L8,4" stroke="#D4821A" stroke-width="1.5" fill="none"/></svg></div>
+          <div class="level-name">Rescue / stern deck</div>
+          <div class="level-tag">Primary rescue station</div>
+        </div>
+        <div class="level-body" id="rescue-deck">The main outdoor working deck at the stern — where RHIBs operate and survivors board. A controlled space during operations. PPE mandatory. May be called "rescue deck," "stern deck," or "aft deck."
+          <div class="level-spaces"><span class="space-tag">Stern deck</span><span class="space-tag">RHIB davits</span><span class="space-tag">Boat landing</span><span class="space-tag">MOB gear</span></div>
+        </div>
+      </div>
+      <div class="level-row">
+        <div class="level-hdr" onclick="toggleLevel('lower-deck')">
+          <div class="level-icon"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="1" y="6" width="16" height="10" rx="1" fill="none" stroke="#7A9AA8" stroke-width="1.5"/><line x1="5" y1="10" x2="13" y2="10" stroke="rgba(30,58,95,.2)" stroke-width="1"/></svg></div>
+          <div class="level-name">Lower decks</div>
+          <div class="level-tag">Restricted ↓</div>
+        </div>
+        <div class="level-body" id="lower-deck">Engine room, fuel systems, stores, and cargo holds. Engineering crew only unless directed. If you find yourself here without a clear reason, check you're in the right place.
+          <div class="level-spaces"><span class="space-tag">Engine room</span><span class="space-tag">Fuel systems</span><span class="space-tag">Stores</span><span class="space-tag">Cargo holds</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout muted"><div class="callout-title">The consistent logic</div><div class="callout-text">Deck names change between vessels. What stays consistent is the pattern — rescue operations at the stern, command at the top, crew in between, restricted spaces below. Learn your vessel's specific names during your induction.</div></div>
+  </div>
+
+  <!-- KEY SPACES -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">How to behave in each space</div>
+    <p class="prose">Knowing where spaces are is the starting point. Understanding what's expected of you in each space — and what's not appropriate — is what helps you integrate well and contribute effectively from your first day.</p>
+    <div class="spaces-grid">
+      <div class="space-card"><div class="space-card-title" style="color:#D4821A;">Stern deck</div><div class="space-card-text">Go here when assigned. During a rescue it is a tightly managed space — an unassigned person creates complications for the crew running the operation.</div></div>
+      <div class="space-card"><div class="space-card-title" style="color:#3D8B7A;">Survivor shelters</div><div class="space-card-text">Survivors are recovering from their journey — for many, this may be the first time they have felt safe. Keep noise minimal, avoid unnecessary interaction unless you're assigned. Not a space for observation.</div></div>
+      <div class="space-card"><div class="space-card-title" style="color:#185FA5;">Medical bay</div><div class="space-card-text">Do not enter unless you are medical staff or directly asked. Every second can be important to save a life — unnecessary presence costs the team time.</div></div>
+      <div class="space-card"><div class="space-card-title" style="color:#D4821A;">Bridge</div><div class="space-card-text">Be aware of what the OOW is doing. Some vessels require permission to enter. Never speak during a manoeuvre or radio call. Urgent messages go through your team leader.</div></div>
+      <div class="space-card"><div class="space-card-title" style="color:#5BA898;">Cabins</div><div class="space-card-text">You will share. The other person may be sleeping after a night watch. Minimal light, minimal noise, gear stowed. Respect the limited personal space completely.</div></div>
+      <div class="space-card"><div class="space-card-title" style="color:#3D8B7A;">Mess</div><div class="space-card-text">Meals at set times. After a difficult rescue the mess may be quiet — read the room and follow the crew's lead rather than filling the silence.</div></div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on vessel orientation and expected behaviour.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+const questions=[
+  {q:"A rescue begins. You haven't been given a specific assignment. What's the best thing to do?",opts:["Go to the stern deck — extra hands help during a rescue","Go to survivor reception to assist with triage","Radio your team leader or a senior crew member to confirm your role, then go to the indicated station","Go to the bridge to understand what's happening"],correct:2,fb:"Role assignments are normally confirmed before the vessel enters the SAR zone — you should already know where to go. If you're unsure at the moment of a rescue, don't wait passively for someone to find you. Radio your team leader or a nearby senior crew member, confirm where you're needed, and go there. Independently deciding where to be is not the answer; confirming quickly is."},
+  {q:"Your vessel has separate women's and men's shelters. You're not assigned to either. A survivor in the women's shelter appears to need water. What do you do?",opts:["Take water in yourself — it's a simple task","Find an assigned staff member or cultural mediator and let them know","Call out to a staff member from the doorway","Hand water to the survivor from outside the shelter without entering"],correct:1,fb:"The shelter spaces are managed by assigned staff for good reason — the environment needs to be carefully controlled. The safest move when you're not sure is to find an assigned person and let them handle it, especially for anything specialised. You can hand water from outside the shelter without entering if that's been signalled as acceptable on your vessel — but ask your team first. One important principle in all survivor interaction: <strong>if you give something to one survivor, be prepared to give it to all</strong>. That's why distribution is typically coordinated by the post-rescue team, not ad-hoc."},
+  {q:"Deck names vary between vessels. When does it matter most that you learn your vessel's specific deck names?",opts:["Before you board — memorise common deck names in advance","During your vessel induction — that's what it's for","In your first few days as you find your way around","Only if you get lost"],correct:1,fb:"Your vessel induction is specifically designed to show you the layout and conventions of your ship. Common deck names (like those in this module) give you a useful framework — but the specific names used aboard your vessel are confirmed during induction. Learning them then, before the vessel departs, is the right approach."},
+  {q:"The mess is quiet after a difficult rescue. Crew members are sitting without talking. What's the most considerate response?",opts:["Start a conversation — it helps people process difficult experiences","Sit down, eat if it's mealtime, and follow the crew's lead","Leave and come back later when the atmosphere changes","Ask the team leader to organise a debrief"],correct:1,fb:"Post-rescue silence in the mess is common and should be respected. The crew may have just dealt with very difficult events. Reading the atmosphere and following their lead — not filling silence, not prompting conversation — shows situational awareness that experienced crew appreciate in newcomers."},
+  {q:"You need to speak to the Officer of the Watch. Which of these is the most appropriate approach?",opts:["Walk in directly — it's a working space and interruptions are normal","Check what they're doing first, and ask your vessel's protocol for bridge entry during your induction","Call out from the doorway so you don't interrupt","Send a message through the ship's intercom"],correct:1,fb:"Practice varies between vessels — some require you to request permission before entering the bridge, others don't. What's consistent is that the OOW carries full responsibility for the vessel and should not be distracted during critical moments. Your induction will tell you your vessel's specific protocol."}
+];
+
+let cur=0,answered=[],scores=0;
+
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();
+  if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function selectZone(id){
+  document.querySelectorAll('.detail-card').forEach(c=>c.classList.remove('active'));
+  document.getElementById('detail-'+id).classList.add('active');
+  document.getElementById('detail-hint').style.display='none';
+  document.getElementById('zp-'+id).classList.add('seen');
+}
+function toggleLevel(id){document.getElementById(id).classList.toggle('open');}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Module complete";t="You know the spaces and what's expected. Onward.";}
+  else if(pct>=0.6){v="Mostly solid";t="Good foundation — review the questions you missed before moving on.";}
+  else{v="Worth reviewing";t="Go back through the vessel map and key spaces sections, then try again.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;">
+          <a href="/modules/1-3.html" class="btn-teal">Module 1.3 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+</script>
+</body>
+</html>

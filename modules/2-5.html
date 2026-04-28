@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.5 — Mass rescue operations | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .triage-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0;}
+    .triage-card{border-radius:4px;padding:14px;}
+    .triage-t{font-family:'DM Serif Display',serif;font-size:28px;line-height:1;margin-bottom:4px;}
+    .triage-name{font-size:12px;font-weight:500;margin-bottom:6px;letter-spacing:.04em;}
+    .triage-text{font-size:12px;line-height:1.55;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.triage-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.5</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Mass rescue operations</div>
+    <div class="module-meta"><span>Module 2.5</span><span>8 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">What is MRO</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Triage</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Managing capacity</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.5</div>
+    <div class="mod-sec-title">When numbers exceed resources</div>
+    <p class="prose">A Mass Rescue Operation (MRO) is formally defined as a SAR response involving so many persons in distress that available resources cannot handle them using normal procedures. In the Central Mediterranean, operations involving hundreds of people are not exceptional — they are routine.</p>
+    <p class="prose">MROs require adapted procedures: modified triage priorities, different communication protocols, resource coordination across multiple assets, and a sustained physical and emotional demand on everyone aboard. Understanding how MROs work helps you prepare for what is, statistically, the most likely type of operation you will experience on deployment.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What defines a Mass Rescue Operation and how it differs from a standard rescue</li>
+        <li>Triage categories and how medical prioritisation works at volume</li>
+        <li>Capacity management — numbers, supplies, and vessel limits</li>
+        <li>Multi-asset coordination during an MRO</li>
+        <li>What to expect as an individual crew member during an MRO</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">What makes an MRO different</div>
+    <p class="prose">A standard rescue involves a manageable number of persons — a small vessel in difficulty, an MOB from a yacht, a stricken fishing boat. The process is sequential and resources are adequate.</p>
+    <p class="prose">An MRO collapses this — the numbers arriving simultaneously exceed what can be handled individually. Every procedure adapts: triage becomes categorical rather than individual, communications increase dramatically, capacity limits become operational constraints, and the sustained duration of the operation creates fatigue challenges for crew.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:6px;">Scale in the Mediterranean</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Operations involving 100–500+ persons are common. The largest operations have involved over 1,000 persons across multiple vessels simultaneously. A humanitarian SAR vessel may rescue several hundred people in a single operation — and then be tasked again before reaching port.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:6px;">Duration</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">An MRO may last many hours — particularly when RHIB trips are required to recover people from multiple vessels or when hundreds need to be brought aboard in sequence. Crew fatigue management during an MRO is an operational priority alongside the rescue itself.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Multi-vessel coordination</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">During a large MRO, multiple vessels — commercial ships, coast guard, other NGOs — may respond. The OSC coordinates their activities, assigning each vessel a specific role: some continue recovery while others receive survivors or stand by for medical evacuation. Your vessel's SARCO will communicate your specific role within the wider operation.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Triage in an MRO</div>
+    <p class="prose">Triage is the process of prioritising medical care when demand exceeds capacity. In an MRO, the medical team cannot give equal attention to every person simultaneously — they must assess rapidly and direct limited resources to where they save the most lives.</p>
+    <p class="prose">Triage categories are adapted from standard mass casualty systems. In maritime SAR, persons in the water are assessed before those still on the distress vessel — time in the water creates additional medical urgency.</p>
+
+    <div class="triage-grid">
+      <div class="triage-card" style="background:rgba(204,68,0,.07);border:1px solid rgba(204,68,0,.25);">
+        <div class="triage-t" style="color:#cc4400;">T1</div>
+        <div class="triage-name" style="color:#cc4400;">Immediate</div>
+        <div class="triage-text" style="color:#7a3a1a;">Life-threatening condition that can be treated with immediate intervention. Requires urgent medical attention. Examples: respiratory distress, unconsciousness, severe hypothermia, obstetric emergency.</div>
+      </div>
+      <div class="triage-card" style="background:rgba(212,130,26,.07);border:1px solid rgba(212,130,26,.25);">
+        <div class="triage-t" style="color:#D4821A;">T2</div>
+        <div class="triage-name" style="color:#D4821A;">Delayed</div>
+        <div class="triage-text" style="color:#7a4a1a;">Serious but stable — can wait for treatment without immediate life risk. Monitoring required. Examples: significant dehydration, wounds not actively bleeding, moderate hypothermia.</div>
+      </div>
+      <div class="triage-card" style="background:rgba(42,157,92,.07);border:1px solid rgba(42,157,92,.2);">
+        <div class="triage-t" style="color:#2a9d5c;">T3</div>
+        <div class="triage-name" style="color:#2a9d5c;">Minor</div>
+        <div class="triage-text" style="color:#1a4a2a;">Walking wounded — minor injuries or medical needs that can be addressed after more critical cases. Often the largest group in an MRO.</div>
+      </div>
+      <div class="triage-card" style="background:rgba(30,58,95,.06);border:1px solid rgba(30,58,95,.15);">
+        <div class="triage-t" style="color:var(--navy);">T4</div>
+        <div class="triage-name" style="color:var(--navy);">Expectant</div>
+        <div class="triage-text" style="color:var(--text2);">Injuries so severe that survival is unlikely given available resources. This category is deeply distressing to apply — but when resources are genuinely insufficient, directing them to survivable cases saves the most lives overall.</div>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Triage is the medical team's responsibility</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Triage decisions are made by qualified medical staff. If you bring a survivor to the medical team and they direct their attention elsewhere first, this is a triage decision — not indifference. Understanding the framework helps you accept and work within these decisions rather than challenge them during an operation.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Managing capacity and crew during an MRO</div>
+    <p class="prose">An MRO is a sustained operation. Managing the vessel's physical capacity — space, food, water, medicine — and the crew's human capacity — energy, focus, emotional reserves — are both operational responsibilities.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Vessel capacity limits</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Every vessel has a capacity limit — not just in physical space, but in water, food, medicine, and sanitation. The HoM and SARCO track numbers throughout an MRO and communicate with the MRCC about capacity. When limits approach, the operational picture changes — other assets may be required, or the vessel may need to proceed to port while the operation continues with other vessels.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Supply distribution during the operation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Water, blankets, and basic food are distributed as survivors come aboard. The logistics team manages supply rates during an MRO — distributing enough to address immediate need without depleting reserves before all survivors are aboard.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Crew rotation during a long MRO</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">RHIB crew rotation is critical — physical and mental fatigue accumulates rapidly during repeated recovery trips. The STL manages crew rotation. If you are asked to step back from a role during a long operation, this is a fatigue management decision. Rest when directed so you are ready when needed again.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Emotional preparation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">An MRO is emotionally demanding — the scale, the individual stories, the medical cases, the children, the duration. This is the reality of the work. Your organisation will provide a debrief after major operations. Talking to your team, eating, and resting after the operation are not optional recovery steps — they are part of maintaining your ability to function on the next one.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">What to do when you don't have a task</div>
+      <div class="callout-text">During a large MRO, there will be periods where you are waiting — either between tasks or held back from the immediate operation. This is managed. Stay at your position, stay rested, stay hydrated, and stay ready. The operation may need you in an hour or in ten minutes. Wandering to observe or finding your own tasks creates coordination problems. Trust the structure.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on MRO procedures and triage.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"What formally defines a Mass Rescue Operation?",o:["Any rescue involving more than 50 persons","A rescue requiring RHIB deployment","A SAR response where the number of persons in distress exceeds what available resources can handle using normal procedures","Any rescue involving multiple vessels"],c:2,f:"An MRO is defined by the relationship between demand and available resources — not by a specific number. When the scale of persons in distress means normal procedures cannot be applied, the operation adapts to MRO procedures. In the Central Mediterranean, operations of hundreds of persons are common enough to be treated as standard."},
+  {q:"A survivor arrives aboard breathing but unconscious. The medical team is occupied with another critical case. What triage category does this person likely fall into?",o:["T3 — minor, they can wait","T4 — expectant","T2 — delayed, stable enough to wait briefly","T1 — immediate, requires urgent attention"],c:3,f:"Unconscious but breathing is a T1 — Immediate — triage category. Life-threatening conditions requiring urgent intervention. If the medical team assigns another case equally urgent, this is a triage decision — both cases require T1 attention and the team is prioritising based on survivability and resources."},
+  {q:"A RHIB crew member has completed four trips during a long MRO and is visibly fatigued. The STL rotates them off. The crew member wants to continue. What is the right approach?",o:["Continue if they feel able — their own judgment is most reliable","Accept the rotation — fatigue management is an operational decision, not a reflection of capability","Negotiate with the STL for one more trip","Rest briefly and return without being directed to"],c:1,f:"Crew rotation during an MRO is an operational decision managed by the STL. Fatigue reduces decision-making and physical capability in ways the fatigued person often cannot fully recognise. Accepting rotation is the professional response — resting means being available and effective when needed again."},
+  {q:"During an MRO your vessel approaches its capacity limit. What happens next?",o:["The rescue operation stops until the vessel reaches port","The SARCO communicates with the MRCC — other assets may be assigned, or the vessel may proceed to port while the operation continues","The HoM makes an independent decision about whether to accept more survivors","The Master decides unilaterally to stop recovery operations"],c:1,f:"When capacity limits approach, the SARCO communicates with the MRCC — this is part of the coordination framework. Other assets may be assigned to continue recovery, or the vessel may proceed to disembark while others continue. This is a coordinated decision within the SAR system, not a unilateral one."},
+  {q:"After a large MRO, a crew member says they don't feel the need for a debrief — they're fine and just want to rest. What is the most appropriate response?",o:["Respect their choice — debriefs are voluntary","Insist they attend — debriefs are mandatory","Acknowledge their feelings while noting that the organisation's debrief exists to support them — and that initial feelings after a difficult operation often don't reflect what comes later","Report their reluctance to the team leader"],c:2,f:"Initial reactions after difficult operations often underestimate delayed emotional impact. The debrief is not just about addressing current distress — it's about processing experience, supporting the team, and providing early intervention before effects compound. Acknowledging someone's current state while still encouraging them to participate is the right approach."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of MRO procedures. Ready for module 2.6.':p>=.6?'Mostly solid — review what you missed.':'Go back through the triage and capacity sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/2-6.html" class="btn-teal">Module 2.6 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

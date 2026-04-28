@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6.3 — NGO operating frameworks | Operation Ready</title>
+  <meta name="description" content="How humanitarian SAR NGOs are structured, governed, and held accountable — codes of conduct, flag state obligations, and the frameworks that guide organisational decision-making.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .fw-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);margin-bottom:10px;}
+    .fw-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:4px;}
+    .fw-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+    .fw-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .chain-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .chain-row:last-child{border-bottom:none;}
+    .chain-num{font-family:'DM Serif Display',serif;font-size:22px;color:var(--teal);flex-shrink:0;width:28px;line-height:1.2;}
+    .chain-body{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .chain-body strong{font-weight:500;color:var(--text);}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-6">Path 6</a> &rsaquo; <span>6.3</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 6 — Legal &amp; humanitarian framework</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">NGO operating frameworks</div>
+    <div class="module-meta">
+      <span>Module 6.3</span><span>10 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Structure &amp; accountability</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Command and conduct</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 6.3</div>
+    <div class="mod-sec-title">How humanitarian SAR organisations are structured and governed</div>
+    <p class="prose">Humanitarian SAR NGOs are not informal volunteer groups operating outside established frameworks. They are legally registered organisations with flag state obligations, donor accountability requirements, internal governance structures, and codes of conduct that govern how crew behave. Understanding how your organisation is structured — and why that structure exists — helps you understand the decisions made above your level and the responsibilities you carry below it.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>How humanitarian SAR NGOs are legally constituted and what obligations they carry</li>
+        <li>The command structure aboard a humanitarian SAR vessel — who decides what</li>
+        <li>Codes of conduct — what they require and why they matter operationally</li>
+        <li>Accountability mechanisms — how organisations are held to account</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">10 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">Legal structure and accountability</div>
+
+    <div class="fw-card">
+      <div class="fw-tag">Legal registration</div>
+      <div class="fw-title">NGOs are legally registered entities</div>
+      <div class="fw-text">Humanitarian SAR NGOs are registered as legal entities — typically as charities, associations, or non-profit organisations — in the countries where their headquarters are based. This registration creates legal obligations around governance, financial accountability, and conduct. The organisation's legal status also determines its standing in legal disputes, its ability to enter into contracts, and its relationship with donor and regulatory bodies.</div>
+    </div>
+
+    <div class="fw-card">
+      <div class="fw-tag">Flag state vessel registration</div>
+      <div class="fw-title">The vessel's flag creates specific legal obligations</div>
+      <div class="fw-text">The rescue vessel is registered under a flag state. That registration creates obligations: compliance with flag state maritime law, safety certification requirements, crew qualification standards, working hours regulations, and the duty to maintain the vessel to class. Flag state inspections can result in detention if the vessel does not meet requirements. The choice of flag state is a deliberate organisational decision — different flags carry different regulatory requirements.</div>
+    </div>
+
+    <div class="fw-card">
+      <div class="fw-tag">Donor and public accountability</div>
+      <div class="fw-title">Where funding comes from and what it requires</div>
+      <div class="fw-text">Most humanitarian SAR NGOs are funded through a combination of public donations and institutional grants. Donors — whether individuals or institutions — have expectations about how money is used and conduct on the vessel. Serious misconduct by crew can affect donor confidence and funding. Organisations publish annual reports and undergo independent financial audits. This accountability structure is one reason why codes of conduct are enforced seriously.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The humanitarian sector's accountability frameworks</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Humanitarian organisations operating at scale are subject to sector-wide accountability standards including the Core Humanitarian Standard (CHS) — a framework covering the quality and accountability commitments organisations make to the people they serve. Organisations that are CHS-verified have undergone independent assessment of their practices. Crew members whose conduct falls below the standard contribute to accountability failures that affect the organisation's standing and its ability to continue operations.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">Command structure, codes of conduct, and crew obligations</div>
+
+    <p class="prose">Aboard a humanitarian SAR vessel, two command structures operate simultaneously and must be clearly understood.</p>
+
+    <div style="margin:14px 0 20px;">
+      <div class="chain-row"><div class="chain-num">1</div><div class="chain-body"><strong>Maritime command — the Master.</strong> The Master has ultimate authority over the safety and navigation of the vessel. Maritime law is clear: the Master's authority over the vessel's safety is absolute. No organisational staff member — including the Head of Mission — can overrule a Master's safety decision. This authority exists under flag state law and is non-negotiable.</div></div>
+      <div class="chain-row"><div class="chain-num">2</div><div class="chain-body"><strong>Operational command — the Head of Mission / SARCO.</strong> The Head of Mission and the SAR Coordinator hold authority over the humanitarian operation — the decision to respond to a distress event, how the operation is conducted, communications with the MRCC, and the welfare of survivors. In most organisations, these authorities are clearly delineated in a Memorandum of Understanding between the maritime and operational command.</div></div>
+      <div class="chain-row"><div class="chain-num">3</div><div class="chain-body"><strong>Where they overlap — coordination is essential.</strong> In practice, maritime and operational decisions interact constantly. A RHIB deployment requires both maritime safety approval and operational direction. The best-functioning vessels have clear protocols for how these decisions are made jointly. When crew are unclear about who has authority over a decision, they ask — they do not act unilaterally.</div></div>
+    </div>
+
+    <div class="fw-card">
+      <div class="fw-tag">Code of conduct</div>
+      <div class="fw-title">What it covers and why it matters</div>
+      <div class="fw-text">Every humanitarian SAR organisation requires crew to sign and comply with a code of conduct. These typically cover: prohibition of discrimination and harassment; safe and respectful behaviour toward survivors; media and communications policies; confidentiality; prohibition of relationships with survivors; alcohol and substance policies; conflict of interest; and reporting obligations. Breaches can result in immediate repatriation and formal dismissal. Understanding the code of conduct before signing it — and following it throughout deployment — is a basic professional obligation.</div>
+    </div>
+
+    <div class="fw-card">
+      <div class="fw-tag">Duty to report</div>
+      <div class="fw-title">Misconduct is not an internal matter to resolve informally</div>
+      <div class="fw-text">Most humanitarian organisations have a formal reporting obligation for crew who witness misconduct — particularly misconduct involving survivors. Choosing to manage a serious incident informally — talking to the crew member directly rather than reporting — may itself constitute a breach of organisational policy and potentially of legal obligations where the misconduct involves harm to a vulnerable person. Uncertainty about whether to report should be resolved by escalating to a team leader.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">You represent the organisation</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">When you are aboard and engaged in operations, your conduct is the organisation's conduct. Individual failures — a photo posted without consent, an inappropriate comment to a survivor, a breach of confidentiality — become organisational failures when they become known. The organisation's credibility, access, and funding all depend on crew conduct being consistent with the values and standards it publicly upholds. This is not abstract — it has direct operational consequences.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on NGO operating frameworks and conduct.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"During a rescue, the Head of Mission instructs the Master to position the vessel in a way the Master believes is unsafe. Who has final authority?",o:["The Head of Mission — they hold operational command","The Master — maritime law grants the Master absolute authority over vessel safety, which no organisational staff member can overrule","They should seek consensus before taking any action","The MRCC mediates disputes between operational and maritime command"],c:1,f:"Maritime law is unambiguous: the Master has absolute authority over the safety of the vessel and its navigation. No organisational staff member — including the Head of Mission — can overrule a Master's safety decision. This authority exists under flag state law. The two command structures — maritime and operational — must work cooperatively, but on safety matters the Master's authority is final."},
+  {q:"A crew member witnesses a colleague making a discriminatory comment to a survivor. What is the appropriate response?",o:["Speak to the colleague privately — raising it formally would damage team cohesion","Ignore it — a single comment does not warrant formal action","Report it to the team leader or using the organisation's reporting mechanism — most codes of conduct require it","Wait and see if it happens again before deciding to report"],c:1,f:"Codes of conduct in humanitarian organisations typically include a reporting obligation for witnessed misconduct. Choosing to manage a serious incident informally — or ignoring it — may itself be a breach of that obligation. Team cohesion is a genuine value, but it cannot override accountability obligations. The correct action is to report using the appropriate channel."},
+  {q:"Why does the flag state of a vessel matter to how an NGO operates?",o:["The flag state determines which rescue operations the vessel can participate in","The flag state creates binding legal obligations for the vessel — safety certification, crew qualifications, working hours, and maritime law compliance — all determined by flag state law","The flag state determines which survivors the vessel can accept","Flag state choice is an administrative formality with no operational implications"],c:1,f:"Flag state registration is not an administrative formality. It creates binding legal obligations covering the vessel's safety certification, crew qualification requirements, working hours regulations, and compliance with flag state maritime law. Flag state inspectors can detain a vessel that does not meet requirements. The choice of flag state is a deliberate organisational decision with significant operational implications."},
+  {q:"A crew member on their first deployment is unclear whether a situation they observed requires formal reporting. What should they do?",o:["Make the decision themselves — if it seemed minor it probably does not need to be reported","Escalate to a team leader rather than making the decision alone","Wait until the end of the deployment and include it in their debrief feedback","Ask the crew member involved whether they think it should be reported"],c:1,f:"When in doubt about whether to report, the correct action is to escalate to a team leader rather than making the determination alone. The reporting threshold exists to protect survivors and the organisation — it is not the individual crew member's job to make that determination unilaterally, particularly on a first deployment. Team leaders are there to guide these decisions."},
+  {q:"What is the Core Humanitarian Standard (CHS)?",o:["The legal minimum requirement for vessels operating in humanitarian SAR contexts","A sector-wide accountability framework covering the quality and accountability commitments organisations make to the people they serve","A UN treaty governing the conduct of humanitarian organisations","A certification required for all crew working in humanitarian contexts"],c:1,f:"The Core Humanitarian Standard is a sector-wide voluntary accountability framework — not a legal requirement — covering the commitments organisations make to the people they serve. Organisations can seek independent CHS verification. It is one of several accountability mechanisms that humanitarian organisations are subject to, alongside donor requirements, flag state regulations, and their own internal governance structures."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';updateNav();if(n===3&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===3?'none':'inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of NGO operating frameworks. Ready for module 6.4.':p>=.6?'Mostly solid — review what you missed.':'Go back through the sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/6-4.html" class="btn-teal">Module 6.4 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4.3 — Working with interpreters | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .do-card{border:1px solid rgba(42,157,92,.3);border-radius:4px;padding:14px;background:rgba(42,157,92,.04);margin-bottom:8px;}
+    .dont-card{border:1px solid rgba(204,68,0,.2);border-radius:4px;padding:14px;background:rgba(204,68,0,.04);margin-bottom:8px;}
+    .card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);margin-bottom:8px;}
+    .card-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:5px;}
+    .card-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-4">Path 4</a> &rsaquo; <span>4.3</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 4 — Survivor interaction</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Working with interpreters</div>
+    <div class="module-meta"><span>Module 4.3</span><span>7 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">The mediator's role</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Working together</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Practical tips</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 4.3</div>
+    <div class="mod-sec-title">The bridge between languages</div>
+    <p class="prose">Cultural mediators are among the most important people aboard a humanitarian SAR vessel. They make communication between crew and survivors possible, bring cultural context that helps avoid misunderstandings, and carry an enormous emotional burden throughout a rescue.</p>
+    <p class="prose">Working effectively with cultural mediators — understanding their role, communicating with them clearly, and not putting them in impossible positions — improves outcomes for survivors and supports the mediators themselves.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What cultural mediators do — and the limits of their role</li>
+        <li>How to communicate effectively through an interpreter</li>
+        <li>What not to ask mediators to do</li>
+        <li>Recognising and supporting mediator wellbeing</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">7 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">The cultural mediator's role</div>
+    <p class="prose">A cultural mediator is not simply a translator. They bridge languages and cultures — interpreting not just words but meaning, context, and nuance. They explain situations to survivors in ways that are culturally appropriate and comprehensible. They also carry significant emotional weight: they often share backgrounds with the people they are interpreting for, and witness the same distress and loss with the added burden of not being able to step away from it during an operation.</p>
+
+    <div class="card"><div class="card-title">Language interpretation</div><div class="card-text">Translating verbal communication between crew and survivors — information about what is happening, instructions, medical questions, and reassurances. Mediators typically cover several languages; they may not cover every language on a large rescue.</div></div>
+    <div class="card"><div class="card-title">Cultural context</div><div class="card-text">Explaining cultural norms that affect interaction — for example, why a woman may not want to be examined by a male doctor, or why a particular group may be particularly fearful of people in uniform. This context makes crew interactions more appropriate and less likely to cause distress.</div></div>
+    <div class="card"><div class="card-title">Protection identification</div><div class="card-text">Mediators are often the first to identify protection concerns — SGBV, unaccompanied minors, LGBTQ+ persons at risk, trafficking victims — through conversation that happens naturally during their communication role. This information is passed to protection staff.</div></div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Limits of the mediator role</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Cultural mediators are not personal assistants, counsellors, registration officers, or people who can be pulled in all directions simultaneously. During a large rescue, demand for mediator support exceeds capacity. Prioritise requests carefully — medical and protection needs come first. Do not redirect mediators to non-essential tasks during active operations.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">How to communicate through a mediator</div>
+    <p class="prose">Working through an interpreter changes how you communicate. Certain patterns help — others make interpretation difficult or introduce errors.</p>
+
+    <div class="do-card">
+      <div style="font-size:12px;font-weight:500;color:#2a9d5c;margin-bottom:8px;">Do</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Speak in short sentences — pause after each one for interpretation</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Address the survivor directly, not the mediator ("Are you in pain?" not "Ask them if they're in pain")</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Use simple, concrete language — avoid idioms and jargon</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Confirm understanding by asking the person to respond in their own words</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Brief the mediator before sensitive conversations so they can prepare</div>
+      </div>
+    </div>
+    <div class="dont-card">
+      <div style="font-size:12px;font-weight:500;color:#cc4400;margin-bottom:8px;">Do not</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Speak for long stretches without pausing for interpretation</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Ask leading questions that suggest an expected answer</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Use complex or technical language</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Have side conversations with the mediator in front of the survivor</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;">Assume everything you said was translated exactly as you intended</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Practical considerations and mediator wellbeing</div>
+
+    <div class="card"><div class="card-title">Mediator emotional load</div><div class="card-text">Cultural mediators hear every story — every account of violence, loss, and suffering — directly and in their own language. Many share backgrounds with the people they are supporting. The accumulated exposure is significant. Be mindful of this. Don't relay unnecessary distressing information through mediators. During debrief, their wellbeing is as important as any other crew member's. Check in on the mediators in your team — they often carry their burden without asking for support.</div></div>
+    <div class="card"><div class="card-title">Using survivor interpreters — caution</div><div class="card-text">Sometimes crew use other survivors as informal interpreters — asking someone who speaks English to translate for others. This should be done with extreme caution and only for non-sensitive matters. Using a survivor to interpret medical, protection, or sensitive personal information can breach confidentiality, create power dynamics, and put the interpreter in an impossible position. Always use trained mediators for anything sensitive.</div></div>
+    <div class="card"><div class="card-title">When no mediator is available</div><div class="card-text">In large operations, there will be moments when no mediator is immediately available. Fall back on non-verbal communication, simple actions, and basic safety. For urgent medical needs, seek the mediator actively — this is a priority. For non-urgent communication, wait for mediator availability rather than attempting complex communication without language support.</div></div>
+
+    <div class="callout"><div class="callout-title">Acknowledge the mediator's work</div><div class="callout-text">Cultural mediators rarely receive formal acknowledgement for what they do. They are not operationally glamorous — they work at the edge of every operation, absorbing enormous emotional weight. Recognising their contribution — privately and in team debriefs — is a simple act with real value.</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on working with cultural mediators.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"When speaking through a cultural mediator, what is the correct way to address a survivor?",o:["Address the mediator — 'Ask them if they have any pain'","Address the survivor directly — 'Are you in pain?' — while looking at the survivor","Address the mediator and the survivor simultaneously","Address the survivor in your own language while the mediator interprets"],c:1,f:"Address the survivor directly — 'Are you in pain?' — while looking at them. This maintains the human connection and is respectful. Addressing the mediator instead ('Ask them if they have any pain') treats the survivor as a third party to their own conversation, which is dehumanising and reduces the quality of the interaction."},
+  {q:"A survivor who speaks some English offers to translate for other survivors who don't speak any English. When is this acceptable?",o:["Whenever a trained mediator is not available","For simple, non-sensitive matters only — never for medical, protection, or sensitive personal information","It is never acceptable to use survivors as informal interpreters","Only if the survivor has relevant professional experience"],c:1,f:"Using a survivor as an informal interpreter is acceptable only for genuinely non-sensitive matters. For medical questions, protection concerns, or sensitive personal information, trained mediators must be used. Using a survivor to interpret sensitive information can breach confidentiality, create power dynamics between survivors, and put the interpreter in an impossible position."},
+  {q:"You need to have a sensitive conversation about a medical condition with a survivor through the mediator. What should you do before the conversation begins?",o:["Nothing — mediators are trained and do not need preparation","Brief the mediator before the conversation so they can prepare appropriately","Ask the mediator if they are comfortable proceeding","Have the medical team conduct the conversation instead"],c:1,f:"Briefing the mediator before sensitive conversations — particularly medical or protection topics — allows them to prepare linguistically and emotionally. Sensitive subjects can be challenging to interpret, and preparation allows the mediator to choose appropriate language and be mentally ready. This is a simple step that significantly improves the quality of sensitive communication."},
+  {q:"During a large rescue, a cultural mediator has been working continuously for four hours interpreting distressing accounts. What should crew be aware of?",o:["Mediators are professionals trained to handle this — no action needed","The mediator's emotional load is significant — check in on them during and after the operation, and acknowledge their work in debrief","The mediator should take a break but this is their decision to make","The mediator should be replaced by a fresh team member"],c:1,f:"Cultural mediators absorb enormous emotional weight — hearing detailed accounts of suffering in their own language, often from people who share their background. Their resilience is not unlimited. Checking in, acknowledging their contribution, and including their wellbeing in debrief and support processes is important. They often carry their burden without asking for support."},
+  {q:"What is a cultural mediator's role beyond simple language translation?",o:["They are responsible for survivor registration","They provide language translation and also cultural context — interpreting meaning, nuance, and cultural norms that affect interaction. They also often identify protection concerns through their communication role.","They manage the reception area during boarding","They are responsible for the psychological first aid process"],c:1,f:"Cultural mediators do much more than translate words. They interpret cultural context, explain norms that affect how interactions should happen, and are often the first to identify protection concerns — SGBV, unaccompanied minors, trafficking indicators — through natural conversation during their communication role. This broader function makes them invaluable beyond their translation work."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong interpreter working skills. Ready for module 4.4.':p>=.6?'Mostly solid — review what you missed.':'Go back through the mediator role sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/4-4.html" class="btn-teal">Module 4.4 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.3 — Weather, sea state & GMDSS basics | Operation Ready</title>
+  <meta name="description" content="Understanding weather, sea state, and GMDSS communications before your first deployment.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+
+    /* CALLOUT VARIANTS */
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+
+    /* COVER LIST */
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+
+    /* BEAUFORT */
+    .bf-slider-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+    .bf-num{font-family:'DM Serif Display',serif;font-size:48px;color:var(--teal);line-height:1;min-width:56px;text-align:center;}
+    .bf-card{border:1px solid var(--border);border-radius:6px;background:var(--white);overflow:hidden;margin-bottom:14px;}
+    .bf-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);}
+    .bf-name{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
+    .bf-bar{height:5px;border-radius:3px;margin-bottom:12px;transition:width .25s,background .25s;}
+    .bf-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+    .bf-stat{background:var(--cream);border-radius:3px;padding:8px 10px;text-align:center;}
+    .bf-stat-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
+    .bf-stat-val{font-size:14px;font-weight:500;color:var(--navy);}
+    .bf-body{padding:16px 20px;}
+    .bf-sea{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:12px;font-weight:300;}
+    .bf-section-lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;font-weight:500;}
+    .bf-deck{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;padding:10px 14px;background:var(--cream);border-radius:4px;border-left:3px solid var(--teal);margin-bottom:12px;}
+    .bf-survivor{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;padding:10px 14px;background:rgba(212,130,26,.05);border-radius:4px;border-left:3px solid #D4821A;}
+
+    /* WEATHER GRID */
+    .weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+    .weather-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .weather-card-title{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;}
+
+    /* WINDY */
+    .windy-steps{list-style:none;margin:12px 0;}
+    .windy-steps li{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .windy-steps li:last-child{border-bottom:none;}
+    .windy-step-num{font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);flex-shrink:0;width:22px;}
+    .windy-layer{display:flex;gap:10px;padding:8px 12px;border:1px solid var(--border);border-radius:4px;margin-bottom:6px;align-items:flex-start;background:var(--white);}
+    .windy-layer-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;font-weight:500;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+    .tag-wind{background:rgba(61,139,122,.1);color:var(--teal);border:1px solid rgba(61,139,122,.25);}
+    .tag-wave{background:rgba(30,58,95,.08);color:var(--navy);border:1px solid rgba(30,58,95,.15);}
+    .tag-rain{background:rgba(55,138,221,.1);color:#185FA5;border:1px solid rgba(55,138,221,.2);}
+    .tag-vis{background:rgba(212,130,26,.1);color:#D4821A;border:1px solid rgba(212,130,26,.2);}
+    .windy-layer-text{font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;}
+
+    /* PHONETIC ALPHABET */
+    .phonetic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0;}
+    .phonetic-item{border:1px solid var(--border);border-radius:3px;padding:8px 10px;background:var(--white);}
+    .ph-letter{font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);line-height:1;}
+    .ph-word{font-size:12px;color:var(--text2);margin-top:2px;font-weight:300;}
+
+    /* RADIO TERMS */
+    .radio-terms{display:grid;gap:6px;margin:12px 0;}
+    .radio-term{display:flex;gap:12px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;background:var(--white);align-items:flex-start;}
+    .rt-word{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);min-width:100px;flex-shrink:0;}
+    .rt-def{font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;}
+
+    /* QUIZ */
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .weather-grid{grid-template-columns:1fr;}
+      .bf-stats{grid-template-columns:1fr 1fr;}
+      .bf-num{font-size:36px;}
+      .phonetic-grid{grid-template-columns:repeat(3,1fr);}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.3</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Weather, sea state & GMDSS</div>
+    <div class="module-meta"><span>Module 1.3</span><span>10 min</span><span>Interactive Beaufort scale</span><span>Windy.com guide</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Sea state</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Weather</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Windy</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Radio</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.3</div>
+    <div class="mod-sec-title">Reading the conditions</div>
+    <p class="prose">Weather and sea state directly affect everything aboard a SAR vessel — when operations are possible, how fatiguing a watch will be, what PPE is required on deck, and crucially, what conditions the people you are trying to rescue have been enduring.</p>
+    <p class="prose">It is worth keeping in mind that while sea conditions affect crew safety and operational capability, survivors in distress have no shelter from those same conditions. People on an overcrowded boat in Beaufort 4 have been exposed, cold, seasick, and exhausted — often for hours or days, with little or no food or water. Understanding conditions is not just about managing your own safety — it shapes how you respond to the people you are there to help.</p>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Operational limits</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.6;color:var(--text2);">Every organisation sets its own operational limits for different conditions. These are defined in your organisation's SOPs — Standard Operating Procedures. This module gives you the framework to understand those limits. Before your deployment, ask your team leader to walk you through your specific vessel's approach.</div>
+    </div>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>The Beaufort scale — wind speed in knots, wave height, and visibility</li>
+        <li>What each sea state means for crew safety on deck and for survivors</li>
+        <li>How weather conditions affect SAR operations</li>
+        <li>How to use Windy.com to read a weather forecast before deployment</li>
+        <li>VHF radio basics — channels, phonetic alphabet, and radio etiquette</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">10 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <!-- SEA STATE -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 4 — Interactive</div>
+    <div class="mod-sec-title">The Beaufort scale</div>
+    <p class="prose">The Beaufort scale is the international standard for describing wind force and resulting sea conditions. It runs from 0 (flat calm) to 12 (hurricane). You'll hear it used constantly aboard — "sea state 4," "Beaufort 6." Use the slider to explore each level.</p>
+    <p class="prose">This is a reference tool — you don't need to memorise the numbers. What matters is building a feel for what different conditions look and feel like, and what they mean for the people on deck and the people in the water.</p>
+
+    <div class="bf-slider-row">
+      <div class="bf-num" id="bf-num">3</div>
+      <input type="range" min="0" max="12" value="3" id="bf-slider" style="flex:1;" oninput="updateBF(this.value)">
+      <label style="font-size:12px;color:var(--text2);font-weight:500;white-space:nowrap;">Force <span id="bf-lbl">3</span></label>
+    </div>
+
+    <div class="bf-card">
+      <div class="bf-header">
+        <div class="bf-bar" id="bf-bar" style="width:25%;background:#3D8B7A;"></div>
+        <div class="bf-name" id="bf-name">Gentle breeze</div>
+        <div class="bf-stats">
+          <div class="bf-stat">
+            <div class="bf-stat-lbl">Wind</div>
+            <div class="bf-stat-val" id="bf-wind">7–10 kts</div>
+          </div>
+          <div class="bf-stat">
+            <div class="bf-stat-lbl">Wave height</div>
+            <div class="bf-stat-val" id="bf-wave">0.6–1.0 m</div>
+          </div>
+          <div class="bf-stat">
+            <div class="bf-stat-lbl">Visibility</div>
+            <div class="bf-stat-val" id="bf-vis">Good</div>
+          </div>
+        </div>
+      </div>
+      <div class="bf-body">
+        <div class="bf-sea" id="bf-sea">Large wavelets with crests beginning to break. Scattered whitecaps. Foam has glassy appearance.</div>
+        <div class="bf-section-lbl">Safety on deck</div>
+        <div class="bf-deck" id="bf-deck">Comfortable working conditions. Use grip points when moving. Spray possible — be aware of wet surfaces. Standard PPE applies.</div>
+        <div class="bf-section-lbl" style="margin-top:12px;">For survivors</div>
+        <div class="bf-survivor" id="bf-survivor">Uncomfortable on a small or overcrowded boat. Spray and vessel movement will be affecting anyone without shelter. People will be tired and cold even in these conditions, particularly after extended time at sea.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEATHER -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 4</div>
+    <div class="mod-sec-title">How weather affects operations</div>
+    <p class="prose">Understanding the different elements of weather helps you understand why decisions are made the way they are — and prepares you for what you'll encounter during a deployment.</p>
+
+    <div class="weather-grid">
+      <div class="weather-card">
+        <div class="weather-card-title">Wind direction</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Wind direction affects vessel positioning during rescue. The Master positions the ship to create a lee — a sheltered side — for RHIB operations and for survivors boarding. This explains many of the manoeuvres you'll observe during a rescue.</p>
+      </div>
+      <div class="weather-card">
+        <div class="weather-card-title">Visibility</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Fog, rain, haze, and spray all reduce search effectiveness. Spotting a low-lying overcrowded boat or persons in the water in poor visibility is genuinely difficult. Bridge lookout and deck alertness become critical when visibility is reduced.</p>
+      </div>
+      <div class="weather-card">
+        <div class="weather-card-title">Water temperature</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Water temperature determines survival time for anyone in the sea. Mediterranean summer water (24–28°C) gives significantly more time than winter water (14–18°C). This affects both rescue urgency and the medical priorities when survivors come aboard.</p>
+      </div>
+      <div class="weather-card">
+        <div class="weather-card-title">Swell vs wind waves</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Swell comes from distant weather systems and can create significant wave height and motion even when local wind is light. A low Beaufort reading does not always mean easy conditions — combined sea states can be more challenging than either alone.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Seasonal patterns — Central Mediterranean</div>
+      <div class="callout-text">Summer (May–September) typically brings calmer conditions, better visibility, and warmer water — though the Sirocco and Mistral can develop quickly. Winter brings more frequent adverse weather, reduced visibility, colder water, and shorter daylight hours. Both seasons present distinct challenges.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">SAR operations and weather</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">SAR organisations aim to operate in conditions that allow safe and effective rescue. In practice, operations are less frequent during severe weather — both because of what is operationally achievable and because the safety of the rescue crew must be considered carefully. If you have questions about how your organisation approaches this balance, speak to your team leader. They can explain your vessel's specific approach.</div>
+    </div>
+  </div>
+
+  <!-- WINDY -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 4</div>
+    <div class="mod-sec-title">Reading weather with Windy</div>
+    <p class="prose"><a href="https://www.windy.com" target="_blank" style="color:var(--teal);">Windy.com</a> is a free, widely-used weather visualisation tool that is particularly useful for maritime forecasting. Many SAR professionals use it before and during deployments to get a clear picture of conditions ahead. It is intuitive, visual, and accessible on mobile.</p>
+    <p class="prose">You don't need to become a meteorologist — but knowing how to pull up a basic forecast for your operating area before departure is a useful skill and helps you understand operational briefings better.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Getting started</div>
+    <ul class="windy-steps">
+      <li><div class="windy-step-num">1</div><div>Go to <strong style="font-weight:500;">windy.com</strong> or download the Windy app. No account needed for basic use.</div></li>
+      <li><div class="windy-step-num">2</div><div>Navigate to your operating area — for Central Mediterranean SAR, zoom into the sea between Libya, Malta, and Lampedusa.</div></li>
+      <li><div class="windy-step-num">3</div><div>Use the layer selector (bottom of screen on mobile, left panel on desktop) to switch between what you want to see.</div></li>
+      <li><div class="windy-step-num">4</div><div>Use the time slider at the bottom to step forward through the forecast — typically reliable 3–5 days ahead.</div></li>
+      <li><div class="windy-step-num">5</div><div>Tap any point on the map to get a detailed forecast graph for that exact location — wind, gusts, waves, rain, and more.</div></li>
+    </ul>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">Key layers to know</div>
+    <div class="windy-layer">
+      <span class="windy-layer-tag tag-wind">Wind</span>
+      <div class="windy-layer-text">Shows wind speed and direction as animated streamlines. The darker and faster the animation, the stronger the wind. Colours range from blue (light) through green, yellow, orange to red (storm force). This is the most useful layer for a quick overview of conditions.</div>
+    </div>
+    <div class="windy-layer">
+      <span class="windy-layer-tag tag-wave">Waves</span>
+      <div class="windy-layer-text">Shows combined wave height in metres. Switch to "Swell" to see swell specifically versus wind-driven waves. Particularly useful for understanding what conditions RHIB crews will face even when local wind appears light.</div>
+    </div>
+    <div class="windy-layer">
+      <span class="windy-layer-tag tag-rain">Rain / clouds</span>
+      <div class="windy-layer-text">Shows precipitation and cloud cover. Rain squalls and cloud cover affect visibility significantly. The "Radar" overlay shows real-time precipitation if available in your area.</div>
+    </div>
+    <div class="windy-layer">
+      <span class="windy-layer-tag tag-vis">Visibility</span>
+      <div class="windy-layer-text">A dedicated visibility layer is available — useful for planning search operations where spotting targets at distance is critical. Fog and haze show clearly on this layer.</div>
+    </div>
+
+    <div class="callout muted">
+      <div class="callout-title">Windy is a planning tool, not an authority</div>
+      <div class="callout-text">Windy is excellent for getting a feel for upcoming conditions and for understanding operational briefings. Your vessel's bridge receives official forecasts and NAVTEX bulletins. Operational decisions are made by the Master and STL based on those official sources — not on a crew member's Windy app. Use it to inform yourself, not to second-guess decisions.</div>
+    </div>
+  </div>
+
+  <!-- RADIO -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Section 4 of 4</div>
+    <div class="mod-sec-title">Radio basics</div>
+    <p class="prose">VHF radio is the primary communication system aboard vessels. You won't be operating the ship's main radio — that is the bridge's responsibility — but you will use handheld UHF radios for crew coordination during operations, and you may need to use radio communication in other contexts. Understanding basic radio etiquette and the phonetic alphabet is expected of all crew.</p>
+
+    <div class="callout-orange" style="margin-bottom:16px;">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Think — Push — Talk — Release — Listen</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Before every transmission: think about your message. Push the PTT (push-to-talk) button. Talk slowly and clearly. Release the button. Listen for a response. This sequence prevents the most common radio errors.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">VHF vs UHF — knowing which radio you're using</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">VHF — ship's radio</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Public communication for ship-to-ship and ship-to-shore. Everyone can hear you. Range is line-of-sight — it depends on antenna height rather than being a fixed distance (a vessel with a tall mast has much greater range than a handheld). Operated from the bridge. Channel 16 is the international distress and calling channel — always monitored.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">UHF — handheld radio</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Used for onboard crew communications and with RHIBs during operations. Shorter range — approximately 2 miles for a handheld. More frequencies available. This is the radio you will most likely use day to day as a crew member.</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">The 4 golden rules</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px;background:var(--white);"><div style="font-weight:500;color:var(--navy);margin-bottom:4px;font-size:13px;">Clarity</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5;">Speak calmly and clearly. A little slower than normal. Normal tone — do not shout.</div></div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px;background:var(--white);"><div style="font-weight:500;color:var(--navy);margin-bottom:4px;font-size:13px;">Simplicity</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5;">Keep messages simple enough for all listeners to understand — not everyone is a native English speaker.</div></div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px;background:var(--white);"><div style="font-weight:500;color:var(--navy);margin-bottom:4px;font-size:13px;">Brevity</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5;">Be precise and to the point. Think before you transmit. Radio is a shared resource.</div></div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px;background:var(--white);"><div style="font-weight:500;color:var(--navy);margin-bottom:4px;font-size:13px;">Security</div><div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.5;">Do not transmit sensitive information. Use pre-agreed code words where applicable. Avoid using people's names on VHF.</div></div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Prowords — radio vocabulary</div>
+    <div class="radio-terms">
+      <div class="radio-term"><div class="rt-word">OVER</div><div class="rt-def">End of transmission — a response is required. Always use this when you expect a reply.</div></div>
+      <div class="radio-term"><div class="rt-word">OUT</div><div class="rt-def">End of transmission — no response required. The conversation is closed.</div></div>
+      <div class="radio-term"><div class="rt-word">COPY / RECEIVED</div><div class="rt-def">I have received and understood your message. Note: ROGER is no longer formally recognised — use COPY or RECEIVED instead.</div></div>
+      <div class="radio-term"><div class="rt-word">GO AHEAD</div><div class="rt-def">Transmit — I am listening. Used to invite the other station to proceed with their message.</div></div>
+      <div class="radio-term"><div class="rt-word">WILCO</div><div class="rt-def">Will comply — I understood your instruction and will carry it out.</div></div>
+      <div class="radio-term"><div class="rt-word">SAY AGAIN</div><div class="rt-def">Please repeat your last message. Do not say "REPEAT" — this has a specific meaning in military contexts and can cause confusion.</div></div>
+      <div class="radio-term"><div class="rt-word">STANDBY</div><div class="rt-def">Wait — I acknowledge your call but cannot respond immediately. I will come back to you.</div></div>
+      <div class="radio-term"><div class="rt-word">AFFIRMATIVE</div><div class="rt-def">Yes. Use this instead of "yes" on radio for clarity.</div></div>
+      <div class="radio-term"><div class="rt-word">NEGATIVE</div><div class="rt-def">No. Use this instead of "no" on radio for clarity.</div></div>
+      <div class="radio-term"><div class="rt-word">UNREADABLE</div><div class="rt-def">Spoken three times — I cannot understand your transmission. Use an alternative means of communication.</div></div>
+      <div class="radio-term"><div class="rt-word">RADIO CHECK</div><div class="rt-def">Requesting confirmation of signal strength and readability. Responses: LOUD AND CLEAR (good signal), WEAK BUT READABLE (weak but understandable), WEAK AND DISTORTED (weak and unreadable).</div></div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">How a radio call works — example</div>
+    <div class="mayday-box" style="background:var(--navy);">
+      <div class="mayday-title" style="color:#fff;">UHF radio check — deck to bridge</div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;">
+          <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--yellow);flex-shrink:0;width:24px;">→</div>
+          <div style="font-size:13px;color:#fff;line-height:1.55;"><strong style="font-weight:500;">Deck calls:</strong> "Bridge, Bridge — Deck. Radio check UHF channel 6. Over."</div>
+        </div>
+        <div style="display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;">
+          <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--yellow);flex-shrink:0;width:24px;">←</div>
+          <div style="font-size:13px;color:#fff;line-height:1.55;"><strong style="font-weight:500;">Bridge responds:</strong> "Deck, Deck — Bridge. Loud and clear. Over."</div>
+        </div>
+        <div style="display:flex;gap:14px;padding:10px 0;align-items:flex-start;">
+          <div style="font-family:'DM Serif Display',serif;font-size:16px;color:var(--yellow);flex-shrink:0;width:24px;">→</div>
+          <div style="font-size:13px;color:#fff;line-height:1.55;"><strong style="font-weight:500;">Deck confirms:</strong> "Copy, Bridge — loud and clear. Out."</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:12px;line-height:1.6;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;">Note the structure: who you are calling first, then who you are. State the channel. End with OVER when expecting a reply, OUT when closing. Always identify the station called before the station calling.</div>
+    </div>
+
+    <div class="callout muted">
+      <div class="callout-title">You cannot speak and listen at the same time</div>
+      <div class="callout-text">This is the most common mistake. While you are transmitting, you cannot hear anything. Keep transmissions short, release the PTT button promptly, and listen for responses. Never interrupt a conversation on the radio unless it is an emergency.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">The NATO phonetic alphabet</div>
+    <p class="prose">Used to spell out letters clearly over radio where similar-sounding letters (B/D/E/P etc.) could be misheard. You'll hear it used constantly — for vessel names, call signs, positions, and identifications. Familiarise yourself with it before your deployment.</p>
+
+    <div class="phonetic-grid">
+      <div class="phonetic-item"><div class="ph-letter">A</div><div class="ph-word">Alpha</div></div>
+      <div class="phonetic-item"><div class="ph-letter">B</div><div class="ph-word">Bravo</div></div>
+      <div class="phonetic-item"><div class="ph-letter">C</div><div class="ph-word">Charlie</div></div>
+      <div class="phonetic-item"><div class="ph-letter">D</div><div class="ph-word">Delta</div></div>
+      <div class="phonetic-item"><div class="ph-letter">E</div><div class="ph-word">Echo</div></div>
+      <div class="phonetic-item"><div class="ph-letter">F</div><div class="ph-word">Foxtrot</div></div>
+      <div class="phonetic-item"><div class="ph-letter">G</div><div class="ph-word">Golf</div></div>
+      <div class="phonetic-item"><div class="ph-letter">H</div><div class="ph-word">Hotel</div></div>
+      <div class="phonetic-item"><div class="ph-letter">I</div><div class="ph-word">India</div></div>
+      <div class="phonetic-item"><div class="ph-letter">J</div><div class="ph-word">Juliet</div></div>
+      <div class="phonetic-item"><div class="ph-letter">K</div><div class="ph-word">Kilo</div></div>
+      <div class="phonetic-item"><div class="ph-letter">L</div><div class="ph-word">Lima</div></div>
+      <div class="phonetic-item"><div class="ph-letter">M</div><div class="ph-word">Mike</div></div>
+      <div class="phonetic-item"><div class="ph-letter">N</div><div class="ph-word">November</div></div>
+      <div class="phonetic-item"><div class="ph-letter">O</div><div class="ph-word">Oscar</div></div>
+      <div class="phonetic-item"><div class="ph-letter">P</div><div class="ph-word">Papa</div></div>
+      <div class="phonetic-item"><div class="ph-letter">Q</div><div class="ph-word">Quebec</div></div>
+      <div class="phonetic-item"><div class="ph-letter">R</div><div class="ph-word">Romeo</div></div>
+      <div class="phonetic-item"><div class="ph-letter">S</div><div class="ph-word">Sierra</div></div>
+      <div class="phonetic-item"><div class="ph-letter">T</div><div class="ph-word">Tango</div></div>
+      <div class="phonetic-item"><div class="ph-letter">U</div><div class="ph-word">Uniform</div></div>
+      <div class="phonetic-item"><div class="ph-letter">V</div><div class="ph-word">Victor</div></div>
+      <div class="phonetic-item"><div class="ph-letter">W</div><div class="ph-word">Whiskey</div></div>
+      <div class="phonetic-item"><div class="ph-letter">X</div><div class="ph-word">X-ray</div></div>
+      <div class="phonetic-item"><div class="ph-letter">Y</div><div class="ph-word">Yankee</div></div>
+      <div class="phonetic-item"><div class="ph-letter">Z</div><div class="ph-word">Zulu</div></div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Channel 16</div>
+      <div class="callout-text">Channel 16 VHF is the international distress and calling channel — monitored at all times by all vessels and coastguard stations worldwide. It is never used for routine conversation. If you ever hear a MAYDAY on any radio, alert the bridge or nearest officer immediately without touching the radio yourself.</div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE CHECK -->
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five questions — these focus on understanding and application, not memorisation of specific Beaufort numbers.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+const beaufort=[
+  {name:"Calm",wind:"<1 kt",wave:"0.0 m",vis:"Excellent",sea:"Sea like a mirror. No waves.",deck:"Ideal conditions. No particular precautions beyond standard PPE.",survivor:"Calm for everyone. Any distress vessel will be easily visible at range.",bar:2,col:"#3D8B7A"},
+  {name:"Light air",wind:"1–3 kts",wave:"0.0–0.1 m",vis:"Excellent",sea:"Ripples without crests. Glassy appearance.",deck:"Excellent conditions. All normal movement on deck.",survivor:"Very calm. Survivors may have been drifting for some time — fatigue and dehydration are primary concerns.",bar:8,col:"#3D8B7A"},
+  {name:"Light breeze",wind:"4–6 kts",wave:"0.1–0.5 m",vis:"Good",sea:"Small wavelets with glassy crests, not breaking.",deck:"Comfortable. Good conditions for deck familiarisation.",survivor:"Slight vessel movement. Spray beginning. People on open dinghies will feel cold at night despite light conditions.",bar:17,col:"#3D8B7A"},
+  {name:"Gentle breeze",wind:"7–10 kts",wave:"0.6–1.0 m",vis:"Good",sea:"Large wavelets, crests beginning to break. Scattered whitecaps.",deck:"Comfortable. Use grip points when moving. Spray possible — wet surfaces. Standard PPE.",survivor:"Uncomfortable on a small vessel. Spray and movement affecting anyone without shelter. People will be tired and cold, particularly after hours at sea.",bar:25,col:"#3D8B7A"},
+  {name:"Moderate breeze",wind:"11–16 kts",wave:"1.0–1.5 m",vis:"Good",sea:"Small waves becoming longer. Frequent whitecaps. Spray.",deck:"Noticeable vessel movement. Grip points at all times. Spray increasing — wet deck likely. Some crew may experience seasickness.",survivor:"Significant discomfort on an overcrowded boat. Spray and breaking waves reaching occupants. Hypothermia risk increasing for wet, exhausted people even in mild air temperatures.",bar:33,col:"#5BA898"},
+  {name:"Fresh breeze",wind:"17–21 kts",wave:"1.5–2.5 m",vis:"Good–Moderate",sea:"Moderate waves, many whitecaps. Spray.",deck:"Challenging for newcomers. Grip points essential. Full PPE including lifejacket on deck. Fatigue builds faster. Take care with footing.",survivor:"Serious conditions for an overcrowded boat. Risk of capsize increasing. People will be wet, cold, and exhausted. Medical needs on recovery likely to be significant.",bar:42,col:"#D4821A"},
+  {name:"Strong breeze",wind:"22–27 kts",wave:"2.5–4.0 m",vis:"Moderate",sea:"Large waves forming. Extensive white foam crests. Spray.",deck:"Demanding conditions. Non-essential deck activity should be minimised. All crew alert and maintaining hand holds when stationary.",survivor:"Very dangerous for small vessels. High risk of capsize and water ingress. Anyone in the water is at serious hypothermia risk. Recovery will require careful management.",bar:50,col:"#D4821A"},
+  {name:"Near gale",wind:"28–33 kts",wave:"4.0–5.5 m",vis:"Moderate–Poor",sea:"Sea heaps up. White foam blown in streaks. Visibility affected by spray.",deck:"Difficult conditions. Non-essential deck operations should cease. All deck crew to have a hand hold at all times. High fatigue in exposed positions.",survivor:"Extremely dangerous for any small vessel. Survival of an overcrowded boat in these conditions is precarious. Immediate response is critical.",bar:58,col:"#cc4400"},
+  {name:"Gale",wind:"34–40 kts",wave:"5.5–7.5 m",vis:"Poor",sea:"Moderately high waves. Spindrift. Foam blown in streaks. Visibility poor.",deck:"Very difficult and dangerous on deck. All crew below unless essential. High risk of injury.",survivor:"Extremely hazardous. No small vessel is safe in these conditions. Anyone in the water faces rapidly declining survival time.",bar:67,col:"#cc4400"},
+  {name:"Severe gale",wind:"41–47 kts",wave:"7.0–10.0 m",vis:"Poor",sea:"High waves. Dense foam. Visibility seriously affected.",deck:"Dangerous. No deck operations. Vessel taking precautionary measures.",survivor:"No overcrowded boat or small vessel survives these conditions without support. Any operation in these conditions is an extreme emergency.",bar:75,col:"#cc4400"},
+  {name:"Storm",wind:"48–55 kts",wave:"9.0–12.5 m",vis:"Very poor",sea:"Very high waves. Sea surface mostly white. Heavy tumbling sea.",deck:"Extreme. All crew below. Vessel safety is the only priority.",survivor:"Unsurvivable for persons in the water without immediate rescue.",bar:83,col:"#991100"},
+  {name:"Violent storm",wind:"56–63 kts",wave:"11.5–16.0 m",vis:"Very poor",sea:"Exceptionally high waves. Poor visibility.",deck:"Severe conditions. All crew secured.",survivor:"Extreme. Rarely encountered in the Mediterranean.",bar:92,col:"#991100"},
+  {name:"Hurricane",wind:">64 kts",wave:">14 m",vis:"Near zero",sea:"Air filled with foam and spray. Sea completely white.",deck:"Hurricane force. Extremely rare in the Mediterranean.",survivor:"Catastrophic conditions.",bar:100,col:"#660000"}
+];
+
+function updateBF(v){
+  const b=beaufort[parseInt(v)];
+  document.getElementById('bf-num').textContent=v;
+  document.getElementById('bf-lbl').textContent=v;
+  document.getElementById('bf-name').textContent=b.name;
+  document.getElementById('bf-wind').textContent=b.wind;
+  document.getElementById('bf-wave').textContent=b.wave;
+  document.getElementById('bf-vis').textContent=b.vis;
+  document.getElementById('bf-sea').textContent=b.sea;
+  document.getElementById('bf-deck').textContent=b.deck;
+  document.getElementById('bf-survivor').textContent=b.survivor;
+  document.getElementById('bf-bar').style.width=b.bar+'%';
+  document.getElementById('bf-bar').style.background=b.col;
+}
+updateBF(3);
+
+const questions=[
+  {q:"You're on deck and conditions are rougher than expected. You need to move to a new position. What is the most important thing to do?",opts:["Move quickly to minimise time in exposed conditions","Maintain at least one hand on a grip point at all times while moving","Wait until conditions calm before moving","Ask a more experienced crew member to escort you"],correct:1,fb:"One hand for you, one hand for the ship is the fundamental deck safety principle regardless of conditions. In any sea state, maintaining a grip point when moving prevents a fall that could cause injury or result in a man overboard situation."},
+  {q:"On Windy, you select the 'Waves' layer and see significant swell shown in your operating area, but the wind layer appears light. What does this tell you?",opts:["Conditions will be calm — the wind is the main factor","Swell from a distant weather system can make conditions challenging even when local wind is light","The forecast is inaccurate — wind and waves always match","Swell only affects large vessels, not RHIBs"],correct:1,fb:"Swell comes from distant weather systems and travels independently of local wind. A light wind reading does not mean flat water — significant swell can make RHIB operations and deck work challenging even when the Beaufort reading is low. Checking the wave layer separately from the wind layer is important."},
+  {q:"You finish a radio call and are waiting for a response. What do you say at the end of your transmission?",opts:["OUT","RECEIVED","OVER","COPY"],correct:2,fb:"OVER means 'end of transmission — a response is required.' OUT means the conversation is closed and no response is needed. RECEIVED and COPY are used to confirm you received a message — not to hand back to the other station."},
+  {q:"Survivors come aboard after several hours in Beaufort 4 conditions on an overcrowded boat. What should you expect?",opts:["They will be fine — Beaufort 4 is moderate and manageable","They will likely be wet, cold, exhausted, and potentially hypothermic despite the moderate conditions","Only the weakest survivors will be affected — most will be unharmed","Survivors are only seriously affected in Beaufort 7 or above"],correct:1,fb:"Beaufort 4 on an overcrowded boat means hours of spray, wave wash, cold, fear, and physical exhaustion — often after days at sea before the rescue. People arrive in much worse condition than the sea state alone suggests. Medical teams should be prepared for hypothermia, dehydration, trauma, and exhaustion regardless of the Beaufort reading."},
+  {q:"A crew member on a different team calls your vessel name on the handheld radio and asks for your location. You know the answer. What is the correct response?",opts:["[Vessel name], we are at the stern deck, OVER","[Vessel name] receiving, wait one, OUT","[Their vessel name], this is [your vessel name], [your location], OVER","Just give your location without any other preamble — keep it short"],correct:2,fb:"Correct radio procedure is to identify who you are calling, then identify yourself, then give your message. Always end with OVER if expecting a reply, or OUT if the conversation is ended. Saying 'just give the location' without identifying yourself or the other party creates confusion on a shared channel."}
+];
+
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';
+  updateNav();
+  if(n===5&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<5)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===5){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of conditions, weather, and radio basics. Ready for module 1.4.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review the questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the sections and try again. These topics come up from your first day aboard.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/1-4.html" class="btn-teal">Module 1.4 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+</script>
+</body>
+</html>

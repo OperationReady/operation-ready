@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4.2 — First contact | Operation Ready</title>
+  <meta name="description" content="How to make first contact with survivors in a way that communicates safety, respects dignity, and supports effective reception.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .nonverbal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+    .nonverbal-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .nonverbal-icon{font-size:24px;margin-bottom:6px;}
+    .nonverbal-title{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;}
+    .nonverbal-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .script-box{background:var(--navy);border-radius:6px;padding:20px;margin:14px 0;}
+    .script-title{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:12px;font-weight:500;}
+    .script-line{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;}
+    .script-line:last-child{border-bottom:none;}
+    .script-lang{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);width:50px;flex-shrink:0;padding-top:2px;}
+    .script-text{font-size:13px;color:#fff;line-height:1.5;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    /* ═══ FIRST CONTACT DIALOGUE PRACTICE ═══ */
+    .fc-scene{background:#fff;border:1px solid var(--border);border-radius:5px;margin-bottom:14px;overflow:hidden;}
+    .fc-scn-head{padding:10px 16px;background:var(--cream2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+    .fc-scn-num{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;}
+    .fc-scn-label{font-size:10.5px;letter-spacing:.1em;color:var(--text3);}
+    .fc-scn-body{padding:16px;}
+    .fc-situation{font-size:13.5px;line-height:1.65;color:var(--text);margin-bottom:4px;font-weight:400;}
+    .fc-situation em{font-style:italic;color:var(--text2);display:block;margin-top:6px;font-size:12.5px;line-height:1.55;font-weight:300;}
+    .fc-prompt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin:16px 0 10px;font-weight:500;}
+    .fc-choices{display:flex;flex-direction:column;gap:6px;}
+    .fc-choice{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;font-size:13px;color:var(--text2);cursor:pointer;background:#fff;line-height:1.5;transition:all .15s;font-weight:400;}
+    .fc-choice:hover{border-color:var(--teal);background:var(--mint-pale);color:var(--text);}
+    .fc-choice.chosen{border-color:var(--teal);background:var(--mint-pale);border-width:2px;padding:10px 13px;color:var(--text);}
+    .fc-choice.faded{opacity:.45;cursor:default;pointer-events:none;}
+    .fc-choice.faded:hover{border-color:var(--border2);background:#fff;}
+    .fc-debrief{display:none;padding:14px 16px;border-top:1px solid var(--border);font-size:13px;line-height:1.7;color:var(--text2);font-weight:300;background:var(--cream2);}
+    .fc-debrief.visible{display:block;}
+    .fc-debrief-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+    .fc-debrief-label::before{content:'';width:14px;height:1px;background:var(--teal);}
+    .fc-debrief-text strong{color:var(--teal);font-weight:500;}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.nonverbal-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-4">Path 4</a> &rsaquo; <span>4.2</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 4 — Survivor interaction</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">First contact</div>
+    <div class="module-meta"><span>Module 4.2</span><span>10 min</span><span>Interaction skills</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Non-verbal</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">What to say</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Boundaries</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Practice</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 4.2</div>
+    <div class="mod-sec-title">The first moments matter</div>
+    <p class="prose">The first contact a survivor has with crew — in the water, on the side of the vessel, or in the reception area — shapes the entire interaction that follows. People who feel unsafe or threatened at first contact are harder to support, less likely to disclose vulnerabilities, and more likely to experience increased distress. People who feel seen, calm, and safe are more cooperative, more honest about their needs, and more likely to engage with the support available.</p>
+    <p class="prose">You don't need to speak the same language to communicate effectively in a crisis. Non-verbal communication, body language, and tone carry enormous weight when words are unavailable.</p>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Non-verbal communication — what your body says before you speak</li>
+        <li>What to say and how to say it — even without shared language</li>
+        <li>What not to ask — and why it matters</li>
+        <li>Physical contact — consent, context, and cultural awareness</li>
+        <li>Personal and professional boundaries during deployment</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">10 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">What your body communicates</div>
+    <p class="prose">Before any words are exchanged, survivors are reading your posture, expression, proximity, and movement. In a high-stress situation, non-verbal cues are processed faster and believed more readily than what people say. A crew member who appears calm and open, moves slowly, and makes appropriate eye contact communicates safety before they speak.</p>
+
+    <div class="nonverbal-grid">
+      <div class="nonverbal-card">
+        <div class="nonverbal-icon">🕐</div>
+        <div class="nonverbal-title">Pace</div>
+        <div class="nonverbal-text">Move slowly and deliberately. Sudden fast movements trigger alarm responses in stressed individuals. This is especially important when approaching people who are already distressed, or when working in the water or at the side of the vessel.</div>
+      </div>
+      <div class="nonverbal-card">
+        <div class="nonverbal-icon">🙌</div>
+        <div class="nonverbal-title">Hands visible</div>
+        <div class="nonverbal-text">Visible, open hands communicate non-threat. Keep your hands visible when approaching survivors, particularly in the first moment of contact. Hands hidden behind you or in pockets can be read as concealment.</div>
+      </div>
+      <div class="nonverbal-card">
+        <div class="nonverbal-icon">👁️</div>
+        <div class="nonverbal-title">Eye contact</div>
+        <div class="nonverbal-text">Make appropriate eye contact — present and warm, not intense or interrogating. Avoiding eye contact can communicate disinterest or discomfort. Prolonged staring is threatening. Read the person's response and calibrate. Note that direct eye contact has different cultural meanings — adapt based on the person's response.</div>
+      </div>
+      <div class="nonverbal-card">
+        <div class="nonverbal-icon">📏</div>
+        <div class="nonverbal-title">Distance</div>
+        <div class="nonverbal-text">Don't close in too fast. Allow the person space. Approach from the side rather than directly face-on when possible. Offer distance as a default and let the person signal whether they want closer presence. In water or recovery situations, safety requirements take precedence but approach deliberately rather than suddenly.</div>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Your emotional state is transmitted</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">If you are stressed, rushing, or anxious, survivors will sense it. This is physiologically normal — humans read emotional states in others extremely accurately. If you are calm, focused, and present, that is also transmitted. Managing your own emotional state before first contact is not just good for you — it is a direct intervention for the people you are helping. Take a breath.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">What to say — and what not to ask</div>
+    <p class="prose">The absence of shared language does not eliminate communication — but it changes what is appropriate. Without an interpreter, focus on simple, clear statements. Avoid questions that require explanation or narrative, particularly about the crossing or their background.</p>
+
+    <div class="script-box">
+      <div class="script-title">Useful phrases — without interpreter</div>
+      <div class="script-line"><div class="script-lang">Who you are</div><div class="script-text">"I am crew. I am here to help." — point to yourself, gesture calmly. Use a calm voice regardless of language.</div></div>
+      <div class="script-line"><div class="script-lang">Safety</div><div class="script-text">"You are safe." — gesture around the vessel. A hand over the heart and a nod communicate care before words do.</div></div>
+      <div class="script-line"><div class="script-lang">What's next</div><div class="script-text">"Come with me" — gesture clearly and slowly. "Water", "blanket", "doctor" — point to what you mean. Simple nouns with gestures bridge most language gaps in the first minutes.</div></div>
+      <div class="script-line"><div class="script-lang">Medical</div><div class="script-text">Point to your own head, chest, leg — "pain here?" with a questioning look. This is rough but functional for rapid initial triage before interpreter support arrives.</div></div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">Do not ask — without an interpreter</div>
+    <div style="display:grid;gap:8px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:#cc4400;margin-bottom:4px;">"Where are you from?" / "Why did you come?"</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.55;">Not your role, not the right moment, and cannot be accurately communicated without an interpreter anyway. It invites survivors to narrate their situation before they are ready and before you can properly understand what they say.</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:#cc4400;margin-bottom:4px;">"How many people were on the boat?"</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.55;">Information gathering about the crossing is for specific debriefing processes managed by appropriate personnel with interpreter support. Asking this of a survivor who may have just watched people die is potentially harmful.</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:#cc4400;margin-bottom:4px;">"Do you have any documentation?"</div>
+        <div style="font-size:12px;color:var(--text2);font-weight:300;line-height:1.55;">Documentation and registration is a formal process. Asking survivors about documents outside that process can cause anxiety — many have no documents, or have been told that lacking documents is dangerous.</div>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">With an interpreter</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">When cultural mediators or interpreters are available, significantly more can be communicated and gathered. But the principles remain the same — focus on immediate needs and safety first, avoid asking people to narrate their crossing, and maintain calm and non-threatening tone. Interpreters on SAR vessels are often also survivors or have similar backgrounds — treat them and the interaction with care.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Physical contact and personal limits</div>
+    <p class="prose">Physical contact during rescue operations spans a wide spectrum — from the physical necessity of lifting someone from the water, to offering a hand on the shoulder as comfort, to the reflex to hug someone who is distressed. The guiding principle is: read the person, follow their lead, and be aware of the context.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Operationally necessary contact</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Lifting from the water, stabilising during transfer, supporting someone who cannot stand — this contact is necessary and understood in context. Communicate what you are doing as clearly as possible: "I'm going to lift you now" with a clear gesture before doing it, even if they don't understand the words.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Comfort contact</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">A hand on the shoulder or arm can communicate comfort. But not for everyone, and not always. Some survivors have experienced physical abuse — touch can be triggering. Follow the person's cues. If they pull away or stiffen, respect that immediately. Let them initiate if they want closer contact.</p>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Personal limits during deployment</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Emotional attachment to specific survivors is common, especially on longer deployments or during particularly affecting operations. Be aware of this in yourself. Your organisation has guidelines on personal relationships with survivors — follow them. This is not about being cold or indifferent. It is about maintaining professional effectiveness and protecting both yourself and the people in your care. Module 5.2 covers vicarious trauma and compassion fatigue in more detail.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Photography and personal devices</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Personal photography of survivors without explicit consent is a serious breach of protection protocols and is prohibited by all SAR NGOs. This applies even when you believe it to be sympathetic — the image, once taken, is outside your control. Follow your organisation's media and photography protocol precisely. Violations can have consequences for individual survivors, for operational access, and for your continued participation in the deployment.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Practice — reflective</div>
+    <div class="mod-sec-title">Four moments</div>
+    <p class="prose">Four realistic moments during a survivor interaction. Each gives you a choice of what to say or do. There is no score — each choice leads to a brief reflection on what the principle means in practice. Think before clicking; the aim is to internalise the reasoning, not to be right.</p>
+
+    <div class="fc-wrap" id="fc-wrap"></div>
+  </div>
+
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five questions on first contact and interaction skills.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const questions=[
+  {q:"You are approaching a survivor on the side of the vessel who appears terrified and is pulling away. What is the most effective initial response?",opts:["Approach quickly — speed is safety in this situation","Slow down, make your hands visible, keep your voice low and calm, give them a moment","Ask them in a clear voice to stay calm and cooperate so you can help","Tell them your name and role to establish trust"],correct:1,fb:"When someone is terrified and pulling away, closing in fast escalates their fear. Slowing down, making your hands visible, lowering your voice, and giving them a moment allows the nervous system to register that you are not a threat. This is not a delay — it is the fastest route to safe cooperation. Non-verbal communication is processed before words."},
+  {q:"Without a shared language, which approach is most useful for communicating 'I'm going to help you up now' before lifting a survivor at the side of the vessel?",opts:["Explain in English, then French, then Arabic — one of them is likely to work","Say nothing and act quickly — speed matters more than communication here","Make clear eye contact, gesture to yourself and then to the action you're about to perform, wait a brief moment for acknowledgement before lifting","Get an interpreter before doing anything — no contact without language support"],correct:2,fb:"Clear gesture combined with a moment to allow acknowledgement before acting is the most effective approach in the absence of shared language. Eye contact, pointing to yourself, then gesturing the action, then a brief pause — this communicates intent clearly even across language barriers. It also respects the person's agency by allowing them a moment to prepare rather than being lifted without warning."},
+  {q:"A crew member photographs a survivor who has just come aboard, intending to share the image on social media to raise awareness of the crisis. Is this acceptable?",opts:["Yes — if the intent is to raise awareness rather than exploit the situation","Yes — if the survivor appears comfortable with it","No — photography of survivors without explicit, informed consent is prohibited regardless of intent","Only if the survivor's face is not clearly identifiable"],correct:2,fb:"Photography of survivors without explicit, informed consent is prohibited by all humanitarian SAR organisations, regardless of the photographer's intent. Once an image exists, it is outside your control. The potential harms — identification by hostile actors, damage to ongoing protection processes, trauma — are serious. Follow your organisation's media protocol precisely. This applies to all personal devices."},
+  {q:"A survivor approaches you and initiates physical contact — gripping your arm tightly. What should you do?",opts:["Gently disengage immediately — physical contact with survivors is not permitted","Allow it — the person has initiated and this communicates that they need the contact for reassurance","Call an interpreter before responding — you need to understand why they are doing this","Tell them calmly to release your arm so you can help them more effectively"],correct:1,fb:"When a survivor initiates physical contact, they are communicating a need. Allowing it — within normal limits — communicates that they are safe and seen. Abruptly disengaging without explanation can cause significant distress. The general principle is: follow the person's lead on contact. They have initiated; you respond with calm acceptance. If the contact becomes problematic, disengage gently and calmly."},
+  {q:"You are working without interpreter support during a busy recovery. A survivor is clearly trying to tell you something urgently. You can't understand. What is the best response?",opts:["Acknowledge them with eye contact and a nod, gesture that you will get help, and find a cultural mediator or interpreter as quickly as possible","Continue with your current task and alert your team leader after the operation","Ask them to speak more slowly in case you can identify any words","Ask any other survivor nearby if they can translate"],correct:0,fb:"Acknowledge the person — eye contact, a nod, a calm 'wait, I will help' gesture. Then find interpreter support as quickly as possible. Do not ignore the attempt to communicate — it may be a critical medical or safety communication. Asking other survivors to translate is sometimes used as a last resort but carries risks around confidentiality and accuracy. Acknowledge, commit to getting help, and follow through."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';
+  updateNav();
+  if(n===5&&answered.length===0)renderQuiz();
+  if(n===4&&!fcInit){fcRender();fcInit=true;}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<5)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===5){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of first contact principles. Ready for module 4.3.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review any questions you missed.";}
+  else{v="Worth revisiting";t="Go back through the sections. These skills are applied in every rescue operation.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/4-3.html" class="btn-teal">Module 4.3 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+
+// ═══ FIRST CONTACT DIALOGUE PRACTICE ═══
+const FC_SCENES = [
+  {
+    situation: "A young woman, maybe 20, reaches the top of the embarkation ladder and collapses onto the deck, sobbing uncontrollably. Her clothes are soaked. The reception area is chaotic — other survivors coming aboard behind her, medical team triaging nearby, crew shouting instructions.",
+    detail: "No visible injury. She is breathing. She is not trying to communicate — just crying, curled slightly on the deck.",
+    prompt: "What do you do first?",
+    choices: [
+      { label: "Kneel down beside her, keep your distance slightly, and say quietly in English: 'You're safe. You're safe now.' Wait.", debrief: "<strong>This is a strong response.</strong> Getting down to her level (not standing over her) reduces the power asymmetry. Keeping a slight distance respects her space while staying present. Short, simple English — 'you're safe' — carries intent even without shared language, and the tone does most of the work. Waiting, rather than trying to move her immediately, is appropriate: she needs a moment to register that she has arrived. The reception team will direct the next step when she is able. <em>Presence is itself an intervention.</em>" },
+      { label: "Try to help her stand and move her to the medical area so the team can assess her quickly.", debrief: "Understandable instinct — but generally not the best first move. In that moment she is processing survival; moving her without warning can feel like another loss of control. Unless she has a visible medical emergency, <strong>a moment of stillness with calm presence is almost always the right first step.</strong> The medical team will come to her, or you will move her — but with warning, with gesture, with her consent as far as possible. The work of reception is paced to the person, not to the task list." },
+      { label: "Step back to give her space, and alert the cultural mediator that someone needs support.", debrief: "Not wrong — and alerting a cultural mediator is a good instinct. But stepping away entirely can feel like abandonment in that first minute. <strong>The better move is to stay close and calm, make your presence known without imposing, and signal for support without leaving.</strong> A quiet word — 'I'll stay here with you, help is coming' — even in English she won't understand, changes the atmosphere around her. Leaving her completely alone on a crowded deck in that moment is usually harder for her than staying." },
+      { label: "Speak to her firmly in English: 'You need to get up now and follow me. You're safe but we need to move.'", debrief: "This approach prioritises the operational tempo over the person in front of you — and it often backfires. A firm instruction to someone in that state can trigger a freeze response. She may not be capable of standing. <strong>The goal of reception is not compliance but orientation.</strong> Slower, quieter engagement almost always gets to the same operational outcome faster than firm instruction — and it does less harm along the way." }
+    ]
+  },
+  {
+    situation: "An older man, perhaps 50s, looks up at you as you approach with a blanket. He says something rapidly in a language you don't recognise. His tone is sharp. He gestures toward the back of the vessel where other survivors are gathered.",
+    detail: "He seems agitated. Not aggressive toward you — but agitated. You have no interpreter nearby.",
+    prompt: "How do you respond?",
+    choices: [
+      { label: "Make eye contact, nod to show you heard him, gesture 'one moment' with a raised palm, and move quickly to find a cultural mediator or interpreter.", debrief: "<strong>This is the right approach.</strong> You can't know what he's communicating, but you can acknowledge that he <em>is</em> communicating. Eye contact, the nod, the 'wait' gesture — these register that he has been heard. Then you solve the language problem with the people whose job that is. <em>The worst response to being spoken to in a language you don't understand is to act as if the person did not speak.</em> Acknowledgement costs nothing and changes everything." },
+      { label: "Shrug and say 'I don't understand, I'm sorry' in English, then hand him the blanket and continue with your task.", debrief: "Handing over the blanket isn't wrong — but dismissing the communication, even kindly, is a missed moment. He may be saying 'my son is still on the bridge of the other boat.' Or 'my wife is having a heart attack.' Or nothing urgent. <strong>You don't know until you find someone who does.</strong> The minimal cost of getting a mediator over to him, versus the potential cost of missing critical information, makes acknowledgement and escalation the default response." },
+      { label: "Try to understand him by asking him to speak more slowly or to use different words.", debrief: "Good intention, but this rarely works and can read as frustrating to the person trying to communicate. <strong>Your job isn't to decode the language — it's to connect him to someone who speaks it.</strong> Asking him to repeat himself slowly, especially in a language you don't share, uses up his energy on an exchange that won't resolve. Acknowledge, commit to getting help, get help." },
+      { label: "Ask a nearby survivor who has been on the vessel longer if they can translate.", debrief: "Sometimes this is the only option, and sometimes it's necessary — but it's a last resort, not a first one. Survivors translating for each other can lead to <strong>confidentiality breaches, mistranslation, and placing weight on a person who has just been through their own crossing.</strong> Cultural mediators exist precisely so this burden doesn't fall on survivors. Use them. If none are immediately available, acknowledge the person, signal that you will return, and prioritise finding one." }
+    ]
+  },
+  {
+    situation: "After the recovery, a colleague takes out their phone and discreetly photographs the reception area from across the deck. Survivors are visible in the frame but their faces are partially turned away. Your colleague says quietly, 'People need to see this. Nobody's faces are clear.'",
+    detail: "Your colleague is a friend, new to the deployment, and you know they mean well.",
+    prompt: "What do you do?",
+    choices: [
+      { label: "Ask them to stop immediately and delete the photo. Explain that the organisation's photography policy applies regardless of intent.", debrief: "<strong>This is the correct response — and the kindness is in saying it clearly and now.</strong> Photography of survivors without explicit informed consent is prohibited by every humanitarian SAR NGO. It does not matter whether faces are identifiable, whether the intent is advocacy, or whether the photographer is moved by what they have witnessed. Once the image exists, it is outside your control. Partial face concealment doesn't protect against identification by features, clothing, tattoos, or context. Mention the photography protocol directly and help your colleague delete the image before it goes anywhere. Reporting it to your team leader afterwards is appropriate." },
+      { label: "Say nothing in the moment — you don't want to embarrass a friend who means well — but raise it privately with them later.", debrief: "Well-intentioned, but not adequate. Between <em>now</em> and <em>later</em>, the photograph can be shared, uploaded, or duplicated. <strong>The policy is not about embarrassment — it's about protection.</strong> A brief quiet word in the moment ('delete that please, the policy is strict') does the protection job; the wider conversation can happen after. Waiting is an error that can cost a survivor something you can't recover." },
+      { label: "Take a photo yourself — if the moment is going to be documented, better someone who understands the policy does it carefully.", debrief: "This is a meaningful failure of judgement, and one that happens on deployments because the emotional weight of the work is real. The policy is not 'photograph carefully' — it is 'don't photograph.' <strong>Once you're taking the photo, the rationalisation about 'doing it properly' is doing the work of excusing a clear violation.</strong> The policy exists precisely because everyone who breaks it has a reason they find convincing." },
+      { label: "Report your colleague to the Head of Mission immediately without speaking to them first.", debrief: "The reporting chain matters — but skipping the direct conversation with your colleague is usually worse than intervening first. <strong>Ask them to stop and delete, then report what happened.</strong> The report matters because the organisation needs to know — but the immediate harm is prevented by the intervention, not the report. Going straight to reporting can also make you less effective at stopping similar situations in future: colleagues learn to hide, not to comply." }
+    ]
+  },
+  {
+    situation: "During a quiet moment after the operation, a survivor finds you on deck. He is calm, speaks some English. He says: 'Thank you. I must tell you my story. You must know what happened to me.'",
+    detail: "He is looking at you intently. You have no specific task right now. The debrief hasn't started yet.",
+    prompt: "How do you respond?",
+    choices: [
+      { label: "Listen. Sit with him. Don't take notes, don't interrupt, don't ask follow-up questions — let him say what he needs to say. When he stops, thank him for sharing.", debrief: "<strong>This is the right response — and it is harder than it sounds.</strong> When a survivor wants to tell their story, listening is an act of recognition. Not taking notes respects that this is his story, not your information to process. Not interrupting or asking questions lets him tell it at his pace. Thanking him at the end, briefly, acknowledges what he has given you. <em>You are not his therapist or his debriefer — you are a person who listened.</em> That is often what is most needed. Later, if he raises anything of operational or protection significance, you can let the relevant team know — but in the moment, the listening is the point." },
+      { label: "Politely redirect him to the cultural mediator or a member of the protection team who is trained for this conversation.", debrief: "Not wrong — mediators and protection staff are trained for formal testimony and for detailed interviews. But his request in this moment is not for a formal interview. <strong>He is not asking for a debrief; he is asking to be heard.</strong> Redirecting a survivor who has chosen to speak to you can feel like rejection, even when kindly done. The judgement call: if he wants to share, let him. If what he shares has protection or legal relevance, you ensure the right people hear about it afterwards." },
+      { label: "Tell him kindly that you're not the right person for this, and suggest he write it down for the official debrief.", debrief: "Written testimony is indeed a formal channel, and survivors sometimes choose to use it. But 'you're not the right person' in this moment risks communicating that he shouldn't burden you, and therefore shouldn't speak at all. <strong>Many survivors never end up giving formal testimony, and the people they do speak to are often crew members like you who happened to be present.</strong> Listening in this moment is not overstepping your role — it is filling it well." },
+      { label: "Take detailed notes so the story is captured for advocacy and protection purposes.", debrief: "Well-intentioned, but a significant breach of survivor-centred practice. <strong>Taking notes without explicit informed consent turns listening into documentation — and the survivor did not ask to be documented, he asked to be heard.</strong> If you believe what he is about to say has formal protection significance, the right move is to pause him and explain what formal testimony looks like, so he can choose. Otherwise: listen, do not record, and let him determine what happens to his story." }
+    ]
+  }
+];
+
+let fcInit = false;
+let fcChosen = {}; // scene index -> choice index
+
+function fcRender() {
+  const wrap = document.getElementById('fc-wrap');
+  wrap.innerHTML = FC_SCENES.map((scene, si) => {
+    const chosenIdx = fcChosen[si];
+    const choices = scene.choices.map((c, ci) => {
+      let cls = '';
+      if (chosenIdx !== undefined) {
+        cls = chosenIdx === ci ? 'chosen' : 'faded';
+      }
+      return `<div class="fc-choice ${cls}" onclick="fcPick(${si}, ${ci})">${c.label}</div>`;
+    }).join('');
+    const debrief = chosenIdx !== undefined
+      ? `<div class="fc-debrief visible">
+          <div class="fc-debrief-label">Reflection</div>
+          <div class="fc-debrief-text">${scene.choices[chosenIdx].debrief}</div>
+        </div>`
+      : '';
+    return `<div class="fc-scene">
+      <div class="fc-scn-head">
+        <div class="fc-scn-num">Moment ${si+1} of ${FC_SCENES.length}</div>
+        <div class="fc-scn-label">Reflective — no score</div>
+      </div>
+      <div class="fc-scn-body">
+        <div class="fc-situation">${scene.situation}<em>${scene.detail}</em></div>
+        <div class="fc-prompt">${scene.prompt}</div>
+        <div class="fc-choices">${choices}</div>
+      </div>
+      ${debrief}
+    </div>`;
+  }).join('');
+}
+
+function fcPick(sceneIdx, choiceIdx) {
+  if (fcChosen[sceneIdx] !== undefined) return;
+  fcChosen[sceneIdx] = choiceIdx;
+  fcRender();
+}
+</script>
+</body>
+</html>

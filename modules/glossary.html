@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary — Terms & Acronyms | Operation Ready</title>
+  <meta name="description" content="Essential terms, acronyms and vocabulary for humanitarian SAR operations. NGO, SARCO, STL, RHIB, MRCC and more.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .search-wrap{position:relative;margin-bottom:24px;}
+    .search-input{width:100%;padding:12px 16px 12px 42px;border:1.5px solid var(--border2);border-radius:4px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);transition:border-color .15s;}
+    .search-input:focus{outline:none;border-color:var(--teal);}
+    .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3);}
+    .filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+    .filter-btn{font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:2px;border:1px solid var(--border2);background:transparent;cursor:pointer;color:var(--text2);transition:all .15s;font-family:'DM Sans',sans-serif;}
+    .filter-btn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+    .filter-btn:hover:not(.active){border-color:var(--teal);color:var(--teal);}
+    .terms-count{font-size:12px;color:var(--text3);margin-bottom:16px;letter-spacing:.04em;}
+    .term-item{border:1px solid var(--border);border-radius:4px;background:var(--white);padding:16px 18px;margin-bottom:8px;transition:border-color .15s;}
+    .term-item:hover{border-color:rgba(61,139,122,.35);}
+    .term-item.hidden{display:none;}
+    .term-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+    .term-abbr{font-family:'DM Serif Display',serif;font-size:20px;color:var(--teal);min-width:80px;flex-shrink:0;}
+    .term-full{font-size:13px;font-weight:500;color:var(--navy);}
+    .term-cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-left:auto;flex-shrink:0;}
+    .cat-sar{background:rgba(212,130,26,.1);color:#D4821A;border:1px solid rgba(212,130,26,.2);}
+    .cat-maritime{background:rgba(30,58,95,.08);color:var(--navy);border:1px solid rgba(30,58,95,.15);}
+    .cat-medical{background:rgba(30,58,95,.08);color:#185FA5;border:1px solid rgba(30,58,95,.15);}
+    .cat-humanitarian{background:rgba(61,139,122,.1);color:var(--teal);border:1px solid rgba(61,139,122,.2);}
+    .cat-roles{background:rgba(91,168,152,.12);color:#3D8B7A;border:1px solid rgba(61,139,122,.2);}
+    .term-def{font-size:13px;color:var(--text2);line-height:1.65;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-weight:300;}
+    .no-results{text-align:center;padding:40px 0;color:var(--text3);font-size:14px;font-style:italic;}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <span>Glossary</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Reference — All paths</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Glossary & acronyms</div>
+    <div style="font-size:13px;color:var(--text2);margin-top:8px;font-weight:300;line-height:1.6;">Humanitarian SAR operations use a lot of specialist language and acronyms. This reference covers the essential terms you will encounter before and during your deployment. Search or filter by category.</div>
+  </div>
+
+  <div class="search-wrap">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <input type="text" class="search-input" id="search" placeholder="Search terms or acronyms..." oninput="filterTerms()">
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('sar',this)">SAR operations</button>
+    <button class="filter-btn" onclick="setFilter('maritime',this)">Maritime</button>
+    <button class="filter-btn" onclick="setFilter('medical',this)">Medical</button>
+    <button class="filter-btn" onclick="setFilter('roles',this)">Roles</button>
+    <button class="filter-btn" onclick="setFilter('humanitarian',this)">Humanitarian</button>
+  </div>
+
+  <div class="terms-count" id="terms-count">Showing all terms</div>
+  <div id="terms-list"></div>
+  <div class="no-results" id="no-results" style="display:none;">No terms match your search.</div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+const terms = [
+  {abbr:"NGO",full:"Non-Governmental Organisation",cat:"humanitarian",catLabel:"Humanitarian",def:"An independent, non-profit organisation that operates outside government control. In the Mediterranean SAR context, NGOs operate rescue vessels and carry out search and rescue operations alongside, and sometimes in place of, state-run coastguard services."},
+  {abbr:"SAR",full:"Search and Rescue",cat:"sar",catLabel:"SAR",def:"The coordinated effort to locate and assist people in distress. Maritime SAR is governed internationally by the SOLAS Convention and IAMSAR manual, and nationally by Maritime Rescue Coordination Centres (MRCCs)."},
+  {abbr:"SARCO",full:"SAR Coordinator",cat:"roles",catLabel:"Roles",def:"The person responsible for coordinating SAR operations aboard a humanitarian vessel. Some NGOs use this role in place of or alongside a Head of Mission (HoM). The SARCO works closely with the Master, the STL, and MRCC to manage rescue operations. Not to be confused with OSC (On-Scene Coordinator), which is a formal IAMSAR designation."},
+  {abbr:"HoM",full:"Head of Mission",cat:"roles",catLabel:"Roles",def:"The overall leader of the NGO mission aboard the vessel — responsible for the humanitarian operation, team management, and external representation. Some organisations use HoM; others use SARCO for an equivalent role. Under them sit the SAR team, medical team, post-rescue team, and other functions."},
+  {abbr:"STL",full:"SAR Team Leader",cat:"roles",catLabel:"Roles",def:"Leads the SAR team aboard the vessel and leads rescue operations on the water — typically aboard the lead RHIB. Responsible for all SAR operations including RHIB deployment, survivor recovery, and coordination with the bridge during rescues. Typically the most experienced SAR operator on board."},
+  {abbr:"SAR Crew",full:"SAR Crew / SAR Officers / SAR Technicians",cat:"roles",catLabel:"Roles",def:"Trained rescue operators who crew the RHIBs and work the deck during rescues. Titles vary by organisation — SAR Crew, SAR Officers, SAR Technicians — but the role is the same. Distinct from general deck crew; their role is specifically rescue operations."},
+  {abbr:"RHIB Leader",full:"RHIB Leader",cat:"roles",catLabel:"Roles",def:"Leads the second rescue RHIB during operations when two RHIBs are deployed. Reports to the STL. Typically works with a driver and one SAR crew member aboard the RHIB."},
+  {abbr:"MTL",full:"Medical Team Leader",cat:"roles",catLabel:"Roles",def:"Leads the medical team aboard — coordinates triage, casualty management, medical equipment readiness, and handover to port authorities. Works closely with the STL during rescues and with the post-rescue team during survivor care."},
+  {abbr:"PRTL",full:"Post-Rescue Team Leader",cat:"roles",catLabel:"Roles",def:"Leads operations on board after survivors have been rescued — managing distribution of supplies, coordinating with medical and protection teams, and overseeing survivor welfare aboard the vessel."},
+  {abbr:"PRT",full:"Post-Rescue Team",cat:"roles",catLabel:"Roles",def:"The team responsible for survivor welfare after recovery. Includes cultural mediators, protection officers, and support staff who manage the survivor shelter, food and water distribution, and communication with survivors."},
+  {abbr:"Cultural Mediator",full:"Cultural Mediator",cat:"roles",catLabel:"Roles",def:"A team member whose role is communication with survivors — often speaking multiple languages relevant to survivor populations, familiar with cultural context, and trained in supportive interaction. Frequently on the lead RHIB as first point of contact and central to the post-rescue team."},
+  {abbr:"Logistician",full:"Logistician",cat:"roles",catLabel:"Roles",def:"Responsible for supplies, equipment, distribution of survivor kits (clothing, water, food), stock management, and logistical coordination during operations and resupply. Often supports the post-rescue team during and after rescues."},
+  {abbr:"Comms",full:"Communications Officer",cat:"roles",catLabel:"Roles",def:"Responsible for external communications — this can include photography and videography, journalist liaison, social media, press engagement, or managing these functions. On many vessels the comms role is integrated with advocacy and external representation of the mission."},
+  {abbr:"OOW",full:"Officer of the Watch",cat:"maritime",catLabel:"Maritime",def:"The officer responsible for the safe navigation and operation of the vessel during their watch. The OOW has full authority on the bridge during their watch. Never interrupt an OOW during a manoeuvre."},
+  {abbr:"MRCC",full:"Maritime Rescue Coordination Centre",cat:"sar",catLabel:"SAR",def:"A government-operated coordination centre responsible for coordinating SAR responses within a defined maritime search and rescue region (SRR). In the Central Mediterranean, MRCC Rome (Italy) is the primary coordination body that humanitarian vessels engage with in practice."},
+  {abbr:"RHIB",full:"Rigid Hull Inflatable Boat",cat:"sar",catLabel:"SAR",def:"A fast rescue craft with a rigid hull and inflatable collar. RHIBs are the primary rescue platforms used by humanitarian SAR vessels. Deployment varies by vessel — RHIBs may be launched from the stern, midships, or forward position depending on the ship's design and davit arrangement."},
+  {abbr:"FRB",full:"Fast Rescue Boat",cat:"sar",catLabel:"SAR",def:"A purpose-built fast rescue craft meeting SOLAS standards for rapid deployment and recovery. FRBs are used by some SAR vessels in place of or alongside RHIBs. The operational principles — rapid approach, survivor recovery, return to mother vessel — are the same."},
+  {abbr:"IAMSAR",full:"International Aeronautical and Maritime Search and Rescue Manual",cat:"sar",catLabel:"SAR",def:"The international reference manual for SAR operations, published jointly by ICAO and IMO. Volume III covers mobile facilities including vessels. The procedures and frameworks in IAMSAR underpin all professional maritime SAR operations."},
+  {abbr:"IMO",full:"International Maritime Organization",cat:"maritime",catLabel:"Maritime",def:"A specialised UN agency responsible for the safety, security, and environmental performance of international shipping. Sets the legal and regulatory framework for maritime SAR through conventions such as SOLAS and SAR."},
+  {abbr:"SOLAS",full:"Safety of Life at Sea",cat:"maritime",catLabel:"Maritime",def:"The international convention setting minimum safety standards for ships. SOLAS Chapter V includes the legal obligation on all vessels to render assistance to persons in distress at sea — a duty that applies regardless of nationality or circumstances."},
+  {abbr:"OSC",full:"On-Scene Coordinator",cat:"sar",catLabel:"SAR",def:"The vessel or aircraft designated to coordinate SAR activities at the scene of an incident. The OSC role is formally assigned by the MRCC. As OSC, a vessel is responsible for managing all other assets present, maintaining communication with MRCC, and coordinating the overall rescue response."},
+  {abbr:"MOB",full:"Man Overboard",cat:"maritime",catLabel:"Maritime",def:"An emergency situation when a person falls from a vessel into the water. MOB procedures are drilled regularly aboard all vessels. When an MOB alarm is raised, all crew go immediately to emergency stations. Time in cold water is critical."},
+  {abbr:"PPE",full:"Personal Protective Equipment",cat:"maritime",catLabel:"Maritime",def:"Equipment worn to minimise risk of injury. Aboard a SAR vessel this can include lifejackets, immersion suits, helmets, gloves, foul-weather gear, and appropriate footwear. Requirements vary by vessel, task, and conditions — follow your vessel's SOP and ask if in doubt."},
+  {abbr:"CPR",full:"Cardiopulmonary Resuscitation",cat:"medical",catLabel:"Medical",def:"An emergency procedure combining chest compressions and rescue breaths to maintain circulation in a person in cardiac arrest. All SAR crew should be trained in CPR. In cold water drowning cases, resuscitation should be attempted even after extended immersion — hypothermic cardiac arrest has higher survival rates than other causes."},
+  {abbr:"AED",full:"Automated External Defibrillator",cat:"medical",catLabel:"Medical",def:"A portable device that analyses heart rhythm and delivers an electric shock to restore normal rhythm in shockable cardiac arrest. AEDs are designed for first-time users — audio prompts guide the operator through each step. Every minute without defibrillation in a shockable rhythm reduces survival by approximately 10%."},
+  {abbr:"SGBV",full:"Sexual and Gender-Based Violence",cat:"humanitarian",catLabel:"Humanitarian",def:"Violence directed at a person because of their gender or sex. Many survivors rescued in the Mediterranean have experienced SGBV during their journey. SAR crew are trained to identify potential victims, maintain dignity and confidentiality, and refer to protection staff. Any disclosure must be handled with care and passed to the protection team."},
+  {abbr:"PFA",full:"Psychological First Aid",cat:"medical",catLabel:"Medical",def:"An evidence-based approach to supporting people in the immediate aftermath of a traumatic event. PFA focuses on safety, calm, connection, self-efficacy, and hope — not on clinical treatment or debriefing. Relevant for both survivor support and crew wellbeing after difficult operations."},
+  {abbr:"EPIRB",full:"Emergency Position Indicating Radio Beacon",cat:"maritime",catLabel:"Maritime",def:"A distress beacon that transmits a signal to satellites when activated, alerting rescue services to a vessel's position. Required equipment on all vessels. In a vessel abandonment, the EPIRB is one of the first items taken to the liferaft."},
+  {abbr:"GMDSS",full:"Global Maritime Distress and Safety System",cat:"maritime",catLabel:"Maritime",def:"The international communications system used for distress alerting and maritime safety communications. Includes DSC (Digital Selective Calling), VHF radio, NAVTEX, and EPIRB systems. Understanding basic GMDSS functions is essential for anyone who may need to use vessel communications in an emergency."},
+  {abbr:"VHF",full:"Very High Frequency",cat:"maritime",catLabel:"Maritime",def:"The primary radio communications band used in maritime operations. Channel 16 is the international distress and calling channel — monitored at all times by all vessels. Channel 16 is the first channel to use in any emergency. VHF range is line-of-sight — it depends on antenna height rather than being a fixed distance."},
+  {abbr:"UHF",full:"Ultra High Frequency",cat:"maritime",catLabel:"Maritime",def:"Radio frequency range used for short-range communications, including handheld radios used between crew during operations. Aboard humanitarian SAR vessels, UHF handhelds are the primary communication tool between the bridge, deck, and RHIB crew during rescues."},
+  {abbr:"SRR",full:"Search and Rescue Region",cat:"sar",catLabel:"SAR",def:"A defined area of ocean with dimensions and boundaries within which SAR services are provided. Each SRR is the responsibility of a designated state, coordinated through the relevant MRCC. The Central Mediterranean includes the Libyan, Tunisian, Maltese, and Italian SRRs."},
+  {abbr:"STCW",full:"Standards of Training, Certification and Watchkeeping",cat:"maritime",catLabel:"Maritime",def:"The international convention setting qualification standards for seafarers. Specifies minimum training requirements for different roles aboard vessels. Basic STCW safety training (personal survival, fire prevention, elementary first aid, personal safety) is the minimum certification for working aboard vessels in most jurisdictions."},
+  {abbr:"MRO",full:"Mass Rescue Operation",cat:"sar",catLabel:"SAR",def:"An SAR response involving a large number of persons in distress simultaneously — typically defined as more persons than can be handled by available resources using normal procedures. MRO requires modified triage, resource coordination, and communication protocols. The Central Mediterranean frequently involves MROs."},
+  {abbr:"T1 / T2 / T3 / T4",full:"Triage Categories",cat:"medical",catLabel:"Medical",def:"The four categories used in mass casualty triage. T1 (Immediate): life-threatening, treatable now. T2 (Delayed): serious but can wait. T3 (Minor): walking wounded. T4 (Expectant): unlikely to survive given available resources. In maritime MROs, persons in the water are typically triaged before those still on the vessel."},
+  {abbr:"SOP",full:"Standard Operating Procedure",cat:"sar",catLabel:"SAR",def:"A documented set of instructions for carrying out a specific task or procedure. All humanitarian SAR vessels operate with SOPs for rescue operations, RHIB deployment, survivor reception, and post-rescue procedures. Familiarise yourself with your vessel's SOPs during induction."},
+];
+
+let currentFilter = 'all';
+let currentSearch = '';
+
+function catClass(cat){
+  const map={sar:'cat-sar',maritime:'cat-maritime',medical:'cat-medical',humanitarian:'cat-humanitarian',roles:'cat-roles'};
+  return map[cat]||'cat-maritime';
+}
+
+function renderTerms(){
+  const q = currentSearch.toLowerCase();
+  const list = document.getElementById('terms-list');
+  const noResults = document.getElementById('no-results');
+  const countEl = document.getElementById('terms-count');
+
+  const filtered = terms.filter(t => {
+    const matchCat = currentFilter === 'all' || t.cat === currentFilter;
+    const matchSearch = !q || t.abbr.toLowerCase().includes(q) || t.full.toLowerCase().includes(q) || t.def.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+
+  list.innerHTML = filtered.map(t => `
+    <div class="term-item">
+      <div class="term-row">
+        <div class="term-abbr">${t.abbr}</div>
+        <div class="term-full">${t.full}</div>
+        <span class="term-cat ${catClass(t.cat)}">${t.catLabel}</span>
+      </div>
+      <div class="term-def">${t.def}</div>
+    </div>
+  `).join('');
+
+  noResults.style.display = filtered.length === 0 ? 'block' : 'none';
+  countEl.textContent = filtered.length === terms.length
+    ? `Showing all ${terms.length} terms`
+    : `Showing ${filtered.length} of ${terms.length} terms`;
+}
+
+function setFilter(cat, btn){
+  currentFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTerms();
+}
+
+function filterTerms(){
+  currentSearch = document.getElementById('search').value;
+  renderTerms();
+}
+
+renderTerms();
+</script>
+</body>
+</html>

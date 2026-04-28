@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 5.2 — Vicarious trauma and compassion fatigue | Operation Ready</title>
+  <meta name="description" content="Understanding vicarious trauma and compassion fatigue in humanitarian SAR work — what they are, how they develop, and what to do about them.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;}
+    .compare-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .compare-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:6px;}
+    .compare-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:8px;}
+    .compare-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .sign-row{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .sign-row:last-child{border-bottom:none;}
+    .sign-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+    .sign-body{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .sign-body strong{font-weight:500;color:var(--text);}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.compare-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-5">Path 5</a> &rsaquo; <span>5.2</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 5 — Mental health &amp; resilience</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Vicarious trauma and compassion fatigue</div>
+    <div class="module-meta">
+      <span>Module 5.2</span><span>10 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">What they are</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Signs</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Response</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 5.2</div>
+    <div class="mod-sec-title">The cost of caring — and how to manage it</div>
+    <p class="prose">Humanitarian workers are exposed to other people's trauma as a feature of the job. Over time, that exposure can change how we think, feel, and function — not through a single dramatic event, but through the cumulative weight of repeated exposure to suffering.</p>
+    <p class="prose">Vicarious trauma and compassion fatigue are recognised psychological phenomena in people who work with trauma. Understanding what they are, how to recognise their signs in yourself and others, and what to do when they emerge is part of professional practice in humanitarian work — not a personal failing.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What vicarious trauma and compassion fatigue are — and how they differ</li>
+        <li>The signs to look for in yourself and in teammates</li>
+        <li>Why these phenomena affect people who care — not those who don't</li>
+        <li>Practical responses — what actually helps and what doesn't</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">10 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Vicarious trauma and compassion fatigue — the difference</div>
+    <p class="prose">The two terms are sometimes used interchangeably but describe related and distinct phenomena. Understanding the difference helps you identify what you or a teammate might be experiencing.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-tag" style="color:var(--navy);">Vicarious trauma</div>
+        <div class="compare-title">A change in worldview</div>
+        <div class="compare-text">Vicarious trauma is a cumulative transformation in how a person sees the world as a result of repeated exposure to others' traumatic material. It is not burnout — it is a shift in cognitive schemas: how safe the world feels, whether people can be trusted, whether good things last. A person experiencing vicarious trauma may become more cynical, hypervigilant, or have difficulty experiencing positive emotions outside work.</div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-tag" style="color:#D4821A;">Compassion fatigue</div>
+        <div class="compare-title">Reduced capacity to empathise</div>
+        <div class="compare-text">Compassion fatigue is a reduction in the emotional resources available for empathy after sustained exposure to others' suffering. A person experiencing compassion fatigue may find themselves unable to feel as much for the people they are helping as they once did — or feel irritated, detached, or even resentful. This is not personal failure — it is emotional exhaustion.</div>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">These affect the most engaged workers</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Vicarious trauma and compassion fatigue primarily affect people who genuinely care about the people they work with — who bring real empathy and engagement to their work. The person who is detached and does the minimum is less likely to experience them. This is worth knowing: experiencing these phenomena is often a sign of genuine commitment to the work, not weakness.</div>
+    </div>
+
+    <div style="display:grid;gap:8px;margin:14px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">How they develop — slowly and cumulatively</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Neither vicarious trauma nor compassion fatigue typically develops from a single event. They develop gradually — through repeated exposure, insufficient recovery time, inadequate support, and a culture that does not acknowledge the psychological cost of the work. This cumulative development means people often do not notice the changes in themselves until they are significant.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Signs to recognise</div>
+    <p class="prose">These signs may be present in yourself or in teammates. The challenge is that both vicarious trauma and compassion fatigue develop gradually — changes that feel like personality or perspective shifts may actually be psychological responses to sustained exposure.</p>
+
+    <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500;margin:16px 0 8px;">Possible signs of vicarious trauma</p>
+    <div style="margin-bottom:16px;">
+      <div class="sign-row"><div class="sign-dot" style="background:var(--navy);"></div><div class="sign-body"><strong>Worldview shifts:</strong> feeling the world is more dangerous than you used to, difficulty trusting people or systems, a sense that nothing good lasts.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:var(--navy);"></div><div class="sign-body"><strong>Intrusive material outside work:</strong> images, sounds, or thoughts from difficult cases appearing during rest, leisure, or sleep without the direct trigger of the event.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:var(--navy);"></div><div class="sign-body"><strong>Hypervigilance:</strong> being persistently alert to danger — checking exits, being startled more easily, difficulty being in crowds or relaxed environments.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:var(--navy);"></div><div class="sign-body"><strong>Difficulty with positive experiences:</strong> finding it hard to enjoy things you used to, feeling pleasure is somehow inappropriate given what others are experiencing.</div></div>
+    </div>
+
+    <p style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#D4821A;font-weight:500;margin:16px 0 8px;">Possible signs of compassion fatigue</p>
+    <div style="margin-bottom:16px;">
+      <div class="sign-row"><div class="sign-dot" style="background:#D4821A;"></div><div class="sign-body"><strong>Reduced empathy:</strong> difficulty feeling concern for survivors that you would previously have felt strongly; going through the motions without emotional engagement.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:#D4821A;"></div><div class="sign-body"><strong>Irritability or resentment:</strong> finding yourself frustrated by survivors' needs, behaviour, or expressions of distress — feelings you know are not consistent with your values.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:#D4821A;"></div><div class="sign-body"><strong>Cynicism about the work:</strong> increasingly feeling that the work does not make a difference, that the effort is pointless, or that caring is naive.</div></div>
+      <div class="sign-row"><div class="sign-dot" style="background:#D4821A;"></div><div class="sign-body"><strong>Avoidance:</strong> finding reasons not to be in direct contact with survivors, choosing tasks that keep you away from the people the mission is for.</div></div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Seeing these signs in a teammate</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">If you recognise these signs in a teammate — withdrawal, increased cynicism, difficulty engaging with survivors, or a notable change in personality or mood over the deployment — a direct, private, non-judgmental conversation is the most useful first response. "I've noticed you seem to be finding it harder lately — how are you doing?" Opening the door matters. You are not responsible for providing support yourself — pointing toward available resources is enough.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">What actually helps</div>
+    <p class="prose">Recovery from vicarious trauma and compassion fatigue is not about pushing through or toughening up. It requires active, deliberate responses — individually and at an organisational level.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Name it — to yourself and to someone you trust</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Recognition is the necessary first step. Using the language — "I think I might be experiencing compassion fatigue" or "I think this work is changing how I see the world" — removes shame from the experience and opens the possibility of doing something about it. Talking to a teammate, team leader, or professional without being dramatic or requiring a formal response is often enough to interrupt a negative trajectory.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Attend mandatory debrief — and use optional ones</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Structured debriefing after difficult incidents is not a bureaucratic requirement. It is one of the most evidenced approaches to preventing the cumulative development of vicarious trauma. Crew who skip optional debriefs because they are "fine" tend to be the people who need them most. Use them.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Protect non-work time deliberately</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">On a rotation-based deployment, the boundary between work and rest can blur — particularly when the work is all-consuming and the vessel is home. Deliberately protecting time that is genuinely not about the mission — physical activity, non-operational connection with teammates, creative practice, contact with people at home — is not self-indulgence. It is recovery infrastructure.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Seek professional support when needed</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Peer support and team debriefing are valuable. They are not a substitute for professional support when symptoms are persistent, worsening, or affecting functioning. Most humanitarian organisations have access to confidential psychological support services. Using these is professional and appropriate — not a sign of unsuitability for the work.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">The team as a protective factor</div>
+      <div class="callout-text">The single most consistently cited protective factor against vicarious trauma and compassion fatigue in humanitarian workers is team cohesion — a team where people notice how each other are doing, speak directly, and do not require performative resilience. You contribute to this environment by being honest about your own experience and by creating space for others to do the same.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on vicarious trauma and compassion fatigue.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A crew member on their third rotation has become noticeably more cynical, frequently makes comments about the work being pointless, and seems irritated by survivors' expressions of distress. They say they are 'just being realistic.' What does this pattern suggest?",o:["This is experienced realism — they have learned what the work is actually like","These are consistent signs of compassion fatigue — reduced empathic capacity from sustained exposure. A non-judgmental conversation and possibly professional support is warranted.","They are correct to feel this way — the work is genuinely limited in impact","This suggests burnout, not compassion fatigue — they need time off"],c:1,f:"Cynicism about the work's value, irritability in response to survivors' needs, and reduced empathic engagement are consistent signs of compassion fatigue. 'Being realistic' is a common rationalisation for what is actually emotional exhaustion. The appropriate response is a direct, non-judgmental conversation and pointing toward support resources — not agreement or dismissal."},
+  {q:"What is the key distinction between vicarious trauma and compassion fatigue?",o:["Vicarious trauma is more severe than compassion fatigue","Vicarious trauma involves a cumulative shift in worldview; compassion fatigue involves reduced capacity to empathise","Compassion fatigue only affects medical professionals; vicarious trauma affects all crew","Vicarious trauma develops from one event; compassion fatigue develops gradually"],c:1,f:"Vicarious trauma is a change in how a person sees the world — their cognitive schemas about safety, trust, and meaning — through repeated exposure to traumatic material. Compassion fatigue is a reduction in emotional capacity for empathy from sustained exposure to others' suffering. Both develop gradually and cumulatively, and both primarily affect people who engage genuinely with their work."},
+  {q:"Why do vicarious trauma and compassion fatigue most commonly affect the most committed workers?",o:["Committed workers take on more tasks and become physically exhausted","Genuine emotional engagement with survivors' suffering is the mechanism through which these phenomena develop — you cannot be vicariously traumatised by something you do not care about","Committed workers are more likely to break rules and expose themselves to dangerous situations","Inexperienced workers are less affected because they are not fully aware of the suffering"],c:1,f:"Vicarious trauma and compassion fatigue develop through empathic engagement with others' suffering. A person who is emotionally detached and does not genuinely engage with the people they work with is unlikely to develop these phenomena. This is why they primarily affect the most engaged, most caring workers — it is the cost of genuine commitment, not a personal failing."},
+  {q:"A crew member skips the optional debrief session after a particularly difficult rescue because they say they are fine and want to rest. What is the most useful response?",o:["Respect their self-assessment — they know how they are better than anyone","Gently note that optional debriefs are particularly valuable after difficult incidents, and that 'fine' right after an operation is not always how it looks 24 hours later","Make the debrief mandatory — opt-outs should not be permitted","Their assessment is valid — debriefs are only useful for people who are struggling"],c:1,f:"Structured debriefing after difficult incidents is one of the most evidenced protective measures against cumulative psychological harm. The people who most need debriefs are often those who believe they are fine — because dissociation and delayed response are common. A gentle, non-coercive reminder of the value of debriefing is more appropriate than compulsion, but the response should not simply defer to the self-assessment."},
+  {q:"What is the most consistently cited protective factor against vicarious trauma and compassion fatigue in humanitarian workers?",o:["Individual resilience and psychological strength","Team cohesion — a team where people notice each other, speak directly, and do not require performative resilience","Mandatory rest periods built into rotations","Access to professional psychological services"],c:1,f:"While individual resilience, rest periods, and professional services all contribute, team cohesion is the factor most consistently identified in research on humanitarian worker wellbeing. A team where people notice how each other are doing, speak directly about difficulty, and do not perform 'fine' under pressure creates the conditions where vicarious trauma is recognised and addressed early, before it becomes entrenched."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of vicarious trauma and compassion fatigue. Ready for module 5.3.':p>=.6?'Mostly solid — review what you missed.':'Go back through the sections before your deployment.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/5-3.html" class="btn-teal">Module 5.3 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

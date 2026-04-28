@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.5 — Personal safety at sea | Operation Ready</title>
+  <meta name="description" content="Personal safety at sea — PPE, man overboard procedures, and staying safe on deck.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-red{border-left:3px solid #cc4400;padding:12px 16px;background:rgba(204,68,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc4400;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+
+    /* PPE GRID */
+    .ppe-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+    .ppe-item{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .ppe-item-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+    .ppe-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    .ppe-item-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .ppe-item-when{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-top:8px;font-weight:500;}
+
+    /* MOB PROCEDURE */
+    .mob-steps{display:flex;flex-direction:column;gap:0;margin:14px 0;}
+    .mob-step{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .mob-step:last-child{border-bottom:none;}
+    .mob-step-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--teal);line-height:1;flex-shrink:0;width:36px;}
+    .mob-step-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+    .mob-step-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+
+    /* DECK ZONES */
+    .deck-zones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0;}
+    .deck-zone{border:1px solid var(--border);border-radius:4px;padding:12px;background:var(--white);text-align:center;}
+    .deck-zone-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:6px;}
+    .deck-zone-text{font-size:12px;color:var(--text2);line-height:1.5;font-weight:300;}
+
+    /* QUIZ */
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    /* ═══ PPE CHECKLIST ═══ */
+    .pp-scenario{background:#fff;border:1px solid var(--border);border-radius:5px;margin-bottom:16px;overflow:hidden;}
+    .pp-scn-head{padding:10px 16px;background:var(--cream2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+    .pp-scn-num{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;}
+    .pp-scn-title{font-size:13px;font-weight:500;color:var(--navy);flex:1;}
+    .pp-scn-body{padding:14px 16px;}
+    .pp-brief{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;padding:10px 14px;background:var(--mint-pale);border-left:3px solid var(--teal);border-radius:0 3px 3px 0;margin-bottom:14px;}
+    .pp-brief strong{color:var(--navy);font-weight:500;}
+    .pp-prompt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin:12px 0 10px;font-weight:500;}
+    .pp-items{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+    .pp-item{border:1px solid var(--border2);border-radius:4px;padding:10px 12px;cursor:pointer;background:#fff;transition:all .15s;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text2);line-height:1.4;}
+    .pp-item:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .pp-item.packed{border-color:var(--teal);background:var(--mint-pale);color:var(--text);border-width:2px;padding:9px 11px;}
+    .pp-item.packed .pp-item-box{background:var(--teal);border-color:var(--teal);}
+    .pp-item.packed .pp-item-box::after{content:'';position:absolute;top:3px;left:6px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+    .pp-item-box{width:16px;height:16px;border-radius:3px;border:1.5px solid var(--border2);flex-shrink:0;background:#fff;position:relative;transition:all .15s;}
+    .pp-item.locked{opacity:.7;pointer-events:none;}
+    .pp-item.correct-kept{border-color:#2a9d5c;background:rgba(42,157,92,.1);}
+    .pp-item.correct-kept .pp-item-box{background:#2a9d5c;border-color:#2a9d5c;}
+    .pp-item.correct-kept .pp-item-box::after{content:'';position:absolute;top:3px;left:6px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);}
+    .pp-item.missed{border-color:#cc4400;background:rgba(204,68,0,.08);}
+    .pp-item.unnecessary{border-color:#D4821A;background:rgba(212,130,26,.08);text-decoration:line-through;opacity:.75;}
+    .pp-item-name{font-weight:400;}
+    .pp-actions{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap;}
+    .pp-review-btn{background:var(--teal);color:#fff;border:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:3px;cursor:pointer;font-weight:500;transition:background .15s;}
+    .pp-review-btn:hover{background:var(--navy);}
+    .pp-reset-btn{background:transparent;color:var(--text3);border:1px solid var(--border2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:3px;cursor:pointer;font-weight:500;}
+    .pp-reset-btn:hover{color:var(--navy);border-color:var(--navy);}
+    .pp-count{font-size:11px;color:var(--text3);letter-spacing:.04em;margin-left:auto;}
+    .pp-debrief{display:none;padding:14px 16px;border-top:1px solid var(--border);font-size:12.5px;line-height:1.7;color:var(--text2);font-weight:300;background:var(--cream2);}
+    .pp-debrief.visible{display:block;}
+    .pp-debrief-row{display:flex;gap:10px;padding:6px 0;align-items:flex-start;font-size:12.5px;border-bottom:1px solid rgba(0,0,0,.05);}
+    .pp-debrief-row:last-child{border-bottom:none;}
+    .pp-debrief-row strong{color:var(--navy);font-weight:500;}
+    .pp-tag{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:2px;flex-shrink:0;margin-top:2px;}
+    .pp-tag.required{background:rgba(42,157,92,.15);color:#1a7a42;}
+    .pp-tag.missing{background:rgba(204,68,0,.15);color:#cc4400;}
+    .pp-tag.not-needed{background:rgba(212,130,26,.15);color:#965818;}
+    .pp-principle{margin-top:12px;padding:10px 14px;background:#fff;border-radius:4px;border-left:3px solid var(--teal);font-size:12.5px;line-height:1.7;color:var(--text2);}
+    .pp-principle strong{color:var(--teal);font-weight:500;}
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .ppe-grid{grid-template-columns:1fr;}
+      .deck-zones{grid-template-columns:1fr;}
+      .pp-items{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.5</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Personal safety at sea</div>
+    <div class="module-meta"><span>Module 1.5</span><span>8 min</span><span>PPE guide</span><span>MOB procedure</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">PPE</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Deck safety</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">MOB</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Practice</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.5</div>
+    <div class="mod-sec-title">Looking after yourself at sea</div>
+    <p class="prose">A SAR vessel is a workplace with real physical hazards — moving machinery, wet decks, confined spaces, heavy equipment, and an environment that can change quickly. Most accidents at sea are preventable. The vast majority involve predictable risks that experienced crew manage through habit, PPE, and awareness.</p>
+    <p class="prose">Your safety is your responsibility first. A crew member who is injured or overboard becomes an emergency that diverts resources away from the people you are there to help. Staying safe is not just personal — it is operational.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Personal protective equipment — what to wear and when</li>
+        <li>Deck safety — hazards, habits, and how to move safely</li>
+        <li>Man overboard — what happens when the alarm is raised</li>
+        <li>Emergency signals — what the alarms mean aboard your vessel</li>
+      </ul>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Your vessel's specific requirements</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">PPE requirements and safety procedures vary between vessels and organisations. This module covers the principles. Your vessel's induction will cover the specific requirements aboard your ship — including when lifejackets must be worn, harness attachment points, and emergency muster procedures. Pay close attention to those briefings.</div>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <!-- PPE -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Personal protective equipment</div>
+    <p class="prose">PPE at sea is not optional when conditions or tasks require it. The right equipment for the right situation is a baseline expectation — not a choice. Your organisation's SOPs will define exactly when each item is required. The overview below covers what you'll encounter and why each piece matters.</p>
+
+    <div class="ppe-grid">
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#D4821A;"></div>Lifejacket</div>
+        <div class="ppe-item-text">An automatic inflating lifejacket keeps an unconscious person face-up in the water. Different to a buoyancy aid. Check it is the right size, properly fitted, and has a charged inflation cylinder before use. A lifejacket you haven't checked is not a lifejacket.</div>
+        <div class="ppe-item-when">Worn when: operations, RHIB work, when entering open deck in bad weather. Lifejackets are not typically worn on the open deck of a large vessel simply underway — check your vessel's SOP.</div>
+      </div>
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#1E3A5F;"></div>Safety harness & tether</div>
+        <div class="ppe-item-text">A harness clips to a jackstay — a fixed line running along the deck — and prevents you going overboard even if you fall. Required in heavy weather on exposed deck. Your induction will show you where the jackstays and clip-in points are.</div>
+        <div class="ppe-item-when">Worn when: heavy weather deck operations. Not typically used in RHIB or night rescue operations — check your vessel's SOP.</div>
+      </div>
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#3D8B7A;"></div>Helmet</div>
+        <div class="ppe-item-text">Required during RHIB operations, crane/davit use, and any task where overhead equipment is moving. Head injuries from swinging equipment are among the most common serious injuries at sea. If equipment is moving overhead, the helmet goes on.</div>
+        <div class="ppe-item-when">Worn when: RHIB launch and recovery, davit operations, deck cargo operations</div>
+      </div>
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#5BA898;"></div>Gloves</div>
+        <div class="ppe-item-text">Rope, wire, and wet surfaces cause friction burns and lacerations quickly. Work gloves protect your hands during line handling, equipment movement, and any task involving rope or wire. Have a pair accessible at all times when working on deck.</div>
+        <div class="ppe-item-when">Worn when: line handling, equipment movement, recovery operations</div>
+      </div>
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#185FA5;"></div>Footwear</div>
+        <div class="ppe-item-text">Deck surfaces are wet, often treated with anti-slip coatings, and covered in ropes and equipment. Non-slip, closed-toe footwear is the minimum any time you're on deck. Larger vessels typically require steel toe cap boots as standard. Sandals, flip-flops, or smooth-soled shoes are not acceptable.</div>
+        <div class="ppe-item-when">Worn when: any time on deck. Steel toe caps required on most larger vessels — check your vessel's SOP.</div>
+      </div>
+      <div class="ppe-item">
+        <div class="ppe-item-title"><div class="ppe-dot" style="background:#7A9AA8;"></div>Foul weather gear</div>
+        <div class="ppe-item-text">Waterproof jacket and trousers designed for maritime conditions. Crew are typically issued foul weather gear and working gear appropriate to the vessel and the season. It may or may not be high-visibility — many vessels use non-hi-vis gear as standard. Follow what your vessel provides.</div>
+        <div class="ppe-item-when">Worn when: cold, wet, exposed deck work, night operations, RHIB launch and recovery</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Check before you go on deck</div>
+      <div class="callout-text">Before going on deck — particularly during or before an operation — mentally check: appropriate footwear, weather-appropriate clothing, the correct PPE for the specific task ahead. This becomes automatic with experience. Build the habit from day one. And if you're unsure: ask.</div>
+    </div>
+  </div>
+
+  <!-- DECK SAFETY -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Safety on deck</div>
+    <p class="prose">The deck of a working vessel has specific hazards that don't exist in most land-based workplaces. Understanding them and building the right habits from the start significantly reduces your risk of injury.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Key hazards</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Wet and moving surfaces</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">Deck surfaces are frequently wet, slippery, and moving. Sea spray, rain, and survivor recovery all add water. The vessel's motion constantly changes your centre of gravity. Always use grip points when moving.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Lines under tension</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">Ropes and lines under load can snap back with serious force if they part — especially during mooring operations. Never stand in the direct line of a tensioned rope; always be at an angle. If you aren't involved and trained in the operation, remain out of the area.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Moving equipment</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">Davits, cranes, and RHIB launch equipment move during operations. Stay clear of the operating radius of any moving equipment unless you are specifically part of that operation. Watch where the load is going, not just where it is.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Loose gear</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">Unsecured equipment, open doors, and anything that can swing or shift becomes a hazard when the vessel moves or takes a wave. Stow equipment, close hatches and watertight doors, and secure anything that can move. A door left open in heavy seas is a common cause of injury.</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Deck awareness zones</div>
+    <div class="deck-zones">
+      <div class="deck-zone">
+        <div class="deck-zone-label" style="color:#2a9d5c;">Open — general crew</div>
+        <div class="deck-zone-text">Areas accessible to all crew during normal operations. Standard PPE and grip point awareness required at all times.</div>
+      </div>
+      <div class="deck-zone">
+        <div class="deck-zone-label" style="color:#D4821A;">Controlled — assigned crew</div>
+        <div class="deck-zone-text">Areas active during operations — stern deck during rescue, davit operating areas. Only assigned crew present. Do not enter unless directed.</div>
+      </div>
+      <div class="deck-zone">
+        <div class="deck-zone-label" style="color:#cc4400;">Restricted — authorised only</div>
+        <div class="deck-zone-text">Engine room, certain machinery spaces, areas with specific hazard risk. Access only when authorised and with appropriate awareness of the space.</div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin:14px 0;">
+      <div class="callout-title">In any emergency</div>
+      <div class="callout-text">Do not run on deck — running on a moving vessel causes falls and injuries. And — cliché but true — stay <strong>calm</strong>. Panic spreads quickly; calm does too. The people around you will take their emotional cue from the people they trust. Breathe, think, act.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Emergency signals — know these before departure</div>
+    <p class="prose">Your vessel induction will cover your specific vessel's alarm signals. The types below are standard across vessels, but the actual signal pattern varies. Learn yours during induction — do not assume they are the same as another vessel.</p>
+    <div style="display:grid;gap:6px;margin:10px 0;">
+      <div style="display:flex;gap:14px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;background:var(--white);align-items:flex-start;">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:#cc4400;min-width:110px;padding-top:2px;">General alarm</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.65;">Go immediately to your muster station. Your vessel's SOP may require you to grab your lifejacket and immersion suit en route, if time and location permit. Report to your muster station officer.</div>
+      </div>
+      <div style="display:flex;gap:14px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;background:var(--white);align-items:flex-start;">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:#D4821A;min-width:110px;padding-top:2px;">Fire alarm</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.65;">Close fire doors and hatches behind you. Do not use lifts. Go to your muster station and carry out your assigned role if you have one. Await instructions.</div>
+      </div>
+      <div style="display:flex;gap:14px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;background:var(--white);align-items:flex-start;">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--navy);min-width:110px;padding-top:2px;">MOB alarm</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.65;">Raise the alarm by any means possible — shouting, radio, activating the alarm. Keep eyes on the person in the water and point continuously — do not look away. Shout "man overboard" and the clock position. Throw a lifebuoy or anything that floats if within reach. Once a second person has visual contact, they take over the watch and you can move to raise the formal alarm.</div>
+      </div>
+      <div style="display:flex;gap:14px;padding:10px 14px;border:1px solid var(--border);border-radius:4px;background:var(--white);align-items:flex-start;">
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--navy);min-width:110px;padding-top:2px;">Abandon ship</div>
+        <div style="font-size:13px;color:var(--text2);font-weight:300;line-height:1.65;">Go to your muster station with your lifejacket — and immersion suit if your vessel carries them. Abandon ship is <strong>only</strong> ordered by the Master. Do not enter liferafts until instructed.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOB -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Man overboard</div>
+    <p class="prose">A man overboard (MOB) is one of the most time-critical emergencies at sea. Survival time in the water is limited — in Mediterranean summer water it may be hours, but in cold water or at night, much less. Every second between going overboard and being recovered matters.</p>
+    <p class="prose">You are unlikely to be directly involved in the recovery operation unless you are a trained SAR technician. What you must know is what to do in the immediate moments — because those moments determine whether the person is found.</p>
+
+    <div class="callout-red">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">The most important rule</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">If you see someone go overboard — or see a person in the water — do not take your eyes off them. Keep pointing at them continuously. A person in the water disappears from sight in seconds in any sea state. Your eyes and your pointing arm are the only thing keeping them located until the vessel can respond. Do not look away for any reason.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Immediate actions if you witness MOB</div>
+    <div class="mob-steps">
+      <div class="mob-step">
+        <div class="mob-step-num">1</div>
+        <div><div class="mob-step-title">Shout "MAN OVERBOARD" immediately and continuously</div><div class="mob-step-text">Shout loudly so the bridge and all nearby crew hear you. Identify the clock position — "Man overboard, 3 o'clock." Keep shouting until others have responded.</div></div>
+      </div>
+      <div class="mob-step">
+        <div class="mob-step-num">2</div>
+        <div><div class="mob-step-title">Keep eyes on the person — do not look away</div><div class="mob-step-text">Point continuously at the person in the water. This is your only job until someone takes over. Do not look at the bridge, do not look for equipment — eyes on, pointing arm extended.</div></div>
+      </div>
+      <div class="mob-step">
+        <div class="mob-step-num">3</div>
+        <div><div class="mob-step-title">Throw a lifebuoy — or anything that floats</div><div class="mob-step-text">If a lifebuoy is within arm's reach, throw it. If not, anything that floats helps — fenders, cushions, empty containers. Two reasons: the casualty may be able to reach it, and the bridge uses the floating object as a visual marker of drift and current. This gives the recovery manoeuvre a reference point in the water. Do not leave your position to fetch something — keeping eyes on the person is still the priority.</div></div>
+      </div>
+      <div class="mob-step">
+        <div class="mob-step-num">4</div>
+        <div><div class="mob-step-title">Hand over the watch to another crew member when they arrive</div><div class="mob-step-text">When another crew member reaches you, point them onto the person — make sure they have visual contact before you look away. Only then can you take other actions. Say clearly "I have the watch" / "You have the watch."</div></div>
+      </div>
+      <div class="mob-step">
+        <div class="mob-step-num">5</div>
+        <div><div class="mob-step-title">The bridge handles the rest</div><div class="mob-step-text">The bridge will initiate the MOB manoeuvre, deploy the RHIB if conditions allow, and coordinate the recovery. Your role is to maintain the visual watch on the person in the water for as long as needed.</div></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Preventing MOB — the best response</div>
+      <div class="callout-text">One hand for you, one hand for the ship at all times on deck. Wear your lifejacket and harness when required. Do not sit on guardrails or lean over the side. Be aware of your position relative to open deck edges, particularly at night or in rough conditions. Prevention is always better than response.</div>
+    </div>
+  </div>
+
+  <!-- PRACTICE -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Practice — interactive</div>
+    <div class="mod-sec-title">Kit up for the task</div>
+    <p class="prose">Three scenarios. For each, select the PPE you'd put on before going on deck — or into the RHIB. Click an item to add it, click again to remove. When you're ready, review to see what you've missed or over-packed and why.</p>
+    <p class="prose" style="font-style:italic;color:var(--text3);font-size:13px;">This is a general guideline to help you think about what's needed before a task — not a definitive list. PPE requirements vary significantly between vessels, operations, and organisations based on their SOPs and risk assessments. Always check your vessel's specific requirements — and if in doubt, <strong>ask</strong>. Better to be over-kitted than under-kitted.</p>
+
+    <div class="ppe-wrap" id="ppe-wrap"></div>
+  </div>
+
+  <!-- CHECK -->
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on personal safety, PPE, and man overboard response.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const questions=[
+  {q:"You are about to go on deck during active rescue operations. What should you check before stepping outside?",opts:["That you have your phone and ID card in case of emergency","That your lifejacket is fitted and charged, footwear is appropriate, and you have the correct PPE for conditions","That the STL has approved your presence on deck","That you know where the nearest lifebuoy is"],correct:1,fb:"Before going on deck — particularly during operations — the baseline check is lifejacket fitted and inflation cylinder charged, non-slip footwear, and appropriate PPE for the conditions. This becomes automatic with experience. Building the habit from day one is the goal."},
+  {q:"You are on deck and a rope nearby suddenly comes under heavy tension. What should you be aware of?",opts:["Move closer to see if the rope is secure","Stand clear of the line of the rope — if it parts under tension it will snap back with serious force","Hold the rope to check if it feels secure","Alert the bridge and wait for instructions"],correct:1,fb:"A rope under heavy tension that parts will snap back violently in the direction of the tension — this is the snap-back zone. Never stand in the direct line of a tensioned rope. Always position yourself at an angle. This applies to mooring lines, tow lines, and any working line under load."},
+  {q:"You see a crew member go overboard off the port side. What is your immediate first action?",opts:["Run to find the nearest lifebuoy to throw","Call the bridge on the radio to report the position","Shout 'man overboard, 9 o'clock' continuously and keep your eyes and pointing arm fixed on the person in the water","Go to your muster station and await instructions"],correct:2,fb:"The immediate priority is to keep the person in visual contact — they disappear from sight in seconds in any sea state. Shout 'man overboard' loudly with the clock position (port side = 9 o'clock) and keep pointing at them continuously. Only throw a lifebuoy if one is immediately within reach without losing visual. Do not take your eyes off them."},
+  {q:"The general alarm sounds. What do you do?",opts:["Go to the bridge to find out what is happening","Stay where you are and wait for a PA announcement","Go immediately to your muster station with your lifejacket — do not stop to collect belongings","Check outside to see if you can identify the emergency"],correct:2,fb:"The general alarm means go immediately to your muster station. Do not stop to collect belongings, do not investigate, do not wait for an announcement. Your muster station officer accounts for crew and coordinates from there. Every second's delay is a second that cannot be recovered in a real emergency."},
+  {q:"You are maintaining a visual watch on a person in the water after an MOB. Another crew member arrives beside you. What do you do?",opts:["Step aside and let them take over — they are probably more experienced","Hand over the visual watch explicitly — point them onto the person, confirm they have visual contact, say 'you have the watch' before you look away","Immediately go and find a lifebuoy now that someone else is there","Keep watching and let them decide what to do"],correct:1,fb:"Handing over a visual watch must be explicit. Point the new person onto the casualty, confirm they have visual contact, then say 'you have the watch' clearly. Only when you have confirmed handover should you look away. This prevents the gap where nobody is watching — which is when people are lost."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';
+  updateNav();if(n===5&&answered.length===0)renderQuiz();
+  if(n===4&&!ppInit){ppRender();ppInit=true;}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<5)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===5){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of personal safety at sea. Ready for module 1.6 — the final module in Path 1.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review the questions you missed. Safety habits need to be reliable from day one.";}
+  else{v="Worth revisiting";t="Go back through the PPE and MOB sections. These are safety-critical — they need to be solid before you board.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/1-6.html" class="btn-teal">Module 1.6 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+
+// ═══ PPE CHECKLIST ═══
+// Full inventory of items available to pick from. Each scenario marks which are required.
+const PP_INVENTORY = [
+  {id:'lj',   name:'Lifejacket (auto-inflate)'},
+  {id:'hn',   name:'Safety harness + tether'},
+  {id:'nsb',  name:'Non-slip / steel toe boots'},
+  {id:'fwg',  name:'Foul weather gear'},
+  {id:'hlt',  name:'Helmet'},
+  {id:'glv',  name:'Work gloves'},
+  {id:'nglv', name:'Nitrile medical gloves'},
+  {id:'tl',   name:'Head torch (red filter)'},
+  {id:'rad',  name:'Handheld VHF radio'},
+  {id:'gog',  name:'Safety goggles / eye pro'},
+  {id:'knf',  name:'Rescue knife (cutting tool)'},
+  {id:'whst', name:'Whistle'},
+  {id:'slev', name:'Long sleeves / sun cover'},
+  {id:'ear',  name:'Hearing protection'},
+  {id:'sg',   name:'Sunglasses'}
+];
+
+// Three scenarios. Each specifies which items are required, and per-item reasoning.
+const PP_SCENARIOS = [
+  {
+    title: "Embarkation area reception — calm daytime conditions",
+    brief: "Fifty survivors are coming aboard from two RHIBs over the next 20 minutes. You're on the reception team assisting the medical staff on the main deck. Weather is calm, mid-afternoon, 22°C. You are not going over the side — you're receiving people as they come up the ladder. <strong>What PPE do you put on before stepping onto the deck?</strong>",
+    required: ['lj', 'nsb', 'nglv', 'rad'],
+    reasoning: {
+      lj:   "<strong>Lifejacket</strong> — required during an active rescue operation. Your vessel's SOP defines exactly when — during operations it goes on.",
+      nsb:  "<strong>Non-slip / steel toe boots</strong> — required. Decks get wet from survivors, water, and operational activity. Most larger vessels require steel toe caps as standard.",
+      nglv: "<strong>Nitrile gloves</strong> — required. You will be in close contact with survivors who may have been soaked in seawater, fuel residue, or bodily fluids. Universal precautions.",
+      rad:  "<strong>Handheld VHF</strong> — required for anyone on deck during operations so you can receive bridge comms and alert if needed.",
+      fwg:  "Foul weather gear — not needed in calm 22°C conditions. You're in working gear for this task.",
+      hn:   "Harness is not needed on the main deck in calm conditions. Reserved for heavy weather.",
+      hlt:  "Helmet is not needed for embarkation reception. Reserved for RHIB operations and crane/lifting work.",
+      glv:  "Work gloves are for line handling and heavy deck work — not for close survivor contact where nitrile is correct.",
+      tl:   "Head torch is not needed in daytime. Red-filter is for night ops.",
+      gog:  "Eye protection not needed here. For fuel/chemical work or high-wind spray.",
+      knf:  "Rescue knife is RHIB/recovery crew kit — not needed on reception.",
+      whst: "Whistle is a useful secondary signalling item but not essential for calm reception.",
+      slev: "Sun cover is sensible for a long deck exposure in strong sun — not strictly required but worth having.",
+      ear:  "Hearing protection not needed — engines are distant, no loud work.",
+      sg:   "Sunglasses optional — but consider visibility when making eye contact with survivors. Remove when engaging directly."
+    }
+  },
+  {
+    title: "Night RHIB launch — moderate sea, distress position confirmed",
+    brief: "You are the third crew member in the RHIB launching from the davits at 02:30. Wind F4, sea moderate. Distress position is 6 nautical miles away. Expected transit 15 minutes each way. You will be in the RHIB for at least an hour, making contact with a vessel in distress and preparing people for transfer. <strong>What PPE goes on before you step into the RHIB?</strong>",
+    required: ['lj', 'nsb', 'hlt', 'fwg', 'tl', 'rad', 'knf', 'glv'],
+    reasoning: {
+      lj:   "<strong>Lifejacket</strong> — required. Auto-inflate, fitted, charged.",
+      nsb:  "<strong>Non-slip boots</strong> — required. RHIB decks are wet and slick constantly.",
+      hlt:  "<strong>Helmet</strong> — required. Davit-launched RHIB at night with moving parts overhead, transfer of people, potential wave impact. Non-negotiable.",
+      fwg:  "<strong>Foul weather gear</strong> — required. Cold, wet, night work in the RHIB. Spray, wind chill, and extended exposure. This is the standard kit for RHIB operations, not a dry suit.",
+      tl:   "<strong>Head torch with red filter</strong> — required. You need light; red filter preserves night vision.",
+      rad:  "<strong>VHF</strong> — required. Constant comms to the mother vessel.",
+      knf:  "<strong>Rescue knife</strong> — required. For cutting fouled lines, nets, or if someone becomes entangled. Never without it in a RHIB.",
+      glv:  "<strong>Work gloves</strong> — required. You'll be handling lines, climbing surfaces, fuel-covered survivors, cold metal in the dark.",
+      hn:   "Safety harness and tether are not typically used in RHIBs — the working environment is different from a moving deck. RHIB crew work unclipped, balancing against the boat's motion.",
+      nglv: "Nitrile gloves — for close medical contact on deck. In the RHIB, work gloves take priority; medical contact is at reception.",
+      gog:  "Eye protection — useful in spray but often impractical; check your SOP. Not always mandatory.",
+      whst: "Whistle — useful backup if VHF fails. Optional but sensible.",
+      slev: "Long sleeves — covered by foul weather gear.",
+      ear:  "Hearing protection — not typically required; RHIB engine noise tolerable.",
+      sg:   "Sunglasses — night, not needed."
+    }
+  },
+  {
+    title: "Heavy weather deck work — securing equipment during a storm",
+    brief: "Weather has deteriorated rapidly. Wind F8 gusting F9, big seas, rain. You've been asked by your team leader to help secure loose deck equipment — a pallet that has come partially free near the aft deck. You will be on exposed deck for approximately 10 minutes. <strong>What PPE do you put on?</strong>",
+    required: ['lj', 'hn', 'nsb', 'hlt', 'rad', 'glv', 'fwg', 'tl'],
+    reasoning: {
+      lj:   "<strong>Lifejacket</strong> — required.",
+      hn:   "<strong>Harness + tether</strong> — <em>required in heavy weather on exposed deck, always.</em> You clip into jackstays or hard points when moving in this sea state. This is what prevents MOB before it happens.",
+      nsb:  "<strong>Non-slip / steel toe boots</strong> — required and critical in these conditions.",
+      hlt:  "<strong>Helmet</strong> — required. Heavy seas mean flying water, unsecured equipment, and impact risk. Non-negotiable in this sea state.",
+      rad:  "<strong>VHF</strong> — required. Single point of failure comms is not acceptable in these conditions.",
+      glv:  "<strong>Work gloves</strong> — required. Cold, wet, rope-handling, metal surfaces.",
+      fwg:  "<strong>Foul weather gear</strong> — required. Exposure to storm conditions without it is a hypothermia and soaking risk even over 10 minutes.",
+      tl:   "<strong>Head torch</strong> — required if overcast/night/visibility poor. In daytime storm, conditions often warrant it anyway.",
+      nglv: "Nitrile gloves — not relevant for deck work; medical gloves are for medical contact.",
+      gog:  "Eye protection — strongly recommended in storm conditions; spray and flying water can impair vision significantly. Depends on your SOP.",
+      knf:  "Rescue knife — useful secondary item; not primary for this task unless cutting tie-downs is required.",
+      whst: "Whistle — a backup that might matter if you go over.",
+      slev: "Long sleeves — covered by foul weather gear.",
+      ear:  "Hearing protection — usually not needed unless near very loud plant or rotor noise.",
+      sg:   "Sunglasses — storm conditions do not call for sunglasses."
+    }
+  }
+];
+
+let ppInit = false;
+let ppPacked = {}; // scenarioIdx -> Set of item ids
+let ppReviewed = {}; // scenarioIdx -> true once reviewed
+
+function ppRender() {
+  const wrap = document.getElementById('ppe-wrap');
+  wrap.innerHTML = PP_SCENARIOS.map((s, si) => {
+    const packed = ppPacked[si] || new Set();
+    const reviewed = ppReviewed[si] || false;
+
+    const itemsHtml = PP_INVENTORY.map(item => {
+      const isPacked = packed.has(item.id);
+      const isRequired = s.required.includes(item.id);
+      let cls = '';
+      if (reviewed) {
+        cls = 'locked';
+        if (isPacked && isRequired) cls += ' correct-kept';
+        else if (!isPacked && isRequired) cls += ' missed';
+        else if (isPacked && !isRequired) cls += ' unnecessary';
+      } else if (isPacked) {
+        cls = 'packed';
+      }
+      return `<div class="pp-item ${cls}" onclick="ppToggle(${si}, '${item.id}')">
+        <div class="pp-item-box"></div>
+        <div class="pp-item-name">${item.name}</div>
+      </div>`;
+    }).join('');
+
+    let debrief = '';
+    if (reviewed) {
+      // Build debrief: missed required + unnecessary + correct
+      const missed = s.required.filter(id => !packed.has(id));
+      const unnecessary = [...packed].filter(id => !s.required.includes(id));
+      const correctlyPacked = s.required.filter(id => packed.has(id));
+
+      let rows = '';
+      if (missed.length) {
+        rows += missed.map(id => {
+          const item = PP_INVENTORY.find(i => i.id === id);
+          return `<div class="pp-debrief-row"><span class="pp-tag missing">Missed</span><div>${s.reasoning[id] || `<strong>${item.name}</strong>`}</div></div>`;
+        }).join('');
+      }
+      if (unnecessary.length) {
+        rows += unnecessary.map(id => {
+          const item = PP_INVENTORY.find(i => i.id === id);
+          return `<div class="pp-debrief-row"><span class="pp-tag not-needed">Not needed</span><div>${s.reasoning[id] || `<strong>${item.name}</strong>`}</div></div>`;
+        }).join('');
+      }
+      if (correctlyPacked.length && !missed.length && !unnecessary.length) {
+        // Perfect kit — show all correct reasons
+        rows = correctlyPacked.map(id => {
+          return `<div class="pp-debrief-row"><span class="pp-tag required">Correct</span><div>${s.reasoning[id]}</div></div>`;
+        }).join('');
+      } else if (correctlyPacked.length) {
+        // Show just the list of correctly packed as a summary
+        const names = correctlyPacked.map(id => PP_INVENTORY.find(i => i.id === id).name).join(', ');
+        rows = `<div class="pp-debrief-row"><span class="pp-tag required">Correctly packed</span><div>${names}</div></div>` + rows;
+      }
+
+      const perfect = missed.length === 0 && unnecessary.length === 0;
+      const principle = perfect
+        ? `<div class="pp-principle"><strong>Well-kitted.</strong> The habit of checking conditions → matching PPE → stepping on deck is how safe crew operate. Build it early, apply it every time.</div>`
+        : `<div class="pp-principle"><strong>The principle.</strong> PPE is not a preference. The kit matches the conditions and the task. Ten seconds checking in the locker prevents hours of problem on deck — or worse. The habit becomes automatic; build it from day one.</div>`;
+
+      debrief = `<div class="pp-debrief visible">${rows}${principle}</div>`;
+    }
+
+    const actions = reviewed
+      ? `<button class="pp-reset-btn" onclick="ppReset(${si})">Try again</button>`
+      : `<button class="pp-review-btn" onclick="ppReview(${si})" ${packed.size === 0 ? 'disabled style="opacity:.5;cursor:not-allowed;"' : ''}>Review my kit</button>
+         <span class="pp-count">${packed.size} item${packed.size === 1 ? '' : 's'} selected</span>`;
+
+    return `<div class="pp-scenario">
+      <div class="pp-scn-head">
+        <div class="pp-scn-num">Scenario ${si+1} of ${PP_SCENARIOS.length}</div>
+        <div class="pp-scn-title">${s.title}</div>
+      </div>
+      <div class="pp-scn-body">
+        <div class="pp-brief">${s.brief}</div>
+        <div class="pp-prompt">Select your PPE from the locker</div>
+        <div class="pp-items">${itemsHtml}</div>
+        <div class="pp-actions">${actions}</div>
+      </div>
+      ${debrief}
+    </div>`;
+  }).join('');
+}
+
+function ppToggle(sIdx, itemId) {
+  if (ppReviewed[sIdx]) return;
+  if (!ppPacked[sIdx]) ppPacked[sIdx] = new Set();
+  if (ppPacked[sIdx].has(itemId)) ppPacked[sIdx].delete(itemId);
+  else ppPacked[sIdx].add(itemId);
+  ppRender();
+}
+
+function ppReview(sIdx) {
+  ppReviewed[sIdx] = true;
+  ppRender();
+}
+
+function ppReset(sIdx) {
+  ppPacked[sIdx] = new Set();
+  ppReviewed[sIdx] = false;
+  ppRender();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.6 — SAR scenario simulator | Operation Ready</title>
+  <meta name="description" content="Decision-based scenario training for humanitarian SAR crew. Three scenarios, four decisions each, with operational debriefs.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .scenario-card{border:1px solid var(--border);background:var(--white);border-radius:6px;padding:20px;margin-bottom:12px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;}
+    .scenario-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--teal);opacity:0;transition:opacity .15s;}
+    .scenario-card:hover{border-color:rgba(61,139,122,.4);background:var(--mint-pale);}
+    .scenario-card:hover::before{opacity:1;}
+    .diff{font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;font-weight:500;}
+    .diff-moderate{color:#D4821A;}.diff-high{color:var(--teal);}.diff-critical{color:#cc4400;}
+    .sc-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin-bottom:6px;}
+    .sc-desc{font-size:13px;color:var(--text2);line-height:1.55;font-weight:300;}
+    .sc-meta{display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--text3);letter-spacing:.04em;}
+    .brief-box{border-left:3px solid var(--teal);padding:16px 20px;background:rgba(61,139,122,.05);margin-bottom:20px;border-radius:0 4px 4px 0;}
+    .brief-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin-bottom:8px;}
+    .brief-text{font-size:14px;line-height:1.75;color:var(--text2);font-weight:300;}
+    .cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;}
+    .cond-tile{background:var(--white);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center;}
+    .cond-tile .lbl{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+    .cond-tile .val{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);}
+    .sc-progress{display:flex;gap:6px;margin-bottom:16px;}
+    .pdot{width:28px;height:3px;border-radius:2px;background:var(--border);}
+    .pdot.done{background:var(--teal);}.pdot.active{background:rgba(61,139,122,.4);}
+    .q-counter{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+    .q-box-sim{border-left:3px solid var(--teal);padding:14px 18px;background:rgba(61,139,122,.04);margin-bottom:16px;border-radius:0 4px 4px 0;}
+    .q-text-sim{font-size:15px;font-weight:500;line-height:1.55;color:var(--navy);}
+    .dec-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb-box{border-radius:4px;padding:14px 18px;margin-top:16px;margin-bottom:16px;font-size:13px;line-height:1.65;font-weight:300;}
+    .fb-box.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb-box.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    .fb-title{font-size:13px;font-weight:500;margin-bottom:4px;}
+    .fb-title.ok{color:#1a7a42;}.fb-title.no{color:#cc4400;}
+    .score-box{text-align:center;padding:32px 0 24px;}
+    .score-n{font-family:'DM Serif Display',serif;font-size:64px;color:var(--teal);line-height:1;}
+    .score-l{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-top:4px;}
+    .score-v{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);margin:14px 0 8px;}
+    .score-t{font-size:13px;color:var(--text2);line-height:1.65;max-width:420px;margin:0 auto 24px;font-weight:300;}
+    .sim-phase{display:none;}.sim-phase.active{display:block;}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.cond-grid{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.6</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">SAR scenario simulator</div>
+    <div class="module-meta">
+      <span>Module 2.6</span><span>2 scenarios</span><span>4 decisions each</span><span>Operational debriefs included</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">How it works</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Scenarios</button>
+  </div>
+
+  <!-- SECTION 0: INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.6</div>
+    <div class="mod-sec-title">Decision-making under pressure</div>
+    <p class="prose">SAR operations require fast, consequential decisions — often with incomplete information, in difficult conditions, with lives at stake. Knowledge of procedures matters, but what matters more is being able to apply that knowledge when it counts.</p>
+    <p class="prose">This module puts you in command. You'll work through realistic scenarios drawn from Central Mediterranean and offshore operations, making decisions at key moments and receiving operational debriefs on the reasoning behind each correct call.</p>
+    <p class="prose">There are no trick questions. Every scenario has a defensible best answer grounded in IAMSAR principles, maritime triage, and operational practice. Where multiple approaches have merit, the debrief explains why one takes precedence.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Mass rescue coordination — overcrowded boat, Central Mediterranean</li>
+        <li>Cold-water casualty — Mediterranean winter recovery and management</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">15–20 minutes — depending on how many scenarios you run</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: HOW IT WORKS -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 1</div>
+    <div class="mod-sec-title">Before you start</div>
+    <p class="prose">Each scenario opens with a situational briefing — the incident type, your role, vessel conditions, and the key facts available to you at that moment. Read it carefully before beginning.</p>
+    <p class="prose">You'll make four sequential decisions within each scenario. Each decision reflects a real choice point — not a knowledge question but a command decision. After each choice, you receive an immediate debrief explaining the reasoning.</p>
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Difficulty levels</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Scenarios are rated <strong style="color:#D4821A;">Moderate</strong> and <strong style="color:var(--teal);">High complexity</strong>. Start with Moderate if you are new to humanitarian SAR. Either order works — run them in any sequence and repeat as often as you like.</div>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">This is not a substitute for operational training</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Scenario simulators develop situational awareness and decision-making instincts. They are not a replacement for drills, tabletop exercises, or the pre-deployment briefings your organisation provides. All operational decisions aboard must align with your vessel's SOPs and your team leader's guidance.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SIMULATOR -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Scenario simulator</div>
+    <div class="mod-sec-title">Select a scenario</div>
+
+    <div class="sim-phase active" id="sim-select">
+      <div id="scenario-list"></div>
+    </div>
+
+    <div class="sim-phase" id="sim-brief">
+      <div id="brief-content"></div>
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <button class="btn-teal" onclick="startQuestions()">Begin scenario</button>
+        <button class="btn-navy" style="background:transparent;color:var(--navy);border:1px solid var(--border2);" onclick="showSim('sim-select')">Back</button>
+      </div>
+    </div>
+
+    <div class="sim-phase" id="sim-question">
+      <div id="question-content"></div>
+    </div>
+
+    <div class="sim-phase" id="sim-result">
+      <div class="score-box">
+        <div class="score-n" id="final-score"></div>
+        <div class="score-l">Correct decisions</div>
+        <div class="score-v" id="final-verdict"></div>
+        <div class="score-t" id="final-text"></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-teal" onclick="showSim('sim-select')">Try another scenario</button>
+        <a href="/modules/2-7.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">Module 2.7 &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+let cur=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/2)*100)+'%';updateNav();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<2)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===2?'none':'inline-block';nb.textContent=cur===1?'Go to scenarios':'Next';}
+
+const scenarios=[
+  {title:"Vessel in distress — Central Mediterranean",difficulty:"Moderate",diffClass:"diff-moderate",meta:["4 decisions","Mediterranean SAR","Deck team perspective"],conditions:[{label:"Sea state",value:"3"},{label:"Visibility",value:"5 nm"},{label:"POB",value:"~70"}],brief:"You are a member of the deck team aboard a humanitarian rescue vessel. At 0410 local time, MRCC Rome relays a distress: an overcrowded boat with approximately 70 people on board, taking on water, position 35nm SSE of Lampedusa. Wind NW 15kts, sea state 3. Your vessel is 18nm from the position. The team leader briefs the crew during transit. The bridge handles navigation and MRCC communication; the SAR team is preparing the RHIBs; you are part of the reception team on deck.",questions:[{q:"During transit, you have about 90 minutes before arrival. Your reception role hasn't started yet. What's the best use of this time?",opts:["Go to the bridge to monitor the situation as it develops","Rest, eat, hydrate, and check your PPE — be at your assigned reception station 15 minutes before arrival","Report to the SAR team to assist with RHIB preparation","Help in the medical bay setting up triage equipment"],correct:1,fb:"Transit time is preparation time. Resting, eating, hydrating, and checking your PPE is what makes you effective when the operation actually starts. Being in position 15 minutes before arrival means you are not running to your station as the RHIB arrives. The bridge, SAR team, and medical team all have their own preparations — adding yourself to those spaces creates noise, not help. Stay at your station, ready."},{q:"The RHIB completes the first transfer and survivors are now coming up the boat landing onto the deck. People are exhausted, some unable to walk unassisted. What's your immediate role?",opts:["Begin distributing water and food to the arriving survivors","Help survivors move away from the landing point toward the reception area, and signal the medical team for anyone who needs immediate assessment","Carry out a quick name and nationality check as each person comes aboard","Take photos for the operational record"],correct:1,fb:"Clearing the landing point is the first priority — the RHIB is coming back with the next group within minutes, and the area must be ready. Helping survivors move toward reception and flagging anyone needing medical attention is the deck team's role at this moment. Distribution of water, food, and survivor kits happens in the reception area, organised by the post-rescue team. Registration and documentation come later, not at the moment of landing."},{q:"A man in his thirties, soaked in fuel, refuses to move from the landing point. He is shouting in a language you don't understand and gripping the rail. What do you do?",opts:["Try to physically move him away from the landing point — the next RHIB is approaching","Call for a cultural mediator immediately, keep your distance, stay calm, do not raise your voice","Tell him in English to move, slowly and clearly, with hand gestures","Step back and wait for him to calm down on his own"],correct:1,fb:"Calling for a cultural mediator is the right call. Fuel exposure may be causing chemical burns and panic; language and trauma compound it. Trying to physically move him risks escalating the situation. English with gestures is unlikely to help and may feel coercive. Waiting passively delays the next transfer. The cultural mediator can communicate in his language, explain that he is safe, and de-escalate. Your role is to make space and call for the right person."},{q:"After several hours, all 70 survivors are aboard. You're rotating off your reception duty. A woman approaches you and quietly asks if she can speak to someone — she gestures that something happened to her. What do you do?",opts:["Listen to what she has to say so you can pass it on accurately","Gently let her know you'll find the right person, and quickly fetch a female protection officer or cultural mediator","Direct her to the medical bay where she can be assessed","Tell her she is safe now and offer her water"],correct:1,fb:"Finding the right person is the answer. The protection team is trained to handle disclosures, particularly around SGBV which this gesture may suggest. Listening yourself — even with good intent — risks her having to repeat trauma, your inability to provide what she needs, and possible mishandling of sensitive information. Always offer her the option of speaking directly to the appropriate person, or having you relay on her behalf. Female staff are often better placed for this initial contact. Stay with her until the right person arrives."}]},
+  {title:"Cold-water casualty — Mediterranean winter",difficulty:"High complexity",diffClass:"diff-high",meta:["4 decisions","Med winter operation","Hypothermia"],conditions:[{label:"Water temp",value:"12°C"},{label:"Air temp",value:"9°C"},{label:"Sea state",value:"3"}],brief:"You are a RHIB crew member on a Mediterranean SAR vessel in February. The water temperature is 12°C, air 9°C, wind NW 14kts. A small overcrowded boat has been located 8nm from your position; people have been at sea for 18+ hours. On approach you see one person has fallen from the boat and is in the water — wearing inadequate clothing, no lifejacket, semi-conscious, weakly waving an arm. Your RHIB is closest. The other RHIB is approximately 4 minutes behind.",questions:[{q:"Recovery of the person in the water is your priority. What is the survival timeline you need to think with at 12°C, and how does that shape your immediate action?",opts:["He has hours — focus on stabilising the boat first, then return for him","Useful consciousness in cold water is short — perhaps 30–60 minutes for someone immersed for an unknown period in inadequate clothing. Recover him now; the second RHIB will manage the boat","He has roughly 2 hours — proceed to the boat first as it carries more people","Prioritise the boat — one casualty is acceptable to save many"],correct:1,fb:"Mediterranean winter water at 12°C is not as immediately lethal as polar water, but for someone already in the water for an unknown time, semi-conscious and inadequately clothed, useful consciousness is dropping fast. Get him out now. The second RHIB, four minutes behind, will manage the boat. The 'one for many' framing is wrong here — the boat is stable for the moment, the man in the water is not."},{q:"You bring the RHIB alongside him. He is too weak to assist his own recovery. What is the safe technique?",opts:["Pull him in vertically by his arms — fastest method","Use a horizontal recovery technique — sling, scoop, or two-crew lift — to keep him as horizontal as possible","Have a crew member enter the water to help lift him","Tow him alongside the RHIB to the mother vessel"],correct:1,fb:"Horizontal recovery is critical in hypothermia. Lifting a hypothermic casualty vertically can cause 'rescue collapse' — sudden cardiac arrest as cold blood from the limbs returns to the core. Use whatever horizontal technique your equipment allows. A crew member in the water adds a second casualty; towing in cold water continues hypothermia and risks drowning."},{q:"Back aboard the mother vessel, the casualty is conscious but shivering violently, confused, and his clothing is soaked. The medical team is taking over. What is your handover priority and the immediate handling principle?",opts:["Stand him up and walk him to the medical bay to maintain alertness","Hand over time-in-water estimate, observed condition, and any signs noted; he must be kept horizontal and handled gently to avoid afterdrop","Give him a hot drink to begin internal warming","Strip him down and put him in a hot shower"],correct:1,fb:"Your handover is operational information the medical team needs — time in water (estimated), what you observed, any condition changes during recovery. The handling principle the whole team needs to know: keep him horizontal, handle him gently. Walking risks afterdrop. Hot drinks and hot showers cause peripheral vasodilation, which has the same risk. Wet clothing is removed gently, casualty is wrapped, warmed slowly. The medical team manages this."},{q:"The other RHIB completes recovery from the boat. There were 23 people aboard, all now safely transferred. The casualty from the water has stabilised but the medical team flags him as needing port-level care. The vessel is 60nm from the nearest assigned port. What does the bridge need from your team?",opts:["A request to MRCC for helicopter MEDEVAC, with current condition and estimated transit","Acceleration to maximum speed regardless of fuel — every minute counts","A decision from the team about whether to divert to a closer non-assigned port","A formal incident report submitted before any further action"],correct:0,fb:"Requesting MEDEVAC via MRCC is the right operational step. The medical team provides current condition; the bridge passes the request with position and estimated transit. MRCC coordinates whether helicopter assets are available and the appropriate destination. Diverting to a non-assigned port creates legal and operational complications that MRCC must approve. Reports happen alongside, not before, urgent medical coordination."}]}
+];
+
+let currentScenario=null,currentQ=0,score=0,answered=false;
+
+function renderScenarios(){document.getElementById('scenario-list').innerHTML=scenarios.map((s,i)=>`<div class="scenario-card" onclick="startScenario(${i})"><div class="diff ${s.diffClass}">${s.difficulty}</div><div class="sc-title">${s.title}</div><div class="sc-desc">${s.brief.substring(0,140)}...</div><div class="sc-meta">${s.meta.map(m=>`<span>${m}</span>`).join('')}</div></div>`).join('');}
+
+function showSim(id){document.querySelectorAll('.sim-phase').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+function startScenario(idx){currentScenario=idx;currentQ=0;score=0;answered=false;const s=scenarios[idx];const conds=s.conditions.map(c=>`<div class="cond-tile"><div class="lbl">${c.label}</div><div class="val">${c.value}</div></div>`).join('');document.getElementById('brief-content').innerHTML=`<div class="brief-box"><div class="brief-title">${s.title}</div><div class="brief-text">${s.brief}</div></div><div class="cond-grid">${conds}</div>`;showSim('sim-brief');window.scrollTo({top:0,behavior:'smooth'});}
+
+function startQuestions(){renderQuestion();showSim('sim-question');}
+
+function renderQuestion(){const s=scenarios[currentScenario];const q=s.questions[currentQ];answered=false;const dots=s.questions.map((_,i)=>`<div class="pdot ${i<currentQ?'done':i===currentQ?'active':''}"></div>`).join('');const opts=q.opts.map((o,i)=>`<div class="q-opt" id="opt-${i}" onclick="selectOpt(${i})">${o}</div>`).join('');document.getElementById('question-content').innerHTML=`<div class="sc-progress">${dots}</div><div class="q-counter">Decision ${currentQ+1} of ${s.questions.length}</div><div class="q-box-sim"><div class="q-text-sim">${q.q}</div></div><div class="dec-label">Your decision</div>${opts}<div id="fb-area"></div><div id="nav-area"></div>`;window.scrollTo({top:0,behavior:'smooth'});}
+
+function selectOpt(idx){if(answered)return;answered=true;const q=scenarios[currentScenario].questions[currentQ];if(idx===q.correct)score++;document.querySelectorAll('.q-opt').forEach((_,i)=>{const el=document.getElementById(`opt-${i}`);el.onclick=null;if(i===idx&&i===q.correct)el.classList.add('correct');else if(i===idx)el.classList.add('wrong');else if(i===q.correct)el.classList.add('show-correct');});const ok=idx===q.correct;document.getElementById('fb-area').innerHTML=`<div class="fb-box ${ok?'ok':'no'}"><div class="fb-title ${ok?'ok':'no'}">${ok?'Correct decision':'Incorrect — debrief'}</div>${q.fb}</div>`;const isLast=currentQ===scenarios[currentScenario].questions.length-1;document.getElementById('nav-area').innerHTML=isLast?`<button class="btn-teal" onclick="showResult()">View debrief</button>`:`<button class="btn-teal" onclick="nextQ()">Next decision</button>`;}
+
+function nextQ(){currentQ++;renderQuestion();}
+
+function showResult(){const total=scenarios[currentScenario].questions.length;const pct=score/total;let v,t;if(pct===1){v="Exemplary command";t="All decisions aligned with IAMSAR principles and best practice. Strong SAR command instincts.";}else if(pct>=.75){v="Solid performance";t="Strong decision-making with minor gaps. Review the debrief notes on any missed decisions.";}else if(pct>=.5){v="Room to develop";t="Some correct instincts but critical errors. Review IAMSAR Volume III and rerun this scenario.";}else{v="Significant gaps identified";t="Key decisions diverged from best practice. Focus on triage principles and MRCC coordination protocols.";}document.getElementById('final-score').textContent=`${score}/${total}`;document.getElementById('final-verdict').textContent=v;document.getElementById('final-text').textContent=t;showSim('sim-result');window.scrollTo({top:0,behavior:'smooth'});}
+
+renderScenarios();
+</script>
+</body>
+</html>

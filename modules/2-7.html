@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.7 — Post-rescue documentation | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .doc-list{display:flex;flex-direction:column;gap:8px;margin:14px 0;}
+    .doc-item{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);display:flex;gap:14px;}
+    .doc-icon{width:36px;height:36px;border-radius:3px;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .doc-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+    .doc-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.7</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Post-rescue documentation</div>
+    <div class="module-meta"><span>Module 2.7</span><span>6 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Why it matters</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">What gets recorded</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Your role</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.7 — Path 2 final module</div>
+    <div class="mod-sec-title">The operation doesn't end with recovery</div>
+    <p class="prose">When the last survivor comes aboard, the physical rescue is complete. But the operation is not. Documentation — recording what happened, when, where, and to whom — is a legal requirement, an operational necessity, and often a human rights obligation.</p>
+    <p class="prose">Records created during and after a rescue are used in MRCC coordination, in port authority processing, in legal proceedings, in advocacy, and in the survivor protection and asylum systems they will encounter after disembarkation. The quality of that documentation affects real people in real ways long after the vessel has left port.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Why documentation matters — legally, operationally, and for survivors</li>
+        <li>What records are kept during and after a rescue</li>
+        <li>Chain of custody for evidence and sensitive information</li>
+        <li>Your role in the documentation process</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">6 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Why documentation matters</div>
+    <p class="prose">Documentation serves multiple purposes simultaneously — and the failure to document can have serious consequences.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Legal obligation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Maritime law and MRCC coordination requirements oblige vessels to report rescues. The vessel's log is a legal document. Communication records with the MRCC form part of the legal record of the operation. Incomplete records can affect a vessel's legal position in any subsequent proceedings.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Survivor protection</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Records of each rescued person — name, nationality, age, medical status, vulnerability indicators — are passed to authorities and protection organisations on arrival. This information informs the asylum process, family tracing, and access to protection services. Inaccurate or missing records can delay or prevent survivors from accessing services they are entitled to.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Accountability and advocacy</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Documented records of MRCC communications, delays in Place of Safety designation, and operational events form part of the evidence base used by NGOs to advocate for system improvements and to hold states to their obligations. Documentation is a form of accountability.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Operational learning</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Post-operation reports feed into organisational learning — what worked, what didn't, equipment issues, medical challenges, and coordination problems. This information improves future operations. Your observations during an operation, when shared in debrief, are part of this process.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">What gets recorded</div>
+    <p class="prose">Documentation covers the operation itself, the vessel, and each person rescued. Different parts of the team are responsible for different records.</p>
+
+    <div class="doc-list">
+      <div class="doc-item">
+        <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="1" stroke="white" stroke-width="1.5" fill="none"/><line x1="6" y1="6" x2="12" y2="6" stroke="white" stroke-width="1.2"/><line x1="6" y1="9" x2="12" y2="9" stroke="white" stroke-width="1.2"/><line x1="6" y1="12" x2="10" y2="12" stroke="white" stroke-width="1.2"/></svg></div>
+        <div><div class="doc-title">Vessel log</div><div class="doc-text">A continuous record of the vessel's activities — position, course, speed, weather, communications, and all significant events. The Master and OOW maintain the log. It is a legal document. All SAR operations are recorded in the vessel log with times and positions.</div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9,2 L16,6 L16,12 C16,14.5 12,16 9,16 C6,16 2,14.5 2,12 L2,6 Z" stroke="white" stroke-width="1.5" fill="none"/><path d="M6,9 L8,11 L12,7" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="doc-title">SAR operation report</div><div class="doc-text">A formal record of the rescue — time and position of distress, number of persons rescued, RHIB operations, medical cases, communications with MRCC, and any significant incidents. Compiled by the SARCO and STL after the operation.</div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3.5" stroke="white" stroke-width="1.5" fill="none"/><path d="M3,15 C3,12 5.5,10 9,10 C12.5,10 15,12 15,15" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg></div>
+        <div><div class="doc-title">Survivor registration</div><div class="doc-text">Individual records for each person rescued — name (if provided), nationality, age, sex, unaccompanied minor status, physical condition, and any protection flags. Compiled by the protection and cultural mediator teams during the operation and on transit to port.</div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1" stroke="white" stroke-width="1.5" fill="none"/><line x1="2" y1="8" x2="16" y2="8" stroke="white" stroke-width="1.2"/><line x1="6" y1="4" x2="6" y2="14" stroke="white" stroke-width="1.2"/></svg></div>
+        <div><div class="doc-title">Medical records</div><div class="doc-text">Records for each survivor receiving medical attention — presenting condition, treatment given, triage category, and disposition (transferred to hospital, released, etc.). Maintained by the medical team. Subject to confidentiality.</div></div>
+      </div>
+      <div class="doc-item">
+        <div class="doc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3,5 L15,5 M3,9 L12,9 M3,13 L9,13" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div><div class="doc-title">MRCC communications log</div><div class="doc-text">A record of all communications with the MRCC — timestamps, content of messages, requests made, and responses received. Particularly important for documenting delays, non-responses, or instructions that affect the operation. Maintained by the SARCO.</div></div>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Confidentiality</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Survivor information is confidential. Names, nationalities, and personal details are not shared outside the operational team without authorisation. This applies to photographs and social media — no images of survivors are taken or shared without specific consent protocols, which your organisation will define. Treat all survivor information with the same discretion you would want applied to your own personal details.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Your role in documentation</div>
+    <p class="prose">Most documentation is handled by designated team members — the SAR team leader, protection officers, medical team. Your contribution is through debrief, personal observation, and how you handle what survivors say to you.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">If a survivor says something to you</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Survivors will sometimes share information with whoever they happen to be near — not always the right person to receive it. Disclosures about violence, family separation, medical conditions, or anything sensitive should be flagged to the right person within your team: protection officers, cultural mediators, the medical team, or the team leader as appropriate. <strong>Always offer the survivor the choice</strong>: would they like to speak directly to that person, or would they like you to relay on their behalf? Their preference matters — some people want to repeat their story to as few people as possible; others find a familiar face easier to speak through. Either way, the information reaches the right team member.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Post-operation debrief</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">After a rescue, your organisation will conduct a debrief — what happened, what worked, what needs to change. Your observations from your specific position during the operation are valuable input. Participating actively and honestly in debriefs improves future operations.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Incident reporting</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">If you witness something during an operation — a near-miss, an equipment issue, a decision that created problems — report it through the appropriate channel after the operation. NGOs operate non-punitive incident reporting systems precisely because learning from incidents requires people to feel safe reporting them.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Personal notes</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Some crew keep personal notes after difficult operations — for their own processing, for debrief preparation, or for personal reflection. If you do this, be mindful of confidentiality: names, nationalities, and specific survivor details should not appear in personal notes that could be shared or lost.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Path 2 complete</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">You have covered the full SAR operations path — from the legal framework through search patterns, RHIB operations, survivor recovery, mass rescue, night operations, and documentation. This gives you a solid operational foundation. The night operations simulator (module 2.6) is available to practice in your own time.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you complete Path 2</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on documentation and its purpose.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"Why is the vessel's log a particularly important document?",o:["It helps crew remember what happened","It is a legal document — a continuous record of the vessel's activities and SAR operations that may be required in legal proceedings","It is primarily used for insurance purposes","It helps the MRCC plan future operations"],c:1,f:"The vessel log is a legal document — not just an operational record. All SAR activities are recorded with times and positions. In any subsequent legal proceedings involving the vessel or its operations, the log may be required as evidence."},
+  {q:"A survivor's registration information is accidentally shared on a team member's social media post. What is the most significant concern?",o:["It is a minor procedural breach that can be corrected","Survivor information is confidential — sharing it without consent violates the survivor's privacy, potentially endangers them, and breaches the organisation's protocols","It only matters if the survivor's name was included","The concern is primarily about the organisation's reputation"],c:1,f:"Survivor information is confidential — names, nationalities, and personal details are protected. Sharing this information without consent can expose survivors to risk, violates their privacy and dignity, and breaches the organisation's data protection protocols. This applies to all information, not just names."},
+  {q:"After a rescue, the SARCO documented multiple delays in MRCC responses and two instances where the MRCC did not respond to calls. Why is this documentation important beyond the current operation?",o:["It is primarily for the vessel's legal protection if questioned","It forms part of the evidence base used by NGOs to hold states to their obligations and advocate for system improvements","It helps the crew process what happened","It is required by flag state regulations"],c:1,f:"Documentation of MRCC behaviour — delays, non-responses, and problematic instructions — forms part of the advocacy and accountability record. NGOs use this systematic documentation to evidence failures in the SAR system and to advocate for changes at policy and legal levels."},
+  {q:"During a debrief after a difficult rescue, you observed a near-miss with the davit during RHIB recovery. Should you mention this?",o:["Only if asked directly — reporting it might reflect badly on the crew involved","Yes — near-miss reporting is how organisations identify and fix hazards before they become accidents","Only if the Master specifically requests incident reports","No — the operation is over and nothing bad happened"],c:1,f:"Near-miss reporting is one of the most valuable safety practices in any operational organisation. Incidents that almost caused harm but didn't are the warning signs before actual accidents. NGOs operate non-punitive reporting systems precisely to encourage this — the goal is learning and improvement, not blame."},
+  {q:"You are keeping personal notes after operations. What should you be careful about?",o:["Keeping notes at all — these can be requested by authorities","Using digital rather than paper notes — these are less secure","Including survivor names, nationalities, and personal details — these are confidential and should not appear in personal notes that could be shared or lost","The language you use — notes should be in your organisation's official language"],c:2,f:"Personal notes can be a valuable tool for processing experiences and preparing for debriefs. The key risk is confidentiality — survivor names, nationalities, and personal details are sensitive information that should not appear in documents that could be lost, shared, or accessed by others. Keep personal notes reflective rather than case-specific."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Path 2 complete':p>=.6?'Path 2 complete':'Worth revisiting';let t=p===1?'You have completed all seven modules in Path 2 — SAR operations.':p>=.6?'Good foundation — review what you missed before your deployment.':'Go back through the documentation and confidentiality sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="background:var(--teal);border-radius:6px;padding:20px 24px;margin:0 0 20px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;margin-bottom:6px;">Path 2 — SAR operations</div><div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:14px;font-weight:300;">You have completed all seven modules in Path 2.</div><div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:3px;padding:6px 16px;font-size:11px;color:#fff;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:14px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="white" stroke-width="1.2"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>7 of 7 modules complete</div><div><a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:3px;">Generate your Path 2 certificate &rarr;</a></div></div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules.html#track-3" class="btn-teal">Explore Path 3</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div><div id="path-survey-mount"></div></div>`;renderPathSurvey(2,'SAR operations','path-survey-mount');},300);}
+</script>
+</body>
+</html>

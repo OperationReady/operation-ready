@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.3 — RHIB operations | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .role-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+    .role-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);}
+    .role-title{font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);margin-bottom:4px;}
+    .role-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:6px;font-weight:500;}
+    .role-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .phase-steps{display:flex;flex-direction:column;gap:0;margin:14px 0;}
+    .phase-step{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start;}
+    .phase-step:last-child{border-bottom:none;}
+    .phase-icon{width:32px;height:32px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .phase-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+    .phase-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.role-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.3</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">RHIB operations</div>
+    <div class="module-meta"><span>Module 2.3</span><span>8 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">The RHIB</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Launch & recovery</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Deck crew role</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.3</div>
+    <div class="mod-sec-title">The rescue boat operation</div>
+    <p class="prose">The RHIB — Rigid Hull Inflatable Boat — is the primary rescue platform used by humanitarian SAR vessels. Understanding how RHIBs operate, what happens during a launch and recovery, and what is expected of deck crew during these operations is essential for anyone working on the stern deck.</p>
+    <p class="prose">Most of the dangerous moments in a SAR operation happen during RHIB launch and recovery. Moving heavy equipment, open deck in sea state, lines under tension, and time pressure — these all combine to create a high-risk environment. Understanding the operation helps you play your part safely.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What a RHIB is and why it is used for SAR</li>
+        <li>RHIB crew roles — who does what</li>
+        <li>The launch and recovery sequence</li>
+        <li>What deck crew do during RHIB operations</li>
+        <li>Common hazards and how they are managed</li>
+      </ul>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">RHIB operations are restricted</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">RHIB operation — driving, crewing, and recovery — is carried out by trained SAR technicians. This module explains what happens during these operations so you understand and can support them safely. You will not be operating a RHIB without specific training.</div>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">The RHIB</div>
+    <p class="prose">A RHIB (Rigid Hull Inflatable Boat) combines a solid fibreglass hull with inflatable collar tubes. This gives it stability, buoyancy, and impact resistance — qualities essential for approaching distress vessels and recovering people from the water in difficult conditions.</p>
+    <p class="prose">This section is an overview. Every vessel and organisation will have significant variation in their SOPs — depending on the davits, cranes, position of the RHIBs, and the mother vessel's design. The principles below apply broadly; your vessel's induction will give you the specifics.</p>
+
+    <div class="callout-orange" style="margin:14px 0;">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">PPE is essential</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">RHIB operations are one of the highest-risk activities aboard. PPE — lifejacket, helmet, foul-weather gear, non-slip footwear, gloves, knife, head torch where appropriate — is non-negotiable for everyone in the operating area.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 20px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Why RHIBs for SAR</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Fast, manoeuvrable, and stable. Can approach a distress vessel from multiple angles. The low freeboard allows the crew to communicate at eye level with people in distress and to manage transfers efficiently.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Limitations</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Limited range and fuel. Sea state dependent — at higher Beaufort levels RHIB operations become progressively more dangerous. Exposed crew. Capacity is limited; multiple trips are needed for any significant number of people.</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">RHIB crew roles</div>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-tag">RHIB lead</div>
+        <div class="role-title">Boat leader / STL</div>
+        <div class="role-text">Commands the RHIB during operations. On the lead RHIB, this is typically the STL. Responsible for the safety of the RHIB and all persons aboard. Makes approach decisions, directs the recovery, and maintains communication with the mother vessel.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-tag">Driver</div>
+        <div class="role-title">Driver</div>
+        <div class="role-text">Drives the RHIB under direction of the boat leader. Manages engine and fuel systems. Maintains position during the operation alongside the distress vessel.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-tag">SAR Crew</div>
+        <div class="role-title">RHIB Crew</div>
+        <div class="role-text">SAR Team member working in the RHIB. Carries out the physical tasks of the operation — passing lifejackets, managing lines, supporting people transferring out of the distress vessel. Works under direction of the boat leader. Cultural mediators are typically also embarked on the lead RHIB.</div>
+      </div>
+      <div class="role-card">
+        <div class="role-tag">Deck leader</div>
+        <div class="role-title">Deck leader (mother vessel)</div>
+        <div class="role-text">Manages the deck during RHIB operations — coordinating launch and recovery, managing lines, directing deck crew, and communicating with the bridge. The deck leader's instructions take priority on the deck during operations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Launch and recovery</div>
+    <p class="prose">RHIB launch and recovery are the most operationally demanding — and most hazardous — parts of a rescue. They involve heavy equipment moving in a confined space, lines under tension, and deck crew in close proximity to the water. Understanding the sequence helps you follow instructions correctly and avoid the most common hazards.</p>
+
+    <div class="callout-navy" style="margin:14px 0;">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Survivors are not recovered with the RHIB</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">An important point on terminology: the RHIB ferries people from the distress vessel to the mother vessel, but the RHIB itself is <strong>not</strong> lifted out of the water with survivors aboard. Survivors disembark from the RHIB at water level — typically via a boat landing, a pilot ladder, or directly onto the deck depending on the vessel — and only then is the empty RHIB recovered. The recovery sequence below describes the empty RHIB returning to its cradle.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Launch sequence (typical)</div>
+    <div class="phase-steps">
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">1</text></svg></div>
+        <div><div class="phase-title">RHIB moved from cradle to embarkation zone</div><div class="phase-text">The RHIB starts in its cradle (storage position). It is moved or lowered to the embarkation level — the height where crew can step into it safely.</div></div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">2</text></svg></div>
+        <div><div class="phase-title">RHIB Crew embark</div><div class="phase-text">The RHIB Crew step in at the embarkation level, in full PPE, and confirm ready. Tag lines are attached at this level — they help control the boat's swing during the lower. The painter line is already attached.</div></div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">3</text></svg></div>
+        <div><div class="phase-title">Lower to water and release</div><div class="phase-text">The RHIB is lowered to the water surface. Tag lines are released as the RHIB reaches water. The painter line stays attached for the moment. Engine started, hook released. RHIB confirms ready and the painter line is then released by the deck. The RHIB departs under its own power.</div></div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">Recovery sequence (typical)</div>
+    <div class="phase-steps">
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">1</text></svg></div>
+        <div><div class="phase-title">Survivors disembark first</div><div class="phase-text">Before recovery, the RHIB transfers any survivors aboard to the mother vessel — via boat landing, pilot ladder, or directly onto the deck depending on the vessel. The RHIB only returns for recovery once empty of survivors.</div></div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">2</text></svg></div>
+        <div><div class="phase-title">RHIB to recovery position</div><div class="phase-text">The empty RHIB returns to the recovery position alongside the mother vessel. The painter line is passed and attached. The hook is lowered and connected.</div></div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">3</text></svg></div>
+        <div><div class="phase-title">Lift to embarkation level</div><div class="phase-text">The RHIB is lifted out of the water to the embarkation level. As it reaches that level, tag lines are attached to control swing.</div></div>
+      </div>
+      <div class="phase-step">
+        <div class="phase-icon"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="rgba(255,255,255,.3)"/><text x="8" y="12" text-anchor="middle" font-family="DM Serif Display,serif" font-size="11" fill="white">4</text></svg></div>
+        <div><div class="phase-title">Crew exit and RHIB to cradle</div><div class="phase-text">RHIB Crew exit at embarkation level. Tag lines are released. The RHIB is then moved or lifted to its cradle for stowage and re-readiness.</div></div>
+      </div>
+    </div>
+
+    <div class="callout-orange" style="margin-top:14px;">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Lines: painter and tag</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);"><strong>Painter line</strong> — always attached whenever the RHIB is in the water. It is the primary connection between RHIB and mother vessel. <strong>Tag lines</strong> — attached and released only at the embarkation level, used to control the boat's swing during lifting and lowering. Tag lines are not in the water.</div>
+    </div>
+
+    <div class="callout-orange" style="margin-top:10px;">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Critical safety moments</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The highest-risk moments during launch and recovery are: hook attachment and release (pinch and crush risk), the RHIB swing during lowering and lifting (being struck by the boat or hook), and tag-line handling under tension (snap-back risk). If you are not specifically assigned to a task, stay back from the operating zone and maintain a clear path for assigned crew.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Deck crew role during RHIB operations</div>
+    <p class="prose">During RHIB operations, non-SAR deck crew have specific supporting roles. Understanding what is expected — and what is not — helps operations run safely and efficiently.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Stay back unless assigned</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">The deck during a RHIB operation is a controlled space. Unassigned crew on deck create hazards — they obstruct movement, create confusion in a fast-moving operation, and put themselves at risk. If you are not specifically assigned a task, stay back from the operating zone.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Follow the deck leader's instructions — and use the clarification loop</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">During operations, instructions from the deck leader are followed immediately. If you are unsure of an instruction — what was said, where to go, what to do — say so right away. A short clarification loop ("confirm — you want me to take the line and step back?") is the right response, not silence followed by guessing. Operations move fast; honest clarification is faster than mistakes.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Survivor reception readiness</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">When the RHIB returns with survivors, assigned crew are ready at the boat landing or transfer point to assist people aboard. Be in position early — not running over when the RHIB is already arriving. Your team leader will brief your specific role in advance.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Maintaining communication</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">During RHIB operations, radio communications between the RHIB, deck, and bridge are continuous. Deck crew with radios maintain awareness of the operation's status. Keep radio channels clear of non-essential communication during a RHIB operation.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Preparing during transit</div>
+      <div class="callout-text">When your vessel is in transit to a rescue position, the SAR team is preparing — checking RHIB systems, fuelling, checking PPE, confirming crew roles. As a general crew member, you prepare too — rest if you can, eat something, put on appropriate PPE, and be ready at your assigned station when the operation begins. Preparation during transit is part of the operation.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on RHIB operations and deck crew roles.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A RHIB launch is in progress. You are not assigned a specific task. What should you do?",o:["Position yourself near the stern in case help is needed","Stay clear of the operating zone — unassigned crew on deck create hazards","Assist the davit operator","Stand by the radio in case the bridge needs to communicate"],c:1,f:"The stern deck during a RHIB operation is a controlled space. Unassigned crew create hazards — they obstruct movement and put themselves and others at risk. Stay back from the operating zone. The deck leader manages the space and will direct you if your assistance is needed."},
+  {q:"During RHIB recovery, the deck leader gives you an instruction but you didn't quite catch what was said. The operation is in progress. What do you do?",o:["Execute what you think they said","Use a brief clarification loop — confirm what was asked before acting","Wait silently and hope they repeat","Check with the bridge first if it might involve a safety concern"],c:1,f:"During operations, instructions are followed immediately — but if you are unsure of what was said, use a brief clarification loop: confirm the instruction back to the deck leader before acting. This takes seconds and prevents a wrong action that costs much more time. Guessing during a fast-moving operation is how people get hurt."},
+  {q:"What is the deck leader's role during a RHIB operation?",o:["Drives the RHIB during recovery","Commands the RHIB crew during the rescue approach","Manages the deck — coordinating launch and recovery, managing lines, directing deck crew, communicating with the bridge","Operates the davit under direction of the Master"],c:2,f:"The deck leader manages the deck during RHIB operations — they coordinate the launch and recovery sequence, manage lines, direct deck crew, and communicate with the bridge. Their instructions take priority on the deck during operations."},
+  {q:"The RHIB is returning with survivors. You are assigned to reception. When should you be at your position?",o:["When the RHIB arrives at the stern","When you hear the RHIB engine approaching","Before the RHIB arrives — in position and ready early","When the deck leader calls you over"],c:2,f:"Being in position before the RHIB arrives is essential. Running to the stern when the RHIB is already there means arriving late to a fast-moving situation. Your team leader will brief your specific role — be at your station and ready before the RHIB completes its transit back."},
+  {q:"The vessel is in transit to a rescue position. What should the SAR team be doing?",o:["Resting — conserving energy for the operation","Preparing — checking RHIB systems, fuelling, confirming crew roles, checking PPE","Briefing the bridge on the planned approach","Monitoring VHF Channel 16 for updates from the MRCC"],c:1,f:"Transit time is preparation time. The SAR team uses it to check RHIB systems, fuel, confirm roles, and prepare PPE. General crew members should also prepare — resting if possible, eating, and being ready at their assigned station. Preparation during transit is part of the operation."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Clear understanding of RHIB operations. Ready for module 2.4.':p>=.6?'Mostly solid — review what you missed.':'Go back through the launch/recovery and deck crew sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/2-4.html" class="btn-teal">Module 2.4 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

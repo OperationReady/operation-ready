@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 5.4 — Managing fatigue on deployment | Operation Ready</title>
+  <meta name="description" content="Understanding and managing fatigue during a humanitarian SAR deployment — sleep, watch systems, cumulative fatigue, and when to raise concerns.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .callout-red{border-left:3px solid #cc2200;padding:12px 16px;background:rgba(204,34,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc2200;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .fat-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);margin-bottom:10px;}
+    .fat-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+    .fat-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-5">Path 5</a> &rsaquo; <span>5.4</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 5 — Mental health &amp; resilience</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Managing fatigue on deployment</div>
+    <div class="module-meta">
+      <span>Module 5.4</span><span>8 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Fatigue on vessels</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Managing it</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 5.4</div>
+    <div class="mod-sec-title">Fatigue as an operational risk</div>
+    <p class="prose">Fatigue is one of the most significant and consistently underestimated risks in maritime operations. On a humanitarian SAR vessel, where watch systems, unpredictable rescue operations, and the emotional demands of the work combine, cumulative fatigue builds quickly. Understanding how fatigue affects performance and what you can do about it is part of being an effective crew member — and a safe one.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>How fatigue accumulates on a SAR deployment and why it is underestimated</li>
+        <li>What fatigue does to decision-making, reaction time, and communication</li>
+        <li>Practical approaches to managing sleep and rest within operational constraints</li>
+        <li>When to raise fatigue concerns with a team leader</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">8 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">Why fatigue is a particular challenge on SAR vessels</div>
+    <p class="prose">Fatigue is universally managed in aviation and offshore industries through strict rest regulations. Maritime watch keeping systems exist for the same reason. On a humanitarian SAR vessel, however, the specific combination of factors creates fatigue pressures that regulation alone cannot fully address.</p>
+
+    <div class="fat-card">
+      <div class="fat-title">Broken and interrupted sleep</div>
+      <div class="fat-text">SAR operations do not happen on schedule. A rescue can begin at 0200 after crew have been asleep for two hours. Repeated sleep interruption — night after night — creates cumulative sleep debt that is not recovered by a single undisturbed rest period. After a week of interrupted sleep, cognitive performance degrades significantly even when a person does not feel tired.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">Watch systems and circadian disruption</div>
+      <div class="fat-text">Rotating watch systems disrupt the body's natural sleep-wake cycle. Night watches — particularly in the 0200–0600 window, when the circadian low is deepest — carry higher fatigue risk than day watches of identical length. Crew who regularly take the same night watch across a deployment may adapt partially, but circadian disruption is a structural feature of watchkeeping, not an individual problem.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">Emotional fatigue compounding physical fatigue</div>
+      <div class="fat-text">The emotional demands of the work create a form of fatigue that is distinct from physical tiredness. Crew who are emotionally depleted may feel physically rested but find their capacity for judgment, attention, and communication is significantly reduced. On a SAR vessel, emotional and physical fatigue frequently occur simultaneously — compounding each other.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">The "I'm fine" problem</div>
+      <div class="fat-text">Fatigue reduces the ability to accurately self-assess fatigue levels. A fatigued person typically underestimates how tired they are. This is not dishonesty — it is a documented effect of sleep deprivation on metacognition. Crew who say they are fine after several days of broken sleep should not be assumed to be correct. Team leaders should observe and intervene, not only rely on self-report.</div>
+    </div>
+
+    <div class="callout-red">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">What significant fatigue does to performance</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Research consistently shows: after 17–19 hours without sleep, cognitive performance is comparable to a blood alcohol level of 0.05%. After 24 hours, performance is equivalent to 0.10% — above the legal driving limit in most countries. Specific effects include: slower reaction times, impaired decision-making, reduced situational awareness, difficulty communicating clearly, and increased risk of errors of omission (forgetting steps in procedures). These are not minor inconveniences — they are operational risks on a rescue vessel.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">Managing fatigue within operational constraints</div>
+    <p class="prose">You cannot always control when sleep happens on a SAR deployment. You can make decisions that reduce the cumulative impact.</p>
+
+    <div class="fat-card">
+      <div class="fat-title">Sleep when you can — not when you feel like it</div>
+      <div class="fat-text">The window between an operation ending and the next watch beginning should be treated as a sleep opportunity, not a socialising opportunity. After the first few days of deployment, the social pull of downtime can work against rest. Experienced crew prioritise sleep aggressively during off-watch periods, particularly after a demanding operation. This is not unsociable — it is professional.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">Short sleep is better than none</div>
+      <div class="fat-text">A 20–30 minute rest (a nap) within the circadian low window (1300–1500 and 0200–0400) provides measurable cognitive recovery. Even lying down with eyes closed without falling asleep provides some recovery. If a full sleep window is unavailable, short rest periods taken consistently reduce cumulative debt more than irregular longer periods.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">Limit caffeine strategically</div>
+      <div class="fat-text">Caffeine has a half-life of approximately 5–6 hours. Consuming caffeine in the 6 hours before an intended sleep period significantly reduces sleep quality even when you feel you can sleep. Using caffeine strategically — at the beginning of a long watch or at the circadian low — and avoiding it close to rest periods is more effective than steady consumption throughout the day.</div>
+    </div>
+    <div class="fat-card">
+      <div class="fat-title">Raise fatigue concerns formally when needed</div>
+      <div class="fat-text">If you assess that your fatigue level is at a point where it constitutes an operational risk — affecting your ability to concentrate, make decisions, or communicate safely — this should be raised with your team leader, not managed privately. Watch keeping regulations and crew safety frameworks exist for this purpose. Using them is professional practice, not complaint.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The team dimension</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Fatigue is not just an individual problem. A team with multiple fatigued members makes worse collective decisions, communicates less effectively, and misses things. Team leaders and watch officers who actively monitor crew fatigue — asking, observing, and adjusting where possible — reduce risk across the whole operation. If you notice a teammate who seems significantly impaired by fatigue, saying something to a team leader is appropriate.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on fatigue management and its operational implications.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A crew member has had five nights of interrupted sleep due to operations. They say they feel fine and ready for their watch. How should this be interpreted?",o:["If they say they are fine, they are fine — people know their own bodies","Fatigue significantly reduces the ability to accurately self-assess tiredness — five nights of interrupted sleep creates measurable cognitive impairment regardless of subjective experience","Ask them to complete a fatigue assessment form before their watch","Give them an extra coffee before the watch starts"],c:1,f:"One of the documented effects of significant sleep deprivation is reduced metacognitive accuracy — the ability to accurately assess one's own level of fatigue. After five consecutive nights of interrupted sleep, cognitive impairment is measurable regardless of subjective experience. Team leaders should observe and not only rely on self-report. 'I feel fine' after this level of sleep disruption is not reliable information."},
+  {q:"What cognitive impairment does research suggest 24 hours without sleep creates?",o:["Mild slowing — equivalent to one standard drink of alcohol","Significant impairment — comparable to a blood alcohol level above the legal driving limit in most countries","No measurable cognitive impairment in otherwise healthy adults","Primarily emotional impairment — decision-making is largely unaffected"],c:1,f:"Research consistently shows that 24 hours without sleep produces cognitive impairment comparable to a blood alcohol concentration of approximately 0.10% — above the legal driving limit in most countries. Reaction times, decision-making, situational awareness, and communication are all measurably impaired. This is not a minor effect — it is comparable to being legally drunk."},
+  {q:"A crew member wants to have a coffee at 2200 before their 0200–0600 watch. What is the issue with this timing?",o:["There is no issue — caffeine simply prevents sleep, which is the intended effect","Caffeine has a half-life of approximately 5–6 hours — consuming it at 2200 before a watch that ends at 0600 means it will still be active during the post-watch rest period, reducing sleep quality","Coffee at 2200 is too late to be effective for a 0200 watch start","The issue is the caffeine content, not the timing"],c:1,f:"Caffeine's half-life of 5–6 hours means that consuming it at 2200 will result in approximately half the dose still active at 0300–0400, and significant levels still present at 0600–0700 when the watch ends and rest is possible. Strategic caffeine use means consuming it at the beginning of a watch, not close to the intended sleep period, to avoid degrading the sleep quality of the subsequent rest window."},
+  {q:"After a large rescue ending at 0400, some crew go directly to the mess for coffee and to talk about the operation. They have a watch starting at 0800. What is the most useful thing they could do instead?",o:["Stay in the mess — peer connection after a difficult operation is more important than sleep","Spend 30 minutes in the mess, then prioritise sleep — even 3 hours of rest before the 0800 watch is significantly better than none","Go directly to their bunks and avoid social contact","Talk to the SARCO about adjusting the watch schedule before doing anything else"],c:1,f:"After a demanding operation ending at 0400 with a watch at 0800, the available window is approximately 3.5 hours. Some brief social contact in the immediate aftermath is valuable — it supports peer connection and transition out of operational mode. But prioritising sleep after a short period in the mess is the best use of a limited rest window. Three hours of sleep is substantially better than none for cognitive and physical recovery."},
+  {q:"A crew member tells their watch officer they are too fatigued to safely stand their watch. What should happen?",o:["They should stand the watch — fatigue is a normal part of deployment","This should be taken seriously and managed according to the vessel's watch keeping protocols — fatigued crew are an operational risk","They should be relieved immediately and not stand any watches for 24 hours","They should see the medical officer before any decision is made"],c:1,f:"A crew member who formally raises that their fatigue level constitutes a safety concern should be taken seriously. Watch keeping regulations and crew safety frameworks exist precisely for this situation. The appropriate response is to manage it according to the vessel's protocols — which typically means relieving them and finding coverage, not simply overriding the concern. Using this mechanism is professional, not a complaint."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';updateNav();if(n===3&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===3?'none':'inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?"Strong understanding of fatigue and its management. You've completed Path 5 — Mental health & resilience.":p>=.6?'Mostly solid — review what you missed.':'Go back through the sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="background:var(--navy);border-radius:6px;padding:24px;text-align:center;margin-top:24px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Path 5 complete</div><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--yellow);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/6-1.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:var(--teal);color:#fff;display:inline-block;">Path 6 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);display:inline-block;">All modules</a></div><div style="background:rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;margin:16px 0 0;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">Path 5 — Mental health & resilience</div><div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:12px;font-weight:300;">You have completed all 4 modules in Path 5.</div><a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:3px;">Generate your Path 5 certificate &rarr;</a></div><div id="path-survey-mount"></div></div>`;},300);renderPathSurvey(5,'Mental health & resilience','path-survey-mount');}
+</script>
+</body>
+</html>

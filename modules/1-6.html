@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.6 — Watch systems & crew hierarchy | Operation Ready</title>
+  <meta name="description" content="Watch systems, vessel hierarchy, and the SAR team structure aboard a humanitarian SAR vessel.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+
+    /* HIERARCHY */
+    .hierarchy{display:flex;flex-direction:column;gap:0;margin:16px 0;}
+    .hier-row{display:flex;align-items:stretch;gap:0;margin-bottom:2px;}
+    .hier-role{background:var(--navy);color:#fff;padding:12px 18px;border-radius:4px 0 0 4px;min-width:180px;display:flex;align-items:center;}
+    .hier-role-name{font-family:'DM Serif Display',serif;font-size:16px;line-height:1.2;}
+    .hier-role-abbr{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:2px;}
+    .hier-desc{border:1px solid var(--border);border-left:none;border-radius:0 4px 4px 0;padding:12px 16px;flex:1;background:var(--white);}
+    .hier-desc p{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;}
+    .hier-arrow{display:flex;justify-content:flex-start;padding-left:86px;margin:2px 0;}
+    .hier-arrow svg{color:var(--teal);}
+
+    /* SAR TEAM HIERARCHY */
+    .sar-hier{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:16px 0;}
+    .sar-box{border:2px solid var(--teal);border-radius:4px;padding:12px 20px;background:rgba(61,139,122,.06);min-width:220px;}
+    .sar-box.highlight{background:var(--teal);border-color:var(--teal);}
+    .sar-box-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:2px;}
+    .sar-box.highlight .sar-box-title{color:#fff;}
+    .sar-box-abbr{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);}
+    .sar-box.highlight .sar-box-abbr{color:rgba(255,255,255,.7);}
+    .sar-connector{width:2px;height:20px;background:var(--teal);margin-left:24px;opacity:.5;}
+    .sar-desc{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin-top:8px;padding:10px 14px;background:var(--cream);border-radius:4px;}
+
+    /* RESCUE SET-UP TABLE */
+    .rescue-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+    .rescue-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+    .rescue-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text2);font-weight:300;vertical-align:top;}
+    .rescue-table tr:last-child td{border-bottom:none;}
+    .rescue-table tr:nth-child(even) td{background:var(--cream);}
+    .rescue-table .role-pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:2px;border:1px solid var(--border);color:var(--text2);}
+
+    /* WATCH SCHEDULE */
+    .watch-schedule{border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:14px 0;}
+    .watch-schedule-header{background:var(--navy);padding:12px 16px;display:grid;grid-template-columns:80px 1fr 1fr;gap:8px;}
+    .wsh-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+    .watch-row{display:grid;grid-template-columns:80px 1fr 1fr;gap:8px;padding:10px 16px;border-bottom:1px solid var(--border);align-items:center;}
+    .watch-row:last-child{border-bottom:none;}
+    .watch-row.active{background:rgba(61,139,122,.06);}
+    .watch-time{font-family:'DM Serif Display',serif;font-size:15px;color:var(--teal);}
+    .watch-name{font-size:13px;color:var(--text2);font-weight:300;}
+    .watch-note{font-size:12px;color:var(--text3);font-weight:300;}
+
+    /* QUIZ */
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    /* TRACK COMPLETE BANNER */
+    .track-complete{background:var(--teal);border-radius:6px;padding:24px 28px;margin:20px 0;text-align:center;}
+    .tc-title{font-family:'DM Serif Display',serif;font-size:26px;color:#fff;margin-bottom:6px;}
+    .tc-sub{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6;margin-bottom:16px;font-weight:300;}
+    .tc-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:3px;padding:6px 14px;font-size:12px;color:#fff;letter-spacing:.08em;text-transform:uppercase;font-weight:500;}
+
+    @media(max-width:600px){
+      .module-wrap{padding:20px 16px 48px;}
+      .hier-role{min-width:140px;}
+      .watch-schedule-header,.watch-row{grid-template-columns:70px 1fr;}
+      .wsh-lbl:last-child,.watch-note{display:none;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-1">Path 1</a> &rsaquo; <span>1.6</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 1 — Maritime fundamentals</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Watch systems & crew hierarchy</div>
+    <div class="module-meta"><span>Module 1.6</span><span>8 min</span><span>Final module — Path 1</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Watches</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Vessel hierarchy</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">SAR team</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 1.6 — Final module, Path 1</div>
+    <div class="mod-sec-title">How the vessel is organised</div>
+    <p class="prose">A humanitarian SAR vessel operates 24 hours a day, in all conditions, often for weeks at a time. That requires a formal structure — a system for rotating who is responsible, a clear chain of command, and defined roles so that everyone knows what they are responsible for and who they answer to.</p>
+    <p class="prose">Understanding this structure helps you integrate quickly, communicate correctly, and avoid the friction that comes from not knowing how decisions are made or who to go to with questions. It also helps you understand what is expected of you — and what isn't.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Watch systems — how 24-hour vessel operations are structured</li>
+        <li>The vessel command hierarchy — who is responsible for what</li>
+        <li>The SAR team structure — STL, SAR crew, and supporting roles</li>
+        <li>Rescue set-up — how teams are deployed during an operation</li>
+      </ul>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Structures vary between organisations</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The structure shown in this module reflects common arrangements across humanitarian SAR NGO vessels. The specific titles, roles, and reporting lines vary between organisations. Your pre-deployment briefing will confirm the exact structure aboard your vessel. What stays consistent is the logic — maritime command, NGO coordination, and SAR operations.</div>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check and Path 1 completion</div></div>
+  </div>
+
+  <!-- WATCHES -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Watch systems</div>
+    <p class="prose">A vessel at sea is never truly off duty. Navigation, safety monitoring, communications, and lookout all continue around the clock. This is managed through a watch system — a rotating schedule that ensures qualified personnel are always on duty without requiring any one person to work continuously.</p>
+    <p class="prose">The most common system is four hours on, eight hours off — giving each watch-keeper two watches in every 24 hours. Some vessels use different arrangements. Your vessel's specific watch schedule will be confirmed at your induction.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">A typical 4-on 8-off watch rotation</div>
+    <div class="watch-schedule">
+      <div class="watch-schedule-header">
+        <div class="wsh-lbl">Time</div>
+        <div class="wsh-lbl">Notes</div>
+      </div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">00–04</div><div class="watch-note">Quietest hours — high fatigue risk, alertness critical</div></div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">04–08</div><div class="watch-note">Dawn transition — visibility improving, lookout intensity increasing</div></div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">08–12</div><div class="watch-note">Briefings, equipment checks, most operational activity starts here</div></div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">12–16</div><div class="watch-note">Peak activity hours — highest traffic, most rescues</div></div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">16–20</div><div class="watch-note">Evening, handover preparation, dinner rotation</div></div>
+      <div class="watch-row" style="grid-template-columns:100px 1fr;"><div class="watch-time">20–00</div><div class="watch-note">Night operations preparation, transition to reduced visibility</div></div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">What a watch involves</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Bridge watch</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">The Officer of the Watch (OOW) is responsible for navigation and vessel safety during their watch. They have full authority on the bridge. The Master is always contactable but may not be physically present. 24/7.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Engine room watch</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">Engineers monitor propulsion, power generation, and vessel systems continuously. Most vessels run an engine room watch 24/7. Alarms and pressure changes are monitored in real time.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Bridge lookout (SAR zone)</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">When the vessel is in the SAR zone, dedicated lookouts are rostered to scan the sea for vessels in distress. Visual, continuous, and rotated frequently to manage fatigue. This is a focused task — no phones, no distractions.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Care watch (survivors aboard)</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">When survivors are aboard, a care watch runs in the shelter areas — monitoring welfare, supporting the post-rescue team, and alerting medical staff to changes. Rostered 24/7 while survivors are on the vessel.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Handover</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">When one watch ends and another begins, a formal handover takes place. The outgoing watch briefs the incoming watch on vessel status, weather, any incidents, and anything requiring attention. Always arrive early for your watch.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Standing orders</div>
+        <p style="font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;">The Master's standing orders are permanent instructions that apply to every watch — what to do in specific situations, when to call the Master, speed and course constraints. All watch-keepers are responsible for knowing and following them.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Rest is part of your job — and so is helping</div>
+      <div class="callout-text">The watch system only works if crew actually rest during their off-watch periods. A fatigued crew member makes mistakes. Eat during meal times, sleep during off-watch hours, and manage your energy deliberately. That said — on a vessel, everyone helps each other out. Being off-watch doesn't mean being unavailable. If a rescue kicks off or survivors need care, crew step up regardless of what role they're technically assigned to. It's part of how ships work.</div>
+    </div>
+  </div>
+
+  <!-- VESSEL HIERARCHY -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Vessel command hierarchy</div>
+    <p class="prose">A humanitarian SAR vessel has two overlapping structures — the maritime command structure that runs the vessel, and the NGO structure that manages the humanitarian mission. Understanding both, and how they interact, helps you understand who to go to for what.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Maritime command</div>
+    <div class="hierarchy">
+      <div class="hier-row">
+        <div class="hier-role" style="background:#1E3A5F;">
+          <div><div class="hier-role-name">Master</div><div class="hier-role-abbr">Captain</div></div>
+        </div>
+        <div class="hier-desc"><p>Absolute authority over the vessel and everyone aboard — regardless of NGO role or seniority. Responsible for the safety of the vessel, crew, and everyone on board at all times. At sea, the Master's decisions are final. Legal and operational authority rests entirely with the Master.</p></div>
+      </div>
+      <div class="hier-arrow"><svg width="12" height="16" viewBox="0 0 12 16" fill="none"><line x1="6" y1="0" x2="6" y2="12" stroke="#3D8B7A" stroke-width="1.5"/><path d="M2 8l4 6 4-6" stroke="#3D8B7A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hier-row">
+        <div class="hier-role" style="background:#243659;">
+          <div><div class="hier-role-name">Chief Officer</div><div class="hier-role-abbr">1st Officer / C/O</div></div>
+        </div>
+        <div class="hier-desc"><p>Second in command of the vessel. Responsible for deck operations, cargo, stability, and crew safety. Acts as Master when the Master is off the bridge. Often manages the deck crew directly.</p></div>
+      </div>
+      <div class="hier-arrow"><svg width="12" height="16" viewBox="0 0 12 16" fill="none"><line x1="6" y1="0" x2="6" y2="12" stroke="#3D8B7A" stroke-width="1.5"/><path d="M2 8l4 6 4-6" stroke="#3D8B7A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hier-row">
+        <div class="hier-role" style="background:#2a4a7a;">
+          <div><div class="hier-role-name">OOW</div><div class="hier-role-abbr">Officer of the Watch</div></div>
+        </div>
+        <div class="hier-desc"><p>Responsible for the safe navigation and operation of the vessel during their watch. Has full authority on the bridge during that watch. Never interrupt an OOW during a manoeuvre, docking, or radio communication without urgent reason.</p></div>
+      </div>
+      <div class="hier-arrow"><svg width="12" height="16" viewBox="0 0 12 16" fill="none"><line x1="6" y1="0" x2="6" y2="12" stroke="#3D8B7A" stroke-width="1.5"/><path d="M2 8l4 6 4-6" stroke="#3D8B7A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hier-row">
+        <div class="hier-role" style="background:#3D6B9E;">
+          <div><div class="hier-role-name">Bosun</div><div class="hier-role-abbr">Boatswain</div></div>
+        </div>
+        <div class="hier-desc"><p>Leads the deck crew on a day-to-day basis. Responsible for the maintenance and readiness of deck equipment, lines, and rigging. Often the most experienced practical deck operator aboard. A key person to know as a new crew member.</p></div>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:20px 0 10px;font-weight:500;">NGO coordination structure</div>
+    <div class="hierarchy">
+      <div class="hier-row">
+        <div class="hier-role" style="background:#3D8B7A;">
+          <div><div class="hier-role-name">Head of Mission</div><div class="hier-role-abbr">HoM</div></div>
+        </div>
+        <div class="hier-desc"><p>Leads the NGO team aboard — responsible for the humanitarian mission, team management, communications with headquarters, and coordination with the Master on operational decisions. Works closely with the Master but has separate authority over NGO staff.</p></div>
+      </div>
+      <div class="hier-arrow"><svg width="12" height="16" viewBox="0 0 12 16" fill="none"><line x1="6" y1="0" x2="6" y2="12" stroke="#3D8B7A" stroke-width="1.5"/><path d="M2 8l4 6 4-6" stroke="#3D8B7A" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="hier-row">
+        <div class="hier-role" style="background:#5BA898;">
+          <div><div class="hier-role-name">SARCO</div><div class="hier-role-abbr">SAR Coordinator</div></div>
+        </div>
+        <div class="hier-desc"><p>Coordinates SAR operations — works closely with the Master, the STL, and MRCC during rescue responses. Manages communications with maritime authorities and coordinates the overall rescue response alongside the bridge.</p></div>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Two structures, one vessel</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The maritime structure (Master → Officers → Bosun) and the NGO structure (HoM → SARCO → SAR team) operate in parallel. For anything related to vessel safety and navigation, the maritime command is the authority. For the humanitarian mission, team management, and operations coordination, the NGO structure applies. In practice they work closely together — the Master and HoM make joint decisions during rescue operations.</div>
+    </div>
+  </div>
+
+  <!-- SAR TEAM -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">The SAR team</div>
+    <p class="prose">The SAR team is the operational rescue unit aboard the vessel. They plan, prepare, and execute rescue operations — from RHIB deployment to survivor recovery. The structure below reflects common arrangements across humanitarian SAR NGOs; your specific organisation's structure may differ in titles or reporting lines.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 12px;font-weight:500;">SAR team structure</div>
+
+    <div class="sar-hier">
+      <div class="sar-box highlight">
+        <div class="sar-box-title">SAR Team Leader</div>
+        <div class="sar-box-abbr">STL</div>
+      </div>
+      <div class="sar-desc">The senior operational SAR authority aboard. The STL leads rescue operations on the water — typically on the lead RHIB during a rescue — and manages the SAR team's readiness, equipment, and training. Works closely with the Master, HoM or SARCO during planning and with the bridge during operations.</div>
+      <div class="sar-connector"></div>
+      <div class="sar-box">
+        <div class="sar-box-title">SAR Crew</div>
+        <div class="sar-box-abbr">Also: SAR Officers, SAR Technicians</div>
+      </div>
+      <div class="sar-desc">Trained rescue operators who crew the RHIBs and work the deck during rescues. Titles vary by organisation — SAR Crew, SAR Officers, SAR Technicians — but the role is the same: operating the rescue boats, recovering survivors, and supporting the STL. SAR crew are distinct from general deck crew; their role is specifically rescue operations.</div>
+    </div>
+
+    <div class="callout muted" style="margin-top:18px;">
+      <div class="callout-title">NGO coordination structure</div>
+      <div class="callout-text">Overall NGO mission coordination varies: some organisations have a Head of Mission (HoM), others have a SAR Coordinator (SARCO) who fulfils an equivalent role. Under them sit the SAR team, medical team, post-rescue team, and other operational functions. Your organisation's induction will clarify the specific structure.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:24px 0 12px;font-weight:500;">Rescue set-up — how teams are deployed</div>
+    <p class="prose">During a rescue, the SAR team deploys across two RHIBs. The specific set-up varies by organisation and operation, but a common arrangement is:</p>
+
+    <table class="rescue-table">
+      <thead>
+        <tr>
+          <th>RHIB 1 — STL's boat</th>
+          <th>RHIB 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="font-weight:500;">STL</strong><br><span style="font-size:12px;color:var(--text3);">Leads on-water operations</span></td>
+          <td><strong style="font-weight:500;">RHIB Leader</strong><br><span style="font-size:12px;color:var(--text3);">Leads RHIB 2</span></td>
+        </tr>
+        <tr>
+          <td><strong style="font-weight:500;">Cultural Mediator</strong><br><span style="font-size:12px;color:var(--text3);">First contact and communication</span></td>
+          <td><strong style="font-weight:500;">Driver</strong></td>
+        </tr>
+        <tr>
+          <td><strong style="font-weight:500;">Driver</strong></td>
+          <td><strong style="font-weight:500;">SAR Crew</strong></td>
+        </tr>
+        <tr>
+          <td><strong style="font-weight:500;">SAR Crew</strong></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Other roles during rescue operations</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">During a rescue, many other team members play critical supporting roles — medical staff preparing to receive survivors, cultural mediators ready at the boarding point, protection officers managing the shelters, and logisticians distributing supplies. Understanding where you fit in this wider picture is part of your pre-deployment preparation. Your team leader will brief you on your specific role.</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Post-rescue team leader</div>
+      <div class="callout-text">Some vessels have a dedicated Post-Rescue Team Leader (PRTL) who takes over responsibility for survivor management once people are aboard — coordinating the distribution of food, water, clothing, and medical referrals, and overseeing the welfare of survivors in the shelters. This role allows the SAR team to focus on the next rescue while survivor care continues.</div>
+    </div>
+  </div>
+
+  <!-- CHECK -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check — Path 1 final module</div>
+    <div class="mod-sec-title">Before you complete Path 1</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on watch systems, hierarchy, and the SAR team structure.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+
+const questions=[
+  {q:"It is 0355 and your watch starts at 0400. When should you arrive at your handover?",opts:["0400 exactly — your watch starts then","A few minutes early — arriving at handover before your time allows a proper briefing","0410 — give the outgoing watch time to prepare their notes","It doesn't matter as long as you arrive within the first 15 minutes"],correct:1,fb:"Always arrive early for your watch. The handover is a formal briefing where the outgoing watch passes on vessel status, weather conditions, any incidents, and anything requiring attention. Arriving late compresses this briefing and risks missing critical information. This is a professional expectation from your first day."},
+  {q:"You have a non-urgent question for the Master about your schedule next week. The Master is currently on the bridge during an approach to a port. What do you do?",opts:["Go to the bridge and ask — it's a quick question","Leave a written note in the Master's cabin and wait for a response","Ask the Officer of the Watch to pass the message","Wait until the vessel is clear of the approach and the Master is available, then approach at an appropriate moment"],correct:3,fb:"Port approaches and manoeuvres require the Master's full concentration. A non-urgent question about next week's schedule can wait. Approaching the bridge during a manoeuvre with a non-urgent question is disruptive and shows poor situational awareness. Wait for a calm moment — after the approach is complete."},
+  {q:"During a rescue operation, who leads on-water RHIB operations?",opts:["The Master — they have ultimate authority over all operations","The SARCO — they coordinate all communications and logistics","The STL — they lead rescue operations on the water, typically aboard the lead RHIB","The HoM — they direct all humanitarian operations including rescues"],correct:2,fb:"The STL (SAR Team Leader) leads rescue operations on the water during an active rescue — typically aboard the lead RHIB. The Master retains ultimate authority over vessel safety and navigation. The HoM or SARCO coordinates the broader humanitarian mission but the on-water tactical lead is the STL."},
+  {q:"A new crew member asks you what the difference is between the Master's authority and the Head of Mission's authority. What is the most accurate answer?",opts:["They have equal authority and make all decisions jointly","The Master has authority over everything — the HoM answers to them","The Master has absolute authority over vessel safety and navigation; the HoM leads the NGO team and the humanitarian mission — they work in parallel","The HoM has authority during rescues, the Master has authority during transit"],correct:2,fb:"The two structures run in parallel. The Master has absolute authority over the vessel, its navigation, and the safety of everyone aboard — this is a legal and operational requirement. The HoM leads the NGO team and the humanitarian mission. In practice they collaborate closely, but the domains are distinct — vessel safety is always the Master's authority."},
+  {q:"You are a general crew member (not a SAR technician) when a rescue alert comes in. What is your role?",opts:["Go to the stern deck to assist with survivor recovery","Go to your assigned station and await direction from your team leader","Assist the SAR team in preparing the RHIBs","Monitor the bridge radio for instructions"],correct:1,fb:"SAR technicians have specific trained roles during a rescue. General crew members go to their assigned stations and await direction. Turning up uninstructed on the stern deck or trying to assist with RHIB preparation adds confusion to a fast-moving operation. Your team leader will direct you to where you can contribute. Wait for that direction."}
+];
+
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';
+  updateNav();if(n===4&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===4){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Path 1 complete";t="Excellent — you have covered all six modules in Maritime fundamentals.";}
+  else if(pct>=0.6){v="Path 1 complete";t="Good foundation — review the questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the watch systems and hierarchy sections before moving on.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="background:var(--teal);border-radius:6px;padding:20px 24px;margin:0 0 20px;text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:22px;color:#fff;margin-bottom:6px;">Path 1 — Maritime fundamentals</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.8);margin-bottom:14px;font-weight:300;">You have completed all six modules in Path 1.</div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:3px;padding:6px 16px;font-size:11px;color:#fff;letter-spacing:.12em;text-transform:uppercase;font-weight:500;margin-bottom:14px;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="white" stroke-width="1.2"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            6 of 6 modules complete
+          </div>
+          <div>
+            <a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:3px;transition:background .15s;">Generate your Path 1 certificate &rarr;</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules.html#track-2" class="btn-teal">Explore Path 2</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+        <div id="path-survey-mount"></div>
+      </div>`;
+    renderPathSurvey(1, 'Maritime fundamentals', 'path-survey-mount');
+  },300);
+}
+</script>
+</body>
+</html>

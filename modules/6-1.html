@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6.1 — The law of the sea | Operation Ready</title>
+  <meta name="description" content="The foundational legal framework governing maritime SAR — UNCLOS, flag state jurisdiction, innocent passage, and the duty to render assistance.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .zone-row{display:flex;gap:0;margin-bottom:6px;border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+    .zone-label{width:60px;display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:8px 6px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;text-align:center;line-height:1.3;background:rgba(30,58,95,.08);color:var(--navy);}
+    .zone-body{padding:10px 14px;flex:1;background:var(--white);}
+    .zone-title{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+    .zone-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .law-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);margin-bottom:10px;}
+    .law-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:4px;}
+    .law-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+    .law-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-6">Path 6</a> &rsaquo; <span>6.1</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 6 — Legal &amp; humanitarian framework</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">The law of the sea</div>
+    <div class="module-meta">
+      <span>Module 6.1</span><span>10 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">UNCLOS</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">The duty to rescue</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 6.1</div>
+    <div class="mod-sec-title">Why maritime law matters on a SAR vessel</div>
+    <p class="prose">Maritime law is not abstract for crew on a humanitarian SAR vessel. It defines the legal basis for the rescue work, establishes the duty that vessels carry, and determines the framework within which your organisation operates. When questions arise about authority, jurisdiction, or obligations — in an operation, in a port, or in a media context — the answers come from this legal foundation.</p>
+    <p class="prose">This module does not provide legal advice. It provides the awareness-level understanding of the legal framework that any crew member can benefit from — the key instruments, the key concepts, and how they connect to what you do at sea.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>UNCLOS — the foundational law of the sea and what it establishes</li>
+        <li>Maritime zones — territorial sea, contiguous zone, EEZ, and high seas</li>
+        <li>Flag state jurisdiction and what it means for your vessel</li>
+        <li>The legal duty to render assistance — what it requires and who it binds</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">10 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">UNCLOS and maritime zones</div>
+    <p class="prose">The United Nations Convention on the Law of the Sea (UNCLOS), adopted in 1982 and in force since 1994, is the foundational legal framework governing the world's oceans. It has been ratified by over 160 states and is considered by many legal scholars to represent customary international law even for non-parties.</p>
+    <p class="prose">UNCLOS establishes several distinct maritime zones, each with different legal status and different jurisdictional rules.</p>
+
+    <div style="margin:14px 0 16px;">
+      <div class="zone-row"><div class="zone-label">Internal waters</div><div class="zone-body"><div class="zone-title">Landward side of baselines</div><div class="zone-text">Ports and internal waters. Full state sovereignty applies. Vessels require permission to enter.</div></div></div>
+      <div class="zone-row"><div class="zone-label">Territorial sea</div><div class="zone-body"><div class="zone-title">0–12 nautical miles</div><div class="zone-text">Full state sovereignty, subject to the right of innocent passage for foreign vessels. The coastal state may regulate but may not impede innocent passage.</div></div></div>
+      <div class="zone-row"><div class="zone-label">Contiguous zone</div><div class="zone-body"><div class="zone-title">12–24 nautical miles</div><div class="zone-text">States may exercise controls necessary to prevent and punish infringement of customs, fiscal, immigration, and sanitary laws.</div></div></div>
+      <div class="zone-row"><div class="zone-label">EEZ</div><div class="zone-body"><div class="zone-title">12–200 nautical miles</div><div class="zone-text">Exclusive Economic Zone. Coastal state has sovereign rights over resources but other states have freedom of navigation, overflight, and the laying of cables and pipelines.</div></div></div>
+      <div class="zone-row"><div class="zone-label">High seas</div><div class="zone-body"><div class="zone-title">Beyond 200nm</div><div class="zone-text">No state sovereignty. Freedom of navigation applies. All states have jurisdiction over vessels flying their flag.</div></div></div>
+    </div>
+
+    <div class="law-card">
+      <div class="law-tag">Flag state jurisdiction</div>
+      <div class="law-title">Your vessel operates under its flag state's law</div>
+      <div class="law-text">Every vessel must be registered in a state and fly that state's flag. The flag state has jurisdiction over the vessel, its crew, and its activities on the high seas and in EEZ waters of other states. Flag state law governs crew contracts, working conditions, the vessel's safety certificates, and legal obligations. When your vessel is in another state's territorial waters, the coastal state's laws also apply — but flag state jurisdiction does not disappear.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The Central Mediterranean context</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">SAR operations in the Central Mediterranean frequently occur in waters where multiple jurisdictions overlap — Italian, Maltese, and Libyan SRRs, national EEZs, and contested definitions of territorial boundaries. The legal framework applies, but the political realities create situations where legal obligations and state behaviour are not always aligned. Your organisation's legal team and leadership manage these complexities. Your role is operational.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">The duty to render assistance</div>
+    <p class="prose">The legal obligation to assist persons in distress at sea is one of the oldest principles of maritime law. It is codified in multiple instruments and is considered binding regardless of the legal status, nationality, or circumstances of the persons in distress.</p>
+
+    <div class="law-card">
+      <div class="law-tag">UNCLOS Article 98</div>
+      <div class="law-title">Duty to render assistance</div>
+      <div class="law-text">Every state shall require the master of a vessel flying its flag to render assistance to any person found at sea in danger of being lost, and to rescue persons in distress — so far as this can be done without serious danger to the ship, the crew, or the passengers. This applies on the high seas and in all maritime zones.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-tag">SOLAS Chapter V, Regulation 33</div>
+      <div class="law-title">Obligation to render assistance</div>
+      <div class="law-text">The master of a ship at sea, upon receiving information that persons are in distress at sea, is bound to proceed with all speed to render assistance. This obligation applies regardless of the nationality of those in distress and regardless of the circumstances in which they are found at sea.</div>
+    </div>
+    <div class="law-card">
+      <div class="law-tag">SAR Convention 1979</div>
+      <div class="law-title">Place of safety</div>
+      <div class="law-text">Persons rescued at sea must be delivered to a place of safety. The SAR Convention requires that coastal states and MRCCs designate a place of safety for rescued persons — not simply a coastline, but a location where human rights and dignity are protected, basic needs can be met, and protection from persecution is available. This is the legal basis for disputes over disembarkation ports in the Central Mediterranean.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">The duty to rescue is unconditional</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The legal duty to render assistance applies to every vessel, regardless of flag, regardless of who is in distress, and regardless of how they came to be in that situation. It applies to commercial vessels, naval vessels, coastguard vessels, and NGO vessels alike. It is not a value choice — it is a legal obligation under international law. Your vessel's rescue activities are the fulfilment of this obligation, not a political act.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on the law of the sea and the duty to rescue.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"Under what legal framework does the duty to render assistance at sea exist?",o:["It is a humanitarian norm without legal force","It is codified in UNCLOS Article 98 and SOLAS Chapter V and is a binding legal obligation on every vessel","It applies only to vessels flagged to states that have ratified the SAR Convention","It applies only in the territorial waters of the rescue vessel's flag state"],c:1,f:"The duty to render assistance is codified in multiple binding international instruments — UNCLOS Article 98, SOLAS Chapter V Regulation 33, and the SAR Convention. It applies to every vessel regardless of flag state, in all maritime zones, and regardless of the nationality or circumstances of those in distress. It is not a humanitarian preference — it is a legal obligation."},
+  {q:"A humanitarian SAR vessel is operating in Italy's EEZ. An Italian coastguard vessel instructs the SAR vessel to stand down. What applies?",o:["Italian law fully overrides the SAR vessel's flag state obligations in Italian waters","The SAR vessel's flag state obligations continue to apply, alongside Italian coastal state laws — the duty to rescue does not disappear in another state's EEZ","Only MRCC instructions have legal force — coastguard instructions do not apply to foreign vessels","The SAR vessel should comply immediately — coastal state authority is absolute in EEZ waters"],c:1,f:"Flag state jurisdiction does not disappear in another state's EEZ — it operates alongside coastal state laws. The duty to render assistance is a flag state obligation that persists regardless of location. Instructions from a coastal state authority may be lawful and should be directed to the Head of Mission, but they do not extinguish the underlying legal obligation. This is a complex area; leadership and legal counsel manage these situations."},
+  {q:"What does 'place of safety' mean in the SAR Convention context?",o:["Any port within reasonable distance of the rescue location","A location where survivors' safety and basic needs can be met and where they are protected from persecution or return to danger — not simply any coastline","The nearest functioning port designated by the MRCC","The flag state port of the rescue vessel"],c:1,f:"Under the SAR Convention, a 'place of safety' requires more than a functional port — it requires a location where the rescued persons' physical safety, dignity, and legal rights can be protected, including protection from persecution or return to danger. This is the legal basis for why NGO vessels sometimes refuse disembarkation to certain ports and is the source of many of the disembarkation disputes in the Central Mediterranean."},
+  {q:"What is innocent passage in the territorial sea?",o:["The right of any vessel to enter a state's territorial waters without restriction","The right of foreign vessels to transit a state's territorial sea continuously and expeditiously, not prejudicial to the peace, good order, or security of the coastal state","The right of NGO vessels to operate in any territorial sea for humanitarian purposes","The right of distress vessels to enter any port under emergency conditions"],c:1,f:"Innocent passage is the right of foreign vessels to pass through a state's territorial sea (0–12nm) continuously and expeditiously without entering internal waters. It must be 'innocent' — not prejudicial to the peace, good order, or security of the coastal state. The coastal state may regulate but may not impede innocent passage. This right exists in the territorial sea but not in internal waters or ports."},
+  {q:"A commercial vessel's master is aware of a distress situation but decides not to respond, citing schedule and commercial pressure. What is the legal position?",o:["The master has discretion to weigh commercial interests against the duty to assist","The master is in breach of a binding international legal obligation under SOLAS and UNCLOS — this is a legal failure, not a commercial decision","The obligation only applies if the vessel is within 20nm of the distress","The obligation only applies if no other vessel is closer"]
+  ,c:1,f:"The duty to render assistance under SOLAS and UNCLOS is binding on every vessel master. Commercial pressure is not a legal exemption. Masters who fail to respond to a distress situation face legal liability under their flag state's maritime law. The obligation applies regardless of proximity — the qualification 'so far as this can be done without serious danger to the ship, the crew, or the passengers' refers to physical safety, not commercial interest."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';updateNav();if(n===3&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===3?'none':'inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong legal framework awareness. Ready for module 6.2.':p>=.6?'Mostly solid — review what you missed.':'Go back through the sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/6-2.html" class="btn-teal">Module 6.2 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

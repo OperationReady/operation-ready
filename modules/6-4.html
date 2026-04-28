@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6.4 — Incident documentation | Operation Ready</title>
+  <meta name="description" content="Why and how humanitarian SAR crews document their operations — MRCC communications, rescue records, medical documentation, and incident reporting.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .doc-card{border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);margin-bottom:10px;}
+    .doc-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:4px;}
+    .doc-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:6px;}
+    .doc-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-6">Path 6</a> &rsaquo; <span>6.4</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 6 — Legal &amp; humanitarian framework</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Incident documentation</div>
+    <div class="module-meta">
+      <span>Module 6.4</span><span>10 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">What to document</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">How and why</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 6.4</div>
+    <div class="mod-sec-title">Documentation as a professional and legal obligation</div>
+    <p class="prose">Documentation is one of the most undervalued skills in maritime SAR work. A well-documented operation protects the organisation legally, supports survivor welfare after disembarkation, enables accountability for what happened at sea, and contributes to the broader evidence base about conditions in the Central Mediterranean.</p>
+    <p class="prose">Documentation is not only for SARCO and medical staff. Every crew member who witnesses, communicates, or participates in events during an operation may be required to contribute to the documented record. Understanding what should be recorded, how, and why makes that contribution effective.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What needs to be documented during and after a SAR operation</li>
+        <li>How to document accurately — the principles of good incident records</li>
+        <li>Why documentation matters legally, operationally, and for survivors</li>
+        <li>Common documentation failures and how to avoid them</li>
+      </ul>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">10 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">What needs to be documented</div>
+    <p class="prose">Documentation during and after a SAR operation covers several distinct areas. Each serves different purposes, and each is the responsibility of specific roles — though any crew member may need to contribute to any of them.</p>
+
+    <div class="doc-card">
+      <div class="doc-tag">Operational log</div>
+      <div class="doc-title">The chronological record of the operation</div>
+      <div class="doc-text">The operational log records the sequence of events: distress alert received, position and time, MRCC contact made, vessel transit, on-scene assessment, RHIB deployments, recovery of survivors, medical cases identified, MRCC communications throughout, POS designation request and response, and disembarkation. Times and positions should be recorded at each stage. The operational log is the primary reference for any subsequent review, legal proceeding, or incident investigation.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">MRCC communications</div>
+      <div class="doc-title">All contacts — made and attempted</div>
+      <div class="doc-text">Every MRCC communication — attempted or completed — should be recorded: time, channel, content of message, response received. If the MRCC does not respond, the attempts must be documented with the same rigour as successful contacts. In situations of MRCC non-response or disputed responsibility, this record is the organisation's primary legal protection. "We called repeatedly and received no response" requires a documented record to mean anything legally.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Medical records</div>
+      <div class="doc-title">Casualty and medical case documentation</div>
+      <div class="doc-text">Medical staff document all survivor medical assessments, treatments, and outcomes. These records serve multiple purposes: continuity of care at disembarkation, medico-legal documentation of injuries that may be evidence of violence or torture, and aggregate data on health conditions encountered. Medical records are subject to strict confidentiality. Non-medical crew do not access or handle medical records unless specifically directed to do so.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Protection documentation</div>
+      <div class="doc-title">Vulnerability indicators and referrals</div>
+      <div class="doc-text">Observations relevant to survivor protection — indicators of SGBV, potential UAMs, disclosed or observed injuries consistent with torture — are documented by the appropriate designated staff member, not by general crew. If crew observe something relevant, they report it verbally to the protection focal point, who documents it appropriately. General crew do not create independent protection records.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="doc-tag">Witness accounts</div>
+      <div class="doc-title">What crew directly observed</div>
+      <div class="doc-text">In situations involving incidents — deaths at sea, interactions with other vessels, unusual MRCC behaviour, alleged violations — crew may be asked to provide written accounts of what they directly observed. These accounts have potential legal standing. They should describe only what the crew member directly witnessed, in plain language, with times and positions where known. They should not include speculation, hearsay, or conclusions — only factual observation.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">How to document well — and why it matters</div>
+
+    <p class="prose">Good documentation requires discipline during operations — when things are moving fast and recording feels secondary to action. The following principles underpin all effective incident documentation.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 18px;">
+      <div class="doc-card">
+        <div class="doc-title">Record in real time, not after</div>
+        <div class="doc-text">Memory degrades rapidly under stress. Times, positions, and sequences that seem memorable immediately after an operation become unreliable within hours. Designated crew should be recording as events unfold — not reconstructing afterwards. Where real-time recording is not possible (during active water recovery), the primary events should be recorded at the earliest opportunity, clearly noted as retrospective.</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-title">Fact, not interpretation</div>
+        <div class="doc-text">Documentation should record observable facts: what was seen, heard, said, and done — with times and positions. Interpretation, speculation, and conclusions belong in debrief, not in the operational record. "The survivor appeared distressed and was shaking" is a factual observation. "The survivor was traumatised" is a conclusion. The operational record should contain the former; clinical staff may draw the latter conclusion in their own records.</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-title">Completeness over brevity</div>
+        <div class="doc-text">In a legal or investigative context, the absence of a record is often as significant as its presence. An operational log with gaps invites the question: what happened during the gap? Document comprehensively, even when events seem routine. A full record of normal communications is as important as a record of difficult ones.</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-title">Confidentiality in documentation</div>
+        <div class="doc-text">Documentation involving survivor information — names, nationalities, medical conditions, protection observations — is confidential. Physical records should be secured. Digital records should be handled according to the organisation's data protection policy. Crew do not take personal copies of operational records or photographs for personal use. The operational record belongs to the organisation, not to individual crew members.</div>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Why documentation matters beyond the vessel</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The documented record of SAR operations in the Central Mediterranean is part of the broader evidentiary record of what is happening at sea — the conditions on vessels, the behaviour of state actors, the fate of people who did not survive. Organisations like SOS Méditerranée, Sea-Watch, and MSF Sea publish aggregated operational data that informs advocacy, legal proceedings, and policy debates. The quality of that evidence depends directly on the quality of documentation aboard each vessel.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">When you are asked to provide a written account</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">If you are asked to provide a written witness account — by your SARCO, Head of Mission, or legal representative — write what you directly observed in plain, factual language. Do not discuss the content with other crew before writing your own account. Do not include what you were told by others. Do not speculate about causes or intent. Date and sign it, and hand it to the person who requested it. Your account may become part of a legal file.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on documentation principles and practice.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"During a rescue, the MRCC does not respond to repeated radio contacts. What is the documentation requirement?",o:["Only document contacts where a response was received — failed attempts do not need recording","Document every contact attempt — time, channel, content, and the absence of response — with the same rigour as successful contacts","Note the overall time period of non-response in the log at the end of the operation","Verbal note to the SARCO is sufficient — this does not need to be in the operational log"],c:1,f:"Documented MRCC contact attempts — including those with no response — are the organisation's primary legal protection when MRCC non-response is later disputed or when the organisation's actions are reviewed. 'We called repeatedly and received no response' only has legal and operational weight if each attempt is documented with time, channel, and content. Undocumented attempts effectively did not happen, legally speaking."},
+  {q:"A crew member witnesses an incident during a rescue that may be significant for a later investigation. When should they record their account?",o:["After consulting with the SARCO and other witnesses to ensure consistency","As soon as possible after the event — ideally in real time, and certainly before discussing it with other witnesses","At the end of the operation, to allow time for reflection","At the end of the deployment, in the formal debrief"],c:1,f:"Memory degrades rapidly under stress, and accounts become unreliable as time passes. More significantly, consulting with other witnesses before recording your own account risks contaminating your recollection with theirs — which undermines the independence and legal weight of both accounts. Record your own direct observations as soon as possible, before discussion with others, and clearly note the time of recording if it is retrospective."},
+  {q:"In a written witness account, a crew member writes: 'The coastguard vessel was trying to intimidate us.' Is this appropriate?",o:["Yes — if that is what they believe, they should document it","No — this is an interpretation of intent, not an observable fact. The account should describe what the vessel did, not what the crew member concluded it was trying to do.","Yes — documenting intent is important for subsequent legal proceedings","No — crew should not comment on the actions of other vessels in their accounts"],c:1,f:"Witness accounts should contain facts — what was observed, heard, and done — not conclusions about intent or interpretation. 'The coastguard vessel moved across our bow at close range three times while we were conducting recovery' is a factual observation. 'They were trying to intimidate us' is a conclusion. Legal and investigative processes draw conclusions from facts — the witness provides the facts."},
+  {q:"A crew member photographs the rescue operation and wants to keep a personal copy of the photos as a personal record of their deployment. Is this appropriate?",o:["Yes — crew have a reasonable personal interest in records of their deployment","No — operational records including photographs belong to the organisation, not to individual crew, and taking personal copies may violate survivor confidentiality and organisational policy","Yes, if the photos do not show survivors' faces","Only if the crew member does not post them publicly"],c:1,f:"Photographs taken during SAR operations are operational records — they may contain images of survivors in distress, medical cases, or protection-sensitive material. They belong to the organisation, are subject to its data protection policy, and cannot be taken as personal copies by crew members regardless of intent. Even photos without visible faces may contain identifying information or context. Crew members who wish to document their deployment experience should use personal photos taken in non-operational contexts."},
+  {q:"Why does the completeness of operational documentation matter beyond the individual operation?",o:["It demonstrates professionalism to donors","The aggregated operational record contributes to the broader evidential picture of what is happening at sea — informing advocacy, legal proceedings, and policy debates","It reduces the time required for post-operation debriefs","It is a flag state requirement that vessels maintain complete logs"],c:1,f:"While flag state requirements are a valid reason for complete logs, the broader significance is that the documented record of SAR operations in the Central Mediterranean is part of the evidentiary base that supports legal proceedings, advocacy, and policy challenges. Organisations like SOS Méditerranée and MSF Sea use operational data to report publicly on conditions at sea. The quality of that evidence — and its legal standing — depends directly on documentation quality aboard each vessel."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';updateNav();if(n===3&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===3?'none':'inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?"Outstanding. You've completed Path 6 — and all six paths of Operation Ready. You're ready to deploy.":p>=.6?'Mostly solid — review what you missed before your deployment.':'Go back through the sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="background:var(--navy);border-radius:6px;padding:28px;text-align:center;margin-top:24px;"><div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px;">Path 6 complete</div><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--yellow);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;max-width:420px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:var(--teal);color:#fff;display:inline-block;">All modules</a><a href="/" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);display:inline-block;">Home</a></div><div style="background:rgba(255,255,255,.1);border-radius:4px;padding:16px 20px;margin:16px 0 0;"><div style="font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">Path 6 — Legal & humanitarian framework</div><div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:12px;font-weight:300;">You have completed all 4 modules in Path 6 — and all six paths of Operation Ready.</div><a href="/certificates.html" style="display:inline-block;background:var(--yellow);color:var(--navy);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:9px 20px;border-radius:3px;">Generate your Path 6 certificate &rarr;</a></div><div id="path-survey-mount"></div></div>`;},300);renderPathSurvey(6,'Legal & humanitarian framework','path-survey-mount');}
+</script>
+</body>
+</html>

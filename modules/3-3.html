@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3.3 — Hypothermia | Operation Ready</title>
+  <meta name="description" content="Recognising and responding to hypothermia in survivors — the most common medical emergency aboard Mediterranean SAR vessels.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .callout-red{border-left:3px solid #cc2200;padding:12px 16px;background:rgba(204,34,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc2200;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .stage-row{display:flex;gap:0;margin-bottom:8px;border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+    .stage-label{width:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;padding:10px 6px;text-align:center;}
+    .stage-temp{font-family:'DM Serif Display',serif;font-size:15px;line-height:1.2;}
+    .stage-name{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-top:3px;}
+    .stage-body{padding:12px 14px;flex:1;background:var(--white);}
+    .stage-signs{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:4px;}
+    .stage-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .stage-mild{background:rgba(61,139,122,.1);}
+    .stage-mild .stage-temp{color:var(--teal);}
+    .stage-mild .stage-name{color:var(--teal);}
+    .stage-moderate{background:rgba(212,130,26,.1);}
+    .stage-moderate .stage-temp{color:#D4821A;}
+    .stage-moderate .stage-name{color:#D4821A;}
+    .stage-severe{background:rgba(204,34,0,.1);}
+    .stage-severe .stage-temp{color:#cc2200;}
+    .stage-severe .stage-name{color:#cc2200;}
+    .do-dont{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
+    .do-card{border-radius:4px;padding:14px;}
+    .do-card.do{background:rgba(42,157,92,.06);border:1px solid rgba(42,157,92,.2);}
+    .do-card.dont{background:rgba(204,68,0,.06);border:1px solid rgba(204,68,0,.15);}
+    .do-title{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:8px;}
+    .do-card.do .do-title{color:#2a9d5c;}
+    .do-card.dont .do-title{color:#cc4400;}
+    .do-item{font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;padding:4px 0;border-bottom:1px solid rgba(0,0,0,.05);}
+    .do-item:last-child{border-bottom:none;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+
+    /* ═══ HYPOTHERMIA STAGE IDENTIFIER ═══ */
+    .hp-case{background:#fff;border:1px solid var(--border);border-radius:5px;margin-bottom:14px;overflow:hidden;}
+    .hp-case-head{padding:10px 16px;background:var(--cream2);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+    .hp-case-num{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;}
+    .hp-case-title{font-size:13px;font-weight:500;color:var(--navy);flex:1;}
+    .hp-case-body{padding:14px 16px;}
+    .hp-obs-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;font-weight:500;}
+    .hp-obs{list-style:none;margin-bottom:14px;}
+    .hp-obs li{display:flex;gap:10px;padding:4px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;align-items:flex-start;}
+    .hp-obs li::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px;opacity:.6;}
+    .hp-prompt{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin:14px 0 8px;font-weight:500;}
+    .hp-stages{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+    .hp-stage{border:1.5px solid var(--border2);border-radius:4px;padding:10px 12px;cursor:pointer;background:#fff;text-align:center;transition:all .15s;}
+    .hp-stage:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .hp-stage.chosen{border-color:var(--teal);background:var(--mint-pale);}
+    .hp-stage.correct{border-color:#2a9d5c;background:rgba(42,157,92,.1);}
+    .hp-stage.wrong{border-color:#cc4400;background:rgba(204,68,0,.08);}
+    .hp-stage.faded{opacity:.45;pointer-events:none;}
+    .hp-stage-name{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:2px;}
+    .hp-stage-temp{font-size:10.5px;color:var(--text3);letter-spacing:.04em;}
+    .hp-debrief{display:none;padding:12px 16px;border-top:1px solid var(--border);font-size:12.5px;line-height:1.7;color:var(--text2);font-weight:300;background:var(--cream2);}
+    .hp-debrief.visible{display:block;}
+    .hp-debrief.ok{background:rgba(42,157,92,.06);border-left:3px solid #2a9d5c;}
+    .hp-debrief.no{background:rgba(204,68,0,.05);border-left:3px solid #cc4400;}
+    .hp-debrief-verdict{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:6px;}
+    .hp-debrief.ok .hp-debrief-verdict{color:#1a7a42;}
+    .hp-debrief.no .hp-debrief-verdict{color:#cc4400;}
+    .hp-response{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);}
+    .hp-response-label{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:4px;}
+    .hp-response strong{color:var(--teal);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.do-dont{grid-template-columns:1fr;}.hp-stages{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-3">Path 3</a> &rsaquo; <span>3.3</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 3 — Medical & first response</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Hypothermia</div>
+    <div class="module-meta"><span>Module 3.3</span><span>10 min</span><span>Stages & recognition</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Stages</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">In context</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Response</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Practice</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 3.3</div>
+    <div class="mod-sec-title">Cold, exhausted, and at risk</div>
+    <p class="prose">Hypothermia is the most common medical condition in Mediterranean SAR — and it is routinely underestimated. People assume hypothermia is a winter problem, or that a warm-looking survivor is not hypothermic. Neither is true. Survivors who have spent hours on a overcrowded boat in 24°C air with wet clothing, wind chill, and no shelter can arrive with dangerous core temperature drops regardless of the season.</p>
+    <p class="prose">Understanding the stages of hypothermia, what it looks like, and how to support the medical team's response is important preparation for any crew member going into operational roles.</p>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Medical team leads assessment and treatment</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.6;color:var(--text2);">Clinical diagnosis and treatment of hypothermia is the medical team's responsibility. This module prepares non-medical crew to recognise warning signs, support triage, and avoid actions that worsen the condition. Always follow your medical team's direction and your organisation's SOPs.</div>
+    </div>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Why hypothermia is so common in Mediterranean SAR — even in summer</li>
+        <li>The three stages of hypothermia and the signs of each</li>
+        <li>Why "afterdrop" is dangerous and why rough handling causes it</li>
+        <li>What crew should and should not do when receiving hypothermic survivors</li>
+        <li>Specific considerations for infants, children, and the elderly</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">10 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">The stages of hypothermia</div>
+    <p class="prose">Hypothermia is defined as a core body temperature below 35°C (95°F). It progresses through stages that are clinically distinct. The body fights hard to maintain core temperature — the progression from mild to severe is not linear and can accelerate suddenly.</p>
+
+    <div class="stage-row">
+      <div class="stage-label stage-mild"><div class="stage-temp">32–35°C</div><div class="stage-name">Mild</div></div>
+      <div class="stage-body"><div class="stage-signs">Shivering, pale skin, confusion beginning</div><div class="stage-text">The body's primary defence is shivering — involuntary muscle contractions that generate heat. The person may appear confused, clumsy, or slow to respond. Skin is pale and cold. Peripheral blood vessels constrict to preserve core heat. This stage is often missed because survivors may appear mildly unwell rather than seriously ill.</div></div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-label stage-moderate"><div class="stage-temp">28–32°C</div><div class="stage-name">Moderate</div></div>
+      <div class="stage-body"><div class="stage-signs">Shivering stops, muscle rigidity, significant confusion</div><div class="stage-text">When shivering stops it may appear the person is improving — they are not. Shivering ceasing at this stage means the body has exhausted its capacity to generate heat through that mechanism. Muscle rigidity develops. The person may become paradoxically calm or even make inappropriate decisions (a dangerous effect known as "paradoxical undressing"). Cardiac arrhythmias can begin at this stage.</div></div>
+    </div>
+
+    <div class="stage-row">
+      <div class="stage-label stage-severe"><div class="stage-temp">&lt;28°C</div><div class="stage-name">Severe</div></div>
+      <div class="stage-body"><div class="stage-signs">Loss of consciousness, cardiac risk, may appear dead</div><div class="stage-text">At severe hypothermia, the person may be unconscious, have slow or absent pulse, very slow breathing, and dilated pupils. They may appear dead. This is why the principle in cold water rescue is: the patient is not dead until they are warm and dead. Ventricular fibrillation is possible. Handling must be extremely gentle — rough movement at this stage can trigger cardiac arrest.</div></div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Afterdrop</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Afterdrop is the phenomenon where core temperature continues to fall after a hypothermic person is removed from cold exposure. Cold blood pooled in the extremities returns to the core as circulation is restored, dropping the core temperature further — sometimes triggering cardiac events in moderate to severe cases. This is why rewarming must be gentle and controlled, and why rough handling or active limb movement is dangerous. The medical team will manage rewarming strategy. Your job is to avoid making it worse.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Hypothermia in the Mediterranean context</div>
+    <p class="prose">The Central Mediterranean is not cold by polar standards. But the conditions on a departure typically create sustained heat loss over many hours — and the cumulative effect is severe.</p>
+
+    <div class="callout">
+      <div class="callout-title">Why it happens here</div>
+      <div class="callout-text">A crossing from Libya or Tunisia to Italy or Malta has no fixed duration — crossings can take many hours or several days depending on the vessel, the sea state, and what happens along the way. There is no typical time. People are wet, often from the outset — waves and spray are constant even in moderate conditions. Wind chill over wet clothing dramatically accelerates heat loss. Overcrowding means limited movement, reducing heat generation. Dehydration and lack of food impair the body's ability to thermoregulate. Even in 24°C air with warm water, these compounding factors cause hypothermia — particularly in infants, children, the elderly, pregnant women, and anyone already weakened or malnourished.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Infants and children: highest priority</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Infants and young children have a higher surface area-to-mass ratio and minimal subcutaneous fat compared to adults. They lose heat rapidly and cannot shiver effectively. Infants in particular may show very few visible signs of hypothermia beyond stillness and lethargy that could easily be mistaken for normal sleep. Any infant or young child should be prioritised for medical assessment regardless of apparent presentation.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Winter vs summer</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Winter Mediterranean crossings present an elevated risk of severe hypothermia — water temperatures of 14–18°C, colder air, more adverse weather, shorter days. Summer crossings are not safe from hypothermia — they carry a different risk profile, not an absent one. Do not assume a calm, warm night means survivors will not arrive hypothermic.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Crew response — do and don't</div>
+    <p class="prose">Most crew members will be involved in the initial stages of receiving survivors — removing them from the water, passing them up from the RHIB, receiving them on deck. These moments matter enormously for hypothermic survivors. Gentle, efficient, warm handling in the first minutes affects outcome.</p>
+
+    <div class="do-dont">
+      <div class="do-card do">
+        <div class="do-title">Do</div>
+        <div class="do-item">Handle gently — no rough lifting, no sudden position changes</div>
+        <div class="do-item">Remove wet clothing as soon as practicable — cut if necessary</div>
+        <div class="do-item">Wrap in blankets or a foil survival bag from head to feet</div>
+        <div class="do-item">Move the person to a sheltered, warm environment immediately</div>
+        <div class="do-item">Prioritise infants, children, and elderly for immediate medical assessment</div>
+        <div class="do-item">Communicate clearly with the medical team — describe what you observed</div>
+      </div>
+      <div class="do-card dont">
+        <div class="do-title">Don't</div>
+        <div class="do-item">Rub or massage the limbs vigorously — promotes afterdrop</div>
+        <div class="do-item">Apply direct heat sources (hot water bottles directly on skin)</div>
+        <div class="do-item">Give alcohol — it impairs thermoregulation and dilates vessels</div>
+        <div class="do-item">Force the person to walk or move to generate heat</div>
+        <div class="do-item">Assume shivering means the person is "fine" — it indicates mild hypothermia</div>
+        <div class="do-item">Assume absence of shivering means the person is improving</div>
+      </div>
+    </div>
+
+    <div class="callout-red">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Handle as if fragile</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">A moderately or severely hypothermic patient whose heart is beating slowly and irregularly is at risk of ventricular fibrillation from rough handling. Treat every survivor you are unsure about as if they are at this risk. Gentle, horizontal transfer. No sudden movements. Alert the medical team before you move them if there is any doubt.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Your organisation's protocol</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Every vessel has specific arrangements for survivor reception, warming, and medical handover. Before operations begin, ask your team leader to walk you through the reception flow — where survivors are received, where warming blankets are stored, who leads triage, and how to alert the medical team rapidly. Knowing the route and the system before you need it matters.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Practice — interactive</div>
+    <div class="mod-sec-title">Identify the stage</div>
+    <p class="prose">Four survivors, each with a different pattern of observations. Read each set of signs and identify the hypothermia stage. After you choose, you'll see whether the recognition was correct and what the crew response should be.</p>
+
+    <div class="hp-wrap" id="hp-wrap"></div>
+  </div>
+
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five questions on hypothermia recognition and crew response.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const questions=[
+  {q:"A survivor stops shivering after 20 minutes aboard. A crew member says 'good, they're warming up.' Is this correct?",opts:["Yes — shivering ending always means the body has warmed successfully","Not necessarily — in moderate hypothermia, shivering stopping can mean the body has exhausted its capacity to generate heat","Yes — shivering indicates distress, so its absence is always a positive sign","Probably — combined with the warm blanket they've received, this is likely a good sign"],correct:1,fb:"Shivering ending is not always positive. In mild hypothermia it may indicate the person is warming up. But in moderate hypothermia (core temperature dropping below 32°C), shivering ceases because the body can no longer sustain the effort — not because the person has recovered. The medical team should assess any survivor where shivering stops."},
+  {q:"A moderate to severe hypothermia patient needs to be moved from the rescue zone to the medical area. How should this be done?",opts:["Ask them to walk if they appear conscious — movement generates heat","Carry them using a rapid over-the-shoulder carry to get them to warmth quickly","Move them gently and horizontally — minimise rough handling and sudden position changes","Seat them upright in a wheelchair or stretcher chair for transport"],correct:2,fb:"Rough handling or sudden positional changes in a moderately or severely hypothermic patient can trigger ventricular fibrillation. The cardiac muscle is cold and irritable. Gentle, horizontal transfer is the standard. Alert the medical team to the transfer before moving them if at all possible."},
+  {q:"It is August. Sea temperature is 25°C. A large overcrowded boat is recovered after approximately 14 hours at sea. Should hypothermia be considered for the survivors?",opts:["No — water temperature above 24°C makes hypothermia very unlikely","No — summer conditions do not produce significant cold injury","Yes — wet clothing, wind, spray, exhaustion, and dehydration over 14 hours cause hypothermia regardless of air or water temperature","Possibly — only for survivors who appear to have been in the water, not on the boat"],correct:2,fb:"Mediterranean summer does not prevent hypothermia on a long crossing. Sustained exposure to wind over wet clothing, no shelter, no food or water, physical exhaustion, and dehydration all impair thermoregulation even when ambient conditions are warm. Infants and young children are at especially high risk. All survivors from a prolonged crossing should be assessed for hypothermia."},
+  {q:"Why is rubbing a hypothermic survivor's limbs vigorously to warm them up potentially harmful?",opts:["It causes pain and distresses the survivor unnecessarily","It promotes afterdrop — cold blood in the extremities is pushed back to the core, further cooling it","It increases the risk of frostbite if the person also has cold injury","It raises blood pressure too rapidly in someone who is already stressed"],correct:1,fb:"Vigorous rubbing of limbs promotes afterdrop — cold blood pooled in the extremities returns to the core, dropping core temperature further. In moderate to severe cases this can trigger cardiac arrhythmia. Rewarming should be passive and gentle. Active limb manipulation is for the medical team to decide on, not for general crew."},
+  {q:"An infant is recovered from the boat and appears still and quiet. They are not shivering. Their mother says they have been like this for a while. What should you do?",opts:["The infant seems calm — monitor them alongside other survivors","The absence of shivering is reassuring — shivering would indicate a problem","Alert the medical team immediately — stillness and lethargy in an infant may indicate serious hypothermia","Keep them warm and reassess in 30 minutes"],correct:2,fb:"Infants cannot shiver effectively and lose heat very rapidly. Stillness and lethargy can indicate serious hypothermia in an infant where the same presentation in an adult might seem mild. The absence of shivering in an infant is not reassuring — it may mean they have already passed the point of being able to generate heat through that mechanism. Infants require immediate medical assessment regardless of apparent presentation."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';
+  updateNav();
+  if(n===5&&answered.length===0)renderQuiz();
+  if(n===4&&!hpInit){hpRender();hpInit=true;}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<5)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===5){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of hypothermia recognition and response. Ready for module 3.4.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review any questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the sections and try again. Hypothermia recognition is one of the most important skills on a SAR vessel.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/3-4.html" class="btn-teal">Module 3.4 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+
+// ═══ HYPOTHERMIA STAGE IDENTIFIER ═══
+const HP_CASES = [
+  {
+    title: "Man, approximately 50, recovered after extended immersion",
+    obs: [
+      "Unresponsive, not shivering",
+      "Cold, rigid, no detectable peripheral pulse",
+      "Not breathing normally — occasional agonal gasps",
+      "Pupils fixed, dilated"
+    ],
+    correct: "severe",
+    response: "<strong>Severe hypothermia with probable cardiac arrest — medical team immediately, CPR per protocol.</strong> The guiding principle in cold water immersion: <strong>not dead until warm and dead</strong>. Agonal gasps, absent peripheral pulse, and rigidity can all occur in profound hypothermia and do not confirm death. Resuscitation continues through rewarming. Handle extremely gently — cold myocardium is highly unstable. This is the full severe-hypothermia protocol; the medical team leads."
+  },
+  {
+    title: "Adult male, approximately 30, recovered from the boat",
+    obs: [
+      "Shivering strongly and continuously",
+      "Alert, cooperative, answering questions in broken English",
+      "Skin cold to touch, fingertips pale",
+      "Able to stand and walk with support"
+    ],
+    correct: "mild",
+    response: "Passive rewarming. Move to sheltered area, remove wet clothing (cutting if easier), dry the person, wrap in warming blankets, warm sweet drinks if fully conscious and able to swallow. <strong>Monitor for deterioration</strong> — mild hypothermia can progress to moderate quickly if exposure continues."
+  },
+  {
+    title: "Woman, approximately 40, carried aboard by RHIB crew",
+    obs: [
+      "Shivering has stopped or is very weak",
+      "Slurred speech, confused about where she is",
+      "Skin very cold, pale, some stiffness in movements",
+      "Standing is unsteady, needs significant support"
+    ],
+    correct: "moderate",
+    response: "<strong>Medical team immediately.</strong> Handle gently — rough movement risks cardiac arrhythmia. Remove wet clothing (cutting rather than lifting arms), horizontal recovery position, insulate and protect from further cooling but do not actively rewarm extremities. <strong>No warm drinks</strong> — swallow reflex may be impaired. This is a medical emergency."
+  },
+  {
+    title: "Child, approximately 4 years old, on the boat with mother",
+    obs: [
+      "Not shivering",
+      "Quiet, limp, responds slowly to voice",
+      "Cool to touch, lips bluish",
+      "Mother says child has been 'like this' for some time"
+    ],
+    correct: "severe",
+    response: "<strong>Critical — medical team immediately, highest priority.</strong> Children and infants lose heat rapidly and can deteriorate catastrophically. Non-shivering with altered mental status in a child is severe hypothermia and may also indicate other pathology (drowning, dehydration, shock). Minimal handling, horizontal, insulate, medical intervention required. The absence of shivering is not reassuring in a child — it is concerning."
+  }
+];
+
+let hpInit = false;
+let hpChosen = {}; // case index -> stage key
+
+function hpRender() {
+  const wrap = document.getElementById('hp-wrap');
+  const stages = [
+    { key: 'mild', name: 'Mild', temp: '35–32°C' },
+    { key: 'moderate', name: 'Moderate', temp: '32–28°C' },
+    { key: 'severe', name: 'Severe', temp: 'Below 28°C' }
+  ];
+  wrap.innerHTML = HP_CASES.map((c, ci) => {
+    const chosen = hpChosen[ci];
+    const obsHtml = c.obs.map(o => `<li>${o}</li>`).join('');
+    const stagesHtml = stages.map(s => {
+      let cls = '';
+      if (chosen !== undefined) {
+        if (s.key === c.correct) cls = 'correct';
+        else if (s.key === chosen) cls = 'wrong';
+        else cls = 'faded';
+      }
+      return `<div class="hp-stage ${cls}" onclick="hpPick(${ci}, '${s.key}')">
+        <div class="hp-stage-name">${s.name}</div>
+        <div class="hp-stage-temp">${s.temp}</div>
+      </div>`;
+    }).join('');
+    let debrief = '';
+    if (chosen !== undefined) {
+      const ok = chosen === c.correct;
+      const correctName = stages.find(s => s.key === c.correct).name;
+      debrief = `<div class="hp-debrief visible ${ok ? 'ok' : 'no'}">
+        <div class="hp-debrief-verdict">${ok ? 'Correct' : `The correct stage is ${correctName}`}</div>
+        <div class="hp-response">
+          <div class="hp-response-label">Crew response</div>
+          ${c.response}
+        </div>
+      </div>`;
+    }
+    return `<div class="hp-case">
+      <div class="hp-case-head">
+        <div class="hp-case-num">Case ${ci+1} of ${HP_CASES.length}</div>
+        <div class="hp-case-title">${c.title}</div>
+      </div>
+      <div class="hp-case-body">
+        <div class="hp-obs-label">Observations</div>
+        <ul class="hp-obs">${obsHtml}</ul>
+        <div class="hp-prompt">Which stage of hypothermia?</div>
+        <div class="hp-stages">${stagesHtml}</div>
+      </div>
+      ${debrief}
+    </div>`;
+  }).join('');
+}
+
+function hpPick(caseIdx, stageKey) {
+  if (hpChosen[caseIdx] !== undefined) return;
+  hpChosen[caseIdx] = stageKey;
+  hpRender();
+}
+</script>
+</body>
+</html>

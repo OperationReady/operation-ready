@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3.1 — Triage at sea | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .triage-row{display:flex;gap:0;margin-bottom:6px;border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+    .triage-cat{width:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .triage-cat span{font-family:'DM Serif Display',serif;font-size:20px;color:#fff;}
+    .triage-body{padding:12px 14px;flex:1;background:var(--white);}
+    .triage-name{font-size:12px;font-weight:500;margin-bottom:4px;}
+    .triage-text{font-size:12px;color:var(--text2);line-height:1.55;font-weight:300;}
+    .triage-eg{font-size:11px;color:var(--text3);margin-top:6px;font-style:italic;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+
+    /* ═══ TRIAGE SORTER ═══ */
+    .ts-wrap{margin-top:16px;}
+    .ts-queue{background:var(--cream2);border:1px solid var(--border);border-radius:5px;padding:16px;margin-bottom:14px;}
+    .ts-queue-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;font-weight:500;display:flex;align-items:center;gap:10px;}
+    .ts-queue-count{background:var(--teal);color:#fff;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;letter-spacing:.04em;}
+    .ts-cards{display:flex;flex-direction:column;gap:8px;min-height:40px;}
+    .ts-card{background:#fff;border:1px solid var(--border);border-radius:4px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:all .15s;position:relative;}
+    .ts-card:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .ts-card.selected{border-color:var(--teal);border-width:2px;background:rgba(61,139,122,.08);box-shadow:0 0 0 1px var(--teal);}
+    .ts-card-id{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);line-height:1;min-width:28px;text-align:center;padding-top:1px;}
+    .ts-card-body{flex:1;}
+    .ts-card-obs{font-size:13px;color:var(--text);line-height:1.55;font-weight:400;}
+    .ts-card-detail{font-size:12px;color:var(--text2);line-height:1.55;margin-top:3px;font-weight:300;}
+
+    .ts-bins{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+    .ts-bin{border:1.5px solid var(--bin-color);border-radius:5px;overflow:hidden;display:flex;flex-direction:column;min-height:150px;transition:background .15s;}
+    .ts-bin.ready{background:rgba(var(--bin-color-rgb,61,139,122),.03);}
+    .ts-bin-header{background:var(--bin-color);color:#fff;padding:8px 10px;display:flex;align-items:center;gap:8px;}
+    .ts-bin-tag{font-family:'DM Serif Display',serif;font-size:16px;line-height:1;}
+    .ts-bin-name{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
+    .ts-bin-hint{padding:6px 10px 8px;font-size:10.5px;color:var(--text3);line-height:1.4;border-bottom:1px solid var(--border);background:#fff;font-style:italic;}
+    .ts-bin-drop{flex:1;padding:8px;display:flex;flex-direction:column;gap:5px;background:#fff;cursor:pointer;min-height:50px;transition:background .15s;}
+    .ts-bin-drop:hover{background:var(--mint-pale);}
+    .ts-bin-drop.no-selection{opacity:.6;cursor:not-allowed;}
+    .ts-bin-drop.no-selection:hover{background:#fff;}
+    .ts-assigned{background:rgba(var(--bin-color-rgb,61,139,122),.08);border:1px solid var(--bin-color);border-radius:3px;padding:6px 8px;font-size:11px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:6px;line-height:1.3;}
+    .ts-assigned:hover{background:rgba(var(--bin-color-rgb,61,139,122),.15);}
+    .ts-assigned.correct{background:rgba(42,157,92,.12);border-color:#2a9d5c;}
+    .ts-assigned.wrong{background:rgba(204,68,0,.1);border-color:#cc4400;}
+    .ts-assigned-id{font-family:'DM Serif Display',serif;font-size:13px;color:var(--navy);min-width:14px;}
+    .ts-assigned-txt{flex:1;font-weight:300;}
+    .ts-assigned-mark{margin-left:auto;font-size:11px;font-weight:600;}
+    .ts-bin[data-cat="T1"]{--bin-color-rgb:204,68,0;}
+    .ts-bin[data-cat="T2"]{--bin-color-rgb:212,130,26;}
+    .ts-bin[data-cat="T3"]{--bin-color-rgb:42,157,92;}
+    .ts-bin[data-cat="T4"]{--bin-color-rgb:30,58,95;}
+
+    .ts-footer{display:flex;gap:10px;align-items:center;margin-top:8px;}
+    .ts-reset-btn{background:transparent;color:var(--text3);border:1px solid var(--border2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:10px 18px;border-radius:3px;cursor:pointer;font-weight:500;transition:all .15s;}
+    .ts-reset-btn:hover{color:var(--navy);border-color:var(--navy);}
+    .ts-submit[disabled],#ts-submit[disabled]{opacity:.5;cursor:not-allowed;background:var(--text3);}
+
+    .ts-result{display:none;margin-top:20px;}
+    .ts-result.visible{display:block;}
+    .ts-score-bar{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:18px 22px;border-radius:5px;display:flex;align-items:center;gap:18px;margin-bottom:14px;flex-wrap:wrap;}
+    .ts-score-n{font-family:'DM Serif Display',serif;font-size:32px;color:var(--yellow);line-height:1;flex-shrink:0;}
+    .ts-score-body{flex:1;min-width:200px;}
+    .ts-score-verdict{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;margin-bottom:4px;}
+    .ts-score-text{font-size:13px;color:rgba(255,255,255,.7);font-weight:300;line-height:1.55;}
+    .ts-debrief-item{border-left:3px solid var(--border2);padding:10px 14px;background:var(--cream2);border-radius:0 3px 3px 0;margin-bottom:8px;font-size:13px;line-height:1.6;}
+    .ts-debrief-item.ok{border-left-color:#2a9d5c;}
+    .ts-debrief-item.err{border-left-color:#cc4400;}
+    .ts-debrief-top{font-weight:500;color:var(--text);margin-bottom:4px;font-size:12px;letter-spacing:.04em;}
+    .ts-debrief-reason{color:var(--text2);font-weight:300;}
+    .ts-debrief-reason strong{color:var(--teal);font-weight:500;}
+
+    @media(max-width:720px){
+      .ts-bins{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-3">Path 3</a> &rsaquo; <span>3.1</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 3 — Medical & first response</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Triage at sea</div>
+    <div class="module-meta"><span>Module 3.1</span><span>8 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">What is triage</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Categories</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Maritime context</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Practice</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 3.1</div>
+    <div class="mod-sec-title">Prioritising care when demand exceeds capacity</div>
+    <p class="prose">In a large rescue operation, more people may need medical attention simultaneously than the medical team can treat individually. Triage — from the French trier, to sort — is the process of categorising patients by the urgency of their need so that limited medical resources are directed where they save the most lives.</p>
+    <p class="prose">Triage is performed by medical professionals. As a general crew member, you will not be making triage decisions — but you will be working alongside the process, supporting it, and sometimes needing to understand why a person is not being attended to immediately. Understanding triage prevents well-meaning interference that disrupts the system.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What triage is and why it is necessary</li>
+        <li>The four triage categories — T1 through T4</li>
+        <li>How triage is applied in a maritime SAR context</li>
+        <li>Your role in supporting (not disrupting) the triage process</li>
+      </ul>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Medical disclaimer</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">This module provides awareness-level medical knowledge — not training. It does not qualify you to perform triage, make clinical decisions, or substitute for first aid training. All medical decisions aboard are made by qualified medical staff. If your organisation requires formal first aid certification, complete that training before your deployment.</div>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">What triage is — and why it matters</div>
+    <p class="prose">Without triage, medical resources in a mass casualty situation are distributed based on who arrives first, who shouts loudest, or who happens to be near the medical team. This results in resources being used on minor cases while critical cases deteriorate — and in more people dying.</p>
+    <p class="prose">Triage directs resources systematically. A patient triaged as T3 (minor) is not being neglected — they are being correctly identified as stable enough to wait while more critical cases are treated first. This is a professional and ethical decision, not indifference.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">The primary survey — the first few seconds</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">The primary survey is a rapid assessment used at initial triage. It happens in the first few seconds — a trained medical staff member scans for immediate life threats: major haemorrhage first, then Airway, Breathing, Circulation (ABC). This immediate scan determines triage category before any detailed assessment. It is performed by trained medical staff.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Dynamic triage — categories change</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Triage is not a fixed decision. A person's condition can deteriorate or improve. Someone triaged T2 may become T1. Medical staff reassess continuously during the operation. Categories are marked visibly on survivors where possible — using coloured tags or other markers — so any team member can identify priority.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The goal of triage</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The goal is the greatest good for the greatest number — not the most intensive care for individuals. This ethical framework is sometimes in tension with the instinct to do everything for every person. Understanding this helps you work within the system rather than against it.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">The four triage categories</div>
+    <p class="prose">Standard triage uses four categories. These are internationally consistent — the same framework is used in disaster response, military medicine, and maritime SAR.</p>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0;">
+      <div class="triage-row">
+        <div class="triage-cat" style="background:#cc4400;"><span>T1</span></div>
+        <div class="triage-body">
+          <div class="triage-name" style="color:#cc4400;">Immediate — life-threatening, treatable now</div>
+          <div class="triage-text">Requires immediate medical intervention to survive. Airway compromise, respiratory failure, uncontrolled haemorrhage, severe hypothermia, shock, unconscious but breathing. These cases receive first attention.</div>
+          <div class="triage-eg">Red tag. Examples: drowning with respiratory arrest, severe hypothermia, obstetric emergency, major trauma.</div>
+        </div>
+      </div>
+      <div class="triage-row">
+        <div class="triage-cat" style="background:#D4821A;"><span>T2</span></div>
+        <div class="triage-body">
+          <div class="triage-name" style="color:#D4821A;">Delayed — serious but can wait</div>
+          <div class="triage-text">Significant medical need but condition is stable enough to wait for treatment without immediate life risk. Requires monitoring. These cases will deteriorate if not treated but are stable for now.</div>
+          <div class="triage-eg">Yellow tag. Examples: significant dehydration, non-life-threatening wounds, moderate hypothermia, fractures.</div>
+        </div>
+      </div>
+      <div class="triage-row">
+        <div class="triage-cat" style="background:#2a9d5c;"><span>T3</span></div>
+        <div class="triage-body">
+          <div class="triage-name" style="color:#2a9d5c;">Minor — walking wounded</div>
+          <div class="triage-text">Minor injuries or medical needs. Can wait for treatment and may be able to assist others or self-care with guidance. Often the largest group in a mass casualty situation.</div>
+          <div class="triage-eg">Green tag. Examples: minor cuts, mild dehydration, seasickness, minor anxiety.</div>
+        </div>
+      </div>
+      <div class="triage-row">
+        <div class="triage-cat" style="background:#1E3A5F;"><span>T4</span></div>
+        <div class="triage-body">
+          <div class="triage-name" style="color:var(--navy);">Expectant — unsurvivable given available resources</div>
+          <div class="triage-text">Injuries so severe that survival is unlikely even with maximum medical intervention, given the resources available. Comfort care only. This category is extremely distressing to apply — but directing scarce resources to T1 and T2 cases saves more lives overall.</div>
+          <div class="triage-eg">Black tag. Examples: extended submersion cardiac arrest without resuscitation, catastrophic trauma with no survivable injuries.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">T4 — a difficult category</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">T4 is the category most likely to disturb crew who witness it. It means a person is not receiving active treatment while others are. Understanding why — that the same resources applied to a T1 case will save a life that cannot be saved with T4 — does not make it emotionally easy. This is one of the realities of mass casualty medicine. Talking about it with your team and in debrief is important.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Triage in the maritime SAR context</div>
+    <p class="prose">Maritime SAR triage has specific features that differ from land-based mass casualty situations.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Pre-boarding triage</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">RHIB crew make a preliminary assessment before survivors come aboard — identifying visible critical cases and persons in the water. This pre-boarding assessment allows the medical team on the mother vessel to prepare for what is arriving. RHIB crew use a radio to pass this information to the bridge and medical team.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Persons in the water — always T1</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Anyone recovered from the water is treated as T1 until assessed otherwise. Time in the water creates immediate risks — drowning, hypothermia, aspiration — regardless of how they appear on recovery. Cold water victims may appear dead but are not. Resuscitation is always attempted unless signs of irreversible death are present.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Limited resources at sea</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">A humanitarian SAR vessel has limited medical equipment compared to a hospital. The medical team works within these constraints. Medical evacuation (MEDEVAC) to a hospital — by helicopter or faster vessel — is requested for cases that exceed vessel capacity. The SARCO coordinates this with the MRCC.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Your role during triage</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">If asked by the medical team to assist — holding a patient, helping someone move, fetching equipment — do exactly what you are asked and nothing more. Do not perform medical interventions beyond your training. Do not argue with triage decisions. If you observe something the medical team has not — a person hidden or overlooked — report it clearly and directly.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Psychological impact of witnessing triage</div>
+      <div class="callout-text">Witnessing mass casualty triage — particularly T4 decisions — can be deeply affecting for crew who are not medical professionals. This is a normal response to an abnormal situation. Talking about it with your team, in debrief, and with support services if needed is not a weakness. It is how the psychological cost of this work is managed sustainably.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Practice — interactive</div>
+    <div class="mod-sec-title">Triage a mass rescue scenario</div>
+    <p class="prose">Eight survivors have just arrived aboard from an overcrowded boat. The medical team needs you to help with preliminary sorting before formal triage. Read each survivor's presentation and assign them to the correct category.</p>
+
+    <div class="callout" style="margin-bottom:16px;">
+      <div class="callout-title">How to use this exercise</div>
+      <div class="callout-text">Click a survivor card to select it — it will highlight. Then click the triage category bin you think they belong in (T1, T2, T3, or T4). The card will move across. Work through all eight survivors, then click <strong>Review my triage</strong> to see how you did. You can reset and try again.</div>
+    </div>
+
+    <p class="prose" style="font-size:12px;color:var(--text3);font-style:italic;">Your classification won't be used operationally — this is a learning exercise. Think about what you've read in the previous sections before deciding.</p>
+
+    <div class="ts-wrap">
+      <div class="ts-queue">
+        <div class="ts-queue-label">Survivors waiting for assessment <span class="ts-queue-count" id="ts-remaining">8</span></div>
+        <div class="ts-cards" id="ts-cards"></div>
+      </div>
+
+      <div class="ts-bins">
+        <div class="ts-bin" data-cat="T1" style="--bin-color:#cc4400;">
+          <div class="ts-bin-header">
+            <span class="ts-bin-tag">T1</span>
+            <span class="ts-bin-name">Immediate</span>
+          </div>
+          <div class="ts-bin-hint">Life-threatening, treatable now</div>
+          <div class="ts-bin-drop" id="ts-bin-T1"></div>
+        </div>
+        <div class="ts-bin" data-cat="T2" style="--bin-color:#D4821A;">
+          <div class="ts-bin-header">
+            <span class="ts-bin-tag">T2</span>
+            <span class="ts-bin-name">Delayed</span>
+          </div>
+          <div class="ts-bin-hint">Serious but stable</div>
+          <div class="ts-bin-drop" id="ts-bin-T2"></div>
+        </div>
+        <div class="ts-bin" data-cat="T3" style="--bin-color:#2a9d5c;">
+          <div class="ts-bin-header">
+            <span class="ts-bin-tag">T3</span>
+            <span class="ts-bin-name">Minor</span>
+          </div>
+          <div class="ts-bin-hint">Walking wounded</div>
+          <div class="ts-bin-drop" id="ts-bin-T3"></div>
+        </div>
+        <div class="ts-bin" data-cat="T4" style="--bin-color:#1E3A5F;">
+          <div class="ts-bin-header">
+            <span class="ts-bin-tag">T4</span>
+            <span class="ts-bin-name">Expectant</span>
+          </div>
+          <div class="ts-bin-hint">Unsurvivable with available resources</div>
+          <div class="ts-bin-drop" id="ts-bin-T4"></div>
+        </div>
+      </div>
+
+      <div class="ts-footer" id="ts-footer">
+        <button class="btn-teal" id="ts-submit" onclick="tsSubmit()" disabled>Review my triage</button>
+        <button class="ts-reset-btn" onclick="tsReset()">Reset</button>
+      </div>
+      <div class="ts-result" id="ts-result"></div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on triage awareness.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A survivor arrives walking aboard under their own power with a minor cut on their arm. They are crying and asking for help. The medical team does not attend to them immediately. Why?",o:["The medical team has not noticed them","They have been triaged as T3 — minor — and will be attended to after more critical cases","The cultural mediator should handle this, not the medical team","They should be brought to the medical team's attention immediately"],c:1,f:"A person who is ambulatory (walking) with a minor visible injury and no immediate life threat is a T3 — minor — triage category. They will be attended to after T1 and T2 cases are stabilised. Triage is a professional assessment — not indifference. A T3 person being distressed is not a medical emergency requiring immediate medical attention."},
+  {q:"A person is recovered from the water after approximately 20 minutes of submersion in 18°C water. They appear unresponsive. What is the correct first assumption?",o:["They are deceased — resuscitation is not indicated after this duration","They should be triaged T4 — expectant","They are T1 — immediate — and resuscitation should be attempted. Cold water victims may appear dead but are not.","Wait for the medical team to assess before taking any action"],c:2,f:"Cold water submersion slows metabolism significantly. People who appear dead after cold water submersion — including after extended periods — can survive with resuscitation. 'They are not dead until they are warm and dead' is a guiding principle in hypothermic resuscitation. All persons recovered from the water are T1 until assessed otherwise."},
+  {q:"During a large rescue, you see a person who appears to have been given a black (T4) tag. They are breathing but unresponsive. You disagree with the triage decision. What do you do?",o:["Challenge the medical team immediately — they may have made an error","Remove the tag and bring the person to the medical team","Accept the decision — triage is performed by qualified medical staff who have information you may not — but if you have specific information they may not have, communicate it clearly to the nearest medical team member","Report the incident to the Head of Mission immediately"],c:2,f:"T4 decisions are made by trained medical staff with full assessment information. If you disagree, the appropriate response is not to override or challenge the decision in the moment — it is to ensure the medical team has any specific information you have that they may not. After the operation, the debrief is the appropriate place to discuss triage decisions."},
+  {q:"What does T2 (Delayed) mean in triage?",o:["The person's injuries are minor and they can self-care","The person's condition is serious but stable — they can wait for treatment without immediate life risk while T1 cases are treated","The person is unlikely to survive regardless of treatment","The person requires immediate intervention to survive"],c:1,f:"T2 — Delayed — means serious but stable. The person has significant medical needs but can wait without immediate deterioration while more critical T1 cases receive immediate attention. T2 patients require monitoring and will be treated after T1s are stabilised."},
+  {q:"The RHIB crew are approaching a distress vessel before boarding begins. What useful information should they be passing to the mother vessel?",o:["The number of persons wearing lifejackets","A preliminary assessment of visible critical cases and persons in the water","The approximate age distribution of survivors","The condition of the distress vessel's engine"]
+  ,c:1,f:"Pre-boarding assessment by RHIB crew allows the medical team on the mother vessel to prepare. Identifying visible critical cases and persons in the water before recovery begins means the medical team, reception team, and logisticians can prepare the right resources at the right place. This information is radioed to the bridge and medical team during approach."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';updateNav();if(n===5&&ans.length===0)renderQ();if(n===4&&!tsInit){tsRender();tsInit=true;}window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<5)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===5?'none':'inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong triage awareness. Ready for module 3.2.':p>=.6?'Mostly solid — review what you missed.':'Go back through the categories and maritime context sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/3-2.html" class="btn-teal">Module 3.2 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+
+// ═══ TRIAGE SORTER ═══
+const TS_SURVIVORS = [
+  {id:'A', obs:'Unresponsive, not breathing, no pulse.', detail:'Recovered from the water. Wet clothing, cold to touch. Approximately 25 years old.', correct:'T1', reason:'A non-breathing, pulseless casualty recovered from cold water is <strong>T1 — immediate</strong>. Drowning and cold-water cardiac arrest have higher survival rates than typical arrest, and the principle is: not dead until warm and dead. CPR begins immediately.'},
+  {id:'B', obs:'Walking aboard with a cut on the forearm. Crying.', detail:'Visible but superficial laceration, bleeding controlled with a cloth. Anxious but communicative. No other injuries visible.', correct:'T3', reason:'Ambulatory, minor injury, no life threat. Classic <strong>T3 — minor</strong>. The distress is normal after a traumatic crossing but is not a medical emergency. They will be attended to once T1 and T2 cases are stabilised.'},
+  {id:'C', obs:'Heavily pregnant woman, contractions reported, pale and sweating.', detail:'Visibly late-stage pregnancy. Contractions about five minutes apart. Distressed. Skin pale, clammy. Pulse fast.', correct:'T1', reason:'Active labour in a post-crossing casualty with signs of shock (pallor, sweating, tachycardia) is <strong>T1 — immediate</strong>. Obstetric emergencies at sea require urgent medical attention; delivery may be imminent.'},
+  {id:'D', obs:'Violently shivering, confused, weak radial pulse.', detail:'Wet clothing. Responds slowly to questions. Can stand with help but stumbles. Lips bluish.', correct:'T1', reason:'Moderate-to-severe hypothermia with altered mental status and weak pulse is <strong>T1 — immediate</strong>. Without rapid rewarming and careful handling, cardiac instability can progress quickly. Not a T2 despite walking — the altered consciousness is the deciding factor.'},
+  {id:'E', obs:'Visible fuel burns on legs, conscious, in significant pain.', detail:'Chemical burns from petrol on an overcrowded boat. Skin reddened and blistered over both lower legs. Vital signs stable. Alert and oriented.', correct:'T2', reason:'Significant burns with stable vitals — <strong>T2 — delayed</strong>. Painful and will need treatment, but not immediately life-threatening. Requires monitoring; burns can deteriorate but this casualty is currently stable.'},
+  {id:'F', obs:'Unresponsive, no breathing, catastrophic head trauma, submerged over two hours.', detail:'Fixed and dilated pupils. Rigor present. Recovered after prolonged submersion following vessel capsize overnight. Warm water region.', correct:'T4', reason:'Signs of irreversible death (fixed pupils, rigor) combined with prolonged warm-water submersion and non-survivable trauma. <strong>T4 — expectant</strong>. Resources directed to T1 cases will save lives; this casualty cannot be saved even with maximum intervention.'},
+  {id:'G', obs:'Small child, quiet, dehydrated, responsive.', detail:'Approximately four years old. Dry lips, sunken eyes. Responds to voice but lethargic. Mother also aboard. No visible injury.', correct:'T2', reason:'Significant dehydration in a child needs attention soon but the child is stable — <strong>T2 — delayed</strong>. Children can deteriorate faster than adults so reassessment must be frequent, but does not need immediate intervention ahead of T1 cases.'},
+  {id:'H', obs:'Walking, vomiting seawater, distressed.', detail:'Coughed up water on the RHIB. Currently ambulatory. Complains of chest discomfort. No breathing difficulty. Conversant.', correct:'T2', reason:'Ambulatory with probable water aspiration — <strong>T2 — delayed</strong>. Not T3 because aspirated water can cause secondary drowning (delayed pulmonary oedema). Needs monitoring and medical assessment but is currently stable and breathing normally.'}
+];
+
+let tsInit = false;
+let tsSelected = null;
+let tsAssignments = {};  // { 'A': 'T1', 'B': 'T3', ... }
+let tsSubmitted = false;
+
+function tsRender() {
+  const cards = document.getElementById('ts-cards');
+  cards.innerHTML = TS_SURVIVORS.filter(s => !tsAssignments[s.id]).map(s => `
+    <div class="ts-card" data-id="${s.id}" onclick="tsSelect('${s.id}')">
+      <div class="ts-card-id">${s.id}</div>
+      <div class="ts-card-body">
+        <div class="ts-card-obs">${s.obs}</div>
+        <div class="ts-card-detail">${s.detail}</div>
+      </div>
+    </div>
+  `).join('') || '<div style="font-size:12px;color:var(--text3);padding:8px 4px;font-style:italic;">All survivors assigned. Review your triage below.</div>';
+
+  // Render bins
+  ['T1','T2','T3','T4'].forEach(cat => {
+    const bin = document.getElementById('ts-bin-' + cat);
+    const assigned = Object.entries(tsAssignments).filter(([id, c]) => c === cat);
+    bin.innerHTML = assigned.map(([id]) => {
+      const surv = TS_SURVIVORS.find(s => s.id === id);
+      let cls = '';
+      let mark = '';
+      if (tsSubmitted) {
+        if (surv.correct === cat) { cls = 'correct'; mark = '✓'; }
+        else { cls = 'wrong'; mark = '×'; }
+      }
+      return `<div class="ts-assigned ${cls}" onclick="tsUnassign('${id}')" title="${tsSubmitted ? '' : 'Click to unassign'}"><span class="ts-assigned-id">${id}</span><span class="ts-assigned-txt">${surv.obs.substring(0, 36)}${surv.obs.length > 36 ? '…' : ''}</span>${mark ? `<span class="ts-assigned-mark">${mark}</span>` : ''}</div>`;
+    }).join('');
+
+    // Update the drop area "click to place" state
+    const drop = bin;
+    if (tsSelected && !tsSubmitted) {
+      drop.classList.remove('no-selection');
+      drop.onclick = () => tsAssign(cat);
+    } else {
+      drop.classList.toggle('no-selection', !tsSubmitted && !tsSelected);
+      drop.onclick = null;
+    }
+  });
+
+  // Update remaining count
+  const remaining = TS_SURVIVORS.filter(s => !tsAssignments[s.id]).length;
+  document.getElementById('ts-remaining').textContent = remaining;
+
+  // Enable submit if all assigned
+  document.getElementById('ts-submit').disabled = tsSubmitted || remaining > 0;
+}
+
+function tsSelect(id) {
+  if (tsSubmitted) return;
+  tsSelected = tsSelected === id ? null : id;
+  // visual state
+  document.querySelectorAll('.ts-card').forEach(el => {
+    el.classList.toggle('selected', el.dataset.id === tsSelected);
+  });
+  tsRender();
+  // re-apply selected class after rerender
+  if (tsSelected) {
+    const card = document.querySelector(`.ts-card[data-id="${tsSelected}"]`);
+    if (card) card.classList.add('selected');
+  }
+}
+
+function tsAssign(cat) {
+  if (tsSubmitted || !tsSelected) return;
+  tsAssignments[tsSelected] = cat;
+  tsSelected = null;
+  tsRender();
+}
+
+function tsUnassign(id) {
+  if (tsSubmitted) return;
+  delete tsAssignments[id];
+  tsRender();
+}
+
+function tsSubmit() {
+  tsSubmitted = true;
+  tsRender();
+  // Build result
+  const correct = TS_SURVIVORS.filter(s => tsAssignments[s.id] === s.correct).length;
+  const total = TS_SURVIVORS.length;
+  const pct = correct / total;
+  let verdict, verdictText;
+  if (pct === 1) { verdict = 'All correct'; verdictText = 'Every casualty correctly categorised. That is the level of judgement the medical team relies on when crew assist with sorting.'; }
+  else if (pct >= 0.75) { verdict = 'Strong performance'; verdictText = 'Most categorisations correct. Review the cases you missed below — the reasoning matters more than the score.'; }
+  else if (pct >= 0.5) { verdict = 'Room to develop'; verdictText = 'Some correct instincts but several misses. Work through the debriefs below — these patterns are the ones that matter operationally.'; }
+  else { verdict = 'Revisit the material'; verdictText = 'Several significant misses. Re-read the Categories and Maritime context sections, then try this exercise again.'; }
+
+  const debriefs = TS_SURVIVORS.map(s => {
+    const assigned = tsAssignments[s.id];
+    const ok = assigned === s.correct;
+    return `<div class="ts-debrief-item ${ok ? 'ok' : 'err'}">
+      <div class="ts-debrief-top">Survivor ${s.id} &middot; Correct: ${s.correct} &middot; You chose: ${assigned}${ok ? ' ✓' : ' ×'}</div>
+      <div class="ts-debrief-reason">${s.reason}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('ts-result').innerHTML = `
+    <div class="ts-score-bar">
+      <div class="ts-score-n">${correct}/${total}</div>
+      <div class="ts-score-body">
+        <div class="ts-score-verdict">${verdict}</div>
+        <div class="ts-score-text">${verdictText}</div>
+      </div>
+    </div>
+    ${debriefs}
+    <div style="text-align:center;margin-top:14px;">
+      <button class="ts-reset-btn" onclick="tsReset()">Try again</button>
+    </div>
+  `;
+  document.getElementById('ts-result').classList.add('visible');
+  document.getElementById('ts-footer').style.display = 'none';
+}
+
+function tsReset() {
+  tsSelected = null;
+  tsAssignments = {};
+  tsSubmitted = false;
+  document.getElementById('ts-result').innerHTML = '';
+  document.getElementById('ts-result').classList.remove('visible');
+  document.getElementById('ts-footer').style.display = 'flex';
+  tsRender();
+}
+</script>
+</body>
+</html>

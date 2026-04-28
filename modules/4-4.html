@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 4.4 — Vulnerable persons | Operation Ready</title>
+  <meta name="description" content="Identifying and responding to vulnerable persons during SAR operations — unaccompanied minors, survivors of sexual and gender-based violence, people with medical and mental health needs.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .callout-red{border-left:3px solid #cc2200;padding:12px 16px;background:rgba(204,34,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc2200;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .vp-card{border:1px solid var(--border);border-radius:4px;padding:16px;background:var(--white);margin-bottom:10px;}
+    .vp-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;}
+    .vp-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:8px;}
+    .vp-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .vp-action{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;padding:10px 14px;background:var(--cream);border-radius:3px;margin-top:10px;border-left:3px solid var(--teal);}
+    .vp-action-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:4px;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-4">Path 4</a> &rsaquo; <span>4.4</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 4 — Survivor interaction</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Vulnerable persons</div>
+    <div class="module-meta">
+      <span>Module 4.4</span><span>12 min</span><span>5-question check</span>
+    </div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Who and why</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Specific groups</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Your role</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <!-- INTRO -->
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 4.4</div>
+    <div class="mod-sec-title">Recognising and responding to vulnerability</div>
+    <p class="prose">Not all survivors arrive in equal need. Some people arriving aboard have specific vulnerabilities — physical, psychological, social — that require different responses, specialist referral, or particular care in how crew interact with them. Identifying these vulnerabilities early and connecting people with the right support is one of the most important contributions a crew member can make.</p>
+    <p class="prose">This module is not about categorising survivors or treating groups as monolithic. It is about understanding the factors that create heightened risk, recognising indicators that should prompt specialist referral, and knowing what crew can and cannot do appropriately in each situation.</p>
+    <div class="callout">
+      <div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>What vulnerability means in a maritime SAR context and why it matters</li>
+        <li>The main vulnerable groups encountered in Central Mediterranean operations</li>
+        <li>Indicators that should trigger specialist referral or extra care</li>
+        <li>What crew should and should not do in each situation</li>
+      </ul>
+    </div>
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Specialist staff lead on vulnerability</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Most humanitarian SAR organisations have dedicated protection, medical, or mental health staff. Your role is to recognise indicators and refer — not to conduct assessments or provide specialist support yourself. Your organisation's SOPs will specify the referral pathway. Follow them.</div>
+    </div>
+    <div class="callout muted">
+      <div class="callout-title">Estimated time</div>
+      <div class="callout-text">12 minutes — followed by a knowledge check</div>
+    </div>
+  </div>
+
+  <!-- WHO AND WHY -->
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">What makes someone vulnerable in this context</div>
+    <p class="prose">Vulnerability is not a fixed characteristic of a person. It is the intersection of individual circumstances, the situation they are in, and the resources available to them. Someone who is highly resilient in ordinary life may be acutely vulnerable after prolonged trauma, displacement, and a life-threatening sea crossing.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Pre-existing vulnerability</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Some people embark on the crossing already carrying factors that increase risk — age (very young or elderly), disability, chronic medical conditions, pregnancy, pre-existing mental health conditions, or prior trauma including torture and detention. These factors compound the stress of the crossing.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Situational vulnerability</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">The journey itself creates vulnerability — through violence, sexual assault, dehydration, fuel burns from contact with petrol on overcrowded dinghies, exposure, and witnessing deaths. People who began the journey without specific vulnerabilities may arrive with significant needs created by the crossing.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Social vulnerability</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Separation from family, travelling alone, not speaking any language that crew or mediators speak, belonging to a group that faces discrimination — these factors reduce a person's ability to access the support available, regardless of their individual resilience.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">The importance of not assuming</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Vulnerability is not visible on the outside. A person who appears calm may be deeply traumatised. Someone who is not crying or not asking for help may be in acute distress. Cultural and individual differences affect how distress is expressed. Crew who approach all survivors with the same care and attention — not just those who exhibit obvious distress — will identify vulnerability that would otherwise be missed.</div>
+    </div>
+  </div>
+
+  <!-- SPECIFIC GROUPS -->
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Groups that require particular attention</div>
+    <p class="prose">The following groups are consistently identified in humanitarian SAR operations as requiring heightened awareness and specialist referral pathways.</p>
+
+    <div class="vp-card">
+      <div class="vp-tag">Unaccompanied minors</div>
+      <div class="vp-title">Children travelling without a parent or legal guardian</div>
+      <div class="vp-text">Unaccompanied minors (UAMs) are among the most vulnerable people on any crossing. They face heightened risk of trafficking, exploitation, and abuse both during the journey and after disembarkation. Many have experienced severe trauma. They may appear older than they are, may claim to be adults, or may be afraid to identify themselves as children. Identification is a legal obligation in many jurisdictions — the protection framework for minors is fundamentally different from that for adults.</div>
+      <div class="vp-action">
+        <div class="vp-action-lbl">Your role</div>
+        If you have any reason to believe a person may be a minor travelling alone, refer immediately to the designated protection focal point or your SARCO. Do not make age assessments yourself. Do not separate a child from people they are with unless directed to by a specialist. Ensure they are not left alone.
+      </div>
+    </div>
+
+    <div class="vp-card">
+      <div class="vp-tag">Survivors of SGBV</div>
+      <div class="vp-title">Sexual and gender-based violence</div>
+      <div class="vp-text">Sexual and gender-based violence (SGBV) is documented as widespread along Central Mediterranean migration routes — in detention centres, transit camps, and during the crossing itself. Most survivors will not disclose. Indicators may include: avoiding physical contact, distress disproportionate to apparent situation, injuries, reluctance to be examined medically, or direct disclosure. The presence of a male crew member near a survivor may itself be triggering.</div>
+      <div class="vp-action">
+        <div class="vp-action-lbl">Your role</div>
+        Never ask about sexual violence directly. If a survivor discloses to you, listen without judgment, thank them for trusting you, and refer to the designated person immediately — do not conduct further questioning. Ensure SGBV referral pathways specified in your SOPs are followed. Be conscious of your proximity, gender, and physical positioning when interacting with potentially vulnerable survivors.
+      </div>
+    </div>
+
+    <div class="vp-card">
+      <div class="vp-tag">Pregnant women and newborns</div>
+      <div class="vp-title">Obstetric emergencies and newborn care</div>
+      <div class="vp-text">Births during rescues and aboard vessels occur regularly in Central Mediterranean SAR operations. Pregnant women in advanced stages of pregnancy face acute risk from dehydration, stress, and the physical conditions of the crossing. Pre-term labour, complications, and deliveries at sea are documented. Women in early pregnancy may not be visibly pregnant and may not disclose.</div>
+      <div class="vp-action">
+        <div class="vp-action-lbl">Your role</div>
+        Alert the medical team to any woman who appears to be pregnant, to any signs of labour, or to any person who appears to have recently given birth. Do not attempt to assist with delivery — this requires medical personnel. Ensure privacy and dignity are maintained at all times.
+      </div>
+    </div>
+
+    <div class="vp-card">
+      <div class="vp-tag">Acute mental health distress</div>
+      <div class="vp-title">Psychological crisis during or after rescue</div>
+      <div class="vp-text">Acute psychological crisis — severe dissociation, unresponsive states, acute panic, aggressive behaviour driven by fear, psychosis — can occur during rescue operations. This may be triggered by the rescue itself (loud engines, physical handling, unknown uniforms), rather than only by prior trauma. Many survivors have witnessed deaths during the crossing.</div>
+      <div class="vp-action">
+        <div class="vp-action-lbl">Your role</div>
+        Do not attempt to restrain or physically manage a person in psychological crisis unless there is immediate safety risk — call for the medical team. Speak calmly, slowly, and clearly. If you do not share a language, a calm tone communicates. Reduce stimulation where possible — crowd, noise, physical proximity. Do not leave the person alone. Refer to medical/protection staff immediately.
+      </div>
+    </div>
+
+    <div class="vp-card">
+      <div class="vp-tag">Torture survivors</div>
+      <div class="vp-title">Physical and psychological marks of detention and torture</div>
+      <div class="vp-text">Survivors of detention and torture are present on almost every Central Mediterranean rescue. Evidence includes scarring inconsistent with ordinary injury, behaviour consistent with institutional trauma (extreme compliance, flinching at sudden movement, reluctance to speak), or direct disclosure. Physical wounds from detention conditions — including fuel burns, rope wounds, and blunt trauma — may be visible on arrival.</div>
+      <div class="vp-action">
+        <div class="vp-action-lbl">Your role</div>
+        Never ask about detention or torture history. If indicators are present, ensure the medical team assesses any wounds. If a person discloses torture, listen, do not probe for details, and refer to the protection focal point. Maintain dignity at all times — avoid discussions about a person's injuries or history near other survivors.
+      </div>
+    </div>
+
+    <div class="callout-red">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Confidentiality and protection</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Information shared by survivors — disclosures, observations, medical details — is confidential. It is not discussed with other crew members beyond those with a direct operational need, and never in hearing of other survivors. What you observe, hear, or are told during an operation is treated with the same discretion you would apply to any sensitive personal information. Your organisation's data protection policy applies from the moment of rescue.</div>
+    </div>
+  </div>
+
+  <!-- YOUR ROLE -->
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">What crew can and cannot do</div>
+    <p class="prose">The most important thing to understand is the boundary between observation and action. Crew members are often the first people to interact with survivors. What they notice — and what they report — directly determines whether vulnerabilities are identified and referred to the people who can help.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 20px;">
+      <div style="border:1px solid #2a9d5c;border-radius:4px;padding:14px;background:rgba(42,157,92,.04);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#2a9d5c;font-weight:500;margin-bottom:10px;">Crew can</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.8;font-weight:300;">
+          Observe and note indicators of vulnerability<br>
+          Refer immediately to the appropriate specialist<br>
+          Provide a calm, safe immediate environment<br>
+          Offer practical needs — blanket, water, food<br>
+          Listen without probing or questioning<br>
+          Ensure basic dignity and privacy<br>
+          Document what you observed factually
+        </div>
+      </div>
+      <div style="border:1px solid #cc4400;border-radius:4px;padding:14px;background:rgba(204,68,0,.04);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#cc4400;font-weight:500;margin-bottom:10px;">Crew should not</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.8;font-weight:300;">
+          Conduct vulnerability assessments<br>
+          Ask about assault, torture, or trauma<br>
+          Make age determinations for minors<br>
+          Discuss observations near other survivors<br>
+          Share information beyond those who need it<br>
+          Provide specialist support without training<br>
+          Promise specific outcomes or onward processes
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">The cost of missing vulnerability</div>
+      <div class="callout-text">Vulnerabilities that are not identified on the vessel may not be identified at all — particularly for groups with short processing timelines at disembarkation. A minor who is not identified as unaccompanied, a trafficking victim who is not referred to protection services, a woman who delivered aboard and needs follow-up care — the vessel is often the best — and sometimes only — opportunity for these needs to be recognised. Attentive crew make this difference.</div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Looking after yourself</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Working with vulnerable people in acute distress — particularly children, survivors of violence, or people who are dying — is one of the most psychologically demanding aspects of SAR work. The emotional cost is real. Debrief after difficult operations, use your organisation's support mechanisms, and speak to your team leader if you are struggling. Psychological self-care is not a luxury — it is how this work remains sustainable.</div>
+    </div>
+  </div>
+
+  <!-- CHECK -->
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five application-based questions on vulnerable persons.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A young person aboard appears to be approximately 15–16 years old and is travelling without any adult. They tell you they are 18. What should you do?",o:["Accept their statement — adults have the right to privacy about their age","Refer immediately to the protection focal point or SARCO — age assessment is a specialist responsibility, not crew's","Ask them again more clearly to confirm their age","Record them as 18 and continue your duties"],c:1,f:"When crew have any reason to believe a person may be an unaccompanied minor, the appropriate action is immediate referral to the designated protection specialist. Age assessments are not conducted by general crew, and a person's claim to be 18 does not end the obligation to refer if there are indicators they may be younger. The protection framework for minors is substantially different from that for adults — this matters."},
+  {q:"A female survivor is sitting apart from the group, not responding to offers of food or water, and appears distressed in a way disproportionate to her apparent physical condition. What does this suggest, and what should you do?",o:["She is probably just exhausted — check again in an hour","These indicators may suggest acute trauma or SGBV — refer to the protection focal point or medical team without delay","Try to find out what happened to her by asking direct questions","Ask a cultural mediator to find out her story so the team can help better"],c:1,f:"Distress disproportionate to apparent physical condition, social withdrawal, and non-responsiveness are consistent with acute trauma or SGBV experience. The correct response is referral, not questioning. Asking directly about assault or trauma is contraindicated — it can cause re-traumatisation and should only be done by trained specialists. Cultural mediators support communication, but investigation is not a crew role."},
+  {q:"You observe signs of severe scarring on a male survivor consistent with marks described in SGBV and torture training. He has not said anything. What is your role?",o:["Approach him privately and ask what happened to him","Document your observation and refer to the medical and protection teams","Leave it — he has not disclosed, so there is no basis for referral","Tell another crew member so someone else can follow up"],c:1,f:"Non-disclosure does not mean no need. Observable physical indicators of torture or violence are grounds for referral to the medical and protection teams. You do not need a verbal disclosure to refer. Discussing observations with other crew members beyond those with a direct operational role, or near other survivors, is a confidentiality breach."},
+  {q:"A survivor who appeared stable since boarding is now shouting, pushing away crew who approach, and appears to be in acute psychological distress. What is the correct immediate response?",o:["Restrain them for the safety of other survivors","Call for the medical team, reduce crowd and stimulation around the person, speak calmly and slowly, do not leave them alone","Ask a mediator to find out what has upset them","Step back completely and give them space to calm down on their own"],c:1,f:"Acute psychological crisis requires medical attention. Physical restraint should only be considered as a last resort for immediate safety — and only by trained personnel. Reducing stimulation (crowd, noise, proximity), maintaining a calm tone, and keeping the person in view while calling for medical support is the correct response. Leaving someone in acute crisis alone is not safe."},
+  {q:"After a large rescue, a fellow crew member mentions at dinner that a particular survivor they helped that day had clearly been tortured, and describes what they saw. How should you respond?",o:["Listen — the crew member needs to process difficult experiences","Gently remind them that what they observed is confidential and this discussion is not appropriate outside of debrief or support contexts","Ask them to tell you more so you can understand the full picture","Raise it formally with the Head of Mission — this is a serious breach"],c:1,f:"What crew observe about survivors — injuries, disclosures, vulnerability indicators — is confidential. Discussing it at meals or in informal settings near other people is a breach of that confidentiality. The correct response is a gentle, non-punitive reminder. The crew member may genuinely need to debrief — the appropriate space is a formal debrief or support conversation with a team leader, not informal discussion. If the behaviour is systematic, it may warrant a leadership conversation."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of vulnerable persons identification and response. Ready for module 4.5.':p>=.6?'Mostly solid — review the questions you missed.':'Go back through the sections — these principles are critical for protection work.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/4-5.html" class="btn-teal">Module 4.5 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

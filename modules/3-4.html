@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3.4 — Medical emergencies aboard | Operation Ready</title>
+  <meta name="description" content="Recognising and supporting the medical team's response to common medical emergencies on a humanitarian SAR vessel.">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .callout-red{border-left:3px solid #cc2200;padding:12px 16px;background:rgba(204,34,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc2200;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .condition-row{border:1px solid var(--border);border-radius:4px;margin-bottom:8px;overflow:hidden;background:var(--white);}
+    .condition-hdr{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--white);transition:background .15s;}
+    .condition-hdr:hover{background:var(--cream);}
+    .condition-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);}
+    .condition-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;padding:3px 8px;border-radius:2px;}
+    .tag-common{background:rgba(61,139,122,.1);color:var(--teal);border:1px solid rgba(61,139,122,.2);}
+    .tag-urgent{background:rgba(212,130,26,.1);color:#D4821A;border:1px solid rgba(212,130,26,.2);}
+    .tag-critical{background:rgba(204,34,0,.08);color:#cc2200;border:1px solid rgba(204,34,0,.15);}
+    .condition-body{display:none;padding:0 16px 14px;border-top:1px solid var(--border);}
+    .condition-body.open{display:block;}
+    .condition-section{margin-top:12px;}
+    .condition-section-lbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:5px;}
+    .condition-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .role-box{background:var(--cream);border-radius:4px;padding:12px 14px;margin-top:8px;border-left:3px solid var(--teal);}
+    .role-box-lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:5px;}
+    .role-box-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);color:var(--text);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);color:var(--text);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb">
+    <a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-3">Path 3</a> &rsaquo; <span>3.4</span>
+  </div>
+  <div class="module-header">
+    <div class="mod-track">Path 3 — Medical & first response</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Medical emergencies aboard</div>
+    <div class="module-meta"><span>Module 3.4</span><span>12 min</span><span>Recognition & crew role</span><span>5-question check</span></div>
+  </div>
+
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Conditions</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Crew role</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 3.4</div>
+    <div class="mod-sec-title">Beyond the water — medical needs aboard</div>
+    <p class="prose">Survivors coming aboard from a Mediterranean crossing carry a medical burden that goes far beyond exposure and drowning risk. Traumatic injuries, untreated chronic conditions, acute obstetric emergencies, sepsis from infected wounds, seizures from severe dehydration — all of these occur regularly on humanitarian SAR vessels. Crew members who can recognise the warning signs, alert the medical team rapidly, and provide calm support make a material difference.</p>
+    <p class="prose">This module is not first aid training. It is orientation to the most common emergencies your medical team will face, and your role in each. The conditions covered here represent what operational SAR organisations report encountering most frequently.</p>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Clinical care is the medical team's responsibility</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.6;color:var(--text2);">This module does not train you to diagnose or treat medical conditions. It helps you recognise warning signs, respond appropriately, and support the medical team effectively. If in doubt about any survivor's condition: alert the medical team and step back. Do not delay by trying to assess yourself.</div>
+    </div>
+
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>The most common medical conditions encountered in Mediterranean SAR</li>
+        <li>What to look for — warning signs for each condition</li>
+        <li>What crew should do — and what to avoid — for each</li>
+        <li>How to give a useful handover to the medical team</li>
+        <li>Mass casualty situations — when the system is under pressure</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">12 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 2</div>
+    <div class="mod-sec-title">Conditions you may encounter</div>
+    <p class="prose">Click each condition to expand. These are the most commonly reported medical presentations on humanitarian SAR vessels in the Central Mediterranean.</p>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Severe dehydration</div>
+        <span class="condition-tag tag-common">Very common</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Dry, cracked lips. Sunken eyes. Skin that remains "tented" when pinched. Confusion or disorientation. Dark or absent urine. Rapid weak pulse. In severe cases, seizures.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Survivors may not have had water for 24–48 hours or more. Overcrowding, heat, sea sickness, and fear all accelerate dehydration. Children and infants deteriorate from dehydration much faster than adults.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Alert the medical team. Ensure the person is seated or lying down safely. Do not give water until the medical team directs — in severe cases, oral fluids can cause complications. Keep the person calm and shaded.</div></div>
+      </div>
+    </div>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Fuel burns (chemical burns)</div>
+        <span class="condition-tag tag-urgent">Common / urgent</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Sitting in fuel and seawater mixture on a overcrowded boat causes chemical burns to the buttocks, groin, and lower limbs. Raw, red, or blistered skin in these areas. Survivors may be sitting on the fuel burns without realising the severity.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Fuel burns are extremely common — almost endemic in RHIB-based crossings. The mixture of outboard fuel, saltwater, and prolonged contact causes significant chemical burns. Do not ask survivors to stand on arrival if burns are suspected on their lower body.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Alert the medical team if you observe signs of burns. Assist survivors to a position that avoids pressure on affected areas. Do not remove clothing over suspected burns without medical direction — clothing may be adhered to the wound.</div></div>
+      </div>
+    </div>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Obstetric emergencies</div>
+        <span class="condition-tag tag-critical">Urgent</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Active labour (contractions, distress, amniotic fluid present). Postpartum haemorrhage — significant blood loss after recent delivery. Miscarriage in progress. Survivors may conceal pregnancy out of fear. Assess all women of reproductive age.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Pregnant women are among the most common vulnerable persons on Mediterranean crossings. Deliveries aboard SAR vessels occur regularly. Stress, dehydration, and the physical conditions of crossing can precipitate early labour.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Alert the medical team immediately. Ensure privacy for the individual as far as possible. Keep the area clear of non-essential personnel. Do not attempt to assess or assist without medical direction. Maintain calm around the person.</div></div>
+      </div>
+    </div>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Seizures</div>
+        <span class="condition-tag tag-urgent">Urgent</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Uncontrolled muscle convulsions. Loss of consciousness. Stiffening of limbs, then rhythmic jerking. Possibly biting tongue. Post-seizure confusion. Seizures in the SAR context are frequently caused by severe dehydration, heat stroke, or electrolyte imbalance — not necessarily pre-existing epilepsy.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Electrolyte depletion — particularly sodium and potassium — from prolonged dehydration can cause seizures even in otherwise healthy people. Severe dehydration seizures are common and dangerous.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Alert the medical team immediately. Clear the area around the person — remove hard objects. Do not hold the person down or restrain the convulsions. Do not put anything in their mouth. Time the seizure if possible. Stay with them. Alert if another seizure follows.</div></div>
+      </div>
+    </div>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Traumatic injuries</div>
+        <span class="condition-tag tag-urgent">Common</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Lacerations and puncture wounds (frequently infected from days of exposure). Fractures — often unreported because survivors do not seek to draw attention. Head injuries. Burns from friction on the boat or rope injuries from departure.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Departure from crowded beaches or rocky coastlines in darkness causes injuries that go unaddressed for the entire crossing. Infected wounds on arrival may have been present for 48+ hours. Survivors often conceal injuries to avoid being separated from their group.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Encourage survivors to report pain or injuries during initial reception — via interpreters if available. Do not probe wounds or remove embedded objects. Apply gentle pressure to actively bleeding wounds only if medics are occupied and the bleeding is significant. Alert the medical team.</div></div>
+      </div>
+    </div>
+
+    <div class="condition-row">
+      <div class="condition-hdr" onclick="toggleCond(this)">
+        <div class="condition-title">Mental health crises</div>
+        <span class="condition-tag tag-common">Common</span>
+      </div>
+      <div class="condition-body">
+        <div class="condition-section"><div class="condition-section-lbl">What to look for</div><div class="condition-text">Acute distress, panic, dissociation (appearing "absent" or not responding normally). Aggressive or agitated behaviour. Catatonia — unresponsive and immobile while conscious. Loss of touch with surroundings. These responses may emerge suddenly and can be alarming but are normal reactions to extreme stress.</div></div>
+        <div class="condition-section"><div class="condition-section-lbl">Context</div><div class="condition-text">Many survivors have experienced violence, detention, loss of family members, and the extreme fear of the crossing itself. The intensity of arrival on a rescue vessel can trigger acute stress responses. This is not a psychiatric disorder — it is a normal human response to abnormal events.</div></div>
+        <div class="role-box"><div class="role-box-lbl">Crew role</div><div class="role-box-text">Remain calm. Do not crowd the person or raise your voice. Speak quietly and slowly. Alert the medical team and any cultural mediator available. Give the person space but stay close enough to monitor. Psychological First Aid principles from module 3.5 apply here.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 2</div>
+    <div class="mod-sec-title">Your role in a medical emergency</div>
+    <p class="prose">When a medical emergency occurs aboard, crew often face the same dilemma: the instinct to help directly versus the practical reality that untrained intervention can worsen outcomes and obstruct the medical team's access. The most valuable thing a non-medical crew member can usually do is the following.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Alert fast</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Get the medical team there immediately. Learn your vessel's alert protocol before operations begin. Know the call sign, channel, and location of the medical bay.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Clear space</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Non-essential people around a medical patient impede care. Move other survivors away, keep the area clear, and ensure only those directed to assist by the medics remain nearby.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Observe and report</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">When you hand over to the medical team: tell them what you saw, when it started, any relevant context. "She has been unconscious for approximately 3 minutes, no visible injury" is useful. "She collapsed" is less useful.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:8px;">Stay present</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;margin:0;">Do not walk away once the medical team arrives. Stay close enough to assist if asked — provide equipment, translate via cultural mediators, manage surrounding survivors, maintain situational awareness.</p>
+      </div>
+    </div>
+
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Giving a medical handover</div>
+      <div style="font-size:13px;line-height:1.65;color:var(--text2);">Use SBAR structure if your organisation uses it: <strong style="font-weight:500;">Situation</strong> — what is happening now. <strong style="font-weight:500;">Background</strong> — relevant context (time in water, apparent age, what you observed before collapse). <strong style="font-weight:500;">Assessment</strong> — what you think is going on (dehydration, seizure etc.) — be honest about uncertainty. <strong style="font-weight:500;">Request</strong> — what you need from the medical team. A short clear SBAR takes 20 seconds and gives medics what they need to act immediately.</div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Under pressure — mass casualty situations</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">During a large rescue operation, the medical team will be managing multiple casualties simultaneously. In these situations, crew members may be asked to hold positions, apply basic support, manage large groups of survivors, or relay information between the triage area and the medical team. Your ability to follow direction calmly, communicate clearly, and remain focused makes the difference. Triage decisions are made by medical personnel. Do not question them in the moment.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:6px;">Five application-based questions on medical emergencies aboard.</p>
+    <div id="quiz-area"></div>
+    <div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+function toggleCond(hdr){
+  const body=hdr.nextElementSibling;
+  body.classList.toggle('open');
+}
+const questions=[
+  {q:"A survivor aboard begins having a seizure. You are the first crew member on scene. What should you do?",opts:["Hold their limbs to prevent injury from the convulsions","Put something soft in their mouth to prevent tongue injury","Clear the area around them, alert the medical team, time the seizure, and do not restrain","Immediately give them water — dehydration is likely the cause"],correct:2,fb:"For seizures: clear the area of hard objects, do not restrain the convulsions (this can cause fractures), do not put anything in the mouth, and alert the medical team immediately. Timing the seizure is useful clinical information. Even if dehydration is the likely cause, the medical team determines treatment — your job is to ensure safety and fast handover."},
+  {q:"During reception, a survivor has obvious fuel burns on their lower body but is standing to move into the reception area. What should you do?",opts:["Nothing immediately — direct them to the medical team when they arrive at the triage desk","Help them move as quickly as possible to the warm area — prioritise warming","Alert the medical team immediately and help the survivor to a position that avoids pressure on the burns","Remove their wet trousers to assess the extent of the burns before the medics arrive"],correct:2,fb:"Fuel burns are painful and common. Do not ask survivors with suspected lower body burns to stand or walk on them. Alert the medical team and help them into a position that takes pressure off the affected area. Do not remove clothing over burns without medical direction — fabric may have adhered to wounds."},
+  {q:"The medical team is occupied with two serious cases. A third survivor approaches you clearly distressed and confused. What is your priority?",opts:["Begin assessing them yourself — the medical team is too busy","Alert the medical team that there is a third case requiring attention, even if they are occupied","Give them water and wait for the medics to finish","Tell them to sit down and wait — the medics will get to them"],correct:1,fb:"Alert the medical team even when they are busy. They need to know a third case requires attention so they can triage priorities — that decision is theirs, not yours. A calm, clear communication: 'Third casualty, confused and distressed, eastern reception area' takes 5 seconds and ensures nothing is missed."},
+  {q:"You are handing over a female survivor to the medical team. She was unconscious briefly at recovery, is now conscious but confused, and has been at sea for approximately 18 hours. What is the most useful handover?",opts:["'She was unconscious but she's awake now.'","'She seems dehydrated and a bit confused. Can you check her out?'","'Survivor, approximately 18 hours at sea, brief loss of consciousness at recovery, currently conscious but confused. Likely dehydration. Please assess.'","'Over here — she needs help'"],correct:2,fb:"A structured handover gives the medical team clinical information immediately: context (18 hours at sea), event (LOC at recovery), current status (conscious but confused), your assessment (likely dehydration). This takes seconds and allows medics to act with context rather than starting from zero. Vague alerts create delays."},
+  {q:"An infant is handed to you at the side of the vessel during recovery. They are limp, not crying, and feel cold. What do you do?",opts:["Wrap them in a blanket and take them to the warming area with the other survivors","Call for the medical team immediately — this infant requires urgent assessment","Rub the infant briskly to stimulate them and warm them up","Check if the infant is breathing before doing anything else"],correct:1,fb:"A limp, cold, non-crying infant is a medical emergency. Call for the medical team immediately. Do not delay by assessing yourself — get clinical expertise to the infant as fast as possible. Gentle warmth while you wait (wrap in a blanket, hold close to the body), but do not rub briskly — infants can deteriorate rapidly from cold and the medical team needs to lead care."}
+];
+let cur=0,answered=[],scores=0;
+function goSec(n){
+  document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});
+  cur=n;
+  document.getElementById('prog').style.width=Math.round((n/3)*100)+'%';
+  updateNav();
+  if(n===3&&answered.length===0)renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextSec(){if(cur<3)goSec(cur+1);}
+function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){
+  const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');
+  bb.style.display=cur>0?'inline-block':'none';
+  if(cur===3){nb.style.display='none';}
+  else{nb.style.display='inline-block';nb.textContent=cur===2?'Take the check':'Next';}
+}
+function renderQuiz(){
+  document.getElementById('quiz-area').innerHTML=questions.map((q,qi)=>`
+    <div class="q-block" id="qb-${qi}">
+      <div class="q-text">${qi+1}. ${q.q}</div>
+      ${q.opts.map((o,oi)=>`<div class="q-opt" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${o}</div>`).join('')}
+      <div id="fb-${qi}"></div>
+    </div>`).join('');
+}
+function answer(qi,oi){
+  if(answered.includes(qi))return;
+  answered.push(qi);
+  const q=questions[qi];
+  document.querySelectorAll(`#qb-${qi} .q-opt`).forEach((_,i)=>{
+    const el=document.getElementById(`opt-${qi}-${i}`);
+    el.onclick=null;
+    if(i===oi&&i===q.correct)el.classList.add('correct');
+    else if(i===oi)el.classList.add('wrong');
+    else if(i===q.correct)el.classList.add('show-correct');
+  });
+  const ok=oi===q.correct;
+  if(ok)scores++;
+  document.getElementById(`fb-${qi}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.fb}</div>`;
+  if(answered.length===questions.length)showResult();
+}
+function showResult(){
+  const pct=scores/questions.length;
+  let v,t;
+  if(pct===1){v="Excellent";t="Strong understanding of medical emergency response. Ready for module 3.5.";}
+  else if(pct>=0.6){v="Good foundation";t="Mostly solid — review any questions you missed before your deployment.";}
+  else{v="Worth revisiting";t="Go back through the sections and try again. Medical emergency recognition matters in every SAR operation.";}
+  setTimeout(()=>{
+    document.getElementById('quiz-result').innerHTML=`
+      <div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;">
+        <div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${scores}/${questions.length}</div>
+        <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="/modules/3-5.html" class="btn-teal">Module 3.5 &rarr;</a>
+          <a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a>
+        </div>
+      </div>`;
+  },300);
+}
+</script>
+</body>
+</html>

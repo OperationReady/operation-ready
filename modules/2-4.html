@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.4 — Survivor recovery | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-red{border-left:3px solid #cc4400;padding:12px 16px;background:rgba(204,68,0,.07);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-red .callout-title{color:#cc4400;}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .flow-steps{display:flex;flex-direction:column;gap:0;margin:14px 0;}
+    .flow-step{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);}
+    .flow-step:last-child{border-bottom:none;}
+    .flow-num{font-family:'DM Serif Display',serif;font-size:26px;color:var(--teal);line-height:1;flex-shrink:0;width:32px;}
+    .flow-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+    .flow-text{font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.4</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Survivor recovery</div>
+    <div class="module-meta"><span>Module 2.4</span><span>8 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Approach</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Boarding</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">Reception</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.4</div>
+    <div class="mod-sec-title">The moment of rescue</div>
+    <p class="prose">Survivor recovery — the moment when people in distress come aboard — is the operational centre of a SAR mission. It is also one of the most complex and emotionally demanding phases. Physical recovery, medical triage, communication barriers, and large numbers of frightened people happen simultaneously, in a confined space, under time pressure.</p>
+    <p class="prose">Keeping the survivor perspective central is essential throughout this process. The people coming aboard have often been at sea for hours or days, in conditions you have seen described in the Beaufort scale — but without shelter, without enough water, and without the certainty of rescue. The recovery moment is the transition from that to safety. How it is conducted matters enormously to the people experiencing it.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>The approach to a distress vessel — assessing the situation</li>
+        <li>How survivors are brought aboard — methods and priorities</li>
+        <li>Initial reception — the first minutes aboard</li>
+        <li>Prioritisation during mass rescue situations</li>
+        <li>Your role and limits as a general crew member</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Approaching a distress vessel</div>
+    <p class="prose">Before recovery begins, the situation must be assessed. An overloaded overcrowded boat can capsize if approached incorrectly — the wake of a vessel approaching at speed, or the movement of panicking occupants, can tip the balance. The approach is managed carefully.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Initial assessment from a distance</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Before approaching closely, the vessel observes from a distance — estimating the number of people aboard, assessing the vessel's stability, identifying visible medical emergencies, and communicating this to the MRCC. This informs the approach method and resource preparation aboard.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Mother vessel positioning</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">The mother vessel positions itself to create a lee — a sheltered area for RHIB and boarding operations. The vessel's hull provides wind and wave shelter. Positioning is managed by the Master and SARCO based on wind direction and the distress vessel's condition.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">RHIB deployment</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">RHIBs deploy and approach the distress vessel. The boat leader manages the approach speed and angle — slow, controlled, from downwind or alongside rather than from head-on. Sudden wake or noise can cause panic and movement aboard an overcrowded vessel.</p>
+      </div>
+    </div>
+
+    <div class="callout-red">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Capsize risk</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">An overcrowded boat carrying 100–150 people has almost no stability margin. Any sudden weight shift — people standing, rushing to one side, or jumping toward a rescue vessel — can capsize it in seconds. The RHIB crew manage this risk throughout the approach and recovery. Do not create wake, noise, or visible excitement that could cause movement aboard the distress vessel.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Boarding and recovery methods</div>
+    <p class="prose">In humanitarian SAR, all vessels operate with a rescue craft — a RHIB or FRB. Survivors are transferred from the distress vessel to the mother vessel via the rescue craft, then disembark at water level via a boat landing, pilot ladder, or directly onto the deck depending on the vessel.</p>
+    <p class="prose">The exception is when persons are in the water — which is essentially a man-overboard recovery, with all the urgency that implies.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Two recovery situations</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Recovery from the distress vessel (standard)</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">RHIB or FRB approaches the distress vessel and shuttles survivors to the mother vessel in groups. Survivors disembark at water level — boat landing, pilot ladder, or onto deck — and the rescue craft returns for the next group. Multiple trips are required for any significant number of people. Priority given to medical cases and vulnerable persons first.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Persons in the water (MOB recovery)</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">When people are in the water, recovery is essentially a man-overboard operation — the same urgency, the same techniques. Time in the water is critical. Recovery is by RHIB. A conscious person can be assisted aboard the RHIB; an unconscious person requires specific techniques and immediate medical attention on return.</p>
+      </div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Initial assessment from a distance</div>
+    <p class="prose" style="margin-bottom:8px;">Before approaching closely, the RHIB assesses the situation — number of people, vessel stability, visible medical emergencies — and communicates this back to the mother vessel, who reports onward as needed (MRCC, other assets). The approach is then managed based on what is found.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 10px;font-weight:500;">Priority order during recovery</div>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-num">1</div><div><div class="flow-title">Persons in the water</div><div class="flow-text">Always first. Time in the water is critical — hypothermia and drowning risk increases rapidly. Even in warm water, exhaustion and disorientation make every minute count.</div></div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div><div class="flow-title">Medical emergencies</div><div class="flow-text">Unconscious or unresponsive persons, obvious trauma, obstetric emergencies. The medical team is alerted as early as possible — from the initial assessment — so they are ready to receive critical cases immediately.</div></div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div><div class="flow-title">Vulnerable persons</div><div class="flow-text">Unaccompanied children, pregnant women, elderly persons, persons with disabilities. Identified during the boarding process by RHIB crew.</div></div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div><div class="flow-title">Remaining survivors</div><div class="flow-text">The rest of the survivors, managed systematically. In MRO situations this is a sustained operation — potentially dozens of RHIB trips over hours.</div></div></div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Initial reception aboard</div>
+    <p class="prose">The first minutes after survivors come aboard are critical — for their physical safety, for medical triage, and for beginning to establish calm and trust. The reception process is managed by the post-rescue team, cultural mediators, and medical staff. Understanding what is happening helps you support it correctly.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Immediate safety and stabilisation</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Survivors move away from the boarding point to clear space for the next group. Medical team conducts rapid triage as people come aboard — identifying those needing immediate attention.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Showers and survivor kits</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Survivors are normally given a shower as part of reception — particularly important if they have been in contact with fuel or saltwater, both of which cause skin burns over time. After showering, a survivor kit is distributed: dry clothes, water, and food. This is a basic step but a significant one — for many people, it is the first time in days they are clean, dressed, fed, and not in immediate danger.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Communication and reassurance</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Cultural mediators communicate with survivors in their languages — telling them they are safe, explaining what is happening, and gathering key information. The first words survivors hear aboard matter. Calm, clear, reassuring communication from the moment of boarding significantly affects the atmosphere of the rescue.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Counting and registration</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">All survivors are counted as they come aboard. Registration — documenting names, nationalities, and key information — begins as soon as practically possible. This information is reported to the MRCC and forms part of the operational record.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Separation and shelter</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Survivors are guided to designated shelter areas — separate spaces for women and families, men, and medical cases where possible. This separation exists to protect dignity and safety — particularly for women and children who may have experienced violence during their journey.</p>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Stay clear if you're not assigned</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Unless you are assigned to a specific reception role, stay clear of the reception area during the initial recovery. An unmanaged crowd of well-meaning crew interferes with triage, creates confusion, and can compromise survivor dignity. The post-rescue team manages this space. Your contribution is to be at your assigned station, ready to do your specific job, and out of the way of those doing theirs.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on survivor recovery and reception.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"During a recovery operation, who should be recovered first?",o:["The people closest to the boarding point","Persons in the water — always","Unaccompanied children","Medical emergencies on the distress vessel"],c:1,f:"Persons in the water are always the first priority. Time in the water is critical — hypothermia and drowning risk increases rapidly. Even in warm Mediterranean water, exhaustion and disorientation make every minute in the water dangerous."},
+  {q:"A distress vessel is approached. Before coming alongside, what should the rescue vessel do?",o:["Immediately pull alongside at speed to begin boarding","Assess from a distance — estimating numbers, stability, visible medical emergencies — before approaching closely","Deploy the RHIB first regardless of the vessel's condition","Call all survivors to one side to prepare for boarding"],c:1,f:"Before approaching closely, the situation is assessed from a distance — number of people, vessel stability, visible medical emergencies. Approaching too fast or too close to an unstable, overloaded vessel can cause it to capsize. The approach is always managed carefully."},
+  {q:"You are a general crew member not assigned to reception duties. The rescue is in progress and people are coming aboard. What do you do?",o:["Go to the reception area to help distribute blankets and water","Stay at your assigned station and stay clear of the reception area","Find the post-rescue team leader and ask what you can do","Go to observe — it helps to understand the operation for future reference"],c:1,f:"Unless you are specifically assigned to a reception role, stay clear. An unmanaged crowd of crew interferes with triage, creates confusion, and can compromise survivor dignity. Be at your assigned station, ready to do your specific job, and out of the way of those doing theirs."},
+  {q:"Why is creating wake near an overcrowded boat dangerous?",o:["It makes communication with RHIB crew more difficult","An overcrowded boat with 100+ people has almost no stability margin — sudden wake or movement can cause a capsize","It disturbs the survivors unnecessarily","It makes it harder for the RHIB to approach"],c:1,f:"An overcrowded boat has almost no stability margin. Any sudden wave action, including wake from a vessel, can trigger panic movement among occupants — people rushing to one side can cause capsize in seconds. Approaching slowly and without wake is not just courtesy — it is a safety requirement."},
+  {q:"Cultural mediators play a key role in initial reception. What is their primary function?",o:["Providing medical triage for arriving survivors","Communicating with survivors in their languages — telling them they are safe, explaining what is happening, and gathering information","Managing the physical boarding process","Counting survivors as they come aboard"],c:1,f:"Cultural mediators communicate with survivors in their own languages — immediately upon boarding. The first words survivors hear, in a language they understand, from someone who explains they are safe, significantly affects the atmosphere of the rescue. This communication work is as important as the physical recovery."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/4)*100)+'%';updateNav();if(n===4&&ans.length===0)renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<4)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===4?'none':'inline-block';nb.textContent=cur===3?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of survivor recovery. Ready for module 2.5.':p>=.6?'Mostly solid — review what you missed.':'Go back through the approach and reception sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/2-5.html" class="btn-teal">Module 2.5 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+</script>
+</body>
+</html>

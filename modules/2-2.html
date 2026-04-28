@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.2 — Search patterns | Operation Ready</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .module-wrap{max-width:740px;margin:0 auto;padding:32px 24px 64px;}
+    .breadcrumb{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:24px;}
+    .breadcrumb a{color:var(--text3);transition:color .15s;}
+    .breadcrumb a:hover{color:var(--teal);}
+    .breadcrumb span{color:var(--teal);}
+    .module-header{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .module-meta{display:flex;gap:20px;font-size:12px;color:var(--text3);letter-spacing:.06em;flex-wrap:wrap;margin-top:8px;}
+    .callout-orange{border-left:3px solid #D4821A;padding:12px 16px;background:rgba(212,130,26,.08);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-orange .callout-title{color:#D4821A;}
+    .callout-navy{border-left:3px solid var(--navy);padding:12px 16px;background:rgba(30,58,95,.06);margin:14px 0;border-radius:0 4px 4px 0;}
+    .callout-navy .callout-title{color:var(--navy);}
+    .cover-list{list-style:none;margin:8px 0;}
+    .cover-list li{display:flex;align-items:flex-start;gap:10px;padding:5px 0;font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .cover-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px;}
+    .pattern-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+    .pattern-card{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--white);}
+    .pattern-diagram{background:var(--cream);padding:16px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);}
+    .pattern-body{padding:14px;}
+    .pattern-name{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy);margin-bottom:4px;}
+    .pattern-abbr{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-weight:500;}
+    .pattern-text{font-size:12px;color:var(--text2);line-height:1.6;font-weight:300;}
+    .pattern-use{font-size:11px;color:var(--teal);margin-top:8px;font-weight:500;}
+    .q-block{margin-bottom:20px;}
+    .q-text{font-size:15px;font-weight:500;line-height:1.5;margin-bottom:12px;color:var(--text);}
+    .q-opt{border:1px solid var(--border2);border-radius:4px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;background:var(--white);}
+    .q-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .q-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.08);}
+    .q-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.07);}
+    .q-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .fb{font-size:12px;line-height:1.6;padding:10px 14px;border-radius:4px;margin-top:4px;}
+    .fb.ok{border-left:3px solid #2a9d5c;background:rgba(42,157,92,.06);color:var(--text2);}
+    .fb.no{border-left:3px solid #cc4400;background:rgba(204,68,0,.06);color:var(--text2);}
+    @media(max-width:600px){.module-wrap{padding:20px 16px 48px;}.pattern-grid{grid-template-columns:1fr;}}
+
+    /* ═══ SEARCH PATTERN MATCHER ═══ */
+    .sp-scenario{background:#fff;border:1px solid var(--border);border-radius:5px;margin-bottom:14px;overflow:hidden;}
+    .sp-scn-head{background:var(--cream2);padding:14px 18px;border-bottom:1px solid var(--border);}
+    .sp-scn-num{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:4px;}
+    .sp-scn-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);line-height:1.2;}
+    .sp-scn-body{padding:14px 18px;font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;border-bottom:1px solid var(--border);}
+    .sp-scn-body strong{color:var(--navy);font-weight:500;}
+    .sp-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 18px;background:var(--cream2);border-bottom:1px solid var(--border);}
+    .sp-fact{font-size:11px;}
+    .sp-fact-l{color:var(--text3);letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:2px;}
+    .sp-fact-v{color:var(--navy);font-weight:500;font-size:12.5px;}
+    .sp-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 14px 0;}
+    .sp-opt{border:1px solid var(--border2);border-radius:4px;padding:12px;cursor:pointer;transition:all .15s;background:#fff;display:flex;gap:12px;align-items:flex-start;}
+    .sp-opt:hover{border-color:var(--teal);background:var(--mint-pale);}
+    .sp-opt.chosen{border-color:var(--teal);background:var(--mint-pale);box-shadow:0 0 0 1px var(--teal);}
+    .sp-opt.correct{border-color:#2a9d5c;background:rgba(42,157,92,.1);}
+    .sp-opt.wrong{border-color:#cc4400;background:rgba(204,68,0,.08);}
+    .sp-opt.show-correct{border-color:#2a9d5c;background:rgba(42,157,92,.04);}
+    .sp-opt-visual{width:60px;height:60px;flex-shrink:0;border:1px solid var(--border);border-radius:3px;background:var(--cream2);display:flex;align-items:center;justify-content:center;}
+    .sp-opt-visual svg{width:52px;height:52px;}
+    .sp-opt-body{flex:1;}
+    .sp-opt-name{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
+    .sp-opt-desc{font-size:11.5px;color:var(--text2);line-height:1.5;font-weight:300;}
+    .sp-feedback{display:none;padding:12px 18px;background:var(--cream2);border-top:1px solid var(--border);font-size:13px;line-height:1.7;color:var(--text2);font-weight:300;margin-top:14px;}
+    .sp-feedback.visible{display:block;}
+    .sp-feedback.ok{background:rgba(42,157,92,.06);border-left:3px solid #2a9d5c;}
+    .sp-feedback.no{background:rgba(204,68,0,.05);border-left:3px solid #cc4400;}
+    .sp-feedback-verdict{font-size:12px;letter-spacing:.08em;font-weight:600;text-transform:uppercase;margin-bottom:4px;}
+    .sp-feedback.ok .sp-feedback-verdict{color:#1a7a42;}
+    .sp-feedback.no .sp-feedback-verdict{color:#cc4400;}
+    @media(max-width:600px){.sp-options{grid-template-columns:1fr;}.sp-facts{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+<div class="module-wrap">
+  <div class="breadcrumb"><a href="/modules.html">Modules</a> &rsaquo; <a href="/modules.html#track-2">Path 2</a> &rsaquo; <span>2.2</span></div>
+  <div class="module-header">
+    <div class="mod-track">Path 2 — SAR operations</div>
+    <div style="font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-top:4px;">Search patterns</div>
+    <div class="module-meta"><span>Module 2.2</span><span>8 min</span><span>5-question check</span></div>
+  </div>
+  <div class="mod-progress"><div class="mod-prog-fill" id="prog" style="width:0%"></div></div>
+  <div class="mod-tabs">
+    <button class="mod-tab active" id="tab-0" onclick="goSec(0)">Intro</button>
+    <button class="mod-tab" id="tab-1" onclick="goSec(1)">Drift & datum</button>
+    <button class="mod-tab" id="tab-2" onclick="goSec(2)">Patterns</button>
+    <button class="mod-tab" id="tab-3" onclick="goSec(3)">On deck</button>
+    <button class="mod-tab" id="tab-4" onclick="goSec(4)">Practice</button>
+    <button class="mod-tab" id="tab-5" onclick="goSec(5)">Check</button>
+  </div>
+
+  <div class="mod-sec active" id="sec-0">
+    <div class="mod-sec-label">Module 2.2</div>
+    <div class="mod-sec-title">How we search the sea</div>
+    <p class="prose">When a vessel or person is reported in distress, the rescue team must find them before the rescue can begin. In the open ocean this is not trivial — a overcrowded boat is a small object in a large sea, and wind and current move it continuously from the last known position.</p>
+    <p class="prose">Search patterns are systematic methods for covering a defined area. Understanding them helps you follow the vessel's movements during a search phase, understand why the bridge is manoeuvring the way it is, and contribute effectively as a deck lookout.</p>
+    <div class="callout"><div class="callout-title">What you'll cover</div>
+      <ul class="cover-list">
+        <li>Drift, leeway, and datum — why the search area is never just the last known position</li>
+        <li>The main search patterns used in humanitarian SAR</li>
+        <li>How search planning is done — IAMSAR and SARCalc</li>
+        <li>Your role on deck during a search</li>
+      </ul>
+    </div>
+    <div class="callout muted"><div class="callout-title">Estimated time</div><div class="callout-text">8 minutes — followed by a knowledge check</div></div>
+  </div>
+
+  <div class="mod-sec" id="sec-1">
+    <div class="mod-sec-label">Section 1 of 3</div>
+    <div class="mod-sec-title">Drift, leeway, and datum</div>
+    <p class="prose">A vessel or person in the water does not stay where they were last reported. Wind and current move them continuously. Search planning must account for this movement — calculating where the target is likely to be now, not where it was when the alert was received.</p>
+
+    <div style="display:grid;gap:8px;margin:14px 0;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;">Current drift</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Surface currents move everything in the water — vessels, dinghies, and people. Current strength and direction are factored into search planning. In the Central Mediterranean, currents vary by season and location — the bridge uses oceanographic data to estimate drift.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;">Leeway</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Wind acting on the above-water part of a vessel or object pushes it downwind. A heavily loaded overcrowded boat has significant leeway — it can move several miles per hour in strong winds. Leeway is one of the most significant factors in search planning.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:14px;background:var(--white);">
+        <div style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:6px;">Datum and search area</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">The datum is the most probable position of the search object at the time of the search — calculated by applying drift and leeway to the last known position over the elapsed time. The search area is defined around the datum, accounting for uncertainty in position and drift estimates. This calculation is performed by the bridge, SARCO, or MRCC using IAMSAR methods or dedicated software.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Why this matters for deck crew</div>
+      <div class="callout-text">You won't be calculating datum — that's the bridge's job. But understanding that the vessel is searching a defined area based on calculated drift helps you understand why the vessel isn't heading directly to the last known position. When you're on lookout, you're searching the calculated probable area — not the reported position.</div>
+    </div>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:16px 0 8px;font-weight:500;">Search planning tools</div>
+    <p class="prose">The IAMSAR Manual provides the framework for calculating search areas and selecting patterns. Many vessels and MRCCs also use SARCalc — software that calculates drift, leeway, datum, and optimal search patterns. The bridge and SARCO use these tools; you don't need to operate them, but you may see them in use during briefings.</p>
+  </div>
+
+  <div class="mod-sec" id="sec-2">
+    <div class="mod-sec-label">Section 2 of 3</div>
+    <div class="mod-sec-title">Search patterns</div>
+    <p class="prose">Different situations call for different search patterns. The choice depends on the size and shape of the search area, the number of assets available, weather conditions, and the nature of the target. In practice, humanitarian SAR operations most often use the <strong>expanding square</strong> (when the datum is confirmed) or the <strong>parallel track</strong> (when the area is large or the datum is uncertain). The others below are useful to understand but less frequently used.</p>
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <div class="pattern-diagram">
+          <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Expanding square: start at datum, go N, E, S, S, W, W, N, N, N, E, E, E, E, etc.
+                 Each pair of legs grows by one unit. Unit = 10. -->
+            <path d="M60,60 L60,50 L70,50 L70,70 L50,70 L50,40 L80,40 L80,80 L40,80 L40,30 L90,30 L90,90 L30,90 L30,20 L100,20"
+                  stroke="#3D8B7A" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Arrow at end of path showing direction -->
+            <polygon points="100,20 96,18 96,22" fill="#3D8B7A"/>
+            <!-- Datum -->
+            <circle cx="60" cy="60" r="3.5" fill="#D4821A"/>
+            <text x="64" y="65" font-family="DM Sans,sans-serif" font-size="8" fill="#D4821A" font-weight="500">Start</text>
+            <text x="60" y="112" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(30,58,95,.5)">Expanding square</text>
+          </svg>
+        </div>
+        <div class="pattern-body">
+          <div class="pattern-name">Expanding square</div>
+          <div class="pattern-text">Search in a square spiral from the datum, with each pair of legs slightly longer than the last. A worked example:</div>
+          <ol style="font-size:12px;color:var(--text2);line-height:1.7;font-weight:300;margin:6px 0 6px 18px;padding:0;">
+            <li>From the datum, head north for 30 seconds</li>
+            <li>Turn east, travel 30 seconds</li>
+            <li>Turn south, travel 1 minute</li>
+            <li>Turn west, travel 1 minute</li>
+            <li>Turn north, travel 1 minute 30 seconds</li>
+            <li>Turn east, travel 1 minute 30 seconds — and continue</li>
+          </ol>
+          <div class="pattern-text" style="margin-top:6px;">Timing or distance can be used, but speed over ground must be kept constant. Covers the highest-probability area — close to the datum — first.</div>
+          <div class="pattern-use">Best for: small, well-defined search area around a known datum. One of the two most commonly used patterns in humanitarian SAR.</div>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-diagram">
+          <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="25" x2="100" y2="25" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="100" y1="42" x2="20" y2="42" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="59" x2="100" y2="59" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="100" y1="76" x2="20" y2="76" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="20" y1="93" x2="100" y2="93" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <path d="M100,25 L100,42 M20,42 L20,59 M100,59 L100,76 M20,76 L20,93" stroke="#3D8B7A" stroke-width="1.5" fill="none" opacity=".6"/>
+            <polygon points="100,93 96,91 96,95" fill="#3D8B7A"/>
+            <text x="60" y="112" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(30,58,95,.5)">Parallel track</text>
+          </svg>
+        </div>
+        <div class="pattern-body">
+          <div class="pattern-name">Parallel track</div>
+          <div class="pattern-text">The vessel searches in parallel lines separated by a track spacing calculated to give the required probability of detection. Each pass covers a new strip of the search area. Systematic and efficient for covering large areas.</div>
+          <div class="pattern-use">Best for: large search areas, particularly when the datum is uncertain. The other commonly used pattern in humanitarian SAR.</div>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-diagram">
+          <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="36" fill="none" stroke="rgba(61,139,122,.18)" stroke-width="1" stroke-dasharray="3,3"/>
+            <!-- Six-legged sector: out-in-turn-out-in-turn pattern -->
+            <line x1="60" y1="60" x2="60" y2="24" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="24" x2="91" y2="42" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="91" y1="42" x2="60" y2="60" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="60" x2="91" y2="78" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <line x1="91" y1="78" x2="60" y2="96" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <line x1="60" y1="96" x2="60" y2="60" stroke="#3D8B7A" stroke-width="2" stroke-linecap="round" opacity=".5"/>
+            <circle cx="60" cy="60" r="3.5" fill="#D4821A"/>
+            <text x="60" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(30,58,95,.5)">Sector search</text>
+          </svg>
+        </div>
+        <div class="pattern-body">
+          <div class="pattern-name">Sector search</div>
+          <div class="pattern-text">The vessel searches out from the datum in one direction, returns, and then searches in a different direction — like spokes of a wheel. Good for building confidence that a target is not near the datum before expanding the search.</div>
+          <div class="pattern-use">Best for: high confidence in datum position, early in a search. Less common in humanitarian SAR operations.</div>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-diagram">
+          <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="25" y1="30" x2="95" y2="30" stroke="rgba(30,58,95,.3)" stroke-width="1" stroke-dasharray="4,3"/>
+            <text x="100" y="33" font-family="DM Sans,sans-serif" font-size="8" fill="rgba(30,58,95,.4)">Coast</text>
+            <path d="M35,35 L35,95 M50,95 L50,35 M65,35 L65,95 M80,95 L80,35"
+                  stroke="#3D8B7A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M35,95 L50,95 M50,35 L65,35 M65,95 L80,95"
+                  stroke="#3D8B7A" stroke-width="1.5" fill="none" opacity=".6"/>
+            <polygon points="80,35 78,39 82,39" fill="#3D8B7A"/>
+            <text x="60" y="114" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(30,58,95,.5)">Creeping line</text>
+          </svg>
+        </div>
+        <div class="pattern-body">
+          <div class="pattern-name">Creeping line</div>
+          <div class="pattern-text">Short legs perpendicular to a coast, boundary, or line of bearing. Useful when the search area is narrow and linear — for example, following a reported bearing outward from a shore sighting.</div>
+          <div class="pattern-use">Best for: narrow, linear search areas or searches along a line of bearing. Less common in humanitarian SAR operations.</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout-navy">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;color:var(--navy);">Track spacing and sweep width</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">The distance between search tracks is determined by the sweep width — how far to each side the searchers can reliably detect the target. In humanitarian SAR, this depends on visibility, sea state, target size, and the number and position of lookouts. An overcrowded boat has a much smaller sweep width than a large vessel. The bridge calculates track spacing based on these factors.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-3">
+    <div class="mod-sec-label">Section 3 of 3</div>
+    <div class="mod-sec-title">Your role on deck during a search</div>
+    <p class="prose">During a search phase, deck crew serve as the vessel's eyes. The bridge has radar and AIS, but a overcrowded boat or person in the water may not appear on either. Visual lookout from deck positions is often the most effective detection method, particularly in calm conditions.</p>
+
+    <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin:14px 0 10px;font-weight:500;">Effective lookout technique</div>
+    <div style="display:grid;gap:8px;margin:0 0 16px;">
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Cover the full 360° — including blind spots</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">In humanitarian SAR, lookouts typically cover the full 360° around the vessel — not just a forward arc. Different organisations work this differently; some allocate sectors, some have lookouts moving around the deck. Either way, the goal is no gaps. Be conscious of blind spots created by deck structures, the bridge, lifeboats, the funnel — work around them so nothing is missed.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Systematic scanning</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Do not stare at one spot — scan slowly across the area in overlapping arcs. The eye detects movement and contrast better with slow scanning than fixed staring. Work from the horizon in toward the vessel, then back out.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Know what you're looking for</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">An overcrowded boat is low, dark, and partially submerged. In a swell it will disappear from view for seconds at a time. Look for colour contrast (orange, blue, yellow distress signals), smoke, lights, people waving, and any object that seems out of place in the sea surface.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Report immediately — right or wrong</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">If you see anything — even something you're not sure about — report it immediately using the clock position and distance. Do not wait to confirm. A false alarm costs minutes. Missing a target can cost lives. Always err toward reporting.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Sound discipline — listen as well as look</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Voices, whistles, engine noise, splashes — sound carries across water and can locate a target before sight does, especially in low visibility or at night. Lookout is a focused task. <strong>No music, no headphones, no phone scrolling.</strong> Your senses are the equipment.</p>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:var(--white);">
+        <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:5px;">Sun glare and sea clutter</div>
+        <p style="font-size:13px;color:var(--text2);line-height:1.65;font-weight:300;">Sun glare on the water — particularly in the early morning or late afternoon — creates significant blind spots. Binoculars and polarised sunglasses help. Position yourself to avoid looking directly into the sun where possible, and stay alert to changing visibility through your shift.</p>
+      </div>
+    </div>
+
+    <div class="callout-orange">
+      <div class="callout-title" style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-bottom:4px;">Lookout shifts and fatigue</div>
+      <div class="callout-text" style="font-size:13px;line-height:1.65;color:var(--text2);">Lookout shifts vary by organisation. On the SOS Méditerranée Ocean Viking, for example, watches are 1 hour at a time. Visual concentration over even an hour is mentally tiring — fatigue is expected, but you are still expected to complete the watch you are rostered for. Manage it by varying your scan rhythm, using your eyes systematically rather than staring, and resting properly when off-watch. If you are genuinely struggling beyond normal fatigue, tell your team leader.</div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">Survivors as lookouts</div>
+      <div class="callout-text">People aboard a distress vessel often see the rescue ship before the rescue ship sees them. Flares, shouts, waving, and improvised signals are all used. This is part of why sound discipline on lookout matters — voices and whistles can carry across water in calm conditions when visual detection is impossible.</div>
+    </div>
+  </div>
+
+  <div class="mod-sec" id="sec-4">
+    <div class="mod-sec-label">Practice — interactive</div>
+    <div class="mod-sec-title">Match the scenario to the pattern</div>
+    <p class="prose">MRCC briefings tell you the situation. Your vessel proposes a search pattern. Work through three realistic briefings and select the pattern best suited to each.</p>
+
+    <div class="sp-wrap" id="sp-wrap"></div>
+  </div>
+
+  <div class="mod-sec" id="sec-5">
+    <div class="mod-sec-label">Knowledge check</div>
+    <div class="mod-sec-title">Before you move on</div>
+    <p class="prose" style="margin-bottom:20px;">Five questions on search patterns and lookout.</p>
+    <div id="quiz-area"></div><div id="quiz-result"></div>
+  </div>
+
+  <div class="mod-nav" style="padding-left:0;padding-right:0;">
+    <button class="btn-mod btn-mod-primary" id="btn-next" onclick="nextSec()">Next</button>
+    <button class="btn-mod btn-mod-ghost" id="btn-back" onclick="prevSec()" style="display:none;">Back</button>
+  </div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('modules');
+const Q=[
+  {q:"A distress call was received 3 hours ago. The vessel is now searching. Why is the search area not centred on the position given in the distress call?",o:["The distress call position was inaccurate","Wind and current have moved the distress vessel since the alert — the search area is calculated around the probable current position, not the last known one","The bridge has not yet confirmed the exact distress position","The MRCC has redirected the search to a different area"],c:1,f:"Wind (leeway) and current (drift) move vessels and persons continuously. The datum — the most probable current position — is calculated by applying these factors to the last known position over the elapsed time. Searching only the reported position hours later would miss the target entirely."},
+  {q:"You are on lookout during a search and see a dark shape in the water that disappears behind a wave. You're not sure what it is. What do you do?",o:["Wait until you can see it again clearly before reporting","Report it immediately using the clock position — do not wait to confirm","Ask the crew member next to you if they can see it too before reporting","Note the position and report it at the end of your watch"],c:1,f:"Always report immediately. A false alarm costs the bridge minutes to check. Missing a target — even briefly — can cost lives. Use the clock position and estimated distance: 'Possible sighting at 2 o'clock, approximately 300 metres.' Let the bridge decide whether to investigate."},
+  {q:"You are 40 minutes into a 1-hour lookout shift and noticing your concentration drifting. What is the right approach?",o:["Stop and ask to be relieved early — concentration drift means you are no longer effective","Vary your scan rhythm and stay focused — finishing the rostered shift is the expectation","Continue staring at one bearing where you think a target is most likely","Take a short break and return to the same position when you feel sharper"],c:1,f:"Lookout shifts on humanitarian SAR vessels are typically 1 hour, and concentration drift in that hour is expected. The right response is to manage it actively — vary your scan pattern, use your eyes systematically, fight the urge to stare. Finishing the rostered shift is the expectation; only flag it to the team leader if you are genuinely unable to continue, not just feeling normal fatigue."},
+  {q:"Multiple vessels are searching the same area. Who coordinates which vessel searches where?",o:["The most senior vessel officer present","The MRCC directly assigns each vessel a sector","The On-Scene Coordinator, designated by the MRCC, assigns sub-areas or tracks to each asset","Each vessel searches independently to maximise coverage"],c:2,f:"When multiple assets are present, the OSC — designated by the MRCC — coordinates their search activities to avoid overlap and maximise area coverage. The coordinated search pattern is used to assign each asset a defined sub-area or set of tracks."},
+  {q:"During a search in light wind and calm seas, what should deck lookouts also do in addition to visual scanning?",o:["Maintain radio watch on Channel 16","Listen — voices, whistles, and distress sounds can carry across water in calm conditions","Use flares to signal the search area to the distress vessel","Maintain constant communication with the bridge via radio"],c:1,f:"In calm conditions, sound carries well across water. People on a distress vessel often shout, blow whistles, or use other sounds to attract attention. Listening during a search — not just scanning visually — can detect a target when visibility is limited or the sea surface is obstructed."}
+];
+let cur=0,ans=[],sc=0;
+function goSec(n){document.querySelectorAll('.mod-sec').forEach((s,i)=>s.classList.toggle('active',i===n));document.querySelectorAll('.mod-tab').forEach((t,i)=>{t.classList.toggle('active',i===n);if(i<n)t.classList.add('done');});cur=n;document.getElementById('prog').style.width=Math.round((n/5)*100)+'%';updateNav();if(n===5&&ans.length===0)renderQ();if(n===4&&!spInit){spRender();spInit=true;}window.scrollTo({top:0,behavior:'smooth'});}
+function nextSec(){if(cur<5)goSec(cur+1);}function prevSec(){if(cur>0)goSec(cur-1);}
+function updateNav(){const nb=document.getElementById('btn-next'),bb=document.getElementById('btn-back');bb.style.display=cur>0?'inline-block':'none';nb.style.display=cur===5?'none':'inline-block';nb.textContent=cur===4?'Take the check':'Next';}
+function renderQ(){document.getElementById('quiz-area').innerHTML=Q.map((q,i)=>`<div class="q-block" id="qb-${i}"><div class="q-text">${i+1}. ${q.q}</div>${q.o.map((o,j)=>`<div class="q-opt" id="o-${i}-${j}" onclick="ans_q(${i},${j})">${o}</div>`).join('')}<div id="fb-${i}"></div></div>`).join('');}
+function ans_q(i,j){if(ans.includes(i))return;ans.push(i);const q=Q[i];document.querySelectorAll(`#qb-${i} .q-opt`).forEach((_,k)=>{const e=document.getElementById(`o-${i}-${k}`);e.onclick=null;if(k===j&&k===q.c)e.classList.add('correct');else if(k===j)e.classList.add('wrong');else if(k===q.c)e.classList.add('show-correct');});const ok=j===q.c;if(ok)sc++;document.getElementById(`fb-${i}`).innerHTML=`<div class="fb ${ok?'ok':'no'}">${q.f}</div>`;if(ans.length===Q.length)showResult();}
+function showResult(){const p=sc/Q.length;let v=p===1?'Excellent':p>=.6?'Good foundation':'Worth revisiting';let t=p===1?'Strong understanding of search operations. Ready for module 2.3.':p>=.6?'Mostly solid — review what you missed.':'Go back through the drift and pattern sections.';setTimeout(()=>{document.getElementById('quiz-result').innerHTML=`<div style="border-top:1px solid var(--border);margin-top:24px;padding-top:24px;text-align:center;"><div style="font-family:'DM Serif Display',serif;font-size:56px;color:var(--teal);line-height:1;">${sc}/${Q.length}</div><div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:4px;">Correct</div><div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin:12px 0 6px;">${v}</div><div style="font-size:13px;color:var(--text2);line-height:1.6;max-width:380px;margin:0 auto 20px;font-weight:300;">${t}</div><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;"><a href="/modules/2-3.html" class="btn-teal">Module 2.3 &rarr;</a><a href="/modules.html" style="font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:10px 22px;border-radius:3px;background:transparent;color:var(--navy);border:1px solid var(--border2);display:inline-block;">All modules</a></div></div>`;},300);}
+
+// ═══ SEARCH PATTERN MATCHER ═══
+const SP_PATTERNS = {
+  expanding:  {name:'Expanding square', desc:'Outward square spiral from a known datum.', svg:'<svg viewBox="0 0 52 52" fill="none" stroke="#1E3A5F" stroke-width="1.5"><path d="M26 26 L26 22 L30 22 L30 30 L22 30 L22 18 L34 18 L34 34 L18 34 L18 14 L38 14 L38 38 L14 38 L14 10 L42 10 L42 42"/><circle cx="26" cy="26" r="1.5" fill="#F5D06A" stroke="none"/></svg>'},
+  sector:     {name:'Sector search', desc:'Pie-slice pattern returning to datum between legs. Best with confirmed datum.', svg:'<svg viewBox="0 0 52 52" fill="none" stroke="#1E3A5F" stroke-width="1.5"><line x1="26" y1="26" x2="46" y2="26"/><line x1="26" y1="26" x2="36" y2="9"/><line x1="26" y1="26" x2="16" y2="9"/><line x1="26" y1="26" x2="6" y2="26"/><line x1="26" y1="26" x2="16" y2="43"/><line x1="26" y1="26" x2="36" y2="43"/><circle cx="26" cy="26" r="1.5" fill="#F5D06A" stroke="none"/></svg>'},
+  parallel:   {name:'Parallel track', desc:'Straight legs across a broad search area. Good for large areas with low datum confidence.', svg:'<svg viewBox="0 0 52 52" fill="none" stroke="#1E3A5F" stroke-width="1.5"><path d="M6 10 L46 10 L46 18 L6 18 L6 26 L46 26 L46 34 L6 34 L6 42 L46 42"/></svg>'},
+  creeping:   {name:'Creeping line', desc:'Short legs perpendicular to a coast or boundary.', svg:'<svg viewBox="0 0 52 52" fill="none" stroke="#1E3A5F" stroke-width="1.5"><path d="M10 6 L10 46 L18 46 L18 6 L26 6 L26 46 L34 46 L34 6 L42 6 L42 46"/></svg>'}
+};
+
+const SP_SCENARIOS = [
+  {
+    title: 'MRCC confirmed position — single point of distress',
+    body: 'MRCC Rome reports a vessel in distress. <strong>Exact coordinates confirmed</strong> by a merchant vessel 14 minutes ago. Visibility good. Minimal wind and current. You are closing on the reported position and arriving ahead of other assets.',
+    facts: [{l:'Datum',v:'Confirmed'},{l:'Area',v:'Small'},{l:'Drift',v:'Low'}],
+    correct: 'expanding',
+    feedback: '<strong>Expanding square</strong> is the correct choice when datum is confirmed and tight. It thoroughly covers a small area radiating outward from the known point — ideal for a near-current position. Sector search also works here but is typically used when searching for an object that may have drifted from the datum. Parallel track wastes capability on a known-position search.'
+  },
+  {
+    title: 'Large search area, uncertain datum',
+    body: 'MRCC reports a vessel overdue and no contact for 8 hours. Last known position is approximate. Wind and current have been strong overnight. <strong>Search area is 40 square nautical miles</strong>. You are one of three vessels responding.',
+    facts: [{l:'Datum',v:'Uncertain'},{l:'Area',v:'Large'},{l:'Drift',v:'High'}],
+    correct: 'parallel',
+    feedback: '<strong>Parallel track</strong> is the right approach for large search areas with uncertain datum. MRCC will assign each vessel a lane, and the straight legs maximise coverage of the broad area with predictable track spacing. Expanding square is inappropriate for large areas with uncertain datum; sector search needs a confirmed reference point.'
+  },
+  {
+    title: 'Flare sighted from shore — narrow coastal search',
+    body: 'A coastal resident has reported a flare sighted over the water from their position on the coast. <strong>Bearing of flare is known but distance is not.</strong> The search needs to run along the line of bearing outward from the coast. Night conditions.',
+    facts: [{l:'Datum',v:'Bearing only'},{l:'Area',v:'Linear'},{l:'Drift',v:'Moderate'}],
+    correct: 'creeping',
+    feedback: '<strong>Creeping line</strong> is the appropriate pattern. With a known bearing but no range, short legs perpendicular to the line of sight outward from the coast sweep the possible positions efficiently. Parallel track wastes effort on unlikely positions; expanding square needs a point datum; sector search also requires a confirmed reference point.'
+  }
+];
+
+let spInit = false;
+let spAnswers = {};  // scenario index -> chosen pattern key
+let spRevealed = {};  // scenario index -> true when revealed
+
+function spRender() {
+  const wrap = document.getElementById('sp-wrap');
+  wrap.innerHTML = SP_SCENARIOS.map((s, i) => {
+    const facts = s.facts.map(f => `<div class="sp-fact"><div class="sp-fact-l">${f.l}</div><div class="sp-fact-v">${f.v}</div></div>`).join('');
+    const options = Object.entries(SP_PATTERNS).map(([key, p]) => {
+      let cls = '';
+      if (spRevealed[i]) {
+        if (key === s.correct) cls = 'correct';
+        else if (spAnswers[i] === key) cls = 'wrong';
+        else cls = 'show-correct';
+        if (key === s.correct && cls !== 'wrong') cls = 'correct';
+      } else if (spAnswers[i] === key) {
+        cls = 'chosen';
+      }
+      return `<div class="sp-opt ${cls}" onclick="spPick(${i},'${key}')">
+        <div class="sp-opt-visual">${p.svg}</div>
+        <div class="sp-opt-body">
+          <div class="sp-opt-name">${p.name}</div>
+          <div class="sp-opt-desc">${p.desc}</div>
+        </div>
+      </div>`;
+    }).join('');
+    const fbOk = spRevealed[i] && spAnswers[i] === s.correct;
+    const fbVerdict = fbOk ? 'Correct' : (spRevealed[i] ? `Correct answer: ${SP_PATTERNS[s.correct].name}` : '');
+    const fb = spRevealed[i] ? `<div class="sp-feedback visible ${fbOk ? 'ok' : 'no'}"><div class="sp-feedback-verdict">${fbVerdict}</div>${s.feedback}</div>` : '';
+    return `<div class="sp-scenario">
+      <div class="sp-scn-head">
+        <div class="sp-scn-num">Scenario ${i+1} of ${SP_SCENARIOS.length}</div>
+        <div class="sp-scn-title">${s.title}</div>
+      </div>
+      <div class="sp-scn-body">${s.body}</div>
+      <div class="sp-facts">${facts}</div>
+      <div class="sp-options">${options}</div>
+      ${fb}
+      <div style="height:14px;"></div>
+    </div>`;
+  }).join('');
+}
+
+function spPick(idx, key) {
+  if (spRevealed[idx]) return;
+  spAnswers[idx] = key;
+  spRevealed[idx] = true;
+  spRender();
+}
+</script>
+</body>
+</html>
