@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operation Ready — Conservation Vessel Operations</title>
+  <meta name="description" content="Pre-deployment training for conservation vessel crew. Antarctic operations, fisheries monitoring, documentation, and campaign operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Conservation colour identity — deep forest green palette */
+    :root{
+      --con-primary:#2D6B3C;
+      --con-mid:#3a7a42;
+      --con-light:#64b464;
+      --con-pale:rgba(45,107,60,.06);
+      --con-cream:#f0f7f0;
+    }
+
+    /* Override teal with conservation green for this page */
+    .con-hero{background:#0a1f0e;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06);}
+    .con-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+    .con-hero-glow{position:absolute;top:50%;left:30%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(45,107,60,.2) 0%,transparent 70%);pointer-events:none;}
+    .con-hero-inner{max-width:1100px;margin:0 auto;padding:72px 48px 64px;position:relative;z-index:2;}
+    .con-back{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:36px;text-decoration:none;transition:color .15s;}
+    .con-back:hover{color:rgba(255,255,255,.7);}
+    .con-eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(100,180,100,.9);font-weight:500;margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+    .con-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--con-light);}
+    .con-headline{font-family:'DM Serif Display',serif;font-size:62px;line-height:1.05;color:#fff;margin-bottom:20px;}
+    .con-headline em{font-style:italic;color:#a8d4a8;}
+    .con-rule{width:48px;height:2px;background:#64b464;margin-bottom:24px;}
+    .con-sub{font-size:16px;line-height:1.75;color:rgba(255,255,255,.65);max-width:600px;margin-bottom:40px;font-weight:300;}
+
+    .con-status-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(100,180,100,.12);border:1px solid rgba(100,180,100,.3);border-radius:20px;padding:6px 16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(100,180,100,.9);font-weight:500;margin-bottom:32px;}
+    .con-status-dot{width:6px;height:6px;border-radius:50%;background:#64b464;animation:pulse 2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+    /* Notify form */
+    .con-notify{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+    .con-notify input{flex:1;min-width:240px;padding:12px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:3px;font-family:'DM Sans',sans-serif;font-size:14px;color:#fff;transition:border-color .15s;}
+    .con-notify input::placeholder{color:rgba(255,255,255,.35);}
+    .con-notify input:focus{outline:none;border-color:rgba(100,180,100,.6);}
+    .con-notify-btn{background:#3a7a42;color:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:3px;cursor:pointer;transition:background .15s;white-space:nowrap;}
+    .con-notify-btn:hover{background:#4a8f52;}
+    .con-notify-note{font-size:12px;color:rgba(255,255,255,.3);line-height:1.6;}
+
+    /* Curriculum preview */
+    .con-curriculum{max-width:1100px;margin:0 auto;padding:64px 48px;}
+    .con-section-eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--con-light);font-weight:600;margin-bottom:8px;}
+    .con-section-title{font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);margin-bottom:12px;}
+    .con-section-sub{font-size:14px;color:var(--text2);line-height:1.75;max-width:600px;margin-bottom:48px;font-weight:300;}
+
+    .path-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .path-card{background:#fff;border:1px solid var(--border);border-radius:5px;padding:24px 26px;position:relative;transition:all .2s;}
+    .path-card:hover{border-color:rgba(45,107,60,.3);box-shadow:0 4px 20px rgba(0,0,0,.06);}
+    .path-card.reused::after{content:'Reused from SAR';position:absolute;top:14px;right:16px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);background:var(--con-cream);padding:3px 8px;border-radius:10px;}
+    .path-num{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--con-light);font-weight:600;margin-bottom:8px;}
+    .path-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);margin-bottom:8px;line-height:1.2;}
+    .path-desc{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;margin-bottom:14px;}
+    .path-modules{display:flex;flex-direction:column;gap:4px;}
+    .path-module-item{font-size:12px;color:var(--text3);display:flex;align-items:baseline;gap:8px;}
+    .path-module-item::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:var(--con-light);flex-shrink:0;margin-top:6px;opacity:.6;}
+    .path-status{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-top:12px;font-weight:500;}
+    .path-status.new{background:rgba(45,107,60,.08);color:var(--con-primary);border:1px solid rgba(45,107,60,.2);}
+    .path-status.reuse{background:rgba(61,139,122,.08);color:#3D8B7A;border:1px solid rgba(61,139,122,.2);}
+    .path-status.adapt{background:rgba(245,208,106,.15);color:#8a6800;border:1px solid rgba(245,208,106,.4);}
+
+    /* Who it's for */
+    .con-who{background:var(--con-cream);padding:56px 0;}
+    .con-who-inner{max-width:1100px;margin:0 auto;padding:0 48px;}
+    .con-who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;}
+    .con-who-card{background:#fff;border:1px solid rgba(45,107,60,.15);border-radius:5px;padding:24px;}
+    .con-who-icon{font-size:28px;margin-bottom:12px;}
+    .con-who-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:8px;}
+    .con-who-text{font-size:13px;color:var(--text2);line-height:1.7;font-weight:300;}
+
+    @media(max-width:900px){
+      .con-hero-inner,.con-curriculum,.con-who-inner{padding-left:24px;padding-right:24px;}
+      .con-headline{font-size:42px;}
+      .path-grid{grid-template-columns:1fr;}
+      .con-who-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      .con-headline{font-size:34px;}
+    }
+  </style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="con-hero">
+  <div class="con-hero-grid" aria-hidden="true"></div>
+  <div class="con-hero-glow" aria-hidden="true"></div>
+  <div class="con-hero-inner">
+    <a href="/" class="con-back">← All platforms</a>
+    <div class="con-eyebrow">Operation Ready — Conservation</div>
+    <h1 class="con-headline">Know the mission.<br><em>Protect the ocean.</em></h1>
+    <div class="con-rule"></div>
+    <p class="con-sub">Pre-deployment training for crew joining conservation vessel operations — Antarctic campaigns, fisheries monitoring, documentation operations, and direct action. Built by practitioners, for everyone new to the work.</p>
+
+    <div class="con-status-pill">
+      <span class="con-status-dot"></span>
+      In development — notify me when live
+    </div>
+
+    <div class="con-notify">
+      <input type="email" id="notify-email" placeholder="your@email.com">
+      <button class="con-notify-btn" onclick="notifyMe()">Notify me</button>
+    </div>
+    <p class="con-notify-note">Your email is used only to notify you when the platform launches. Nothing else.</p>
+  </div>
+</div>
+
+<div class="con-curriculum">
+  <div class="con-section-eyebrow">Curriculum</div>
+  <div class="con-section-title">Seven paths. Built for the work.</div>
+  <div class="con-section-sub">The curriculum covers everything a new crew member needs before boarding a conservation vessel — from maritime fundamentals to campaign operations, legal framework, and crew dynamics. Experienced mariners can move through reused paths quickly; the new content is where the conservation-specific preparation lives.</div>
+
+  <div class="path-grid">
+    <div class="path-card reused">
+      <div class="path-num">Path 1</div>
+      <div class="path-title">Maritime & vessel fundamentals</div>
+      <div class="path-desc">How vessels work, orientation aboard, weather, personal safety, and watch systems. Start here if you've never been to sea.</div>
+      <div class="path-modules">
+        <div class="path-module-item">Vessel layout and key spaces</div>
+        <div class="path-module-item">Maritime terminology</div>
+        <div class="path-module-item">Weather and sea states</div>
+        <div class="path-module-item">PPE and deck safety</div>
+        <div class="path-module-item">Watch systems and crew hierarchy</div>
+      </div>
+      <span class="path-status reuse">Adapted from SAR</span>
+    </div>
+
+    <div class="path-card">
+      <div class="path-num">Path 2</div>
+      <div class="path-title">Campaign operations</div>
+      <div class="path-desc">The heart of the conservation platform. What campaigns look like in 2026, how documentation works, small boat operations, and working with government partners.</div>
+      <div class="path-modules">
+        <div class="path-module-item">The conservation campaign landscape</div>
+        <div class="path-module-item">Documentation as the primary tool</div>
+        <div class="path-module-item">Small boat operations in campaign contexts</div>
+        <div class="path-module-item">Government partnership operations</div>
+        <div class="path-module-item">Remote & extreme environment operations</div>
+        <div class="path-module-item">Media, communications & public presence</div>
+      </div>
+      <span class="path-status new">New content</span>
+    </div>
+
+    <div class="path-card">
+      <div class="path-num">Path 3</div>
+      <div class="path-title">Emergency drills & vessel response</div>
+      <div class="path-desc">MOB, fire, flooding, grounding, oil spill, and abandon ship. Every crew member on every vessel needs this — regardless of mission.</div>
+      <div class="path-modules">
+        <div class="path-module-item">Man overboard — procedures and recovery</div>
+        <div class="path-module-item">Fire — alarms, muster, roles</div>
+        <div class="path-module-item">Flooding and damage control</div>
+        <div class="path-module-item">Grounding and collision</div>
+        <div class="path-module-item">Oil spill — MARPOL and response</div>
+        <div class="path-module-item">Abandon ship</div>
+      </div>
+      <span class="path-status new">New content</span>
+    </div>
+
+    <div class="path-card reused">
+      <div class="path-num">Path 4</div>
+      <div class="path-title">Medical & first response</div>
+      <div class="path-desc">Triage, hypothermia, drowning response, and medical emergencies. Adapted for remote operation contexts — no helicopter, no hospital nearby.</div>
+      <div class="path-modules">
+        <div class="path-module-item">Triage and mass casualty awareness</div>
+        <div class="path-module-item">Drowning and cold water response</div>
+        <div class="path-module-item">Hypothermia — stages and management</div>
+        <div class="path-module-item">Remote medical decision-making</div>
+      </div>
+      <span class="path-status reuse">Adapted from SAR</span>
+    </div>
+
+    <div class="path-card">
+      <div class="path-num">Path 5</div>
+      <div class="path-title">Crew dynamics & volunteer culture</div>
+      <div class="path-desc">The unique social environment of conservation vessels — activists, scientists, filmmakers, and professionals sharing a small ship for weeks or months.</div>
+      <div class="path-modules">
+        <div class="path-module-item">Who you'll be working with</div>
+        <div class="path-module-item">Activist mindset vs seamanship discipline</div>
+        <div class="path-module-item">Long campaign dynamics</div>
+        <div class="path-module-item">Working with media crew</div>
+      </div>
+      <span class="path-status new">New content</span>
+    </div>
+
+    <div class="path-card reused">
+      <div class="path-num">Path 6</div>
+      <div class="path-title">Mental health & resilience</div>
+      <div class="path-desc">Vicarious trauma, fatigue, psychological first aid, and the specific moral injury of witnessing environmental destruction at scale.</div>
+      <div class="path-modules">
+        <div class="path-module-item">Vicarious trauma in conservation work</div>
+        <div class="path-module-item">Fatigue and long campaign management</div>
+        <div class="path-module-item">Psychological first aid</div>
+        <div class="path-module-item">Moral injury — conservation-specific</div>
+      </div>
+      <span class="path-status adapt">Adapted from SAR</span>
+    </div>
+
+    <div class="path-card" style="grid-column:1/-1;">
+      <div class="path-num">Path 7</div>
+      <div class="path-title">Legal & campaign framework</div>
+      <div class="path-desc">UNCLOS, flag states, the High Seas Treaty (now in force), what crew can and cannot do, and conservation law basics. The legal context that underpins every campaign decision.</div>
+      <div class="path-modules" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;">
+        <div class="path-module-item">UNCLOS basics for crew</div>
+        <div class="path-module-item">Legal intervention vs illegal action</div>
+        <div class="path-module-item">Flag states & enforcement agencies</div>
+        <div class="path-module-item">The High Seas Treaty — what changed in 2026</div>
+        <div class="path-module-item">Conservation law — CITES, IWC, CCAMLR</div>
+        <div class="path-module-item">Personal legal exposure at sea</div>
+      </div>
+      <span class="path-status new">New content</span>
+    </div>
+  </div>
+</div>
+
+<div class="con-who">
+  <div class="con-who-inner">
+    <div class="con-section-eyebrow">Who it's for</div>
+    <div class="con-section-title">Anyone new to conservation vessel operations</div>
+    <div class="con-who-grid">
+      <div class="con-who-card">
+        <div class="con-who-icon">🌊</div>
+        <div class="con-who-title">First-time volunteers</div>
+        <div class="con-who-text">Motivated to join a campaign but with no prior maritime experience. The platform gives you the foundational knowledge to arrive oriented and effective — without slowing down experienced crew.</div>
+      </div>
+      <div class="con-who-card">
+        <div class="con-who-icon">⚓</div>
+        <div class="con-who-title">Professional crew, new to conservation</div>
+        <div class="con-who-text">Experienced mariners joining their first conservation campaign. Maritime fundamentals are review — the campaign operations, legal framework, and crew culture content is where the preparation happens.</div>
+      </div>
+      <div class="con-who-card">
+        <div class="con-who-icon">🎥</div>
+        <div class="con-who-title">Scientists, filmmakers & media</div>
+        <div class="con-who-text">Non-maritime specialists embedded on campaign vessels. Vessel safety, watch systems, emergency procedures, and how to work effectively alongside professional crew — without getting in the way.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/js/app.js"></script>
+<script>
+initPage('conservation');
+
+function notifyMe() {
+  const email = document.getElementById('notify-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('notify-email').style.borderColor = 'rgba(255,100,100,.6)';
+    return;
+  }
+  // Build mailto link with the notification request
+  const subject = 'Operation Ready Conservation — notify me';
+  const body = `Please notify me when the Operation Ready Conservation platform launches.\n\nEmail: ${email}`;
+  window.location.href = `mailto:contact@operationready.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.querySelector('.con-notify').innerHTML = '<p style="color:rgba(100,180,100,.9);font-size:14px;font-weight:300;">Your email client should have opened. Thank you — we\'ll be in touch when the platform launches.</p>';
+}
+</script>
+</body>
+</html>
