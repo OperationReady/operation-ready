@@ -3,113 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operation Ready — Pre-deployment training for vessel operations</title>
-  <meta name="description" content="Practitioner-built pre-deployment training for vessel operations. Choose your platform — Humanitarian SAR, Conservation, or Commercial.">
+  <title>Operation Ready — Pre-deployment training for field deployments</title>
+  <meta name="description" content="Practitioner-built pre-deployment training for people going to difficult environments — at sea, on the ice, in the field.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box;}
     :root{
-      --navy:#1E3A5F;
-      --teal:#3D8B7A;
-      --yellow:#F5D06A;
-      --cream:#EAF6F2;
-      --text2:#3A5A6A;
-      --text3:#7A9AA8;
-      --border:rgba(30,58,95,.1);
+      --bg:#2E4A6B;
+      --bg-dark:#243D58;
+      --coral:#F76C6C;
+      --sky:#A8D0E6;
+      --yellow:#F8E9A1;
+      --white:#ffffff;
+      --text2:rgba(255,255,255,.62);
+      --text3:rgba(255,255,255,.3);
+      --border:rgba(255,255,255,.1);
+      --border-faint:rgba(255,255,255,.06);
     }
-    html,body{height:100%;font-family:'DM Sans',sans-serif;}
+    html,body{min-height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);}
 
-    /* ── NAV ── */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,35,64,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
-    .nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;text-decoration:none;}
-    .nav-logo em{font-style:italic;color:var(--yellow);}
-    .nav-tagline{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;}
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(36,61,88,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-faint);}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral);}
+    .nav-right{display:flex;align-items:center;gap:28px;}
+    .nav-right a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .nav-right a:hover{color:var(--white);}
+    .nav-contact{background:var(--coral);color:var(--white) !important;padding:9px 20px;border-radius:3px;transition:background .15s !important;}
+    .nav-contact:hover{background:#e85555 !important;}
 
-    /* ── HERO ── */
-    .hub{min-height:100vh;background:#0E2340;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding-top:64px;}
-    .hub-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
-    .hub-bg-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(61,139,122,.12) 0%,transparent 70%);pointer-events:none;}
+    /* HERO */
+    .hub{padding-top:62px;min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden;}
+    .hub-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:64px 64px;pointer-events:none;}
+    .hub-glow{position:absolute;top:20%;left:40%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(247,108,108,.1) 0%,transparent 65%);pointer-events:none;}
 
-    .hub-inner{max-width:1100px;margin:0 auto;padding:72px 48px 80px;position:relative;z-index:2;}
+    .hub-inner{flex:1;max-width:1120px;margin:0 auto;padding:76px 48px 68px;width:100%;position:relative;z-index:2;}
 
-    .hub-eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(61,139,122,.9);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
-    .hub-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--teal);}
+    .hub-eyebrow{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:22px;}
+    .hub-eyebrow::before{content:'';display:block;width:26px;height:1px;background:var(--sky);}
 
-    .hub-headline{font-family:'DM Serif Display',serif;font-size:64px;line-height:1.05;color:#fff;margin-bottom:20px;letter-spacing:-.01em;}
-    .hub-headline em{font-style:italic;color:var(--yellow);}
-    .hub-rule{width:48px;height:2px;background:var(--yellow);margin-bottom:24px;}
-    .hub-sub{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:580px;margin-bottom:64px;font-weight:300;}
+    .hub-headline{font-family:'DM Serif Display',serif;font-size:64px;line-height:1.04;color:var(--white);margin-bottom:18px;letter-spacing:-.01em;}
+    .hub-headline em{font-style:italic;color:var(--coral);}
+    .hub-rule{width:44px;height:2px;background:var(--coral);margin-bottom:22px;}
+    .hub-sub{font-size:16px;line-height:1.78;color:var(--text2);max-width:560px;margin-bottom:64px;font-weight:300;}
 
-    /* ── PLATFORM CARDS ── */
-    .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px;}
+    /* PLATFORM CARDS */
+    .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:72px;}
 
-    .platform-card{border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:36px 32px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;text-decoration:none;display:block;}
-    .platform-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s;}
-    .platform-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);box-shadow:0 20px 48px rgba(0,0,0,.35);}
+    .platform-card{border-radius:6px;padding:32px 28px;text-decoration:none;display:block;transition:transform .22s,box-shadow .22s;position:relative;overflow:hidden;}
+    .platform-card:not(.coming):hover{transform:translateY(-4px);box-shadow:0 22px 52px rgba(0,0,0,.28);}
 
-    /* SAR — teal accent */
-    .platform-card.sar{background:rgba(61,139,122,.08);}
-    .platform-card.sar::before{background:linear-gradient(135deg,rgba(61,139,122,.15) 0%,transparent 60%);}
-    .platform-card.sar:hover::before{opacity:1;}
-    .platform-card.sar:hover{border-color:rgba(61,139,122,.5);}
+    .card-sar{background:rgba(168,208,230,.09);border:1px solid rgba(168,208,230,.2);}
+    .card-sar:hover{border-color:rgba(168,208,230,.45);}
+    .card-con{background:rgba(247,108,108,.09);border:1px solid rgba(247,108,108,.2);}
+    .card-con:hover{border-color:rgba(247,108,108,.45);}
+    .card-coming{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);opacity:.55;cursor:default;}
 
-    /* Conservation — green accent */
-    .platform-card.conservation{background:rgba(45,100,60,.08);}
-    .platform-card.conservation::before{background:linear-gradient(135deg,rgba(45,100,60,.2) 0%,transparent 60%);}
-    .platform-card.conservation:hover::before{opacity:1;}
-    .platform-card.conservation:hover{border-color:rgba(45,100,60,.5);}
+    .card-tag{display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+    .card-dot{width:6px;height:6px;border-radius:50%;}
+    .card-dot.live{background:var(--sky);}
+    .card-dot.dev{background:var(--coral);animation:pulse 2s ease-in-out infinite;}
+    .card-dot.soon{background:rgba(255,255,255,.2);}
+    .card-tag-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;}
+    .tag-sar{color:var(--sky);}
+    .tag-con{color:var(--coral);}
+    .tag-soon{color:var(--text3);}
 
-    /* Coming soon — muted */
-    .platform-card.coming{background:rgba(255,255,255,.02);cursor:default;opacity:.6;}
-    .platform-card.coming:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.1);}
+    .card-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);line-height:1.2;margin-bottom:12px;}
+    .card-sub{font-size:13px;color:var(--text2);line-height:1.72;font-weight:300;margin-bottom:22px;min-height:58px;}
 
-    .card-tag{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-    .card-tag-dot{width:6px;height:6px;border-radius:50%;}
-    .sar .card-tag{color:rgba(126,207,191,.9);}
-    .sar .card-tag-dot{background:#7ECFBF;}
-    .conservation .card-tag{color:rgba(100,180,100,.9);}
-    .conservation .card-tag-dot{background:#64b464;}
-    .coming .card-tag{color:rgba(255,255,255,.3);}
-    .coming .card-tag-dot{background:rgba(255,255,255,.2);}
+    .card-detail{display:flex;flex-direction:column;gap:5px;margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.07);}
+    .card-detail-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--text3);}
+    .card-detail-item::before{content:'';display:block;width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.18);flex-shrink:0;}
 
-    .card-title{font-family:'DM Serif Display',serif;font-size:28px;color:#fff;line-height:1.15;margin-bottom:12px;}
-    .card-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:24px;min-height:60px;}
+    .card-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:3px;transition:all .18s;}
+    .cta-sar{background:var(--sky);color:var(--bg-dark);}
+    .card-sar:hover .cta-sar{background:#bddcee;}
+    .cta-con{background:var(--coral);color:var(--white);}
+    .card-con:hover .cta-con{background:#e85555;}
+    .cta-coming{background:rgba(255,255,255,.07);color:var(--text3);cursor:default;}
+    .cta-arrow{transition:transform .18s;}
+    .platform-card:not(.coming):hover .cta-arrow{transform:translateX(3px);}
 
-    .card-detail{display:flex;flex-direction:column;gap:6px;margin-bottom:28px;}
-    .card-detail-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.35);}
-    .card-detail-item::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);flex-shrink:0;}
+    /* CONTACT STRIP */
+    .contact-strip{background:var(--bg-dark);border-top:1px solid var(--border-faint);padding:40px 48px;}
+    .contact-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+    .contact-text{}
+    .contact-eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:8px;}
+    .contact-heading{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);margin-bottom:8px;}
+    .contact-sub{font-size:13px;color:var(--text2);font-weight:300;line-height:1.7;max-width:480px;}
+    .contact-action{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0;}
+    .contact-email{font-family:'DM Serif Display',serif;font-size:20px;color:var(--coral);text-decoration:none;transition:color .15s;}
+    .contact-email:hover{color:#e85555;}
+    .contact-btn{background:var(--coral);color:var(--white);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:11px 24px;border-radius:3px;text-decoration:none;transition:background .15s;white-space:nowrap;}
+    .contact-btn:hover{background:#e85555;}
 
-    .card-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:2px;transition:all .2s;}
-    .sar .card-cta{background:var(--teal);color:#fff;}
-    .sar:hover .card-cta{background:#4fa090;}
-    .conservation .card-cta{background:#3a7a42;color:#fff;}
-    .conservation:hover .card-cta{background:#4a8f52;}
-    .coming .card-cta{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);cursor:default;}
+    /* FOOTER */
+    footer{background:var(--bg-dark);border-top:1px solid var(--border-faint);padding:20px 48px;}
+    .footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);}
+    .footer-logo em{font-style:italic;color:var(--coral);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:rgba(255,255,255,.6);}
+    .footer-copy{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.04em;}
 
-    .card-cta-arrow{transition:transform .2s;}
-    .platform-card:not(.coming):hover .card-cta-arrow{transform:translateX(3px);}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
 
-    /* ── BOTTOM BAR ── */
-    .hub-footer-bar{border-top:1px solid rgba(255,255,255,.06);padding:16px 48px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex-wrap:wrap;gap:12px;}
-    .hub-footer-links{display:flex;gap:24px;}
-    .hub-footer-links a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;transition:color .15s;}
-    .hub-footer-links a:hover{color:rgba(255,255,255,.6);}
-    .hub-footer-copy{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.06em;}
-
-    /* ── RESPONSIVE ── */
     @media(max-width:900px){
+      nav,footer{padding-left:24px;padding-right:24px;}
+      .hub-inner,.contact-strip,.contact-inner{padding-left:24px;padding-right:24px;}
+      .hub-headline{font-size:44px;}
       .platform-grid{grid-template-columns:1fr;}
-      .hub-headline{font-size:46px;}
-      .hub-inner{padding:56px 24px 64px;}
-      nav{padding:0 24px;}
-      .hub-footer-bar{padding:16px 24px;}
-      .platform-card{padding:28px 24px;}
+      .contact-inner{flex-direction:column;align-items:flex-start;}
+      .contact-action{align-items:flex-start;}
     }
-    @media(max-width:640px){
-      .hub-headline{font-size:38px;}
-      .hub-sub{font-size:15px;margin-bottom:44px;}
-      .nav-tagline{display:none;}
+    @media(max-width:540px){
+      .hub-headline{font-size:36px;}
+      .nav-right .hide-mob{display:none;}
     }
   </style>
 </head>
@@ -117,74 +129,104 @@
 
 <nav>
   <a href="/" class="nav-logo">Operation<em>Ready</em></a>
-  <span class="nav-tagline">Pre-deployment training for vessel operations</span>
+  <div class="nav-right">
+    <a href="/about.html" class="hide-mob">About</a>
+    <a href="/ngos.html" class="hide-mob">For organisations</a>
+    <a href="/ngos.html#contact" class="nav-contact">Contact</a>
+  </div>
 </nav>
 
 <div class="hub">
-  <div class="hub-bg" aria-hidden="true"></div>
-  <div class="hub-bg-glow" aria-hidden="true"></div>
+  <div class="hub-grid" aria-hidden="true"></div>
+  <div class="hub-glow" aria-hidden="true"></div>
 
   <div class="hub-inner">
     <div class="hub-eyebrow">Choose your platform</div>
-    <h1 class="hub-headline">Know the vessel.<br><em>Know the mission.</em></h1>
+    <h1 class="hub-headline">Prepared before<br>you <em>deploy.</em></h1>
     <div class="hub-rule"></div>
-    <p class="hub-sub">Practitioner-built pre-deployment training for crew joining vessel-based operations. Select the platform relevant to your deployment.</p>
+    <p class="hub-sub">Practitioner-built pre-deployment training for people going to difficult environments — at sea, on the ice, in the field. Select the platform relevant to your deployment.</p>
 
     <div class="platform-grid">
 
       <!-- SAR -->
-      <a href="/sar.html" class="platform-card sar">
-        <div class="card-tag"><span class="card-tag-dot"></span>Live</div>
+      <a href="/sar.html" class="platform-card card-sar">
+        <div class="card-tag">
+          <div class="card-dot live"></div>
+          <span class="card-tag-label tag-sar">Live</span>
+        </div>
         <div class="card-title">Humanitarian<br>Search & Rescue</div>
-        <div class="card-sub">Pre-deployment preparation for crew joining humanitarian SAR operations in the Central Mediterranean and beyond.</div>
+        <div class="card-sub">Pre-deployment preparation for crew joining humanitarian SAR operations. Mediterranean context, all experience levels.</div>
         <div class="card-detail">
           <div class="card-detail-item">31 modules across 6 paths</div>
-          <div class="card-detail-item">Mediterranean SAR context</div>
+          <div class="card-detail-item">No account required</div>
           <div class="card-detail-item">NGO crew — all experience levels</div>
         </div>
-        <div class="card-cta">Enter platform <span class="card-cta-arrow">→</span></div>
+        <div class="card-cta cta-sar">Enter platform <span class="cta-arrow">→</span></div>
       </a>
 
       <!-- Conservation -->
-      <a href="/conservation.html" class="platform-card conservation">
-        <div class="card-tag"><span class="card-tag-dot"></span>In development</div>
+      <a href="/conservation.html" class="platform-card card-con">
+        <div class="card-tag">
+          <div class="card-dot dev"></div>
+          <span class="card-tag-label tag-con">In development</span>
+        </div>
         <div class="card-title">Conservation<br>Vessel Operations</div>
-        <div class="card-sub">Pre-deployment preparation for crew joining conservation campaigns — Antarctic operations, fisheries monitoring, documentation, and direct action.</div>
+        <div class="card-sub">Pre-deployment preparation for crew joining conservation vessel campaigns — fisheries monitoring, documentation operations, and direct action.</div>
         <div class="card-detail">
           <div class="card-detail-item">7 paths in development</div>
-          <div class="card-detail-item">Sea Shepherd, Greenpeace and beyond</div>
           <div class="card-detail-item">Volunteer and professional crew</div>
+          <div class="card-detail-item">Antarctic, Pacific, and beyond</div>
         </div>
-        <div class="card-cta">Preview platform <span class="card-cta-arrow">→</span></div>
+        <div class="card-cta cta-con">Preview platform <span class="cta-arrow">→</span></div>
       </a>
 
       <!-- Coming soon -->
-      <div class="platform-card coming">
-        <div class="card-tag"><span class="card-tag-dot"></span>Coming soon</div>
-        <div class="card-title">Offshore &<br>Commercial</div>
-        <div class="card-sub">Pre-deployment training for offshore energy, commercial maritime, and superyacht operations.</div>
-        <div class="card-detail">
-          <div class="card-detail-item">Offshore energy</div>
-          <div class="card-detail-item">Commercial maritime</div>
-          <div class="card-detail-item">Superyacht operations</div>
+      <div class="platform-card card-coming coming">
+        <div class="card-tag">
+          <div class="card-dot soon"></div>
+          <span class="card-tag-label tag-soon">Coming soon</span>
         </div>
-        <div class="card-cta">Notify me</div>
+        <div class="card-title">Field &<br>Remote Operations</div>
+        <div class="card-sub">Pre-deployment preparation for remote field deployments — offshore energy, polar research stations, humanitarian field missions, and more.</div>
+        <div class="card-detail">
+          <div class="card-detail-item">Offshore & commercial maritime</div>
+          <div class="card-detail-item">Polar & remote research stations</div>
+          <div class="card-detail-item">Humanitarian field operations</div>
+        </div>
+        <div class="card-cta cta-coming">Notify me</div>
       </div>
 
     </div>
   </div>
+</div>
 
-  <div class="hub-footer-bar">
-    <div class="hub-footer-links">
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div class="contact-text">
+      <div class="contact-eyebrow">Get in touch</div>
+      <div class="contact-heading">Talk to us about your organisation</div>
+      <p class="contact-sub">Whether you're looking to deploy Operation Ready across your team, discuss a partnership, or find out what's coming — we'd like to hear from you.</p>
+    </div>
+    <div class="contact-action">
+      <a href="mailto:contact@operationready.org" class="contact-email">contact@operationready.org</a>
+      <a href="mailto:contact@operationready.org" class="contact-btn">Send us a message →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Operation<em>Ready</em></div>
+    <div class="footer-links">
       <a href="/about.html">About</a>
       <a href="/ngos.html">For organisations</a>
-      <a href="/koha.html">Koha</a>
       <a href="/terms.html">Terms</a>
       <a href="/privacy.html">Privacy</a>
     </div>
-    <div class="hub-footer-copy">© 2026 Operation Ready · operationready.org</div>
+    <div class="footer-copy">© 2026 Operation Ready</div>
   </div>
-</div>
+</footer>
 
 </body>
 </html>
