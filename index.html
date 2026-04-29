@@ -3,371 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Operation Ready — Pre-deployment training for humanitarian SAR</title>
-  <meta name="description" content="Practitioner-built training for crew joining humanitarian search and rescue operations. 31 modules across 6 paths. No account required.">
-  <link rel="stylesheet" href="/css/style.css">
+  <title>Operation Ready — Pre-deployment training for vessel operations</title>
+  <meta name="description" content="Practitioner-built pre-deployment training for vessel operations. Choose your platform — Humanitarian SAR, Conservation, or Commercial.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    /* ═══ HERO v2 — editorial / technical ═══ */
-    .hero{position:relative;background:#0E2340;color:#fff;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.06);}
-    .hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;opacity:.35;z-index:0;}
-    .hero-bg-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,35,64,.4) 0%,rgba(14,35,64,.75) 60%,rgba(14,35,64,.92) 100%),linear-gradient(90deg,rgba(14,35,64,.65) 0%,rgba(14,35,64,.4) 50%,rgba(14,35,64,.75) 100%);z-index:1;}
-    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:1;}
-    .hero-main{max-width:1160px;margin:0 auto;padding:68px 48px 56px;display:grid;grid-template-columns:1.6fr 1fr;gap:72px;align-items:center;position:relative;z-index:2;}
-    .hero-left{}
-    .hero-tag{display:inline-flex;align-items:center;gap:14px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--mint);font-weight:500;margin-bottom:28px;}
-    .hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--mint);}
-    .hero-tag-coord{color:rgba(255,255,255,.3);font-family:'DM Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.14em;}
-    .hero-headline{font-family:'DM Serif Display',serif;font-size:72px;line-height:1.02;color:#fff;margin-bottom:28px;letter-spacing:-.01em;}
-    .hero-headline em{font-style:italic;color:var(--yellow);}
-    .hero-headline-rule{width:48px;height:2px;background:var(--yellow);margin-bottom:24px;}
-    .hero-lede{font-size:16px;line-height:1.7;color:rgba(255,255,255,.72);max-width:520px;margin-bottom:36px;font-weight:300;}
-    .hero-lede strong{color:#fff;font-weight:500;}
-    .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
-    .hero-cta-primary{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;background:var(--yellow);color:var(--navy);border-radius:2px;transition:all .15s;display:inline-flex;align-items:center;gap:10px;}
-    .hero-cta-primary:hover{background:#fff;transform:translateY(-1px);}
-    .hero-cta-primary .arrow{display:inline-block;transition:transform .2s;}
-    .hero-cta-primary:hover .arrow{transform:translateX(3px);}
-    .hero-cta-secondary{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 28px;background:transparent;color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.25);border-radius:2px;transition:all .15s;display:inline-block;}
-    .hero-cta-secondary:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.04);}
-
-    /* Right-hand credentials panel */
-    .hero-right{border-left:1px solid rgba(255,255,255,.08);padding-left:40px;}
-    .cred-label{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(126,207,191,.85);margin-bottom:20px;font-weight:500;display:flex;align-items:center;gap:10px;}
-    .cred-label::after{content:'';flex:1;height:1px;background:rgba(126,207,191,.2);}
-    .cred-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-bottom:32px;}
-    .cred-stat-n{font-family:'DM Serif Display',serif;font-size:40px;color:#fff;line-height:1;margin-bottom:4px;}
-    .cred-stat-n em{font-style:italic;color:var(--yellow);}
-    .cred-stat-l{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:500;line-height:1.3;}
-    .cred-quote{border-left:2px solid var(--yellow);padding:14px 0 14px 18px;margin-top:28px;}
-    .cred-quote-text{font-family:'DM Serif Display',serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.88);line-height:1.45;margin-bottom:10px;}
-    .cred-quote-attr{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:500;}
-
-    /* Subtle bottom bar — technical detail */
-    .hero-footer-bar{border-top:1px solid rgba(255,255,255,.06);padding:14px 48px;max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-family:'DM Mono',ui-monospace,monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.1em;position:relative;z-index:2;}
-    .hero-footer-bar-item{display:flex;align-items:center;gap:8px;}
-    .hero-footer-bar-dot{width:5px;height:5px;border-radius:50%;background:var(--mint);animation:pulse 2s ease-in-out infinite;}
-    @keyframes pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
-
-    /* ═══ STATS ═══ */
-    .stat-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--teal);position:relative;z-index:2;}
-    .stat-cell{padding:24px 20px;border-right:1px solid rgba(255,255,255,.12);text-align:center;}
-    .stat-cell:last-child{border-right:none;}
-    .stat-n{font-family:'DM Serif Display',serif;font-size:36px;color:var(--yellow);line-height:1;}
-    .stat-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:4px;}
-
-    /* Returning user banner */
-    .returning-banner{max-width:780px;margin:32px auto 0;padding:16px 22px;background:var(--mint-pale);border:1px solid rgba(61,139,122,.25);border-left:3px solid var(--teal);border-radius:4px;display:none;align-items:center;gap:16px;flex-wrap:wrap;}
-    .returning-banner.active{display:flex;}
-    .returning-banner-text{flex:1;min-width:200px;}
-    .returning-banner-title{font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px;}
-    .returning-banner-sub{font-size:12px;color:var(--text2);font-weight:300;}
-    .returning-banner a{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:8px 16px;background:var(--teal);color:#fff;border-radius:3px;transition:background .15s;}
-    .returning-banner a:hover{background:var(--navy);}
-
-    /* Paths section */
-    .paths-section{padding:64px 36px;max-width:1100px;margin:0 auto;}
-    .paths-header{text-align:center;margin-bottom:40px;}
-    .paths-header .sec-eyebrow{justify-content:center;}
-    .paths-header .sec-eyebrow::before{display:none;}
-
-    /* Enhanced track cards — all with the same visual treatment now */
-    .track-card{position:relative;overflow:hidden;}
-    .track-card .track-img-wrap{position:relative;}
-    .track-path-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(30,58,95,.85) 0%,rgba(61,139,122,.6) 100%);}
-    .track-path-overlay svg{width:44px;height:44px;stroke:#fff;opacity:.85;}
-    .track-img-wrap img{display:block;}
-
-    /* ═══ TRACKS GRID V2 — uniform cards ═══ */
-    .tracks-grid-v2{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
-    .tcard{position:relative;background:#fff;border:1px solid var(--border);border-radius:3px;overflow:hidden;transition:all .25s cubic-bezier(.2,.7,.3,1);display:flex;flex-direction:column;min-height:320px;}
-    .tcard:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px -12px rgba(30,58,95,.18);}
-    .tcard-accent{height:3px;background:var(--accent);}
-    .tcard-inner{padding:26px 24px 24px;display:flex;flex-direction:column;flex:1;}
-    .tcard-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;}
-    .tcard-num{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;}
-    .tcard-count{font-size:10px;letter-spacing:.08em;color:var(--text3);font-weight:500;}
-    .tcard-icon{width:44px;height:44px;color:var(--accent);margin-bottom:16px;opacity:.9;}
-    .tcard-icon svg{width:100%;height:100%;}
-    .tcard-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--navy);line-height:1.15;margin-bottom:10px;}
-    .tcard-desc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300;flex:1;margin-bottom:14px;}
-    .tcard-meta{font-size:11px;color:var(--text3);letter-spacing:.04em;padding-top:12px;border-top:1px solid var(--border);font-style:italic;font-weight:300;}
-
-    /* Mission */
-    .mission-wrap{background:var(--navy);padding:64px 36px;position:relative;overflow:hidden;}
-    .mission-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.08;}
-    .mission-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:960px;margin:0 auto;}
-    .mission-text{color:rgba(255,255,255,.7);font-size:14px;line-height:1.85;font-weight:300;}
-    .mission-text p{margin-bottom:14px;}
-    .mission-text p:last-child{margin-bottom:0;}
-    .mission-quote{border-left:3px solid var(--yellow);padding:20px 24px;background:rgba(245,208,106,.06);}
-    .mission-quote-text{font-family:'DM Serif Display',serif;font-size:21px;color:#fff;line-height:1.45;margin-bottom:12px;font-style:italic;}
-    .mission-quote-attr{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;}
-
-    /* Contact strip */
-    .contact-strip{background:var(--mint-pale);border-top:1px solid var(--mint-light);padding:28px 36px;text-align:center;}
-    .contact-strip p{font-size:13px;color:var(--text2);margin-bottom:6px;font-weight:300;}
-    .contact-strip a{font-family:'DM Serif Display',serif;font-size:18px;color:var(--teal);}
-    .contact-strip a:hover{color:var(--navy);}
-
-    @media(max-width:960px){
-      .tracks-grid-v2{grid-template-columns:repeat(2,1fr);}
-      .hero-main{grid-template-columns:1fr;gap:40px;padding:48px 32px 40px;}
-      .hero-right{border-left:none;border-top:1px solid rgba(255,255,255,.08);padding-left:0;padding-top:32px;}
-      .hero-headline{font-size:52px;}
-      .hero-footer-bar{padding:12px 32px;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --navy:#1E3A5F;
+      --teal:#3D8B7A;
+      --yellow:#F5D06A;
+      --cream:#EAF6F2;
+      --text2:#3A5A6A;
+      --text3:#7A9AA8;
+      --border:rgba(30,58,95,.1);
     }
-    @media(max-width:720px){
-      .hero-main{padding:40px 20px 32px;gap:32px;}
-      .hero-headline{font-size:40px;}
-      .hero-lede{font-size:15px;}
-      .hero-tag{font-size:10px;letter-spacing:.22em;}
-      .hero-footer-bar{font-size:9px;padding:10px 20px;flex-wrap:wrap;gap:12px;}
-      .cred-stats{grid-template-columns:1fr 1fr;gap:16px 20px;}
-      .cred-stat-n{font-size:32px;}
-      .stat-bar{grid-template-columns:1fr 1fr;}
-      .stat-cell{padding:16px 12px;}
-      .stat-n{font-size:28px;}
-      .paths-section{padding:40px 16px;}
-      .mission-wrap{padding:40px 16px;}
-      .mission-inner{grid-template-columns:1fr;gap:28px;}
-      .contact-strip{padding:20px 16px;}
-      .returning-banner{margin:20px 16px 0;}
-      .tracks-grid-v2{grid-template-columns:1fr;gap:12px;}
-      .tcard{min-height:auto;}
+    html,body{height:100%;font-family:'DM Sans',sans-serif;}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(14,35,64,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff;text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--yellow);}
+    .nav-tagline{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;}
+
+    /* ── HERO ── */
+    .hub{min-height:100vh;background:#0E2340;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding-top:64px;}
+    .hub-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+    .hub-bg-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(61,139,122,.12) 0%,transparent 70%);pointer-events:none;}
+
+    .hub-inner{max-width:1100px;margin:0 auto;padding:72px 48px 80px;position:relative;z-index:2;}
+
+    .hub-eyebrow{font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(61,139,122,.9);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:14px;}
+    .hub-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--teal);}
+
+    .hub-headline{font-family:'DM Serif Display',serif;font-size:64px;line-height:1.05;color:#fff;margin-bottom:20px;letter-spacing:-.01em;}
+    .hub-headline em{font-style:italic;color:var(--yellow);}
+    .hub-rule{width:48px;height:2px;background:var(--yellow);margin-bottom:24px;}
+    .hub-sub{font-size:17px;line-height:1.7;color:rgba(255,255,255,.65);max-width:580px;margin-bottom:64px;font-weight:300;}
+
+    /* ── PLATFORM CARDS ── */
+    .platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:64px;}
+
+    .platform-card{border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:36px 32px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;text-decoration:none;display:block;}
+    .platform-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .25s;}
+    .platform-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.25);box-shadow:0 20px 48px rgba(0,0,0,.35);}
+
+    /* SAR — teal accent */
+    .platform-card.sar{background:rgba(61,139,122,.08);}
+    .platform-card.sar::before{background:linear-gradient(135deg,rgba(61,139,122,.15) 0%,transparent 60%);}
+    .platform-card.sar:hover::before{opacity:1;}
+    .platform-card.sar:hover{border-color:rgba(61,139,122,.5);}
+
+    /* Conservation — green accent */
+    .platform-card.conservation{background:rgba(45,100,60,.08);}
+    .platform-card.conservation::before{background:linear-gradient(135deg,rgba(45,100,60,.2) 0%,transparent 60%);}
+    .platform-card.conservation:hover::before{opacity:1;}
+    .platform-card.conservation:hover{border-color:rgba(45,100,60,.5);}
+
+    /* Coming soon — muted */
+    .platform-card.coming{background:rgba(255,255,255,.02);cursor:default;opacity:.6;}
+    .platform-card.coming:hover{transform:none;box-shadow:none;border-color:rgba(255,255,255,.1);}
+
+    .card-tag{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+    .card-tag-dot{width:6px;height:6px;border-radius:50%;}
+    .sar .card-tag{color:rgba(126,207,191,.9);}
+    .sar .card-tag-dot{background:#7ECFBF;}
+    .conservation .card-tag{color:rgba(100,180,100,.9);}
+    .conservation .card-tag-dot{background:#64b464;}
+    .coming .card-tag{color:rgba(255,255,255,.3);}
+    .coming .card-tag-dot{background:rgba(255,255,255,.2);}
+
+    .card-title{font-family:'DM Serif Display',serif;font-size:28px;color:#fff;line-height:1.15;margin-bottom:12px;}
+    .card-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;margin-bottom:24px;min-height:60px;}
+
+    .card-detail{display:flex;flex-direction:column;gap:6px;margin-bottom:28px;}
+    .card-detail-item{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.35);}
+    .card-detail-item::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);flex-shrink:0;}
+
+    .card-cta{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border-radius:2px;transition:all .2s;}
+    .sar .card-cta{background:var(--teal);color:#fff;}
+    .sar:hover .card-cta{background:#4fa090;}
+    .conservation .card-cta{background:#3a7a42;color:#fff;}
+    .conservation:hover .card-cta{background:#4a8f52;}
+    .coming .card-cta{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);cursor:default;}
+
+    .card-cta-arrow{transition:transform .2s;}
+    .platform-card:not(.coming):hover .card-cta-arrow{transform:translateX(3px);}
+
+    /* ── BOTTOM BAR ── */
+    .hub-footer-bar{border-top:1px solid rgba(255,255,255,.06);padding:16px 48px;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex-wrap:wrap;gap:12px;}
+    .hub-footer-links{display:flex;gap:24px;}
+    .hub-footer-links a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.25);text-decoration:none;transition:color .15s;}
+    .hub-footer-links a:hover{color:rgba(255,255,255,.6);}
+    .hub-footer-copy{font-size:10px;color:rgba(255,255,255,.18);letter-spacing:.06em;}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .platform-grid{grid-template-columns:1fr;}
+      .hub-headline{font-size:46px;}
+      .hub-inner{padding:56px 24px 64px;}
+      nav{padding:0 24px;}
+      .hub-footer-bar{padding:16px 24px;}
+      .platform-card{padding:28px 24px;}
     }
-    @media(prefers-reduced-motion: reduce){
-      .hero-footer-bar-dot { animation: none; }
+    @media(max-width:640px){
+      .hub-headline{font-size:38px;}
+      .hub-sub{font-size:15px;margin-bottom:44px;}
+      .nav-tagline{display:none;}
     }
   </style>
 </head>
 <body>
-<div id="nav-placeholder"></div>
 
-<div class="hero">
-  <img src="/images/hero-horizon.jpg" alt="" class="hero-bg-img" aria-hidden="true">
-  <div class="hero-bg-overlay" aria-hidden="true"></div>
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-main">
-    <div class="hero-left">
-      <div class="hero-tag" data-key="hero_eyebrow">Pre-deployment training for humanitarian SAR<span class="hero-tag-coord" style="margin-left:auto;opacity:.4;">OPR · 35°12'N 013°18'E</span></div>
-      <h1 class="hero-headline" data-key="hero_h1">Know the vessel.<br><em>Save lives.</em></h1>
-      <div class="hero-headline-rule"></div>
-      <p class="hero-lede" data-key="hero_lede"><strong>31 modules across 6 paths.</strong> Built by practitioners from direct operational experience — Central Mediterranean, sub-Antarctic, offshore. No prior maritime experience required.</p>
-      <div class="hero-cta-row">
-        <a href="/modules/1-1.html" class="hero-cta-primary" data-key="hero_cta1">Begin Module 1.1 <span class="arrow">&rarr;</span></a>
-        <a href="/modules.html" class="hero-cta-secondary" data-key="hero_cta2">View all modules</a>
+<nav>
+  <a href="/" class="nav-logo">Operation<em>Ready</em></a>
+  <span class="nav-tagline">Pre-deployment training for vessel operations</span>
+</nav>
+
+<div class="hub">
+  <div class="hub-bg" aria-hidden="true"></div>
+  <div class="hub-bg-glow" aria-hidden="true"></div>
+
+  <div class="hub-inner">
+    <div class="hub-eyebrow">Choose your platform</div>
+    <h1 class="hub-headline">Know the vessel.<br><em>Know the mission.</em></h1>
+    <div class="hub-rule"></div>
+    <p class="hub-sub">Practitioner-built pre-deployment training for crew joining vessel-based operations. Select the platform relevant to your deployment.</p>
+
+    <div class="platform-grid">
+
+      <!-- SAR -->
+      <a href="/sar.html" class="platform-card sar">
+        <div class="card-tag"><span class="card-tag-dot"></span>Live</div>
+        <div class="card-title">Humanitarian<br>Search & Rescue</div>
+        <div class="card-sub">Pre-deployment preparation for crew joining humanitarian SAR operations in the Central Mediterranean and beyond.</div>
+        <div class="card-detail">
+          <div class="card-detail-item">31 modules across 6 paths</div>
+          <div class="card-detail-item">Mediterranean SAR context</div>
+          <div class="card-detail-item">NGO crew — all experience levels</div>
+        </div>
+        <div class="card-cta">Enter platform <span class="card-cta-arrow">→</span></div>
+      </a>
+
+      <!-- Conservation -->
+      <a href="/conservation.html" class="platform-card conservation">
+        <div class="card-tag"><span class="card-tag-dot"></span>In development</div>
+        <div class="card-title">Conservation<br>Vessel Operations</div>
+        <div class="card-sub">Pre-deployment preparation for crew joining conservation campaigns — Antarctic operations, fisheries monitoring, documentation, and direct action.</div>
+        <div class="card-detail">
+          <div class="card-detail-item">7 paths in development</div>
+          <div class="card-detail-item">Sea Shepherd, Greenpeace and beyond</div>
+          <div class="card-detail-item">Volunteer and professional crew</div>
+        </div>
+        <div class="card-cta">Preview platform <span class="card-cta-arrow">→</span></div>
+      </a>
+
+      <!-- Coming soon -->
+      <div class="platform-card coming">
+        <div class="card-tag"><span class="card-tag-dot"></span>Coming soon</div>
+        <div class="card-title">Offshore &<br>Commercial</div>
+        <div class="card-sub">Pre-deployment training for offshore energy, commercial maritime, and superyacht operations.</div>
+        <div class="card-detail">
+          <div class="card-detail-item">Offshore energy</div>
+          <div class="card-detail-item">Commercial maritime</div>
+          <div class="card-detail-item">Superyacht operations</div>
+        </div>
+        <div class="card-cta">Notify me</div>
       </div>
+
     </div>
+  </div>
 
-    <div class="hero-right">
-      <div class="cred-label">Platform overview</div>
-      <div class="cred-stats">
-        <div>
-          <div class="cred-stat-n">31</div>
-          <div class="cred-stat-l">Modules</div>
-        </div>
-        <div>
-          <div class="cred-stat-n">6</div>
-          <div class="cred-stat-l">Learning paths</div>
-        </div>
-        <div>
-          <div class="cred-stat-n"><em>0</em></div>
-          <div class="cred-stat-l">Account required</div>
-        </div>
-        <div>
-          <div class="cred-stat-n">5</div>
-          <div class="cred-stat-l">Languages</div>
-        </div>
-      </div>
-      <div class="cred-quote">
-        <div class="cred-quote-text">"The crew will assume you know things you don't. That assumption costs time in the best case."</div>
-        <div class="cred-quote-attr">Mediterranean SAR &mdash; operational note</div>
-      </div>
+  <div class="hub-footer-bar">
+    <div class="hub-footer-links">
+      <a href="/about.html">About</a>
+      <a href="/ngos.html">For organisations</a>
+      <a href="/koha.html">Koha</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
     </div>
-  </div>
-
-  <div class="hero-footer-bar">
-    <div class="hero-footer-bar-item"><span class="hero-footer-bar-dot"></span>OPERATIONREADY.ORG</div>
-    <div class="hero-footer-bar-item">BUILT BY PRACTITIONERS</div>
-    <div class="hero-footer-bar-item">v1.0 &middot; 2026</div>
+    <div class="hub-footer-copy">© 2026 Operation Ready · operationready.org</div>
   </div>
 </div>
 
-
-<!-- Returning user banner (rendered by JS if progress exists) -->
-<div id="returning-banner-mount"></div>
-
-<div class="paths-section">
-  <div class="paths-header">
-    <div class="sec-eyebrow" data-key="paths_eyebrow">Learning paths</div>
-    <div class="sec-title" data-key="paths_title">Everything before<br><em>you board</em></div>
-    <p class="sec-sub" style="margin:0 auto 36px;" data-key="paths_sub">Six paths covering the full pre-deployment knowledge base — from maritime fundamentals to survivor interaction and mental health resilience.</p>
-  </div>
-  <div class="tracks-grid-v2">
-    <a href="/modules.html#track-1" class="tcard" style="--accent:#3D8B7A;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 1</span>
-          <span class="tcard-count">6 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 34 L42 34"/>
-            <path d="M10 34 L10 20 L24 12 L38 20 L38 34"/>
-            <path d="M18 34 L18 24 L30 24 L30 34"/>
-            <path d="M24 12 L24 8"/>
-          </svg>
-        </div>
-        <div class="tcard-title">Maritime fundamentals</div>
-        <div class="tcard-desc">How ships work, vessel orientation, weather and sea state, navigation, personal safety, and watch systems.</div>
-        <div class="tcard-meta">Start here if you've never been to sea</div>
-      </div>
-    </a>
-
-    <a href="/modules.html#track-2" class="tcard" style="--accent:#4A9FE0;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 2</span>
-          <span class="tcard-count">7 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="24" cy="24" r="16"/>
-            <circle cx="24" cy="24" r="8"/>
-            <path d="M24 4 L24 10"/>
-            <path d="M24 38 L24 44"/>
-            <path d="M4 24 L10 24"/>
-            <path d="M38 24 L44 24"/>
-          </svg>
-        </div>
-        <div class="tcard-title">SAR operations</div>
-        <div class="tcard-desc">The SAR system, search patterns, RHIB operations, survivor recovery, mass rescue, scenario simulator, and documentation.</div>
-        <div class="tcard-meta">Includes interactive scenario simulator</div>
-      </div>
-    </a>
-
-    <a href="/modules.html#track-3" class="tcard" style="--accent:#C84B4B;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 3</span>
-          <span class="tcard-count">5 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M24 14 L24 34"/>
-            <path d="M14 24 L34 24"/>
-            <rect x="8" y="8" width="32" height="32" rx="3"/>
-          </svg>
-        </div>
-        <div class="tcard-title">Medical &amp; first response</div>
-        <div class="tcard-desc">Triage at sea, drowning and water rescue medicine, hypothermia, medical emergencies, and psychological first aid.</div>
-        <div class="tcard-meta">For medical staff and first responders</div>
-      </div>
-    </a>
-
-    <a href="/modules.html#track-4" class="tcard" style="--accent:#8B6FB8;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 4</span>
-          <span class="tcard-count">5 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="18" cy="19" r="5"/>
-            <circle cx="32" cy="19" r="5"/>
-            <path d="M10 38 Q10 28 18 28 Q26 28 26 38"/>
-            <path d="M26 38 Q26 30 32 30 Q40 30 40 38"/>
-          </svg>
-        </div>
-        <div class="tcard-title">Survivor interaction</div>
-        <div class="tcard-desc">Who the survivors are, first contact, working with interpreters, vulnerable persons, and humanitarian principles.</div>
-        <div class="tcard-meta">Essential for every crew member</div>
-      </div>
-    </a>
-
-    <a href="/modules.html#track-5" class="tcard" style="--accent:#D4A24A;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 5</span>
-          <span class="tcard-count">4 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M24 40 C24 40 12 32 12 20 C12 14 16 10 20 10 C22 10 24 12 24 14 C24 12 26 10 28 10 C32 10 36 14 36 20 C36 32 24 40 24 40 Z"/>
-          </svg>
-        </div>
-        <div class="tcard-title">Mental health &amp; resilience</div>
-        <div class="tcard-desc">What to expect emotionally, vicarious trauma, managing difficult operations, and fatigue on deployment.</div>
-        <div class="tcard-meta">Often the most important path</div>
-      </div>
-    </a>
-
-    <a href="/modules.html#track-6" class="tcard" style="--accent:#1E3A5F;">
-      <div class="tcard-accent"></div>
-      <div class="tcard-inner">
-        <div class="tcard-head">
-          <span class="tcard-num">Path 6</span>
-          <span class="tcard-count">4 modules</span>
-        </div>
-        <div class="tcard-icon">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M24 8 L36 14 L36 24 C36 32 30 38 24 40 C18 38 12 32 12 24 L12 14 Z"/>
-            <path d="M18 24 L22 28 L30 20"/>
-          </svg>
-        </div>
-        <div class="tcard-title">Legal &amp; humanitarian framework</div>
-        <div class="tcard-desc">Law of the sea, how the SAR system works legally, NGO operating frameworks, and incident documentation.</div>
-        <div class="tcard-meta">The framework behind the work</div>
-      </div>
-    </a>
-  </div>
-</div>
-
-<div class="free-banner">
-  <div style="flex:1;min-width:200px;">
-    <div class="free-title" data-key="free_title">Built by practitioners, for crew</div>
-    <p class="free-sub" data-key="free_sub">No account required. No paywall. Share with your team. If you'd like to discuss using Operation Ready in your organisation, get in touch.</p>
-  </div>
-  <a href="/ngos.html" class="btn-navy" data-key="free_cta">Get in touch</a>
-</div>
-
-<div style="background:var(--cream2);padding:20px 36px;text-align:center;border-top:1px solid var(--border);">
-  <p style="font-size:12px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;" data-key="built_for">Designed and built for humanitarian SAR NGOs</p>
-</div>
-
-<div class="contact-strip">
-  <p data-key="contact_label">Questions, feedback, or want to contribute?</p>
-  <a href="mailto:contact@operationready.org">contact@operationready.org</a>
-</div>
-
-<div id="footer-placeholder"></div>
-<script src="/js/app.js"></script>
-<script>
-initPage('home');
-
-// Returning user banner — show if they've started but not finished
-(function renderReturningBanner() {
-  const overall = getOverallProgress();
-  if (overall.completed === 0 || overall.completed === overall.total) return;
-  const next = getNextIncompleteModule();
-  if (!next) return;
-  const mount = document.getElementById('returning-banner-mount');
-  if (!mount) return;
-  mount.innerHTML = `
-    <div class="returning-banner active">
-      <div class="returning-banner-text">
-        <div class="returning-banner-title">Welcome back — you've completed ${overall.completed} of ${overall.total} modules</div>
-        <div class="returning-banner-sub">Pick up where you left off. Progress is saved on this device.</div>
-      </div>
-      <a href="/modules/${next}.html">Resume: Module ${next.replace('-','.')}</a>
-    </div>
-  `;
-})();
-</script>
 </body>
 </html>
