@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Operation Ready</title>
+  <meta name="description" content="Operation Ready is practitioner-built pre-deployment training for people going to difficult environments. Built from operational experience across maritime SAR, conservation, and remote operations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --bg:#2E4A6B;
+      --bg-dark:#243D58;
+      --bg-mid:#364f72;
+      --coral:#F76C6C;
+      --sky:#A8D0E6;
+      --yellow:#F8E9A1;
+      --white:#ffffff;
+      --text2:rgba(255,255,255,.62);
+      --text3:rgba(255,255,255,.32);
+      --border:rgba(255,255,255,.1);
+      --border-faint:rgba(255,255,255,.06);
+    }
+    html,body{min-height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(36,61,88,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-faint);}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral);}
+    .nav-right{display:flex;align-items:center;gap:28px;}
+    .nav-right a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .nav-right a:hover{color:var(--white);}
+    .nav-right a.active{color:var(--sky);}
+    .nav-contact{background:var(--coral);color:var(--white) !important;padding:9px 20px;border-radius:3px;}
+    .nav-contact:hover{background:#e85555 !important;}
+
+    .page-hero{padding:120px 48px 72px;max-width:1120px;margin:0 auto;}
+    .page-back{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;margin-bottom:40px;transition:color .15s;}
+    .page-back:hover{color:var(--sky);}
+    .page-eyebrow{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:20px;}
+    .page-eyebrow::before{content:'';display:block;width:26px;height:1px;background:var(--sky);}
+    .page-headline{font-family:'DM Serif Display',serif;font-size:56px;line-height:1.06;color:var(--white);margin-bottom:18px;letter-spacing:-.01em;max-width:720px;}
+    .page-headline em{font-style:italic;color:var(--coral);}
+    .page-rule{width:44px;height:2px;background:var(--coral);margin-bottom:24px;}
+    .page-lede{font-size:18px;line-height:1.78;color:var(--text2);max-width:620px;font-weight:300;}
+
+    .content{max-width:1120px;margin:0 auto;padding:0 48px 80px;}
+
+    /* The problem section */
+    .problem{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;padding:56px 0;border-top:1px solid var(--border-faint);}
+    .problem-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .problem-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:0;}
+    .problem-title em{font-style:italic;color:var(--coral);}
+    .problem-body p{font-size:15px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:16px;}
+    .problem-body p:last-child{margin-bottom:0;}
+    .problem-body strong{color:var(--white);font-weight:500;}
+
+    /* Principles */
+    .principles{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .principles-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .principles-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:40px;}
+    .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .principle{background:rgba(255,255,255,.04);border:1px solid var(--border-faint);border-radius:6px;padding:28px 24px;}
+    .principle-icon{width:36px;height:36px;border-radius:50%;background:rgba(247,108,108,.15);border:1px solid rgba(247,108,108,.25);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+    .principle-icon svg{width:16px;height:16px;stroke:var(--coral);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+    .principle-title{font-size:16px;font-weight:500;color:var(--white);margin-bottom:10px;}
+    .principle-text{font-size:13px;color:var(--text2);line-height:1.75;font-weight:300;}
+
+    /* Built by */
+    .built-by{padding:56px 0;border-top:1px solid var(--border-faint);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+    .built-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .built-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:0;}
+    .built-title em{font-style:italic;color:var(--coral);}
+    .built-body p{font-size:15px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:16px;}
+    .built-body p:last-child{margin-bottom:0;}
+    .built-body strong{color:var(--white);font-weight:500;}
+
+    /* Platforms preview */
+    .platforms{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .platforms-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .platforms-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:32px;}
+    .platforms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .platform-item{background:rgba(255,255,255,.04);border:1px solid var(--border-faint);border-radius:5px;padding:22px 20px;display:flex;flex-direction:column;gap:8px;}
+    .platform-item-status{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;}
+    .status-live{color:var(--sky);}
+    .status-dev{color:var(--coral);}
+    .status-soon{color:var(--text3);}
+    .platform-item-name{font-family:'DM Serif Display',serif;font-size:18px;color:var(--white);line-height:1.2;}
+    .platform-item-desc{font-size:12px;color:var(--text2);line-height:1.65;font-weight:300;}
+    .platform-item-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);text-decoration:none;font-weight:500;margin-top:4px;transition:color .15s;display:inline-block;}
+    .platform-item-link:hover{color:var(--white);}
+
+    /* Footer */
+    footer{background:var(--bg-dark);border-top:1px solid var(--border-faint);padding:20px 48px;}
+    .footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);}
+    .footer-logo em{font-style:italic;color:var(--coral);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:rgba(255,255,255,.6);}
+    .footer-copy{font-size:10px;color:rgba(255,255,255,.18);}
+
+    @media(max-width:900px){
+      nav,.page-hero,.content,footer{padding-left:24px;padding-right:24px;}
+      .page-headline{font-size:40px;}
+      .problem,.built-by{grid-template-columns:1fr;}
+      .principles-grid,.platforms-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Operation<em>Ready</em></a>
+  <div class="nav-right">
+    <a href="/hub-about.html" class="active">About</a>
+    <a href="/hub-organisations.html">For organisations</a>
+    <a href="/hub-organisations.html#contact" class="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a href="/" class="page-back">← Back to platforms</a>
+  <div class="page-eyebrow">About Operation Ready</div>
+  <h1 class="page-headline">The gap between<br>briefing and <em>boarding.</em></h1>
+  <div class="page-rule"></div>
+  <p class="page-lede">Operation Ready exists to close the preparation gap — for anyone going somewhere unfamiliar, demanding, and high-stakes.</p>
+</div>
+
+<div class="content">
+
+  <div class="problem">
+    <div>
+      <div class="problem-label">The problem</div>
+      <h2 class="problem-title">Unprepared people<br>cost everyone <em>time.</em></h2>
+    </div>
+    <div class="problem-body">
+      <p>Every year, thousands of people join operational deployments — on vessels, at research stations, in the field — without the foundational knowledge to function effectively from day one. They don't know the environment. They don't know the language. They don't know what's expected of them.</p>
+      <p>The people around them absorb the cost. Experienced crew slow down to explain things that should already be known. Operations become less safe. Deployments become less effective.</p>
+      <p><strong>This is not a talent problem. It's a preparation problem.</strong> And it's almost entirely solvable with the right resources, available before people arrive.</p>
+    </div>
+  </div>
+
+  <div class="principles">
+    <div class="principles-label">How we work</div>
+    <h2 class="principles-title">Built on three principles</h2>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="principle-title">Practitioner-built</div>
+        <div class="principle-text">Every module is written by someone with direct operational experience in that context — not by instructional designers working from textbooks. The content reflects what actually matters on day one, not what looks comprehensive on a syllabus.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="principle-title">Before you arrive</div>
+        <div class="principle-text">The preparation happens before deployment, not during it. Modules are designed to be completed in the weeks before departure — giving people the foundational knowledge that makes onboard induction faster and more effective for everyone.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="principle-title">Accessible by design</div>
+        <div class="principle-text">No accounts, no downloads, no institutional login required. A link is enough. The platform works on any device, in any browser, in multiple languages. The goal is zero friction between a person and the preparation they need.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="built-by">
+    <div>
+      <div class="built-label">Who built this</div>
+      <h2 class="built-title">Written from<br>the <em>deck.</em></h2>
+    </div>
+    <div class="built-body">
+      <p>Operation Ready was built by a maritime professional with direct operational experience across humanitarian search and rescue in the Central Mediterranean, conservation vessel operations, and sub-Antarctic remote station work.</p>
+      <p>I've been there as new crew — on conservation vessels, SAR vessels, and remote stations. I know what it feels like to arrive underprepared, and what it costs the people around you when you do. <strong>This is exactly what I would have wanted before stepping aboard.</strong></p>
+      <p>The platform is continuously maintained as operational practice evolves. Each vertical is built in collaboration with people who are actively doing the work — not working from a distance.</p>
+    </div>
+  </div>
+
+  <div class="platforms">
+    <div class="platforms-label">The platforms</div>
+    <h2 class="platforms-title">Built for every deployment context</h2>
+    <div class="platforms-grid">
+      <div class="platform-item">
+        <div class="platform-item-status status-live">Live now</div>
+        <div class="platform-item-name">Humanitarian Search & Rescue</div>
+        <div class="platform-item-desc">31 modules across 6 paths. Built for crew joining humanitarian SAR operations in the Central Mediterranean and beyond.</div>
+        <a href="/sar.html" class="platform-item-link">Enter platform →</a>
+      </div>
+      <div class="platform-item">
+        <div class="platform-item-status status-dev">In development</div>
+        <div class="platform-item-name">Conservation Vessel Operations</div>
+        <div class="platform-item-desc">7 paths covering campaign operations, documentation, legal framework, and crew dynamics for conservation vessel deployments.</div>
+        <a href="/conservation.html" class="platform-item-link">Preview →</a>
+      </div>
+      <div class="platform-item">
+        <div class="platform-item-status status-soon">Coming soon</div>
+        <div class="platform-item-name">Field & Remote Operations</div>
+        <div class="platform-item-desc">Offshore energy, polar research stations, humanitarian field missions. Pre-deployment preparation for any difficult environment.</div>
+        <span class="platform-item-link" style="color:var(--text3);cursor:default;">Notify me</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Operation<em>Ready</em></div>
+    <div class="footer-links">
+      <a href="/hub-about.html">About</a>
+      <a href="/hub-organisations.html">For organisations</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Operation Ready</div>
+  </div>
+</footer>
+
+</body>
+</html>

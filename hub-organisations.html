@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Organisations — Operation Ready</title>
+  <meta name="description" content="Operation Ready works with organisations deploying people to difficult environments. Discuss using the platform across your team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --bg:#2E4A6B;
+      --bg-dark:#243D58;
+      --coral:#F76C6C;
+      --sky:#A8D0E6;
+      --yellow:#F8E9A1;
+      --white:#ffffff;
+      --text2:rgba(255,255,255,.62);
+      --text3:rgba(255,255,255,.32);
+      --border:rgba(255,255,255,.1);
+      --border-faint:rgba(255,255,255,.06);
+    }
+    html,body{min-height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(36,61,88,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border-faint);}
+    .nav-logo{font-family:'DM Serif Display',serif;font-size:19px;color:var(--white);text-decoration:none;}
+    .nav-logo em{font-style:italic;color:var(--coral);}
+    .nav-right{display:flex;align-items:center;gap:28px;}
+    .nav-right a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .nav-right a:hover{color:var(--white);}
+    .nav-right a.active{color:var(--sky);}
+    .nav-contact{background:var(--coral);color:var(--white) !important;padding:9px 20px;border-radius:3px;}
+
+    .page-hero{padding:120px 48px 72px;max-width:1120px;margin:0 auto;}
+    .page-back{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;margin-bottom:40px;transition:color .15s;}
+    .page-back:hover{color:var(--sky);}
+    .page-eyebrow{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:20px;}
+    .page-eyebrow::before{content:'';display:block;width:26px;height:1px;background:var(--sky);}
+    .page-headline{font-family:'DM Serif Display',serif;font-size:56px;line-height:1.06;color:var(--white);margin-bottom:18px;letter-spacing:-.01em;max-width:680px;}
+    .page-headline em{font-style:italic;color:var(--coral);}
+    .page-rule{width:44px;height:2px;background:var(--coral);margin-bottom:24px;}
+    .page-lede{font-size:17px;line-height:1.78;color:var(--text2);max-width:600px;font-weight:300;}
+
+    .content{max-width:1120px;margin:0 auto;padding:0 48px 80px;}
+
+    /* Value props */
+    .value-section{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .value-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .value-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:36px;}
+    .value-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .value-card{background:rgba(255,255,255,.04);border:1px solid var(--border-faint);border-radius:6px;padding:26px 24px;}
+    .value-card-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:10px;}
+    .value-card-text{font-size:13px;color:var(--text2);line-height:1.78;font-weight:300;}
+
+    /* How it works */
+    .how{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .how-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .how-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:36px;}
+    .how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border-faint);border-radius:6px;overflow:hidden;}
+    .how-step{padding:28px 24px;border-right:1px solid var(--border-faint);}
+    .how-step:last-child{border-right:none;}
+    .how-step-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--coral);line-height:1;margin-bottom:14px;}
+    .how-step-title{font-size:15px;font-weight:500;color:var(--white);margin-bottom:10px;}
+    .how-step-text{font-size:13px;color:var(--text2);line-height:1.75;font-weight:300;}
+
+    /* Platforms */
+    .platforms{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .platforms-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .platforms-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:10px;}
+    .platforms-sub{font-size:14px;color:var(--text2);font-weight:300;line-height:1.7;max-width:580px;margin-bottom:32px;}
+    .platforms-list{display:flex;flex-direction:column;gap:12px;}
+    .platform-row{background:rgba(255,255,255,.04);border:1px solid var(--border-faint);border-radius:5px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+    .platform-row-left{}
+    .platform-row-status{font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin-bottom:6px;}
+    .status-live{color:var(--sky);}
+    .status-dev{color:var(--coral);}
+    .status-soon{color:var(--text3);}
+    .platform-row-name{font-family:'DM Serif Display',serif;font-size:20px;color:var(--white);}
+    .platform-row-desc{font-size:13px;color:var(--text2);font-weight:300;margin-top:4px;}
+    .platform-row-link{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);text-decoration:none;font-weight:500;white-space:nowrap;flex-shrink:0;transition:color .15s;}
+    .platform-row-link:hover{color:var(--white);}
+
+    /* Contact */
+    .contact-section{padding:56px 0;border-top:1px solid var(--border-faint);}
+    .contact-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sky);font-weight:500;margin-bottom:16px;}
+    .contact-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.2;margin-bottom:10px;}
+    .contact-sub{font-size:15px;color:var(--text2);font-weight:300;line-height:1.75;max-width:560px;margin-bottom:36px;}
+    .contact-box{background:rgba(247,108,108,.08);border:1px solid rgba(247,108,108,.2);border-radius:6px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+    .contact-box-text{}
+    .contact-box-heading{font-family:'DM Serif Display',serif;font-size:26px;color:var(--white);margin-bottom:8px;}
+    .contact-box-detail{font-size:13px;color:var(--text2);font-weight:300;line-height:1.7;}
+    .contact-box-actions{display:flex;flex-direction:column;align-items:flex-end;gap:12px;flex-shrink:0;}
+    .contact-email{font-family:'DM Serif Display',serif;font-size:22px;color:var(--coral);text-decoration:none;transition:color .15s;}
+    .contact-email:hover{color:#e85555;}
+    .contact-btn{background:var(--coral);color:var(--white);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 26px;border-radius:3px;text-decoration:none;transition:background .15s;white-space:nowrap;}
+    .contact-btn:hover{background:#e85555;}
+
+    footer{background:var(--bg-dark);border-top:1px solid var(--border-faint);padding:20px 48px;}
+    .footer-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-family:'DM Serif Display',serif;font-size:16px;color:var(--white);}
+    .footer-logo em{font-style:italic;color:var(--coral);}
+    .footer-links{display:flex;gap:20px;}
+    .footer-links a{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:rgba(255,255,255,.6);}
+    .footer-copy{font-size:10px;color:rgba(255,255,255,.18);}
+
+    @media(max-width:900px){
+      nav,.page-hero,.content,footer{padding-left:24px;padding-right:24px;}
+      .page-headline{font-size:38px;}
+      .value-grid{grid-template-columns:1fr;}
+      .how-steps{grid-template-columns:1fr;}
+      .how-step{border-right:none;border-bottom:1px solid var(--border-faint);}
+      .how-step:last-child{border-bottom:none;}
+      .contact-box{flex-direction:column;align-items:flex-start;}
+      .contact-box-actions{align-items:flex-start;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Operation<em>Ready</em></a>
+  <div class="nav-right">
+    <a href="/hub-about.html">About</a>
+    <a href="/hub-organisations.html" class="active">For organisations</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a href="/" class="page-back">← Back to platforms</a>
+  <div class="page-eyebrow">For organisations</div>
+  <h1 class="page-headline">Deploy your people<br><em>better prepared.</em></h1>
+  <div class="page-rule"></div>
+  <p class="page-lede">Operation Ready is a ready-made pre-deployment training resource. No integration required, no accounts to manage — share the link and your team can start preparing immediately.</p>
+</div>
+
+<div class="content">
+
+  <div class="value-section">
+    <div class="value-label">Why organisations use it</div>
+    <h2 class="value-title">The preparation your induction assumes</h2>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-card-title">Faster onboarding</div>
+        <div class="value-card-text">When new crew arrive already knowing the environment, the terminology, and the basics of their role — your induction covers the specifics instead of the fundamentals. Operations start better.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Safer first deployments</div>
+        <div class="value-card-text">New crew who understand safety protocols, emergency signals, and their role in high-pressure situations before they arrive make fewer costly mistakes. The preparation gap is a safety gap.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">No infrastructure required</div>
+        <div class="value-card-text">No LMS, no IT integration, no admin overhead. Add the link to your pre-deployment checklist and it works. Progress is tracked locally on each device — nothing to manage on your end.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-card-title">Continuously maintained</div>
+        <div class="value-card-text">Modules are reviewed and updated as operational practice evolves. You're not buying a training package that dates immediately — the content is maintained by people actively doing the work.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how">
+    <div class="how-label">How it works</div>
+    <h2 class="how-title">Three steps to deployment-ready crew</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">Select your platform</div>
+        <div class="how-step-text">Choose the platform that matches your operational context — humanitarian SAR, conservation vessel operations, or field deployments. Each platform has its own curriculum built for that environment.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">Share the link</div>
+        <div class="how-step-text">Add the platform URL to your pre-deployment pack. Crew complete modules on any device, at their own pace, before they board. No accounts, no logins, no tracking from your end.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Arrive prepared</div>
+        <div class="how-step-text">Crew who've completed the platform arrive knowing the environment, the terminology, and what's expected. Your induction covers your specifics. Operations start better.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="platforms">
+    <div class="platforms-label">Available platforms</div>
+    <h2 class="platforms-title">Built for your deployment context</h2>
+    <p class="platforms-sub">Each platform is purpose-built for a specific operational environment. More are in development — get in touch if your context isn't listed yet.</p>
+    <div class="platforms-list">
+      <div class="platform-row">
+        <div class="platform-row-left">
+          <div class="platform-row-status status-live">Live now</div>
+          <div class="platform-row-name">Humanitarian Search & Rescue</div>
+          <div class="platform-row-desc">31 modules · Central Mediterranean SAR context · NGO crew, all experience levels</div>
+        </div>
+        <a href="/sar.html" class="platform-row-link">Enter platform →</a>
+      </div>
+      <div class="platform-row">
+        <div class="platform-row-left">
+          <div class="platform-row-status status-dev">In development</div>
+          <div class="platform-row-name">Conservation Vessel Operations</div>
+          <div class="platform-row-desc">7 paths · Campaign operations, documentation, legal framework · Volunteer and professional crew</div>
+        </div>
+        <a href="/conservation.html" class="platform-row-link">Preview →</a>
+      </div>
+      <div class="platform-row">
+        <div class="platform-row-left">
+          <div class="platform-row-status status-soon">Coming soon</div>
+          <div class="platform-row-name">Field & Remote Operations</div>
+          <div class="platform-row-desc">Offshore energy · Polar research stations · Humanitarian field missions</div>
+        </div>
+        <span class="platform-row-link" style="color:var(--text3);cursor:default;">Notify me</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-section" id="contact">
+    <div class="contact-label">Get in touch</div>
+    <h2 class="contact-title">Talk to us about your organisation</h2>
+    <p class="contact-sub">Whether you want to discuss using Operation Ready across your team, explore a partnership, or find out what's in development — we'd like to hear from you. Every deployment context is different and we're interested in the conversation.</p>
+    <div class="contact-box">
+      <div class="contact-box-text">
+        <div class="contact-box-heading">Contact Operation Ready</div>
+        <div class="contact-box-detail">We aim to respond within 48 hours. If your context isn't covered by a current platform, tell us about it.</div>
+      </div>
+      <div class="contact-box-actions">
+        <a href="mailto:contact@operationready.org" class="contact-email">contact@operationready.org</a>
+        <a href="mailto:contact@operationready.org" class="contact-btn">Send us a message →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Operation<em>Ready</em></div>
+    <div class="footer-links">
+      <a href="/hub-about.html">About</a>
+      <a href="/hub-organisations.html">For organisations</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 Operation Ready</div>
+  </div>
+</footer>
+
+</body>
+</html>
